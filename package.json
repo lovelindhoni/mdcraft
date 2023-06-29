@@ -1,0 +1,34 @@
+{
+	"name": "notestaker",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --plugin-search-dir . --check .",
+		"format": "prettier --plugin-search-dir . --write ."
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^2.1.0",
+		"@sveltejs/kit": "^1.21.0",
+		"prettier": "^2.8.8",
+		"prettier-plugin-svelte": "^2.10.1",
+		"svelte": "^3.59.2",
+		"svelte-check": "^3.4.4",
+		"tslib": "^2.6.0",
+		"typescript": "^5.1.6",
+		"vite": "^4.3.9"
+	},
+	"type": "module",
+	"dependencies": {
+		"@types/emoji-js": "^3.5.0",
+		"@types/marked": "^5.0.0",
+		"emoji-js": "^3.7.0",
+		"highlight.js": "^11.8.0",
+		"marked": "^5.1.0",
+		"marked-mangle": "^1.1.0"
+	}
+}
