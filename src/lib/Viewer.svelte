@@ -37,7 +37,8 @@
 	<textarea use:focusEditor spellcheck="false" bind:value={markdown} />
 {:else}
 	<div class="viewer">
-		{@html generatedHtml} <!-- @html is used for displaying the generatedHtml string in DOM -->
+		{@html generatedHtml}
+		<!-- @html is used for displaying the generatedHtml string in DOM -->
 	</div>
 {/if}
 
@@ -68,5 +69,74 @@
 	.viewer::-webkit-scrollbar,
 	textarea::-webkit-scrollbar {
 		display: none;
+	}
+	/*Styles for the generated Html*/
+
+	:global(h1) {
+		font-size: 2.2rem;
+	}
+	:global(h2) {
+		font-size: 1.75rem;
+	}
+	:global(h3) {
+		font-size: 1.3rem;
+	}
+	:global(h4) {
+		font-size: 1.15rem;
+	}
+	:global(h5) {
+		font-size: 0.92rem;
+	}
+	:global(h6) {
+		font-size: 0.74rem;
+	}
+	:global(p, ol, ul, mark, a) {
+		font-size: 1.18rem;
+		line-height: 1.15;
+	}
+	:global(.viewer) {
+		font-family: Arial, Helvetica, sans-serif;
+	}
+	:global(table) {
+		font-size: 1.09rem;
+	}
+	:global(mark) {
+		padding: 0.11rem;
+		border-radius: 0.4rem;
+	}
+	:global(table) {
+		border-collapse: collapse;
+		width: 100%;
+		overflow-wrap: break-word;
+	}
+	:global(table th),
+	:global(table td) {
+		padding: 0.7rem;
+		text-align: left;
+		border: 0.12rem solid black;
+	}
+	:global(a) {
+		color: #3a0ca3;
+	}
+	:global(blockquote) {
+		background-color: #f9f9f9;
+		border-left: 10px solid #ccc;
+		padding: 0.02rem 1rem;
+		margin-top: 1.5rem;
+		margin-bottom: 1.5rem;
+		color: #2d2d2d;
+	}
+	:global(img) {
+		height: auto;
+		width: auto;
+		max-width: 100%;
+		max-height: 25em;
+	}
+	:global(code) {
+		padding: 0.14rem;
+		background-color: lightgray;
+		margin-left: 0.5rem;
+		margin-right: 0.5rem;
+		border-radius: 0.5rem;
 	}
 </style>

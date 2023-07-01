@@ -21,7 +21,9 @@
 <div class="layout">
 	<div class="header">header</div>
 	<div class="toggle">
-		<input type="checkbox" bind:checked={edit} /> Edit
+		<input id="toggleEditor" type="checkbox" bind:checked={edit} />
+		<label for="toggleEditor">Edit (Ctrl + Enter)</label>
+
 	</div>
 	<div class="sidebar">sidebar</div>
 	<div class="editor">
@@ -61,17 +63,5 @@
 	.editor {
 		grid-row: 2 / span 17;
 		grid-column-start: span 12;
-	}
-
-	:global(table) {
-		border-collapse: collapse;
-		width: 100%;
-	}
-
-	:global(table th),
-	:global(table td) {
-		padding: 0.7rem;
-		text-align: left;
-		border: 1px solid black;
 	}
 </style>
