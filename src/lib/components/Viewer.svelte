@@ -63,7 +63,7 @@
 	}
 
 	.viewer {
-		word-break: break-word;
+		overflow-wrap: break-word;
 		padding: 1.4rem 2.4rem;
 	}
 	.viewer::-webkit-scrollbar,
@@ -90,7 +90,7 @@
 	:global(h6) {
 		font-size: 0.74rem;
 	}
-	:global(p, ol, ul, mark, a) {
+	:global(p, ol, ul, mark, a, del) {
 		font-size: 1.18rem;
 		line-height: 1.15;
 	}

@@ -1,0 +1,28 @@
+<!--This component connects all the components in the sidebar folder, this will be exported to the dashboard page-->
+<script lang="ts">
+	import CreateBook from '$lib/components/sidebar/CreateBook.svelte'; // the create new button
+	import SingleBook from '$lib/components/sidebar/SingleBook.svelte'; // the component that will display all the books
+	import { books } from '$lib/stores'; // of course, the books array
+</script>
+
+<CreateBook />
+{#if $books.length !== 0}
+	<!--if there are no books then the message is displayed, else the books are looped -->
+	{#each $books as book}
+		<SingleBook bookId={book.id} />
+	{/each}
+{:else}
+	<p>
+		Hey there, buddy!😄 Looks like you have no books here. Why don't you create some 📚?
+	</p>
+{/if}
+
+<style>
+	p {
+		font-size: 1.6rem;
+		font-family: Arial, Helvetica, sans-serif;
+		margin: 2.3rem;
+		line-height: 1.3;
+		margin-top: 4rem;
+	}
+</style>
