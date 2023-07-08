@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { books } from '$lib/stores'; // importing books array
+	import { books, currentBookId } from '$lib/stores'; // importing books array
 	import type { Book } from '$lib/stores'; // importing the book' interface, because i had to :(
 	import DeleteIcon from '$lib/assets/DeleteSvg.svelte'; // svg file as a component
 	import EditIcon from '$lib/assets/EditSvg.svelte'; // svg file as a svelte component
@@ -14,6 +14,9 @@
 		// this function causes the deletion of a book
 		$books.splice(bookIndex, 1); // removes the book from the array
 		$books = $books; // very own ourtesty of svelte
+		if($currentBookId === bookId){ // checks whether the deleted book is the current book, if yes, then the currentbook is set to null
+			$currentBookId = null;
+		}
 		showDeleteModal = false; // closes the delete modal
 	}
 	function onEditProceed() {
@@ -32,24 +35,25 @@
 	}
 </script>
 
-<div class="book-container">
+<div class="book-container" on:click on:keydown> <!--even forwarding, clicking this component will aset the currentBookId-->
 	<div class="book-title">
 		<p>{$books[bookIndex].title}</p>
 		<!--This is the book title of this component, i have been reffering in the above comments-->
 	</div>
 	<div class="actions">
 		<!--the edit and delete icons are imported and then the clicking of it will open its respective modals-->
+		<!--used stop propagation to avoid propagating the event to the parent that is the singlebook component-->
 		<div
 			class="icons"
-			on:click={() => (showEditModal = true)}
-			on:keydown={() => (showEditModal = true)}
+			on:click|stopPropagation={() => (showEditModal = true)}   
+			on:keydown|stopPropagation={() => (showEditModal = true)}
 		>
 			<EditIcon />
 		</div>
 		<div
 			class="icons"
-			on:click={() => (showDeleteModal = true)}
-			on:keydown={() => (showDeleteModal = true)}
+			on:click|stopPropagation={() => (showDeleteModal = true)}
+			on:keydown|stopPropagation={() => (showDeleteModal = true)}
 		>
 			<DeleteIcon />
 		</div>

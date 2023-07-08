@@ -2,14 +2,14 @@
 <script lang="ts">
 	import CreateBook from '$lib/components/sidebar/CreateBook.svelte'; // the create new button
 	import SingleBook from '$lib/components/sidebar/SingleBook.svelte'; // the component that will display all the books
-	import { books } from '$lib/stores'; // of course, the books array
+	import { books, currentBookId } from '$lib/stores'; // of course, the books array, and the currentBookId
 </script>
 
 <CreateBook />
 {#if $books.length !== 0}
 	<!--if there are no books then the message is displayed, else the books are looped -->
 	{#each $books as book}
-		<SingleBook bookId={book.id} />
+		<SingleBook bookId={book.id} on:click={() => currentBookId.set(book.id)} on:keydown={() => currentBookId.set(book.id)}/> <!--clicking this component will set the currentBookId to its respective book id -->
 	{/each}
 {:else}
 	<p>

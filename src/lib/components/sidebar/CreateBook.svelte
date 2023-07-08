@@ -3,16 +3,16 @@
 	import type { Book } from '$lib/stores'; // importing the Book interface from the stores, for the CreateBook class
 	import AddIcon from '$lib/assets/AddSvg.svelte'; // the addicon svg
 	import ActionsModal from '$lib/components/sidebar/ActionsModal.svelte'; // the Actions modal which shows the create a new book modal in this component
-	class CreateBook {
+	class CreateBook implements Book{
 		// class to create new book objects
 		id: Book['id']; // the id
 		title: Book['title']; // the title
-		chapter: Book['chapter']; // and the chapter array
+		notes: Book['notes']; // and the notes array
 		// the constructor needs the id and the title, the chapters will be implemented later
 		constructor(id: Book['id'], title: Book['title']) {
 			this.id = id;
 			this.title = title;
-			this.chapter = [{ id: 0, title: 'Example Note', content: `Hello World` }]; // some defaults
+			this.notes = [{ id: 0, title: 'Example Note', content: `# Hello World` }]; // some defaults
 		}
 	}
 	let showCreateModal = false; // decides to show the create modal
