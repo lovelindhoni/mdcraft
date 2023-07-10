@@ -5,7 +5,7 @@
 	import ActionsModal from '$lib/components/ActionsModal.svelte'; // the modal for actions
 	export let currentBookIndex: number; // this prop will be fulfilled by the notes.svelte
 	export let noteId: string; // the noteId which will be fulfilled by the notes.svelte
-	const noteIndex = $books[currentBookIndex].notes.findIndex((note) => note.id === noteId); // this goes over the notes array and finds the index of the note using the id
+	$: noteIndex = $books[currentBookIndex].notes.findIndex((note) => note.id === noteId); // this goes over the notes array and finds the index of the note using the id
 	let showDeleteModal = false; // for the delete modal
 	let showEditModal = false; // for the edit modal
 	let errorMessage = '';

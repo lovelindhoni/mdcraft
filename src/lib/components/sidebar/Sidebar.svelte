@@ -8,7 +8,7 @@
 <CreateBook />
 {#if $books.length !== 0}
 	<!--if there are no books then the message is displayed, else the books are looped -->
-	{#each $books as book}
+	{#each $books as book(book.id)}
 		<!--i am sorry that i have not used the keyed each block, it freezes the page at rarer occasions-->
 		<!--when a book is clicked then the currentbookId is set to its book Id-->
 		<SingleBook

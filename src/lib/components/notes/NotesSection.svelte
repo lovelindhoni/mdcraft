@@ -17,7 +17,7 @@
 		</div>
 		{#if $books[currentBookIndex].notes.length > 0}
 			<!--if the notesarray is not empty-->
-			{#each $books[currentBookIndex].notes as note}
+			{#each $books[currentBookIndex].notes as note(note.id)}
 				<SingleNote noteId={note.id} {currentBookIndex} />
 			{/each}
 		{:else}
