@@ -2,19 +2,19 @@
 	// this model has the delete modal, edit modal and create modal
 	import { createEventDispatcher, onMount } from 'svelte'; // importing createeventdispatcher for the cancel and proceed events and the onmount for registering the proceed shortcut key
 	const dispatch = createEventDispatcher(); // initialising the dispatcher
-	export let bookTitle: string; // the book title as usual taken from the input tag here, used to update the book titles in books array
+	export let title: string; // this title is common for both book title and note title, whereever i refernence as title , it is common to both book title and note title
 	export let whatAction: 'edit' | 'create' | 'delete'; // this prop is what specifies which modal to be used, contains only three possible values
-	export let oldBookTitle: string = ''; // this prop get its value from the edit modal, where the old book title is getten and binded to the input tag
+	export let oldTitle = ''; // this prop get its value from the edit modal, where the old title is getten and binded to the input tag
 	$: if (whatAction === 'edit') {
-		bookTitle = oldBookTitle; // when edit mode, the edited booktitle is assigned to the booktitle
+		title = oldTitle; // when edit mode, the edited oldtitle is assigned to the title
 	}
 	function focusInput(node: HTMLInputElement) {
-		node.focus(); // focuses the input area when it is in dom, using svetl action
+		node.focus(); // focusing the input tag whenever it is present at dom
 	}
-	export let errorMessage: string = ''; // the error message which gets its value from createbook and single book component
+	export let errorMessage = ''; // the error message which gets its value from createbook, single book , singlenote and create note component
 	const proceedKey = (event: KeyboardEvent) => {
 		// this function is dispatched the proceed event when enter is clicked and the booktile is not empty
-		if (event.key === 'Enter' && bookTitle.trim() !== '') {
+		if (event.key === 'Enter' && title.trim() !== ``) {
 			dispatch('proceed'); //
 		}
 	};
@@ -28,46 +28,39 @@
 	});
 </script>
 
-<!-- the modal container that has everything, when outside the modal is clicked, then the modal is closed be dispatching the cancel event-->
-<div
-	class="modal-container"
-	on:click={(event) => (event.target === event.currentTarget ? dispatch('cancel') : null)}
-	on:keydown={(event) => (event.target === event.currentTarget ? dispatch('cancel') : null)}
->
+<div class="modal-container">
 	<!--this div has the modal's gut-->
 	<div class="modal-content">
 		<!-- this paragraph shows the error message-->
-		<p id="error">{errorMessage}</p>
+		<p id="error">{@html errorMessage.replace(/ /g, '&nbsp;')}</p>
 		<!--when the mode is create-->
 		{#if whatAction === 'create'}
-			<lable for="bookTitle"
-				>enter a short, unique name for your book<span>(max 40 characters)</span></lable
-			>
-			<div class="input-box">
-				<!--focused onmount and the value is binded to the booktitle, maxlength is 40-->
-				<input bind:value={bookTitle} id="bookTitle" use:focusInput maxlength="40" />
+			<lable for="title"><slot name="create" /></lable>
+			<!--the slot will be fulfilled by the components that creates the note and books-->
+			<div class="input">
+				<!--focused onmount and the value is binded to the booktitle, maxlength is 30-->
+				<input bind:value={title} id="title" maxlength="30" use:focusInput spellcheck="false" />
 			</div>
 		{:else if whatAction === 'edit'}
 			<!--when the mode is edit-->
-			<lable for="bookTitle"
-				>edit the title of your book : <br />{bookTitle}<span>(max 40 characters)</span></lable
-			>
+			<lable for="title"><slot name="edit" /></lable>
+			<!--will be fulfilled by the editing components-->
 			<div class="input">
-				<!--oldbooktitle from the singlebook component is stored binded, whenever it is changed then the booktitle is also changed, see the script function, focuses onmount , maxlength is 40-->
-				<input bind:value={oldBookTitle} id="bookTitle" use:focusInput maxlength="40" />
+				<!--oldbooktitle from the singlebook and singlenote component is stored binded, whenever it is changed then the title is also changed, see the script function, focuses onmount , maxlength is 30-->
+				<input bind:value={oldTitle} id="title" maxlength="30" use:focusInput spellcheck="false" />
 			</div>
 		{:else}
 			<!--when the mode is delete-->
 			<p id="delete-warning">
 				<!--a warning message is shown, telling it can't be recovered-->
-				you sure? this book cannot be recovered after deletion!<br />book: {bookTitle}
+				<slot name="delete" />
+				<!--will be fulfilld by the deletion components-->
+				{@html title.replace(/ /g, '&nbsp;')}
 			</p>
 		{/if}
 		<div class="modal-actions">
-			<!--it has the event buttons, proceed and cancel, when proceed is clicked and the booktitle is not empty then the proceed event is dispatched, on cancel is clicked, then the cancel event is dispatched-->
-			<button on:click={() => (bookTitle.trim() !== '' ? dispatch('proceed') : null)}
-				>proceed</button
-			>
+			<!--it has the event buttons, proceed and cancel, when proceed is clicked and the title is not empty then the proceed event is dispatched, on cancel is clicked, then the cancel event is dispatched-->
+			<button on:click={() => (title.trim() !== '' ? dispatch('proceed') : null)}>proceed</button>
 			<button on:click={() => dispatch('cancel')}>cancel</button>
 		</div>
 	</div>
@@ -114,6 +107,7 @@
 		height: 3rem;
 		font-size: 1.2rem;
 		border-radius: 0.6rem;
+		cursor: pointer;
 	}
 	#delete-warning {
 		font-size: 1.5rem;
@@ -134,7 +128,7 @@
 		font-weight: bold;
 		box-sizing: border-box;
 	}
-	span {
+	:global(span) {
 		font-size: 1.2rem;
 	}
 	lable {

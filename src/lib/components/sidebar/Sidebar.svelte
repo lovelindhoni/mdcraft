@@ -9,12 +9,17 @@
 {#if $books.length !== 0}
 	<!--if there are no books then the message is displayed, else the books are looped -->
 	{#each $books as book}
-		<SingleBook bookId={book.id} on:click={() => currentBookId.set(book.id)} on:keydown={() => currentBookId.set(book.id)}/> <!--clicking this component will set the currentBookId to its respective book id -->
+		<!--i am sorry that i have not used the keyed each block, it freezes the page at rarer occasions-->
+		<!--when a book is clicked then the currentbookId is set to its book Id-->
+		<SingleBook
+			bookId={book.id}
+			on:click={() => currentBookId.set(book.id)}
+			on:keydown={() => currentBookId.set(book.id)}
+		/>
+		<!--clicking this component will set the currentBookId to its respective book id -->
 	{/each}
 {:else}
-	<p>
-		Hey there, buddy!😄 Looks like you have no books here. Why don't you create some 📚?
-	</p>
+	<p>Hey there, buddy!😄 Looks like you have no books here. Why don't you create some 📚?</p>
 {/if}
 
 <style>

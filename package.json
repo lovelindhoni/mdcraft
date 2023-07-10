@@ -1,6 +1,6 @@
 {
 	"name": "notestaker",
-	"version": "0.0.1",
+	"version": "0.1",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -28,7 +28,6 @@
 		"@types/marked": "^5.0.0",
 		"emoji-js": "^3.7.0",
 		"highlight.js": "^11.8.0",
-		"marked": "^5.1.0",
-		"marked-mangle": "^1.1.0"
+		"marked": "^5.1.0"
 	}
 }

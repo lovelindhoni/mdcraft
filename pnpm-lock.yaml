@@ -16,9 +16,6 @@ dependencies:
   marked:
     specifier: ^5.1.0
     version: 5.1.0
-  marked-mangle:
-    specifier: ^1.1.0
-    version: 1.1.0(marked@5.1.0)
 
 devDependencies:
   '@sveltejs/adapter-auto':
@@ -655,14 +652,6 @@ packages:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
-
-  /marked-mangle@1.1.0(marked@5.1.0):
-    resolution: {integrity: sha512-ed2W2gMB2HIBaYasBZveMFJfDRTL2OFycr0GgUSPcBSNl5dX+1r6lHG6u1eFXw7kej2hBTWa1m6YZqcfn4Coxw==}
-    peerDependencies:
-      marked: ^4 || ^5
-    dependencies:
-      marked: 5.1.0
-    dev: false
 
   /marked@5.1.0:
     resolution: {integrity: sha512-z3/nBe7aTI8JDszlYLk7dDVNpngjw0o1ZJtrA9kIfkkHcIF+xH7mO23aISl4WxP83elU+MFROgahqdpd05lMEQ==}
