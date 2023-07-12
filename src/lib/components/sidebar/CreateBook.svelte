@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { books } from '$lib/stores'; // importing the books array from the store
-	import type { Book } from '$lib/stores'; // importing the Book interface from the stores, for the CreateBook class
+	import { books } from '$lib/store'; // importing the books array from the store
 	import AddIcon from '$lib/assets/AddSvg.svelte'; // the addicon svg
 	import ActionsModal from '$lib/components/ActionsModal.svelte'; // the Actions modal which shows the create a new book modal in this component
 	class CreateBook implements Book {

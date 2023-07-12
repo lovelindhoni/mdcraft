@@ -10,11 +10,12 @@
 	}
 	function focusInput(node: HTMLInputElement) {
 		node.focus(); // focusing the input tag whenever it is present at dom
-		return{ // removes it on destroy
-			destroy(){
-				node.blur()
+		return {
+			// removes it on destroy
+			destroy() {
+				node.blur();
 			}
-		}
+		};
 	}
 	export let errorMessage = ''; // the error message which gets its value from createbook, single book , singlenote and create note component
 	const proceedKey = (event: KeyboardEvent) => {

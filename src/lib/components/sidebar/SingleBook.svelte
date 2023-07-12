@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { books, currentBookId } from '$lib/stores'; // importing books array
+	import { books, currentBookId } from '$lib/store'; // importing books array
 	import DeleteIcon from '$lib/assets/DeleteSvg.svelte'; // svg file as a component
 	import EditIcon from '$lib/assets/EditSvg.svelte'; // svg file as a svelte component
 	import ActionsModal from '$lib/components/ActionsModal.svelte'; // importing the modal for showing for delete and edit events
 	export let bookId: string; // exporting the bookId to programmatically get the book-id while looping in each block with the books array in the dashboard page
-    $: bookIndex = $books.findIndex((book) => book.id === bookId); // finding the right book in the array with the acquired bookIndex
+	$: bookIndex = $books.findIndex((book) => book.id === bookId); // finding the right book in the array with the acquired bookIndex
 	let showEditModal = false; // shows the edit modal when edit icon is clicked
 	let showDeleteModal = false; // shows the delete modal when delete icon is clicked
 	let title = ''; // the title which i am gonna fuck through the whole sidebar. It gets the booktitle of the book from the modals

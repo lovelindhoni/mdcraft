@@ -1,9 +1,10 @@
 <script lang="ts">
+	import { currentNoteId } from '$lib/store';
 	import Viewer from '$lib/components/Viewer.svelte'; // Importing the Viewver component
 	import { onMount } from 'svelte'; // onMount for adding the keybaord shortcut to the window
 	import Sidebar from '$lib/components/sidebar/Sidebar.svelte'; // the sidebar
 	import Notes from '$lib/components/notes/NotesSection.svelte'; // imported notes component
-	let edit = true; // The prop that is passed to the Viewver.svelte
+	let edit = false; // The prop that is passed to the Viewver.svelte
 	// Below function adds a keyboard shortcut for toggling the checkbox
 	const handleKeyDown = (event: KeyboardEvent) => {
 		if (event.ctrlKey && event.key === 'Enter') {
@@ -30,8 +31,11 @@
 		<Sidebar />
 	</div>
 	<div class="editor">
-		<Notes />
-		<!--used notes component temporarily for this commit-->
+		{#if $currentNoteId !== null}
+			<Viewer {edit} />
+		{:else}
+			<Notes />
+		{/if}
 	</div>
 </div>
 
@@ -70,6 +74,5 @@
 		grid-column-start: span 12;
 		height: 100%;
 		width: 100%;
-		overflow-y: auto;
 	}
 </style>

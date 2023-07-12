@@ -1,38 +1,41 @@
 <script lang="ts">
-	import { books, currentBookId } from '$lib/stores'; // importing the books and currentBookId
+	import { books, currentBookId, currentBookIndex, currentNoteId } from '$lib/store'; // importing the books and currentBookId
 	import CreateNote from '$lib/components/notes/CreateNote.svelte'; // the createnote and singlenote
 	import SingleNote from '$lib/components/notes/SingleNote.svelte';
-	$: currentBookIndex = $books.findIndex((book) => book.id === $currentBookId); // this will loop over find the currentbookIndex based on the id of that book, i made it reacitve
 </script>
 
 {#if $currentBookId !== null}
 	<!--incase if any book are selected-->
 	<div class="notes-container">
 		<div class="titleandbtn">
-			<h1>{@html $books[currentBookIndex].title.replace(/ /g, '&nbsp;')}</h1>
+			<h1>{@html $books[$currentBookIndex].title.replace(/ /g, '&nbsp;')}</h1>
 			<!--the regex to preserve the whitespaces-->
 			<!--the title of that book-->
-			<CreateNote {currentBookIndex} />
+			<CreateNote />
 			<!--passing the currentbokindex to the createnote-->
 		</div>
-		{#if $books[currentBookIndex].notes.length > 0}
+		{#if $books[$currentBookIndex].notes.length > 0}
 			<!--if the notesarray is not empty-->
-			{#each $books[currentBookIndex].notes as note(note.id)}
-				<SingleNote noteId={note.id} {currentBookIndex} />
+			{#each $books[$currentBookIndex].notes as note (note.id)}
+				<SingleNote
+					noteId={note.id}
+					on:click={() => currentNoteId.set(note.id)}
+					on:keydown={() => currentNoteId.set(note.id)}
+				/>
 			{/each}
 		{:else}
 			<!--if the array length is zero, then we will ask them to create some notes-->
 			<p class="no-notes">
-				would you mind creating some notes in {@html $books[currentBookIndex].title.replace(
+				would you mind creating some notes in {@html $books[$currentBookIndex].title.replace(
 					/ /g,
 					'&nbsp;'
 				)}? 📝
 			</p>
 		{/if}
 	</div>
-{:else}
+{:else if $currentBookId === null}
 	<!--if no book are selected then-->
-	<p class="choose-book">👈 choose one of the book there</p>
+	<p class="choose-book">👈 pick a book from there</p>
 {/if}
 
 <style>

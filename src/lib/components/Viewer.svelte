@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { marked } from 'marked'; // For parsing markdown
+	import { books, currentBookIndex, currentNoteIndex } from '$lib/store';
+	import { marked } from 'marked'; // For parsing $books[$currentBookIndex].notes[$currentNoteIndex].content
 	import EmojiConvertor from 'emoji-js'; // Converts colon-text to emojis
 	import hljs from 'highlight.js'; // For Highlighting Code Blocks
 	import 'highlight.js/styles/atom-one-dark.css'; // I prefer One-Dark theme
@@ -25,16 +26,24 @@
 	afterUpdate(() => hljs.highlightAll()); // HighlightAll does automatic lang-detection on code blocks
 	function focusEditor(node: HTMLTextAreaElement) {
 		node.focus(); // Focuses the textarea if it is present on DOM using the svetle action
+		return {
+			destroy() {
+				node.blur();
+			}
+		};
 	}
-	let markdown = `# Happy Svelting!`; // The variable that stores the user's markdown
-	// The reactive generatedHtml variable that runs the marked parser whenever markdown value changes
-	$: generatedHtml = marked(markdown);
+	// The reactive generatedHtml variable that runs the marked parser whenever value changes
+	$: generatedHtml = marked($books[$currentBookIndex].notes[$currentNoteIndex].content);
 	// The prop that is used to toggle between the editor and viewer, exported to dashboard page
 	export let edit: boolean;
 </script>
 
 {#if edit}
-	<textarea use:focusEditor spellcheck="false" bind:value={markdown} />
+	<textarea
+		use:focusEditor
+		spellcheck="false"
+		bind:value={$books[$currentBookIndex].notes[$currentNoteIndex].content}
+	/>
 {:else}
 	<div class="viewer">
 		{@html generatedHtml}
@@ -138,5 +147,19 @@
 		margin-left: 0.5rem;
 		margin-right: 0.5rem;
 		border-radius: 0.5rem;
+	}
+	:global(pre span) {
+		font-size: 0.95rem;
+	}
+	:global(pre code) {
+		font-size: 0.95rem;
+		margin-right: 0.5rem;
+		border-radius: 0.5rem;
+	}
+	:global(pre span) {
+		font-size: 0.95rem;
+	}
+	:global(pre code) {
+		font-size: 0.95rem;
 	}
 </style>

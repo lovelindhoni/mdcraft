@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { books } from '$lib/stores'; // the books array as ususal
+	import { books, currentBookIndex } from '$lib/store'; // the books array as ususal
 	import AddSvg from '$lib/assets/AddSvg.svelte';
-	import type { Note } from '$lib/stores'; // importing note interface to ensure class shape
 	import ActionsModal from '$lib/components/ActionsModal.svelte';
 	let title: string; // the title variable which will be used throughout here
 	let showModal = false; // the varable that closes the modal
 	let errorMessage = '';
-	export let currentBookIndex: number; // this prop will be fulfilled by the notes.svelte
 	class CreateNote implements Note {
 		// this class generates the note objects which will be pushed to the book.notes array
 		id: Note['id'];
@@ -20,11 +18,11 @@
 	}
 	function pushNote() {
 		// if there is already a note with the sametitle then error message is given
-		if ($books[currentBookIndex].notes.some((note) => note.title === title.trim())) {
+		if ($books[$currentBookIndex].notes.some((note) => note.title === title.trim())) {
 			errorMessage = `Ouch!😬 note title '${title}' is in use, try another🙏`;
 		} else {
 			// else the note will be pushed
-			$books[currentBookIndex].notes.push(
+			$books[$currentBookIndex].notes.push(
 				// this note will be pushed to the notes array of the currentbook
 				new CreateNote(title.trim())
 			);
@@ -59,7 +57,7 @@
 		on:proceed={pushNote}
 		{errorMessage}
 		><svelte:fragment slot="create"
-			>enter a short, unique name for your note in {@html $books[currentBookIndex].title.replace(
+			>enter a short, unique name for your note in {@html $books[$currentBookIndex].title.replace(
 				/ /g,
 				'&nbsp;'
 			)}<span>(max 30 characters)</span></svelte:fragment

@@ -1,18 +1,17 @@
 <script lang="ts">
-	import { books } from '$lib/stores'; // the books array as ususal
+	import { books, currentBookIndex } from '$lib/store'; // the books array as ususal
 	import EditSvg from '$lib/assets/EditSvg.svelte'; // the icons
 	import DeleteSvg from '$lib/assets/DeleteSvg.svelte';
 	import ActionsModal from '$lib/components/ActionsModal.svelte'; // the modal for actions
-	export let currentBookIndex: number; // this prop will be fulfilled by the notes.svelte
-	export let noteId: string; // the noteId which will be fulfilled by the notes.svelte
-	$: noteIndex = $books[currentBookIndex].notes.findIndex((note) => note.id === noteId); // this goes over the notes array and finds the index of the note using the id
+	export let noteId: string; // the noteId which will be fulfilled by the notesSection.svelte
+	$: noteIndex = $books[$currentBookIndex].notes.findIndex((note) => note.id === noteId); // this goes over the notes array and finds the index of the note using the id
 	let showDeleteModal = false; // for the delete modal
 	let showEditModal = false; // for the edit modal
 	let errorMessage = '';
 	let title = '';
 	function deleteNote() {
 		// it removes the note from the notes array using its index
-		$books[currentBookIndex].notes.splice(noteIndex, 1);
+		$books[$currentBookIndex].notes.splice(noteIndex, 1);
 		$books = $books; // #svelte
 		showDeleteModal = false; // closes the modal
 	}
@@ -20,36 +19,36 @@
 		// this function causes the editing of a book
 		if (
 			// if the title is duplicate with any other title in notes, then error message is given
-			$books[currentBookIndex].notes[noteIndex].title !== title.trim() &&
-			$books[currentBookIndex].notes.some((note) => note.title === title.trim())
+			$books[$currentBookIndex].notes[noteIndex].title !== title.trim() &&
+			$books[$currentBookIndex].notes.some((note) => note.title === title.trim())
 		) {
 			errorMessage = `Ouch!😬 note title '${title}' is in use, try another🙏`;
 		} else {
 			// else, the the trimmed title is stored as the new title for the book in this component, and closes the edit modal
-			$books[currentBookIndex].notes[noteIndex].title = title.trim();
+			$books[$currentBookIndex].notes[noteIndex].title = title.trim();
 			showEditModal = false;
 		}
 	}
 </script>
 
 <div>
-	<div class="notes-container">
+	<div class="notes-container" on:click on:keydown>
 		<!--for preserving the whitespaces-->
-		<p>{@html $books[currentBookIndex].notes[noteIndex].title.replace(/ /g, '&nbsp;')}</p>
+		<p>{@html $books[$currentBookIndex].notes[noteIndex].title.replace(/ /g, '&nbsp;')}</p>
 		<!--title of the note-->
 		<div class="actions">
 			<div
 				class="icon"
-				on:click={() => (showEditModal = true)}
-				on:keydown={() => (showEditModal = true)}
+				on:click|stopPropagation={() => (showEditModal = true)}
+				on:keydown|stopPropagation={() => (showEditModal = true)}
 			>
 				<EditSvg />
 			</div>
 			<!--the edit and delete icon for doing opertation in the note-->
 			<div
 				class="icon"
-				on:click={() => (showDeleteModal = true)}
-				on:keydown={() => (showDeleteModal = true)}
+				on:click|stopPropagation={() => (showDeleteModal = true)}
+				on:keydown|stopPropagation={() => (showDeleteModal = true)}
 			>
 				<DeleteSvg />
 			</div>
@@ -62,7 +61,7 @@
 		whatAction="delete"
 		on:cancel={() => (showDeleteModal = false)}
 		on:proceed={deleteNote}
-		title={$books[currentBookIndex].notes[noteIndex].title}
+		title={$books[$currentBookIndex].notes[noteIndex].title}
 		><svelte:fragment slot="delete"
 			>you sure? this note cannot be recovered after deletion!<br />note:</svelte:fragment
 		></ActionsModal
@@ -75,7 +74,7 @@
 			title = '';
 		}}
 		bind:title
-		oldTitle={$books[currentBookIndex].notes[noteIndex].title}
+		oldTitle={$books[$currentBookIndex].notes[noteIndex].title}
 		on:proceed={onEdit}
 		{errorMessage}
 		><svelte:fragment slot="edit"
@@ -103,6 +102,7 @@
 		display: flex;
 		align-items: flex-end;
 		justify-content: space-between;
+		cursor: pointer;
 	}
 	hr {
 		margin-right: 1rem;
