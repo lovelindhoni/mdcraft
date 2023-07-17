@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { books } from '$lib/store'; // importing the books array from the store
 	import AddIcon from '$lib/assets/AddSvg.svelte'; // the addicon svg
-	import ActionsModal from '$lib/components/ActionsModal.svelte'; // the Actions modal which shows the create a new book modal in this component
+	import { onMount } from 'svelte';
+	let ActionsModal: any; // for dynamically importing the actions modal
+	onMount(async () => {
+		ActionsModal = (await import('$lib/components/ActionsModal.svelte')).default;
+	});
 	class CreateBook implements Book {
 		// class to create new book objects
 		id: Book['id']; // the id
@@ -9,7 +13,7 @@
 		notes: Book['notes']; // and the notes array
 		// the constructor needs the id and the title, the chapters will be implemented later
 		constructor(title: Book['title']) {
-			this.id = crypto.randomUUID();
+			this.id = crypto.randomUUID(); // generates a unique id
 			this.title = title;
 			this.notes = [{ id: crypto.randomUUID(), title: `Example Note`, content: `# Hello World` }]; // some defaults
 		}
@@ -48,7 +52,8 @@
 {#if showCreateModal}
 	<!--opens the modal here-->
 	<!-- on cancel , both the title and error message is wiped, then closes the modal, on proceed, the newbook function is runned. the title is binded which will have the value from the input tag in the delete modal, plus the error message is passed to the modal-->
-	<ActionsModal
+	<svelte:component
+		this={ActionsModal}
 		whatAction="create"
 		on:cancel={() => {
 			title = '';
@@ -60,7 +65,7 @@
 		{errorMessage}
 		><svelte:fragment slot="create"
 			>enter a short, unique name for your book<span>(max 30 characters)</span></svelte:fragment
-		></ActionsModal
+		></svelte:component
 	>
 {/if}
 

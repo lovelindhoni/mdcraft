@@ -1,40 +1,27 @@
 <script lang="ts">
-	import { currentNoteId } from '$lib/store';
-	import Viewer from '$lib/components/Viewer.svelte'; // Importing the Viewver component
-	import { onMount } from 'svelte'; // onMount for adding the keybaord shortcut to the window
+	import { currentNoteId, books, currentBookId } from '$lib/store'; // importing the stuff
 	import Sidebar from '$lib/components/sidebar/Sidebar.svelte'; // the sidebar
-	import Notes from '$lib/components/notes/NotesSection.svelte'; // imported notes component
-	let edit = false; // The prop that is passed to the Viewver.svelte
-	// Below function adds a keyboard shortcut for toggling the checkbox
-	const handleKeyDown = (event: KeyboardEvent) => {
-		if (event.ctrlKey && event.key === 'Enter') {
-			edit = !edit; // Toggles the editor, the shortcut is Ctrl + Enter
-		}
-	};
-	onMount(() => {
-		// Adds the shorcut to the window onmount
-		window.addEventListener('keydown', handleKeyDown);
-		return () => {
-			// Removes the shortcut from the window ondestroy
-			window.removeEventListener('keydown', handleKeyDown);
-		};
-	});
+	import Notes from '$lib/components/notes/NotesSection.svelte';
+	import Viewer from '$lib/components/viewer/Viewer.svelte';
+	$: currentBookIndex = $books.findIndex((book) => book.id === $currentBookId); // finding the currentBookIndex
+	$: currentNoteIndex =
+		// finding the currentNoteIndex, when the id's are null then it will be -1. Its needed to squash a bug.
+		$currentBookId !== null && $currentNoteId !== null
+			? $books[currentBookIndex].notes.findIndex((note) => note.id === $currentNoteId)
+			: -1;
 </script>
 
 <div class="layout">
 	<div class="header">header</div>
-	<div class="toggle">
-		<input id="toggleEditor" type="checkbox" bind:checked={edit} />
-		<label for="toggleEditor">Edit (Ctrl + Enter)</label>
-	</div>
 	<div class="sidebar">
 		<Sidebar />
 	</div>
 	<div class="editor">
 		{#if $currentNoteId !== null}
-			<Viewer {edit} />
+			<!--i really wanted to do <svelt:component, but i could'nt do it. i pass the indexes to the components-->
+			<Viewer {currentBookIndex} {currentNoteIndex} />
 		{:else}
-			<Notes />
+			<Notes {currentBookIndex} />
 		{/if}
 	</div>
 </div>
@@ -51,7 +38,6 @@
 	}
 
 	.editor,
-	.toggle,
 	.header,
 	.sidebar {
 		border: 0.2rem solid;
@@ -63,16 +49,18 @@
 	.sidebar {
 		grid-row: 3 / span 16;
 		grid-column-start: span 7;
-		overflow-y: auto;
+		height: 100%;
+		width: 100%;
+		box-sizing: border-box;
+		padding-left: 0.6rem;
+		padding-right: 0.5rem;
 	}
-	.toggle {
-		grid-column-start: span 12;
-		grid-row-start: span 1;
-	}
+
 	.editor {
-		grid-row: 2 / span 17;
+		grid-row: 1 / span 18;
 		grid-column-start: span 12;
 		height: 100%;
 		width: 100%;
+		box-sizing: border-box;
 	}
 </style>

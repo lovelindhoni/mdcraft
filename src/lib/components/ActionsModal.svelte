@@ -35,10 +35,11 @@
 </script>
 
 <div class="modal-container">
-	<!--this div has the modal's gut-->
-	<div class="modal-content">
+	<!--this form has the modal's gut-->
+	<form class="modal-content">
 		<!-- this paragraph shows the error message-->
 		<p id="error">{@html errorMessage.replace(/ /g, '&nbsp;')}</p>
+		<!--this regex is used to preserve the whitespace-->
 		<!--when the mode is create-->
 		{#if whatAction === 'create'}
 			<lable for="title"><slot name="create" /></lable>
@@ -69,7 +70,7 @@
 			<button on:click={() => (title.trim() !== '' ? dispatch('proceed') : null)}>proceed</button>
 			<button on:click={() => dispatch('cancel')}>cancel</button>
 		</div>
-	</div>
+	</form>
 </div>
 
 <style>
@@ -144,6 +145,6 @@
 		gap: 0.5rem;
 	}
 	#error {
-		font-size: 1.4rem;
+		font-size: 1.3rem;
 	}
 </style>

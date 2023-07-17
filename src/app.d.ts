@@ -1,6 +1,7 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
 declare global {
+	// i am declaring a global for the Note and the Book so that it can be used thorughout the codebase
 	interface Note {
 		// this Note interface is the interface of the Note objects
 		id: string; // unique id for each note in a book, crytpo.randomuuid will be used for id's

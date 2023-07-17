@@ -1,7 +1,13 @@
 <script lang="ts">
-	import { books, currentBookIndex } from '$lib/store'; // the books array as ususal
-	import AddSvg from '$lib/assets/AddSvg.svelte';
-	import ActionsModal from '$lib/components/ActionsModal.svelte';
+	import { books } from '$lib/store'; // the books array as ususal
+	import { onMount } from 'svelte'; // for dynamic importing
+	let AddSvg: any; // the variables to hold the dynaimically imported comps
+	let ActionsModal: any;
+	onMount(async () => {
+		AddSvg = (await import('$lib/assets/AddSvg.svelte')).default;
+		ActionsModal = (await import('$lib/components/ActionsModal.svelte')).default;
+	});
+	export let currentBookIndex: number; // passed by the notessection.svetle
 	let title: string; // the title variable which will be used throughout here
 	let showModal = false; // the varable that closes the modal
 	let errorMessage = '';
@@ -18,11 +24,11 @@
 	}
 	function pushNote() {
 		// if there is already a note with the sametitle then error message is given
-		if ($books[$currentBookIndex].notes.some((note) => note.title === title.trim())) {
+		if ($books[currentBookIndex].notes.some((note) => note.title === title.trim())) {
 			errorMessage = `Ouch!😬 note title '${title}' is in use, try another🙏`;
 		} else {
 			// else the note will be pushed
-			$books[$currentBookIndex].notes.push(
+			$books[currentBookIndex].notes.push(
 				// this note will be pushed to the notes array of the currentbook
 				new CreateNote(title.trim())
 			);
@@ -40,13 +46,14 @@
 	on:keydown={() => (showModal = true)}
 >
 	<div class="newnotebtn">
-		<AddSvg />
+		<svelte:component this={AddSvg} />
 	</div>
 </button>
 {#if showModal}
 	<!--opens the modal here-->
 	<!-- on cancel , both the title and error message is wiped, then closes the modal, on proceed, the pushnote function is runned. the title is binded which will have the value from the input tag in the delete modal, plus the error message and the slot content   is passed to the modal-->
-	<ActionsModal
+	<svelte:component
+		this={ActionsModal}
 		whatAction="create"
 		on:cancel={() => {
 			title = '';
@@ -57,11 +64,11 @@
 		on:proceed={pushNote}
 		{errorMessage}
 		><svelte:fragment slot="create"
-			>enter a short, unique name for your note in {@html $books[$currentBookIndex].title.replace(
+			>enter a short, unique name for your note in {@html $books[currentBookIndex].title.replace(
 				/ /g,
 				'&nbsp;'
 			)}<span>(max 30 characters)</span></svelte:fragment
-		></ActionsModal
+		></svelte:component
 	>
 {/if}
 

@@ -1,8 +1,12 @@
 <script lang="ts">
-	import { books, currentBookId } from '$lib/store'; // importing books array
-	import DeleteIcon from '$lib/assets/DeleteSvg.svelte'; // svg file as a component
-	import EditIcon from '$lib/assets/EditSvg.svelte'; // svg file as a svelte component
-	import ActionsModal from '$lib/components/ActionsModal.svelte'; // importing the modal for showing for delete and edit events
+	import { books, currentBookId, currentNoteId } from '$lib/store'; // importing books and the id's
+	import DeleteIcon from '$lib/assets/DeleteSvg.svelte'; // importing the svg's
+	import EditIcon from '$lib/assets/EditSvg.svelte';
+	let ActionsModal: any; // this holds the dynamically imported modal
+	import { onMount } from 'svelte';
+	onMount(async () => {
+		ActionsModal = (await import('$lib/components/ActionsModal.svelte')).default;
+	});
 	export let bookId: string; // exporting the bookId to programmatically get the book-id while looping in each block with the books array in the dashboard page
 	$: bookIndex = $books.findIndex((book) => book.id === bookId); // finding the right book in the array with the acquired bookIndex
 	let showEditModal = false; // shows the edit modal when edit icon is clicked
@@ -14,8 +18,9 @@
 		$books.splice(bookIndex, 1); // removes the book from the array
 		$books = $books; // very own courtesty of svelte
 		if ($currentBookId === bookId) {
-			// checks whether the deleted book is the current book, if yes, then the currentbook is set to null
-			currentBookId.set(null);
+			// when the deleted book is the currented book, then the id's are set to null
+			$currentNoteId = null;
+			$currentBookId = null;
 		}
 		showDeleteModal = false; // closes the delete modal
 	}
@@ -39,7 +44,8 @@
 	<!--even forwarding, clicking this component will aset the currentBookId-->
 	<div class="book-title">
 		<p>{@html $books[bookIndex].title.replace(/ /g, '&nbsp;')}</p>
-		<!--i used this regex to save teh whitespace-->
+		<!--preserving whitespace-->
+		<!--i used this regex to save the whitespace-->
 		<!--This is the book title of this component, i have been reffering in the above comments-->
 	</div>
 	<div class="actions">
@@ -64,18 +70,20 @@
 
 {#if showDeleteModal}
 	<!--shows the delete modal,  it passes the book title of this component to the ActionsModal-->
-	<ActionsModal
+	<svelte:component
+		this={ActionsModal}
 		whatAction="delete"
 		on:cancel={() => (showDeleteModal = false)}
 		on:proceed={onDeleteProceed}
 		title={$books[bookIndex].title}
 		><svelte:fragment slot="delete"
 			>you sure? this book cannot be recovered after deletion!<br />book:</svelte:fragment
-		></ActionsModal
+		></svelte:component
 	>
 {:else if showEditModal}
 	<!--shows the edit modal, this child component exposes the title taken as input and here it is bounded to the title, when closing the modal, the title is cleared, so that when editing other books, wont show this book title , the book title is passed to the oldtitle prop and it gets edited and return to the title-->
-	<ActionsModal
+	<svelte:component
+		this={ActionsModal}
 		whatAction="edit"
 		on:cancel={() => {
 			showEditModal = false;
@@ -89,7 +97,7 @@
 			>edit the title of your book : <br />{@html title.replace(/ /g, '&nbsp;')}<span
 				>(max 30 characters)</span
 			></svelte:fragment
-		></ActionsModal
+		></svelte:component
 	>
 {/if}
 
@@ -104,16 +112,18 @@
 	}
 	.book-container {
 		font-family: Arial, Helvetica, sans-serif;
-		height: 12.5%;
+		height: 16.5%;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		box-sizing: border-box;
 		border: 2px solid black;
 		box-sizing: border-box;
 		padding-left: 0.8rem;
 		padding-right: 0.3rem;
 		margin: 0.6rem;
 		border-radius: 0.6rem;
+		cursor: pointer;
 	}
 	.book-title {
 		width: 80%;

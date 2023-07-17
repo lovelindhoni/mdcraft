@@ -1,10 +1,18 @@
+<!--this component connects all the comps in the viewer folder and exported to the dashboard-->
 <script lang="ts">
-	import { books, currentBookIndex, currentNoteIndex } from '$lib/store';
-	import { marked } from 'marked'; // For parsing $books[$currentBookIndex].notes[$currentNoteIndex].content
+	import { books, currentBookId, currentNoteId } from '$lib/store';
+	import { marked } from 'marked'; // For parsing note's content
 	import EmojiConvertor from 'emoji-js'; // Converts colon-text to emojis
 	import hljs from 'highlight.js'; // For Highlighting Code Blocks
-	import 'highlight.js/styles/atom-one-dark.css'; // I prefer One-Dark theme
-	import { afterUpdate } from 'svelte'; // Run Highlighting for code blocks after DOM update
+	import 'highlight.js/styles/atom-one-dark.css'; // I prefer One-Dark theme for now
+	import { afterUpdate, onMount } from 'svelte'; // Run Highlighting for code blocks after DOM update
+	let Pagination: any; // sorry typescript, this variable hold teh dynamic imported pagination
+	let Toggle: any; // this variable holds the dynamic imported component Toggle
+	onMount(async () => {
+		// imports the toggle comp asyncly so that it could be lazy loaded
+		Toggle = (await import('$lib/components/viewer/Toggle.svelte')).default;
+		Pagination = (await import('$lib/components/viewer/Pagination.svelte')).default;
+	});
 	const emojis = new EmojiConvertor();
 	emojis.replace_mode = 'unified'; // Outputs Unicode code points at the place of colon-text
 	const renderer = new marked.Renderer();
@@ -28,21 +36,34 @@
 		node.focus(); // Focuses the textarea if it is present on DOM using the svetle action
 		return {
 			destroy() {
+				// when it is removed out of dom then focus is blurred
 				node.blur();
 			}
 		};
 	}
-	// The reactive generatedHtml variable that runs the marked parser whenever value changes
-	$: generatedHtml = marked($books[$currentBookIndex].notes[$currentNoteIndex].content);
+	export let currentBookIndex: number; // both of these will be satisfied by the +page.svelte
+	export let currentNoteIndex: number;
+	// The reactive generatedHtml variable that runs the marked parser whenever value changes.Only runs when the id's are not null.
+	$: generatedHtml =
+		$currentBookId !== null && $currentNoteId !== null
+			? marked($books[currentBookIndex].notes[currentNoteIndex].content)
+			: '';
 	// The prop that is used to toggle between the editor and viewer, exported to dashboard page
-	export let edit: boolean;
+	let edit: boolean; // the variable used to toggle between teh viewer and editor.
 </script>
 
+<div class="editor-head">
+	<!--i have used the svelte:component to show the dynamically imported toggle and pagination-->
+	<svelte:component this={Pagination} {currentBookIndex} {currentNoteIndex} />
+	<svelte:component this={Toggle} bind:edit />
+</div>
 {#if edit}
+	<!--on editing the textarea is shown, otherwise, the viewer is shown-->
+	<!--uses the focuseditor and the note's content is binded to this textarea-->
 	<textarea
 		use:focusEditor
 		spellcheck="false"
-		bind:value={$books[$currentBookIndex].notes[$currentNoteIndex].content}
+		bind:value={$books[currentBookIndex].notes[currentNoteIndex].content}
 	/>
 {:else}
 	<div class="viewer">
@@ -53,14 +74,16 @@
 
 <style>
 	/* Some shitty styles for the textarea and the viewer*/
+	div {
+		font-family: Arial, Helvetica, sans-serif;
+	}
 	textarea,
 	.viewer {
-		height: 100%;
+		height: 88%;
 		width: 100%;
 		overflow-y: scroll;
 		-ms-overflow-style: none;
 		scrollbar-width: none;
-		border: 1px solid;
 		box-sizing: border-box;
 	}
 	textarea {
@@ -68,17 +91,28 @@
 		word-wrap: break-word;
 		font-size: 1.3rem;
 		outline: none;
+		border: none;
 		padding: 2rem 2.5rem;
 	}
 
 	.viewer {
 		overflow-wrap: break-word;
-		padding: 1.4rem 2.4rem;
+		padding: 0rem 2.3rem;
+	}
+	.editor-head {
+		height: 8%;
+		padding-left: 2.3rem;
+		padding-right: 2.3rem;
+		margin-top: 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
 	.viewer::-webkit-scrollbar,
 	textarea::-webkit-scrollbar {
 		display: none;
 	}
+
 	/*Styles for the generated Html*/
 
 	:global(h1) {
@@ -102,9 +136,6 @@
 	:global(p, ol, ul, mark, a, del) {
 		font-size: 1.18rem;
 		line-height: 1.15;
-	}
-	:global(.viewer) {
-		font-family: Arial, Helvetica, sans-serif;
 	}
 	:global(table) {
 		font-size: 1.09rem;
