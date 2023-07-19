@@ -1,6 +1,6 @@
 <!--this component connects all the comps in the viewer folder and exported to the dashboard-->
 <script lang="ts">
-	import { books, currentBookId, currentNoteId } from '$lib/store';
+	import { books, currentBookId, currentNoteId, focusInput } from '$lib/store';
 	import { marked } from 'marked'; // For parsing note's content
 	import EmojiConvertor from 'emoji-js'; // Converts colon-text to emojis
 	import hljs from 'highlight.js'; // For Highlighting Code Blocks
@@ -32,15 +32,7 @@
 	};
 	marked.setOptions({ renderer }); // Stuffing the new renderer to the parser
 	afterUpdate(() => hljs.highlightAll()); // HighlightAll does automatic lang-detection on code blocks
-	function focusEditor(node: HTMLTextAreaElement) {
-		node.focus(); // Focuses the textarea if it is present on DOM using the svetle action
-		return {
-			destroy() {
-				// when it is removed out of dom then focus is blurred
-				node.blur();
-			}
-		};
-	}
+
 	export let currentBookIndex: number; // both of these will be satisfied by the +page.svelte
 	export let currentNoteIndex: number;
 	// The reactive generatedHtml variable that runs the marked parser whenever value changes.Only runs when the id's are not null.
@@ -61,7 +53,7 @@
 	<!--on editing the textarea is shown, otherwise, the viewer is shown-->
 	<!--uses the focuseditor and the note's content is binded to this textarea-->
 	<textarea
-		use:focusEditor
+		use:focusInput
 		spellcheck="false"
 		bind:value={$books[currentBookIndex].notes[currentNoteIndex].content}
 	/>

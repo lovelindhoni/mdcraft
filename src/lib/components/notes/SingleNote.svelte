@@ -3,11 +3,13 @@
 	import { onMount } from 'svelte';
 	let EditSvg: any; // the icons
 	let DeleteSvg: any;
-	let ActionsModal: any;
+	let EditAction: any;
+	let DeleteAction: any;
 	onMount(async () => {
 		EditSvg = (await import('$lib/assets/EditSvg.svelte')).default;
 		DeleteSvg = (await import('$lib/assets/DeleteSvg.svelte')).default;
-		ActionsModal = (await import('$lib/components/ActionsModal.svelte')).default;
+		EditAction = (await import('$lib/components/actions/EditAction.svelte')).default;
+		DeleteAction = (await import('$lib/components/actions/DeleteAction.svelte')).default;
 	});
 	export let noteId: string; // the noteId which will be fulfilled by the notesSection.svelte
 	export let currentBookIndex: number; // also  fulfilled by the notesection
@@ -65,29 +67,28 @@
 </div>
 {#if showDeleteModal}
 	<svelte:component
-		this={ActionsModal}
-		whatAction="delete"
+		this={DeleteAction}
 		on:cancel={() => (showDeleteModal = false)}
 		on:proceed={deleteNote}
 		title={$books[currentBookIndex].notes[noteIndex].title}
-		><svelte:fragment slot="delete"
-			>you sure? this note cannot be recovered after deletion!<br />note:</svelte:fragment
+		><svelte:fragment
+			>Warning 🚫<br /> This action cannot be undone. Are you sure you want to delete the note:</svelte:fragment
 		></svelte:component
 	>
 {:else if showEditModal}
 	<svelte:component
-		this={ActionsModal}
-		whatAction="edit"
+		this={EditAction}
 		on:cancel={() => {
 			showEditModal = false;
+			errorMessage = ' ';
 			title = '';
 		}}
 		bind:title
 		oldTitle={$books[currentBookIndex].notes[noteIndex].title}
 		on:proceed={onEdit}
 		{errorMessage}
-		><svelte:fragment slot="edit"
-			>edit the title of your note : <br />{@html title.replace(/ /g, '&nbsp;')}<span
+		><svelte:fragment
+			>edit the title of your note : <br />{@html title.replace(/ /g, '&nbsp;')}<br /><span
 				>(max 30 characters)</span
 			></svelte:fragment
 		></svelte:component

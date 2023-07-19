@@ -2,9 +2,9 @@
 	import { books } from '$lib/store'; // importing the books array from the store
 	import AddIcon from '$lib/assets/AddSvg.svelte'; // the addicon svg
 	import { onMount } from 'svelte';
-	let ActionsModal: any; // for dynamically importing the actions modal
+	let CreateAction: any; // for dynamically importing the actions modal
 	onMount(async () => {
-		ActionsModal = (await import('$lib/components/ActionsModal.svelte')).default;
+		CreateAction = (await import('$lib/components/actions/CreateAction.svelte')).default;
 	});
 	class CreateBook implements Book {
 		// class to create new book objects
@@ -20,7 +20,7 @@
 	}
 	let showCreateModal = false; // decides to show the create modal
 	let title: string; // the value from the input box is stored here
-	let errorMessage = ''; // the errorMessage when duplicating a book,passed to the modal
+	let errorMessage = ' '; // the errorMessage when duplicating a book,passed to the modal
 	function newBook() {
 		// this function create the book
 		// if the user enetered title is not unique, then the error message is given along with the title that causes this error, also wipes the title to start from fresh
@@ -53,8 +53,7 @@
 	<!--opens the modal here-->
 	<!-- on cancel , both the title and error message is wiped, then closes the modal, on proceed, the newbook function is runned. the title is binded which will have the value from the input tag in the delete modal, plus the error message is passed to the modal-->
 	<svelte:component
-		this={ActionsModal}
-		whatAction="create"
+		this={CreateAction}
 		on:cancel={() => {
 			title = '';
 			errorMessage = '';
@@ -63,8 +62,9 @@
 		bind:title
 		on:proceed={newBook}
 		{errorMessage}
-		><svelte:fragment slot="create"
-			>enter a short, unique name for your book<span>(max 30 characters)</span></svelte:fragment
+		><svelte:fragment
+			>use a short, unique name <br />for your book<br /><span>(max 30 characters)</span
+			></svelte:fragment
 		></svelte:component
 	>
 {/if}

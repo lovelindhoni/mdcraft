@@ -2,10 +2,10 @@
 	import { books } from '$lib/store'; // the books array as ususal
 	import { onMount } from 'svelte'; // for dynamic importing
 	let AddSvg: any; // the variables to hold the dynaimically imported comps
-	let ActionsModal: any;
+	let CreateAction: any;
 	onMount(async () => {
 		AddSvg = (await import('$lib/assets/AddSvg.svelte')).default;
-		ActionsModal = (await import('$lib/components/ActionsModal.svelte')).default;
+		CreateAction = (await import('$lib/components/actions/CreateAction.svelte')).default;
 	});
 	export let currentBookIndex: number; // passed by the notessection.svetle
 	let title: string; // the title variable which will be used throughout here
@@ -53,7 +53,7 @@
 	<!--opens the modal here-->
 	<!-- on cancel , both the title and error message is wiped, then closes the modal, on proceed, the pushnote function is runned. the title is binded which will have the value from the input tag in the delete modal, plus the error message and the slot content   is passed to the modal-->
 	<svelte:component
-		this={ActionsModal}
+		this={CreateAction}
 		whatAction="create"
 		on:cancel={() => {
 			title = '';
@@ -63,11 +63,10 @@
 		bind:title
 		on:proceed={pushNote}
 		{errorMessage}
-		><svelte:fragment slot="create"
-			>enter a short, unique name for your note in {@html $books[currentBookIndex].title.replace(
-				/ /g,
-				'&nbsp;'
-			)}<span>(max 30 characters)</span></svelte:fragment
+		><svelte:fragment
+			>enter a short, unique name <br />for your note in {@html $books[
+				currentBookIndex
+			].title.replace(/ /g, '&nbsp;')}<br /><span>(max 30 characters)</span></svelte:fragment
 		></svelte:component
 	>
 {/if}

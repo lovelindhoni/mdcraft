@@ -2,10 +2,12 @@
 	import { books, currentBookId, currentNoteId } from '$lib/store'; // importing books and the id's
 	import DeleteIcon from '$lib/assets/DeleteSvg.svelte'; // importing the svg's
 	import EditIcon from '$lib/assets/EditSvg.svelte';
-	let ActionsModal: any; // this holds the dynamically imported modal
+	let EditCreateAction: any; // this holds the dynamically imported modal
+	let DeleteAction: any;
 	import { onMount } from 'svelte';
 	onMount(async () => {
-		ActionsModal = (await import('$lib/components/ActionsModal.svelte')).default;
+		EditCreateAction = (await import('$lib/components/actions/EditAction.svelte')).default;
+		DeleteAction = (await import('$lib/components/actions/DeleteAction.svelte')).default;
 	});
 	export let bookId: string; // exporting the bookId to programmatically get the book-id while looping in each block with the books array in the dashboard page
 	$: bookIndex = $books.findIndex((book) => book.id === bookId); // finding the right book in the array with the acquired bookIndex
@@ -35,6 +37,7 @@
 		} else {
 			// else, the the trimmed title is stored as the new title for the book in this component, and closes the edit modal
 			$books[bookIndex].title = title.trim();
+			errorMessage = '';
 			showEditModal = false;
 		}
 	}
@@ -71,30 +74,29 @@
 {#if showDeleteModal}
 	<!--shows the delete modal,  it passes the book title of this component to the ActionsModal-->
 	<svelte:component
-		this={ActionsModal}
-		whatAction="delete"
+		this={DeleteAction}
 		on:cancel={() => (showDeleteModal = false)}
 		on:proceed={onDeleteProceed}
 		title={$books[bookIndex].title}
-		><svelte:fragment slot="delete"
-			>you sure? this book cannot be recovered after deletion!<br />book:</svelte:fragment
+		><svelte:fragment
+			>Warning 🚫<br /> This action cannot be undone. Are you sure you want to delete the book:</svelte:fragment
 		></svelte:component
 	>
 {:else if showEditModal}
 	<!--shows the edit modal, this child component exposes the title taken as input and here it is bounded to the title, when closing the modal, the title is cleared, so that when editing other books, wont show this book title , the book title is passed to the oldtitle prop and it gets edited and return to the title-->
 	<svelte:component
-		this={ActionsModal}
-		whatAction="edit"
+		this={EditCreateAction}
+		oldTitle={$books[bookIndex].title}
 		on:cancel={() => {
 			showEditModal = false;
 			title = '';
+			errorMessage = '';
 		}}
 		bind:title
-		oldTitle={$books[bookIndex].title}
 		on:proceed={onEditProceed}
 		{errorMessage}
-		><svelte:fragment slot="edit"
-			>edit the title of your book : <br />{@html title.replace(/ /g, '&nbsp;')}<span
+		><svelte:fragment
+			>edit the title of your book : <br />{@html title.replace(/ /g, '&nbsp;')}<br /><span
 				>(max 30 characters)</span
 			></svelte:fragment
 		></svelte:component
@@ -123,6 +125,7 @@
 		padding-right: 0.3rem;
 		margin: 0.6rem;
 		border-radius: 0.6rem;
+		overflow-wrap: break-word;
 		cursor: pointer;
 	}
 	.book-title {
