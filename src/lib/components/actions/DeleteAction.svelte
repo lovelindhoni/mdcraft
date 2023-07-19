@@ -48,6 +48,7 @@
 		align-items: center;
 		background-color: rgba(0, 0, 0, 0.5);
 		font-family: Arial, Helvetica, sans-serif;
+		z-index: 69;
 	}
 	.modal-content {
 		text-align: center;
