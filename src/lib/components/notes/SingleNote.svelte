@@ -3,59 +3,63 @@
 	import { onMount } from 'svelte';
 	let EditSvg: any; // the icons
 	let DeleteSvg: any;
-	let EditAction: any;
+	let RenameAction: any; // the modals
 	let DeleteAction: any;
 	onMount(async () => {
 		EditSvg = (await import('$lib/assets/EditSvg.svelte')).default;
 		DeleteSvg = (await import('$lib/assets/DeleteSvg.svelte')).default;
-		EditAction = (await import('$lib/components/actions/EditAction.svelte')).default;
+		RenameAction = (await import('$lib/components/actions/RenameAction.svelte')).default;
 		DeleteAction = (await import('$lib/components/actions/DeleteAction.svelte')).default;
 	});
 	export let noteId: string; // the noteId which will be fulfilled by the notesSection.svelte
 	export let currentBookIndex: number; // also  fulfilled by the notesection
 	$: noteIndex = $books[currentBookIndex].notes.findIndex((note) => note.id === noteId); // this goes over the notes array and finds the index of the note using the id
 	let showDeleteModal = false; // for the delete modal
-	let showEditModal = false; // for the edit modal
-	let errorMessage = '';
+	let showRename = false; // for the rename modal
+	let noError = true;
 	let title = '';
 	function deleteNote() {
 		// it removes the note from the notes array using its index
 		$books[currentBookIndex].notes.splice(noteIndex, 1);
-		$books = $books; // #svelte
+		$books = $books;
 		showDeleteModal = false; // closes the modal
 	}
-	function onEdit() {
-		// this function causes the editing of a book
+	function onRename() {
+		// this function causes the renaming of a book
 		if (
-			// if the title is duplicate with any other title in notes, then error message is given
+			// if the title is duplicate with any other title in notes, then noError is false
 			$books[currentBookIndex].notes[noteIndex].title !== title.trim() &&
 			$books[currentBookIndex].notes.some((note) => note.title === title.trim())
 		) {
-			errorMessage = `Ouch!😬 note title '${title}' is in use, try another🙏`;
+			noError = false;
 		} else {
-			// else, the the trimmed title is stored as the new title for the book in this component, and closes the edit modal
+			// else, the the trimmed title is stored as the new title for the book in this component, and closes the rename modal
 			$books[currentBookIndex].notes[noteIndex].title = title.trim();
-			showEditModal = false;
+			showRename = false;
 		}
 	}
 </script>
 
 <div>
-	<div class="notes-container" on:click on:keydown>
+	<div role="button" tabindex="0" class="notes-container" on:click on:keydown>
 		<!--for preserving the whitespaces-->
 		<p>{@html $books[currentBookIndex].notes[noteIndex].title.replace(/ /g, '&nbsp;')}</p>
 		<!--title of the note-->
-		<div class="actions">
+		<div class="actions" role="group">
 			<div
+				role="button"
+				tabindex="0"
 				class="icon"
-				on:click|stopPropagation={() => (showEditModal = true)}
-				on:keydown|stopPropagation={() => (showEditModal = true)}
+				on:click|stopPropagation={() => (showRename = true)}
+				on:keydown|stopPropagation={() => (showRename = true)}
 			>
 				<svelte:component this={EditSvg} />
 			</div>
-			<!--the edit and delete icon for doing opertation in the note-->
+			<!--the rename and delete icon for doing opertation in the note-->
 			<div
 				class="icon"
+				role="button"
+				tabindex="0"
 				on:click|stopPropagation={() => (showDeleteModal = true)}
 				on:keydown|stopPropagation={() => (showDeleteModal = true)}
 			>
@@ -70,28 +74,22 @@
 		this={DeleteAction}
 		on:cancel={() => (showDeleteModal = false)}
 		on:proceed={deleteNote}
-		title={$books[currentBookIndex].notes[noteIndex].title}
 		><svelte:fragment
-			>Warning 🚫<br /> This action cannot be undone. Are you sure you want to delete the note:</svelte:fragment
+			>Are you sure you want to delete this note?</svelte:fragment
 		></svelte:component
 	>
-{:else if showEditModal}
+{:else if showRename}
 	<svelte:component
-		this={EditAction}
+		this={RenameAction}
 		on:cancel={() => {
-			showEditModal = false;
-			errorMessage = ' ';
+			showRename = false;
+			noError = true;
 			title = '';
 		}}
 		bind:title
 		oldTitle={$books[currentBookIndex].notes[noteIndex].title}
-		on:proceed={onEdit}
-		{errorMessage}
-		><svelte:fragment
-			>edit the title of your note : <br />{@html title.replace(/ /g, '&nbsp;')}<br /><span
-				>(max 30 characters)</span
-			></svelte:fragment
-		></svelte:component
+		on:proceed={onRename}
+		{noError}>Rename Note</svelte:component
 	>
 {/if}
 

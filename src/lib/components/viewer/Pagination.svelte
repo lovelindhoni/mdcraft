@@ -7,7 +7,7 @@
 {#if $currentBookId !== null && $currentNoteId !== null}
 	<!--when the id's are not null-->
 	<!-- when the id's are not null-->
-	<div>
+	<nav>
 		<!-- clicking the book will set the currentNoteId to null-->
 		<span
 			class="url"
@@ -16,7 +16,7 @@
 			>{$books[currentBookIndex].title}
 		</span>
 		<span>/ {$books[currentBookIndex].notes[currentNoteIndex].title} </span>
-	</div>
+	</nav>
 {/if}
 
 <style>

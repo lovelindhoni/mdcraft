@@ -13,8 +13,8 @@
 
 {#if $currentBookId !== null}
 	<!--incase if any book are selected-->
-	<div class="notes-container">
-		<div class="titleandbtn">
+	<div role="menu" class="notes-container">
+		<div class="titleandbtn" role="group">
 			<h1>{@html $books[currentBookIndex].title.replace(/ /g, '&nbsp;')}</h1>
 			<!--the regex to preserve the whitespaces-->
 			<!--the title of that book-->

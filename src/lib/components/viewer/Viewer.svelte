@@ -44,7 +44,7 @@
 	let edit: boolean; // the variable used to toggle between teh viewer and editor.
 </script>
 
-<div class="editor-head">
+<div role="columnheader" class="editor-head">
 	<!--i have used the svelte:component to show the dynamically imported toggle and pagination-->
 	<svelte:component this={Pagination} {currentBookIndex} {currentNoteIndex} />
 	<svelte:component this={Toggle} bind:edit />
@@ -58,7 +58,7 @@
 		bind:value={$books[currentBookIndex].notes[currentNoteIndex].content}
 	/>
 {:else}
-	<div class="viewer">
+	<div role="document" class="viewer">
 		{@html generatedHtml}
 		<!-- @html is used for displaying the generatedHtml string in DOM -->
 	</div>

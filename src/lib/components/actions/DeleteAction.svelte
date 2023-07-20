@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount } from 'svelte';
 	const dispatch = createEventDispatcher();
-	export let title: string;
 	const proceedKey = (event: KeyboardEvent) => {
 		// this function is dispatched the proceed event when enter is clicked and the booktile is not empty
-		if (event.key === 'Enter' && title.trim() !== ``) {
+		if (event.key === 'Enter') {
 			dispatch('proceed'); //
 		}
 	};
@@ -18,22 +17,20 @@
 	});
 </script>
 
-<main class="modal-container">
+<div class="modal-container" role="alertdialog">
 	<div class="modal-content">
 		<!--when the mode is delete-->
-		<p id="delete-warning">
+		<p id="delete-warning" role="alert">
 			<!--a warning message is shown, telling it can't be recovered-->
 			<slot />
-			<!--will be fulfilld by the deletion components-->
-			{@html title.replace(/ /g, '&nbsp;')}
 		</p>
-		<div class="modal-actions">
+		<div class="modal-actions" role="button">
 			<!--it has the event buttons, proceed and cancel, when proceed is clicked and the title is not empty then the proceed event is dispatched, on cancel is clicked, then the cancel event is dispatched-->
-			<button on:click={() => (title.trim() !== '' ? dispatch('proceed') : null)}>proceed</button>
+			<button on:click={() => dispatch('proceed')}>proceed</button>
 			<button on:click={() => dispatch('cancel')}>cancel</button>
 		</div>
 	</div>
-</main>
+</div>
 
 <style>
 	/**some very shitty styles*/
@@ -52,8 +49,8 @@
 	}
 	.modal-content {
 		text-align: center;
-		height: 50%;
-		width: 50%;
+		height: 44%;
+		width: 40%;
 		box-sizing: border-box;
 		padding: 4rem;
 		border-radius: 2rem;

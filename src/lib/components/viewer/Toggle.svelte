@@ -68,8 +68,8 @@
 		background-color: #3a0ca3;
 	}
 	input:checked + .slider:before {
-		-webkit-transform: translateX(2.1rem);
-		-ms-transform: translateX(2.1rem);
+		-webkit-transform: translateX(1.6rem);
+		-ms-transform: translateX(1.6rem);
 		transform: translateX(1.6rem);
 	}
 </style>

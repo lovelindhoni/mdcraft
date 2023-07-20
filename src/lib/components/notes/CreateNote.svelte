@@ -10,7 +10,7 @@
 	export let currentBookIndex: number; // passed by the notessection.svetle
 	let title: string; // the title variable which will be used throughout here
 	let showModal = false; // the varable that closes the modal
-	let errorMessage = '';
+	let noError = true;
 	class CreateNote implements Note {
 		// this class generates the note objects which will be pushed to the book.notes array
 		id: Note['id'];
@@ -23,9 +23,9 @@
 		}
 	}
 	function pushNote() {
-		// if there is already a note with the sametitle then error message is given
+		// if there is already a note with the sametitle then noError is set to false
 		if ($books[currentBookIndex].notes.some((note) => note.title === title.trim())) {
-			errorMessage = `Ouch!😬 note title '${title}' is in use, try another🙏`;
+			noError = false;
 		} else {
 			// else the note will be pushed
 			$books[currentBookIndex].notes.push(
@@ -34,7 +34,7 @@
 			);
 			$books = $books;
 			title = '';
-			errorMessage = '';
+			noError = true;
 			showModal = false;
 		}
 	}
@@ -51,23 +51,17 @@
 </button>
 {#if showModal}
 	<!--opens the modal here-->
-	<!-- on cancel , both the title and error message is wiped, then closes the modal, on proceed, the pushnote function is runned. the title is binded which will have the value from the input tag in the delete modal, plus the error message and the slot content   is passed to the modal-->
+	<!-- on cancel , the title is wiped and then noerror is set to true, then closes the modal, on proceed, the pushnote function is runned. the title is binded which will have the value from the input tag in the delete modal, plus the noerror is set to true and the slot content is passed to the modal-->
 	<svelte:component
 		this={CreateAction}
-		whatAction="create"
 		on:cancel={() => {
 			title = '';
-			errorMessage = '';
+			noError = true;
 			showModal = false;
 		}}
 		bind:title
 		on:proceed={pushNote}
-		{errorMessage}
-		><svelte:fragment
-			>enter a short, unique name <br />for your note in {@html $books[
-				currentBookIndex
-			].title.replace(/ /g, '&nbsp;')}<br /><span>(max 30 characters)</span></svelte:fragment
-		></svelte:component
+		{noError}>Create Note</svelte:component
 	>
 {/if}
 

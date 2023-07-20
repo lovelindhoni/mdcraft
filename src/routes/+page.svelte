@@ -11,9 +11,9 @@
 			: -1;
 </script>
 
-<div class="layout">
-	<div class="header">header</div>
-	<div class="sidebar">
+<main class="layout">
+	<header class="header">header</header>
+	<div class="sidebar" role="menubar">
 		<Sidebar />
 	</div>
 	<div class="editor">
@@ -24,7 +24,7 @@
 			<Notes {currentBookIndex} />
 		{/if}
 	</div>
-</div>
+</main>
 
 <style>
 	.layout {

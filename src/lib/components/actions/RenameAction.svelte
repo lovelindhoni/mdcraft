@@ -1,17 +1,21 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount } from 'svelte';
-	import { focusInput } from '$lib/store';
+	import { focusInput } from '$lib/store'; // for focussing the input tag
 	const dispatch = createEventDispatcher();
-	export let title: string;
-	export let errorMessage = ' ';
+	export let title = ''; // the title string which is modified and send to the other comps
 	const proceedKey = (event: KeyboardEvent) => {
 		// this function is dispatched the proceed event when enter is clicked and the booktile is not empty
 		if (event.key === 'Enter' && title.trim() !== ``) {
 			dispatch('proceed'); //
 		}
 	};
-	export let oldTitle = ''; // this prop get its value from the edit modal, where the old title is getten and binded to the input tag
-	$: title = oldTitle; // when edit mode, the edited oldtitle is assigned to the title
+	export let oldTitle = ''; // this prop get its value from the comps, where there is a need for renaming, where the old title is gotten and binded to the input tag
+	export let disabled = false;
+	$: {
+		title = oldTitle;
+		title.length === 0 ? (disabled = true) : (disabled = false);
+	} // when rename mode, the renamed oldtitle is assigned to the title, whenever the title lenght is 0, then the ok button is disabled
+	export let noError = true; // initilly there is no errror, so it is true
 	onMount(() => {
 		// Adds the proceedkey to the window onmount
 		window.addEventListener('keydown', proceedKey);
@@ -22,14 +26,15 @@
 	});
 </script>
 
-<main class="modal-container">
+<div class="modal-container" role="alertdialog">
 	<form class="modal-content">
-		<p id="error">{@html errorMessage.replace(/ /g, '&nbsp;')}</p>
 		<lable for="newtitle"><slot /></lable>
 		<!--the slot will be fulfilled by the components that creates the note and books-->
-		<div class="input">
+		<div class="input" role="textbox">
 			<!--focused onmount and the value is binded to the booktitle, maxlength is 30-->
+			<!--the class:directive is when there a error then, the border is set to color red-->
 			<input
+				class:errorInput={!noError}
 				type="text"
 				bind:value={oldTitle}
 				id="newtitle"
@@ -37,14 +42,17 @@
 				spellcheck="false"
 				use:focusInput
 			/>
+			<p class:noError class="error">This name is already in use, try a different name</p>
 		</div>
-		<div class="modal-actions">
+		<div class="modal-actions" role="group">
 			<!--it has the event buttons, proceed and cancel, when proceed is clicked and the title is not empty then the proceed event is dispatched, on cancel is clicked, then the cancel event is dispatched-->
-			<button on:click={() => (title.trim() !== '' ? dispatch('proceed') : null)}>proceed</button>
+			<button {disabled} on:click={() => (title.trim() !== '' ? dispatch('proceed') : null)}
+				>ok</button
+			>
 			<button on:click={() => dispatch('cancel')}>cancel</button>
 		</div>
 	</form>
-</main>
+</div>
 
 <style>
 	/**some very shitty styles*/
@@ -63,24 +71,22 @@
 	}
 
 	.modal-content {
-		height: 61%;
-		width: 50%;
+		height: 44%;
+		width: 40%;
 		box-sizing: border-box;
 		border-radius: 2rem;
 		background-color: white;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: space-around;
 		align-items: center;
 		box-sizing: border-box;
-		gap: 1.3rem;
 	}
 
 	.modal-actions {
 		display: flex;
-		gap: 7.5rem;
-		margin-top: 0.2rem;
+		gap: 8em;
 	}
 	button {
 		min-width: auto;
@@ -93,21 +99,31 @@
 	.input {
 		height: 11%;
 		width: 70%;
+		text-align: center;
+		position: relative;
+		bottom: 0.8rem;
 	}
 	input {
 		height: 100%;
 		width: 100%;
 		font-size: 100%;
-		border-radius: 0.6rem;
+		border-radius: 0.4rem;
 		font-weight: bold;
 	}
 	lable {
 		font-size: 1.6rem;
 		text-align: center;
-		line-height: 1.35;
+		position: relative;
+		top: 0.7rem;
 	}
-	:global(span) {
-		font-size: 1.2rem;
-		font-weight: lighter;
+	.noError {
+		display: none;
+	}
+	.error {
+		font-size: 1.1rem;
+		color: red;
+	}
+	.errorInput {
+		border-color: red;
 	}
 </style>

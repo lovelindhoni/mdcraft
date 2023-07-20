@@ -18,14 +18,14 @@
 			this.notes = [{ id: crypto.randomUUID(), title: `Example Note`, content: `# Hello World` }]; // some defaults
 		}
 	}
-	let showCreateModal = false; // decides to show the create modal
+	let showCreate = false; // decides to show the create modal
 	let title: string; // the value from the input box is stored here
-	let errorMessage = ' '; // the errorMessage when duplicating a book,passed to the modal
+	let noError = true; // noErrror when there is no duplicate in books
 	function newBook() {
 		// this function create the book
-		// if the user enetered title is not unique, then the error message is given along with the title that causes this error, also wipes the title to start from fresh
+		// if the user enetered title is not unique, then the noErrror is set to false and also wipes the title to start from fresh
 		if ($books.some((book) => book.title === title.trim())) {
-			errorMessage = `Ouch!😬 title '${title}' is in use, try another🙏`;
+			noError = false;
 		} else {
 			// if the title is unique, then the title is trimmed and pushed to the books arrray through the createBook class
 			$books.push(
@@ -34,13 +34,13 @@
 			);
 			$books = $books; // courtesy of svelte
 			title = ''; // wipes the title for a clean start
-			errorMessage = ''; // wipes the error
-			showCreateModal = false; // closes the create book modal
+			noError = true; // noerror then
+			showCreate = false; // closes the create book modal
 		}
 	}
 </script>
 
-<button on:click={() => (showCreateModal = true)} on:keydown={() => (showCreateModal = true)}>
+<button on:click={() => (showCreate = true)} on:keydown={() => (showCreate = true)}>
 	<!--clicking the button will open the modal-->
 	<div class="newbookbtn">
 		<p>create new</p>
@@ -49,23 +49,19 @@
 	</div>
 </button>
 
-{#if showCreateModal}
+{#if showCreate}
 	<!--opens the modal here-->
-	<!-- on cancel , both the title and error message is wiped, then closes the modal, on proceed, the newbook function is runned. the title is binded which will have the value from the input tag in the delete modal, plus the error message is passed to the modal-->
+	<!-- on cancel , both the title is wiped and noerror is set to true, then closes the modal, on proceed, the newbook function is runned. the title is binded which will have the value from the input tag in the delete modal, plus the noerror is set to false-->
 	<svelte:component
 		this={CreateAction}
 		on:cancel={() => {
 			title = '';
-			errorMessage = '';
-			showCreateModal = false;
+			noError = true;
+			showCreate = false;
 		}}
 		bind:title
 		on:proceed={newBook}
-		{errorMessage}
-		><svelte:fragment
-			>use a short, unique name <br />for your book<br /><span>(max 30 characters)</span
-			></svelte:fragment
-		></svelte:component
+		{noError}>Create Book</svelte:component
 	>
 {/if}
 

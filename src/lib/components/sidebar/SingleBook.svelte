@@ -2,19 +2,19 @@
 	import { books, currentBookId, currentNoteId } from '$lib/store'; // importing books and the id's
 	import DeleteIcon from '$lib/assets/DeleteSvg.svelte'; // importing the svg's
 	import EditIcon from '$lib/assets/EditSvg.svelte';
-	let EditCreateAction: any; // this holds the dynamically imported modal
+	let RenameAction: any; // these holds the dynamically imported modal
 	let DeleteAction: any;
 	import { onMount } from 'svelte';
 	onMount(async () => {
-		EditCreateAction = (await import('$lib/components/actions/EditAction.svelte')).default;
+		RenameAction = (await import('$lib/components/actions/RenameAction.svelte')).default;
 		DeleteAction = (await import('$lib/components/actions/DeleteAction.svelte')).default;
 	});
 	export let bookId: string; // exporting the bookId to programmatically get the book-id while looping in each block with the books array in the dashboard page
 	$: bookIndex = $books.findIndex((book) => book.id === bookId); // finding the right book in the array with the acquired bookIndex
-	let showEditModal = false; // shows the edit modal when edit icon is clicked
+	let showRename = false; // shows the rename modal when edit icon is clicked
 	let showDeleteModal = false; // shows the delete modal when delete icon is clicked
 	let title = ''; // the title which i am gonna fuck through the whole sidebar. It gets the booktitle of the book from the modals
-	let errorMessage = ''; // it has the error message passed to the modal, whenever there is a duplicate book title
+	let noError = true; //  whenever there is a duplicate book title, a boolean value is passed to the modals
 	function onDeleteProceed() {
 		// this function causes the deletion of a book
 		$books.splice(bookIndex, 1); // removes the book from the array
@@ -26,42 +26,46 @@
 		}
 		showDeleteModal = false; // closes the delete modal
 	}
-	function onEditProceed() {
+	function onRename() {
 		// this function causes the editing of a book
 		if (
-			// if the book's title of this component is not equal to the title from the modal and  if there is already a book with the same title as the new book title from the modal(because i dont want to show error when the user gives the existing title to its book itself) then, the error message is stored.
+			// if the book's title of this component is not equal to the title from the modal and  if there is already a book with the same title as the new book title from the modal(because i dont want to show error when the user gives the existing title to its book itself) then, the there the noerror is set to false.
 			$books[bookIndex].title !== title.trim() &&
 			$books.some((book) => book.title === title.trim())
 		) {
-			errorMessage = `Ouch!😬 book title '${title}' is in use, try another🙏`;
+			noError = false;
 		} else {
 			// else, the the trimmed title is stored as the new title for the book in this component, and closes the edit modal
 			$books[bookIndex].title = title.trim();
-			errorMessage = '';
-			showEditModal = false;
+			noError = true;
+			showRename = false;
 		}
 	}
 </script>
 
-<div class="book-container" on:click on:keydown>
+<div role="button" tabindex="0" class="book-container" on:click on:keydown>
 	<!--even forwarding, clicking this component will aset the currentBookId-->
-	<div class="book-title">
+	<div role="menuitem" class="book-title">
 		<p>{@html $books[bookIndex].title.replace(/ /g, '&nbsp;')}</p>
 		<!--preserving whitespace-->
 		<!--i used this regex to save the whitespace-->
 		<!--This is the book title of this component, i have been reffering in the above comments-->
 	</div>
-	<div class="actions">
+	<div role="group" class="actions">
 		<!--the edit and delete icons are imported and then the clicking of it will open its respective modals-->
 		<!--used stop propagation to avoid propagating the event to the parent that is the singlebook component-->
 		<div
+			role="button"
+			tabindex="0"
 			class="icons"
-			on:click|stopPropagation={() => (showEditModal = true)}
-			on:keydown|stopPropagation={() => (showEditModal = true)}
+			on:click|stopPropagation={() => (showRename = true)}
+			on:keydown|stopPropagation={() => (showRename = true)}
 		>
 			<EditIcon />
 		</div>
 		<div
+			role="button"
+			tabindex="0"
 			class="icons"
 			on:click|stopPropagation={() => (showDeleteModal = true)}
 			on:keydown|stopPropagation={() => (showDeleteModal = true)}
@@ -72,34 +76,28 @@
 </div>
 
 {#if showDeleteModal}
-	<!--shows the delete modal,  it passes the book title of this component to the ActionsModal-->
+	<!--shows the delete modal,  it passes the book title of this component to the delete modal-->
 	<svelte:component
 		this={DeleteAction}
 		on:cancel={() => (showDeleteModal = false)}
 		on:proceed={onDeleteProceed}
-		title={$books[bookIndex].title}
 		><svelte:fragment
-			>Warning 🚫<br /> This action cannot be undone. Are you sure you want to delete the book:</svelte:fragment
-		></svelte:component
+			>Are you sure you want to delete this book?
+		</svelte:fragment></svelte:component
 	>
-{:else if showEditModal}
-	<!--shows the edit modal, this child component exposes the title taken as input and here it is bounded to the title, when closing the modal, the title is cleared, so that when editing other books, wont show this book title , the book title is passed to the oldtitle prop and it gets edited and return to the title-->
+{:else if showRename}
+	<!--shows the rename modal, this child component exposes the title taken as input and here it is bounded to the title, when closing the modal, the title is cleared, so that when renaming other books, wont show this book title , the book title is passed to the oldtitle prop and it gets renamed and return to the title-->
 	<svelte:component
-		this={EditCreateAction}
+		this={RenameAction}
 		oldTitle={$books[bookIndex].title}
 		on:cancel={() => {
-			showEditModal = false;
+			showRename = false;
 			title = '';
-			errorMessage = '';
+			noError = true;
 		}}
 		bind:title
-		on:proceed={onEditProceed}
-		{errorMessage}
-		><svelte:fragment
-			>edit the title of your book : <br />{@html title.replace(/ /g, '&nbsp;')}<br /><span
-				>(max 30 characters)</span
-			></svelte:fragment
-		></svelte:component
+		on:proceed={onRename}
+		{noError}>Rename Book</svelte:component
 	>
 {/if}
 

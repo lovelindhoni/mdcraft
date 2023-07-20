@@ -9,7 +9,7 @@
 <!--the creatbook button-->
 {#if $books.length !== 0}
 	<!--if there are no books then the message is displayed, else the books are looped -->
-	<div class="notes">
+	<div class="notes" role="menu">
 		{#each $books as book (book.id)}
 			<!--when a book is clicked then the currentbookId is set to its book Id and the curretnnoteid is set to null-->
 			<SingleBook
