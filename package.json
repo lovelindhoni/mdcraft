@@ -28,6 +28,7 @@
 		"@types/marked": "^5.0.0",
 		"emoji-js": "^3.7.0",
 		"highlight.js": "^11.8.0",
-		"marked": "^5.1.0"
+		"marked": "^5.1.0",
+		"normalize.css": "^8.0.1"
 	}
 }

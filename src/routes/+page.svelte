@@ -28,13 +28,13 @@
 
 <style>
 	.layout {
-		height: 97vh;
+		height: 100vh;
 		box-sizing: border-box;
 		display: grid;
 		gap: 0.25rem;
 		grid-template-rows: repeat(20, 5%);
 		grid-template-columns: repeat(20, 5%);
-		margin-right: 0.5rem; /* for mobiles margin-right : 3.5rem */
+		padding: 0.3rem;
 	}
 
 	.editor,

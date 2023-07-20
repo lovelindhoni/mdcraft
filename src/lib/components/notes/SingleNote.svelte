@@ -74,9 +74,7 @@
 		this={DeleteAction}
 		on:cancel={() => (showDeleteModal = false)}
 		on:proceed={deleteNote}
-		><svelte:fragment
-			>Are you sure you want to delete this note?</svelte:fragment
-		></svelte:component
+		><svelte:fragment>Are you sure you want to delete this note?</svelte:fragment></svelte:component
 	>
 {:else if showRename}
 	<svelte:component

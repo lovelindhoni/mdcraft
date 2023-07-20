@@ -81,9 +81,7 @@
 		this={DeleteAction}
 		on:cancel={() => (showDeleteModal = false)}
 		on:proceed={onDeleteProceed}
-		><svelte:fragment
-			>Are you sure you want to delete this book?
-		</svelte:fragment></svelte:component
+		><svelte:fragment>Are you sure you want to delete this book?</svelte:fragment></svelte:component
 	>
 {:else if showRename}
 	<!--shows the rename modal, this child component exposes the title taken as input and here it is bounded to the title, when closing the modal, the title is cleared, so that when renaming other books, wont show this book title , the book title is passed to the oldtitle prop and it gets renamed and return to the title-->

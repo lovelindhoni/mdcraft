@@ -85,6 +85,7 @@
 		outline: none;
 		border: none;
 		padding: 2rem 2.5rem;
+		font-family: monospace;
 	}
 
 	.viewer {
