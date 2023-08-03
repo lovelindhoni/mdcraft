@@ -41,7 +41,11 @@
 </script>
 
 <button on:click={() => (showModal = true)} on:keydown={() => (showModal = true)}>
-	<svelte:component this={AddSvg} color="white" />
+	<!--clicking the button will open the modal-->
+	<span>
+		<svelte:component this={AddSvg} color="white" />
+		Create Note
+	</span>
 </button>
 {#if showModal}
 	<!--opens the modal here-->
@@ -62,18 +66,22 @@
 
 <style>
 	button {
-		width: 2.85rem;
-		height: 2.85rem;
-		border: 0;
+		width: 12.5rem;
+		height: 3.5rem;
+		color: white;
+		font-size: 1.37rem;
 		background-color: var(--green);
-		border-radius: 50%;
-		box-sizing: border-box;
+		border-color: transparent;
+		border-radius: 0.8rem;
 		cursor: pointer;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 	}
 	button:hover {
 		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+	}
+	span {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.2rem;
 	}
 </style>

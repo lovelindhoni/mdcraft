@@ -1,13 +1,13 @@
 <!--this component connects all the comps in the viewer folder and exported to the dashboard-->
 <script lang="ts">
-	import { books, currentBookId, currentNoteId, focusInput } from '$lib/store';
+	import { folders, currentFolderId, currentNoteId, focusInput } from '$lib/store';
 	import { marked } from 'marked'; // For parsing note's content
 	import EmojiConvertor from 'emoji-js'; // Converts colon-text to emojis
 	import hljs from 'highlight.js'; // For Highlighting Code Blocks
-	import 'highlight.js/styles/atom-one-dark.css'; // I prefer One-Dark theme for now
+	import 'highlight.js/styles/base16/dracula.css'; // One-Dark theme for now
 	import { afterUpdate, onMount } from 'svelte'; // Run Highlighting for code blocks after DOM update
 	let Pagination: any; // sorry typescript, this variable hold teh dynamic imported pagination
-	let Toggle: any; // this variable holds the dynamic imported component Toggle
+	let Toggle: any; // this variable holds the dynamic imported component
 	onMount(async () => {
 		// imports the toggle comp asyncly so that it could be lazy loaded
 		Toggle = (await import('$lib/components/viewer/Toggle.svelte')).default;
@@ -33,12 +33,12 @@
 	marked.setOptions({ renderer }); // Stuffing the new renderer to the parser
 	afterUpdate(() => hljs.highlightAll()); // HighlightAll does automatic lang-detection on code blocks
 
-	export let currentBookIndex: number; // both of these will be satisfied by the +page.svelte
+	export let currentFolderIndex: number; // both of these will be satisfied by the +page.svelte
 	export let currentNoteIndex: number;
 	// The reactive generatedHtml variable that runs the marked parser whenever value changes.Only runs when the id's are not null.
 	$: generatedHtml =
-		$currentBookId !== null && $currentNoteId !== null
-			? marked($books[currentBookIndex].notes[currentNoteIndex].content)
+		$currentFolderId !== null && $currentNoteId !== null
+			? marked($folders[currentFolderIndex].notes[currentNoteIndex].content)
 			: '';
 	// The prop that is used to toggle between the editor and viewer, exported to dashboard page
 	let edit: boolean; // the variable used to toggle between teh viewer and editor.
@@ -46,16 +46,17 @@
 
 <div role="columnheader" class="editor-head">
 	<!--i have used the svelte:component to show the dynamically imported toggle and pagination-->
-	<svelte:component this={Pagination} {currentBookIndex} {currentNoteIndex} />
+	<svelte:component this={Pagination} {currentFolderIndex} {currentNoteIndex} />
 	<svelte:component this={Toggle} bind:edit />
 </div>
 {#if edit}
 	<!--on editing the textarea is shown, otherwise, the viewer is shown-->
 	<!--uses the focuseditor and the note's content is binded to this textarea-->
 	<textarea
-		use:focusInput
+		placeholder="Start Sparkdowning..."
 		spellcheck="false"
-		bind:value={$books[currentBookIndex].notes[currentNoteIndex].content}
+		use:focusInput
+		bind:value={$folders[currentFolderIndex].notes[currentNoteIndex].content}
 	/>
 {:else}
 	<div role="document" class="viewer">
@@ -65,57 +66,49 @@
 {/if}
 
 <style>
-	/* Some shitty styles for the textarea and the viewer*/
-	div {
-		font-family: Arial, Helvetica, sans-serif;
-	}
 	textarea,
 	.viewer {
-		height: 88%;
+		height: 87%;
 		width: 100%;
-		overflow-y: scroll;
-		-ms-overflow-style: none;
-		scrollbar-width: none;
 		box-sizing: border-box;
+		padding: 2rem 2.5rem;
+		overflow-y: auto;
 	}
 	textarea {
 		resize: none;
 		word-wrap: break-word;
-		font-size: 1.3rem;
+		font-size: 1.22rem;
 		outline: none;
 		border: none;
-		padding: 2rem 2.5rem;
-		font-family: monospace;
+		background-color: var(--background);
+		font-family: monospace !important; /**Sorry...*/
 	}
-
+	textarea::placeholder {
+		color: hsl(0, 0%, 60%);
+	}
 	.viewer {
 		overflow-wrap: break-word;
-		padding: 0rem 2.3rem;
+		padding-top: 0.85rem;
 	}
 	.editor-head {
 		height: 8%;
-		padding-left: 2.3rem;
+		padding-left: 2.6rem;
 		padding-right: 2.3rem;
 		margin-top: 1.5rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 	}
-	.viewer::-webkit-scrollbar,
-	textarea::-webkit-scrollbar {
-		display: none;
-	}
-
 	/*Styles for the generated Html*/
 
 	:global(h1) {
-		font-size: 2.2rem;
+		font-size: 2.5rem;
 	}
 	:global(h2) {
-		font-size: 1.75rem;
+		font-size: 2rem;
 	}
 	:global(h3) {
-		font-size: 1.3rem;
+		font-size: 1.5rem;
 	}
 	:global(h4) {
 		font-size: 1.15rem;
@@ -149,15 +142,15 @@
 		border: 0.12rem solid black;
 	}
 	:global(a) {
-		color: #3a0ca3;
+		color: var(--vibrant-purple);
 	}
 	:global(blockquote) {
-		background-color: #f9f9f9;
-		border-left: 10px solid #ccc;
+		background-color: hsl(0, 0%, 94%);
+		border-left: 10px solid hsl(0, 0%, 80%);
 		padding: 0.02rem 1rem;
 		margin-top: 1.5rem;
 		margin-bottom: 1.5rem;
-		color: #2d2d2d;
+		color: var(--blue-grey);
 	}
 	:global(img) {
 		height: auto;

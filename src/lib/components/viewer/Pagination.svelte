@@ -1,34 +1,32 @@
 <script lang="ts">
-	import { books, currentBookId, currentNoteId } from '$lib/store'; // for showing the titles of book and
-	export let currentBookIndex: number; // these will be satisfied by the viewer
+	import { folders, currentFolderId, currentNoteId } from '$lib/store'; // for showing the titles of folder and
+	export let currentFolderIndex: number; // these will be satisfied by the viewer
 	export let currentNoteIndex: number;
 </script>
 
-{#if $currentBookId !== null && $currentNoteId !== null}
+{#if $currentFolderId !== null && $currentNoteId !== null}
 	<!--when the id's are not null-->
-	<!-- when the id's are not null-->
 	<nav>
-		<!-- clicking the book will set the currentNoteId to null-->
+		<!-- clicking the folder will set the currentNoteId to null-->
 		<span
 			class="url"
 			on:click={() => currentNoteId.set(null)}
 			on:keydown={() => currentNoteId.set(null)}
-			>{$books[currentBookIndex].title}
+			>{$folders[currentFolderIndex].title}
 		</span>
-		<span>/ {$books[currentBookIndex].notes[currentNoteIndex].title} </span>
+		<span>/ {$folders[currentFolderIndex].notes[currentNoteIndex].title} </span>
 	</nav>
 {/if}
 
 <style>
-	/**some shitty styles*/
 	span {
-		font-size: 1.2rem;
+		font-size: 1.21rem;
 	}
 	.url {
 		cursor: pointer;
-		color: #3a0ca3;
+		color: var(--vibrant-purple);
 	}
 	.url:hover {
-		border-bottom: 1px solid #3a0ca3;
+		border-bottom: 2px solid var(--purple);
 	}
 </style>

@@ -16,13 +16,22 @@
 	export let edit = false;
 </script>
 
-<label class="toggle">
-	<input type="checkbox" bind:checked={edit} />
-	<span class="slider round" />
-</label>
+<div role="checkbox" aria-checked="false">
+	<label class="toggle">
+		<input type="checkbox" bind:checked={edit} />
+		<span class="slider round" />
+	</label>
+	<!--The span attribute is used here to act as a label to  the toggle -->
+	<span class="edit-label" class:edit>Edit (Ctrl + Enter)</span>
+</div>
 
 <style>
 	/* CSS for toggle*/
+	div {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
 	.toggle {
 		position: relative;
 		display: inline-block;
@@ -46,7 +55,7 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-color: #cccccc;
+		background-color: hsl(0, 0%, 80%);
 		-webkit-transition: 0.3s;
 		transition: 0.3s;
 	}
@@ -65,11 +74,18 @@
 	}
 
 	input:checked + .slider {
-		background-color: #3a0ca3;
+		background-color: var(--purple);
 	}
 	input:checked + .slider:before {
 		-webkit-transform: translateX(1.6rem);
 		-ms-transform: translateX(1.6rem);
 		transform: translateX(1.6rem);
+	}
+	.edit-label {
+		font-size: 1.15rem;
+		color: hsl(0, 0%, 55%);
+	}
+	.edit {
+		color: var(--vibrant-purple);
 	}
 </style>

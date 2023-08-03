@@ -1,38 +1,38 @@
 <script lang="ts">
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
+	import AddSvg from '$lib/assets/AddSvg.svelte';
+	import CloseSvg from '$lib/assets/CloseSvg.svelte';
 	import { focusInput } from '$lib/store';
 	const dispatch = createEventDispatcher();
 	export let title = ''; // the title which is created and send to the comps
-	const proceedKey = (event: KeyboardEvent) => {
-		// this function is dispatched the proceed event when enter is clicked and the booktile is not empty
-		if (event.key === 'Enter' && title.trim() !== ``) {
-			dispatch('proceed'); //
-		}
-	};
-	let disabled = false; // for disabling the ok button
+	export let contentType: string;
 	export let noError = true;
-	$: title.length === 0 ? (disabled = true) : (disabled = false); // whenever the title length is 0, then the ok button is disabled.
-	onMount(() => {
-		// Adds the proceedkey to the window onmount
-		window.addEventListener('keydown', proceedKey);
-		return () => {
-			// Removes the proceed from the window ondestroy
-			window.removeEventListener('keydown', proceedKey);
-		};
-	});
+	$: disabled = title.length === 0 ? true : false; // for disabling the ok button
 </script>
 
-<div class="modal-container" role="alertdialog">
-	<form class="modal-content">
-		<lable for="newtitle"><slot /></lable>
-		<!--the slot will be fulfilled by the components that creates the note and books-->
+<div class="modal-container">
+	<div role="dialog" class="modal-content">
+		<div class="title-closebtn">
+			<lable for="newtitle"
+				><span class="create-icon"><AddSvg color="white" /></span>Create {contentType}</lable
+			>
+			<span
+				class="close-btn"
+				role="button"
+				tabindex="0"
+				on:click={() => dispatch('cancel')}
+				on:keydown={() => dispatch('cancel')}><CloseSvg /></span
+			>
+			<!--the slot will be fulfilled by the components that creates the note and folders-->
+		</div>
 		<div class="input" role="textbox">
-			<!--focused onmount and the value is binded to the booktitle, maxlength is 30-->
+			<!--focused onmount and the value is binded to the foldertitle, maxlength is 30-->
 			<input
 				class:errorInput={!noError}
 				type="text"
+				placeholder="Enter the title of your {contentType.toLowerCase()}"
 				bind:value={title}
-				id="newtitle"
+				class="newtitle"
 				maxlength="30"
 				spellcheck="false"
 				use:focusInput
@@ -41,16 +41,17 @@
 		</div>
 		<div class="modal-actions" role="button">
 			<!--it has the event buttons, proceed and cancel, when proceed is clicked and the title is not empty then the proceed event is dispatched, on cancel is clicked, then the cancel event is dispatched-->
-			<button {disabled} on:click={() => (title.trim() !== '' ? dispatch('proceed') : null)}
-				>ok</button
+			<button class="cancel" on:click={() => dispatch('cancel')}>cancel</button>
+			<button
+				class="create"
+				{disabled}
+				on:click={() => (title.trim() !== '' ? dispatch('proceed') : null)}>ok</button
 			>
-			<button on:click={() => dispatch('cancel')}>cancel</button>
 		</div>
-	</form>
+	</div>
 </div>
 
 <style>
-	/**some very shitty styles*/
 	.modal-container {
 		position: fixed;
 		top: 0;
@@ -60,8 +61,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-color: rgba(0, 0, 0, 0.5);
-		font-family: Arial, Helvetica, sans-serif;
+		background-color: hsla(0, 0%, 0%, 0.8);
 		z-index: 69;
 	}
 
@@ -69,19 +69,22 @@
 		height: 44%;
 		width: 40%;
 		box-sizing: border-box;
-		border-radius: 2rem;
-		background-color: white;
+		border-radius: 0.9rem;
+		background-color: var(--background);
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
-		align-items: center;
+		align-items: start;
 		box-sizing: border-box;
+		border-top: 10px solid var(--green);
 	}
 
 	.modal-actions {
 		display: flex;
-		gap: 8em;
+		gap: 3em;
+		align-self: end;
+		margin-right: 2rem;
 	}
 	button {
 		min-width: auto;
@@ -96,7 +99,8 @@
 		width: 70%;
 		text-align: center;
 		position: relative;
-		bottom: 0.8rem;
+		bottom: 0.9rem;
+		margin-left: 2rem;
 	}
 	input {
 		height: 100%;
@@ -105,11 +109,14 @@
 		border-radius: 0.4rem;
 		font-weight: bold;
 	}
+	input::placeholder {
+		color: hsl(0, 0%, 65%);
+	}
 	lable {
 		font-size: 1.6rem;
 		text-align: center;
 		position: relative;
-		top: 0.7rem;
+		top: 0.3rem;
 	}
 	.noError {
 		display: none;
@@ -120,5 +127,49 @@
 	}
 	.errorInput {
 		border-color: red;
+	}
+	.close-btn {
+		display: block;
+		cursor: pointer;
+		position: relative;
+		top: 0.2rem;
+		border-radius: 50%;
+		height: 2.2rem;
+		width: 2.2rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.close-btn:hover {
+		background-color: lightgrey;
+	}
+	.title-closebtn {
+		margin-left: 2rem;
+		display: flex;
+		width: 90%;
+		justify-content: space-between;
+	}
+	.create {
+		background-color: var(--green);
+		color: white;
+		border: 0;
+		font-weight: 800;
+	}
+	.cancel {
+		background-color: transparent;
+		border: 2px solid var(--green);
+	}
+	.create:disabled {
+		background-color: lightgrey;
+		color: darkgrey;
+	}
+	.create-icon {
+		margin-right: 0.9rem;
+		border-radius: 50%;
+		padding-top: 6px;
+		padding-left: 5px;
+		box-sizing: border-box;
+		padding-right: 4px;
+		background-color: var(--green);
 	}
 </style>

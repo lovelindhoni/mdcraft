@@ -1,46 +1,70 @@
 <!--This component connects all the components in the sidebar folder, this will be exported to the dashboard page-->
 <script lang="ts">
-	import { books, currentBookId, currentNoteId } from '$lib/store'; // of course, the books array, and the Id's
-	import CreateBook from '$lib/components/sidebar/CreateBook.svelte'; // the create new button
-	import SingleBook from '$lib/components/sidebar/SingleBook.svelte'; // the component that will display the book
+	import { folders, currentFolderId, currentNoteId } from '$lib/store'; // of course, the folders array, and the Id's
+	import CreateFolder from '$lib/components/sidebar/CreateFolder.svelte'; // the create new button
+	import Folder from '$lib/components/sidebar/Folder.svelte'; // the component that will display the folder
+	import AddFolder from '$lib/assets/AddFolder.svg';
+	import CreateFolderBigButton from '$lib/components/sidebar/CreateFolderBigBtn.svelte';
 </script>
 
-<CreateBook />
-<!--the creatbook button-->
-{#if $books.length !== 0}
-	<!--if there are no books then the message is displayed, else the books are looped -->
-	<div class="notes" role="menu">
-		{#each $books as book (book.id)}
-			<!--when a book is clicked then the currentbookId is set to its book Id and the curretnnoteid is set to null-->
-			<SingleBook
-				bookId={book.id}
+<!--the creatFolder button-->
+<CreateFolder />
+{#if $folders.length !== 0}
+	<!--if there are no folders then the message is displayed, else the folders are looped -->
+	<div class="folders" role="menu">
+		{#each $folders as folder (folder.id)}
+			<!--when a folder is clicked then the currentFolderId is set to its folder Id and the curretnnoteid is set to null-->
+			<Folder
+				folderId={folder.id}
 				on:click={() => {
 					currentNoteId.set(null);
-					currentBookId.set(book.id);
+					currentFolderId.set(folder.id);
 				}}
 				on:keydown={() => {
 					currentNoteId.set(null);
-					currentBookId.set(book.id);
+					currentFolderId.set(folder.id);
 				}}
 			/>
 		{/each}
 	</div>
 {:else}
-	<!--if there are no books left -->
-	<p>Hey there, buddy!😄 Looks like you have no books here. Why don't you create some 📚?</p>
+	<!--if there are no folders left -->
+	<div class="no-folders">
+		<img src={AddFolder} alt="an illustration representing a folder with some notes in it" />
+		<div style="margin-right:2rem">
+			<p class="no-folders-text">No folders found</p>
+			<p class="no-folders-subtext">Folders let you organize your notes</p>
+		</div>
+		<div style="margin-right:5.8rem">
+			<CreateFolderBigButton />
+		</div>
+	</div>
 {/if}
 
 <style>
-	/**some shitty styles*/
-	p {
-		font-size: 1.6rem;
-		font-family: Arial, Helvetica, sans-serif;
-		margin: 2.3rem;
-		line-height: 1.3;
-		margin-top: 4rem;
-	}
-	.notes {
+	.folders {
 		height: 80%;
 		overflow-y: auto;
+		margin-top: 0.3rem;
+	}
+	img {
+		height: 15rem;
+		width: 18rem;
+		filter: contrast(75%);
+	}
+	.no-folders {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+	.no-folders-text {
+		font-size: 1.6rem;
+	}
+	.no-folders-subtext {
+		color: var(--blue-grey);
+		font-size: 1.1rem;
+		position: relative;
+		bottom: 0.8rem;
 	}
 </style>
