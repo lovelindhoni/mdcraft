@@ -155,6 +155,9 @@
 		border: 0;
 		font-weight: 800;
 	}
+	.create:hover {
+		background-color: hsl(96, 41%, 60%);
+	}
 	.cancel {
 		background-color: transparent;
 		border: 2px solid var(--green);
