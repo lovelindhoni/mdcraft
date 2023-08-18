@@ -27,6 +27,21 @@
 
 <style>
 	/* CSS for toggle*/
+	@media screen and (min-width: 1740px) {
+		.edit-label {
+			font-size: 1.44rem;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		.edit-label {
+			font-size: 1.32rem;
+		}
+	}
+	@media screen and (max-width: 1429px) {
+		.edit-label {
+			font-size: 1.15rem;
+		}
+	}
 	div {
 		display: flex;
 		align-items: center;
@@ -82,7 +97,6 @@
 		transform: translateX(1.6rem);
 	}
 	.edit-label {
-		font-size: 1.15rem;
 		color: hsl(0, 0%, 55%);
 	}
 	.edit {

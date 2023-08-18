@@ -67,14 +67,51 @@
 {/if}
 
 <style>
+	@media screen and (min-width: 1740px) {
+		h2 {
+			font-size: 2.7rem;
+		}
+		.container {
+			margin-bottom: 1.25rem;
+		}
+		button {
+			height: 3.1rem;
+			width: 3.1rem;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		h2 {
+			font-size: 2.1rem;
+		}
+		.container {
+			margin-bottom: 1.2rem;
+		}
+		button {
+			height: 2.7rem;
+			width: 2.7rem;
+		}
+	}
+	@media screen and (max-width: 1429px) {
+		h2 {
+			font-size: 1.9rem;
+		}
+		.container {
+			margin-bottom: 0.5rem;
+		}
+		button {
+			height: 2.6rem;
+			width: 2.6rem;
+		}
+	}
 	.container {
 		display: flex;
-		align-items: baseline;
+		align-items: center;
 		justify-content: space-between;
+		width: 90%;
+		margin-right: auto;
+		margin-left: auto;
 		margin-top: 1rem;
-		padding-left: 0.6rem;
-		padding-right: 1.3rem;
-		height: 15%;
+		height: 5rem;
 	}
 	button {
 		display: flex;
@@ -84,8 +121,6 @@
 		border-radius: 50%;
 		background-color: var(--green);
 		border: 1px solid transparent;
-		height: 2.6rem;
-		width: 2.6rem;
 		padding-left: 0.5rem;
 		padding-top: 0.2rem;
 	}
@@ -94,6 +129,5 @@
 	}
 	h2 {
 		font-weight: 500;
-		font-size: 1.7rem;
 	}
 </style>

@@ -19,14 +19,26 @@
 {/if}
 
 <style>
-	span {
-		font-size: 1.21rem;
+	@media screen and (min-width: 1740px) {
+		span {
+			font-size: 1.57rem;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		span {
+			font-size: 1.32rem;
+		}
+	}
+	@media screen and (max-width: 1429px) {
+		span {
+			font-size: 1.21rem;
+		}
 	}
 	.url {
 		cursor: pointer;
 		color: var(--vibrant-purple);
 	}
 	.url:hover {
-		border-bottom: 2px solid var(--purple);
+		border-bottom: 2px solid var(--vibrant-purple);
 	}
 </style>

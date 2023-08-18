@@ -23,8 +23,8 @@
 		$folders = $folders; // very own courtesty of svelte
 		if ($currentFolderId === folderId) {
 			// when the deleted folder is the currented folder, then the id's are set to null
-			$currentNoteId = null;
-			$currentFolderId = null;
+			currentNoteId.set(null);
+			currentFolderId.set(null);
 		}
 		showDeleteModal = false; // closes the delete modal
 	}
@@ -44,6 +44,11 @@
 		}
 	}
 	let onHover: boolean; // this variable changes the color of the folder at hover
+	let size = matchMedia('(min-width:1740px)').matches
+		? '28'
+		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches
+		? '23'
+		: '21'; // size of the icons, decided by the width of viewport
 </script>
 
 <!--When the mouse is hovered above the folder, onhover is set to true, else false-->
@@ -77,7 +82,7 @@
 			on:click|stopPropagation={() => (showRename = true)}
 			on:keydown|stopPropagation={() => (showRename = true)}
 		>
-			<EditIcon color={iconColor} />
+			<EditIcon color={iconColor} {size} />
 		</div>
 		<div
 			role="button"
@@ -86,7 +91,7 @@
 			on:click|stopPropagation={() => (showDeleteModal = true)}
 			on:keydown|stopPropagation={() => (showDeleteModal = true)}
 		>
-			<DeleteIcon color={iconColor} />
+			<DeleteIcon color={iconColor} {size} />
 		</div>
 	</div>
 </div>
@@ -115,46 +120,103 @@
 {/if}
 
 <style>
+	@media screen and (min-width: 1740px) {
+		p {
+			font-size: 1.75rem;
+		}
+		.folder-container {
+			height: 5rem;
+			border-radius: 1rem;
+			margin-bottom: 1.5rem;
+			border-bottom: 3px solid var(--light-purple);
+		}
+		.on-hover {
+			border-bottom: 3px solid var(--purple);
+		}
+		.actions {
+			gap: 1.5rem;
+			margin-right: 0.5rem;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		p {
+			font-size: 1.43rem;
+		}
+		.folder-container {
+			height: 3.8rem;
+			border-radius: 0.8rem;
+			margin-bottom: 1rem;
+			border-bottom: 2px solid var(--light-purple);
+		}
+		.on-hover {
+			border-bottom: 2px solid var(--purple);
+		}
+	}
+	@media screen and (min-width: 1301px) and (max-width: 1429px) {
+		p {
+			font-size: 1.3rem;
+		}
+		.folder-container {
+			height: 3.42rem;
+			border-radius: 0.6rem;
+			margin-bottom: 1rem;
+			border-bottom: 2px solid var(--light-purple);
+		}
+		.on-hover {
+			border-bottom: 2px solid var(--purple);
+		}
+	}
+	@media screen and (max-width: 1300px) {
+		p {
+			font-size: 1.25rem;
+		}
+		.folder-container {
+			height: 3.4rem;
+			border-radius: 0.6rem;
+			margin-bottom: 1rem;
+			border-bottom: 2px solid var(--light-purple);
+		}
+		.on-hover {
+			border-bottom: 2px solid var(--purple);
+		}
+	}
 	.actions {
-		height: 100%;
-		width: 20%;
 		align-items: center;
 		justify-content: space-between;
 		display: flex;
+		height: 100%;
+		width: 4.8em;
 	}
 	.folder-container {
-		height: 12%;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		border-bottom: 2px solid var(--light-purple);
 		box-sizing: border-box;
-		margin-bottom: 1rem;
-		padding-left: 0.8rem;
-		padding-right: 0.3rem;
-		border-radius: 0.6rem;
 		word-break: break-all;
 		cursor: pointer;
+		margin-right: auto;
+		margin-left: auto;
+		width: 95%;
+		padding-left: 0.8rem;
+		padding-right: 0.3rem;
+	}
+	.folder-title {
+		width: 80%;
 	}
 	.on-hover {
 		background-color: var(--light-purple);
-		border-bottom: 2px solid var(--purple);
 	}
 	.selected {
 		background-color: var(--purple);
 		color: white;
 		border-bottom: transparent;
 	}
-	.folder-title {
-		width: 80%;
-	}
 	.icons {
+		cursor: pointer;
 		height: 40%;
 		width: 40%;
-		cursor: pointer;
 	}
 	p {
-		font-size: 1.28rem;
 		font-weight: 500;
 	}
 </style>

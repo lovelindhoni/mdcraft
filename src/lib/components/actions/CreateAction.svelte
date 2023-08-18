@@ -52,6 +52,42 @@
 </div>
 
 <style>
+	@media screen and (min-width: 1740px) {
+		.modal-content {
+			height: 33%;
+			width: 35%;
+		}
+		lable {
+			font-size: 1.78rem;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		.modal-content {
+			height: 37%;
+			width: 40%;
+		}
+		lable {
+			font-size: 1.6rem;
+		}
+	}
+	@media screen and (min-width: 1099px) and (max-width: 1429px) {
+		.modal-content {
+			height: 42.5%;
+			width: 40%;
+		}
+		lable {
+			font-size: 1.6rem;
+		}
+	}
+	@media screen and (max-width: 1099px) {
+		.modal-content {
+			height: 44%;
+			width: 50%;
+		}
+		lable {
+			font-size: 1.6rem;
+		}
+	}
 	.modal-container {
 		position: fixed;
 		top: 0;
@@ -64,12 +100,16 @@
 		background-color: hsla(0, 0%, 0%, 0.8);
 		z-index: 69;
 	}
-
+	.input {
+		position: relative;
+		bottom: 0.9rem;
+		margin-left: 2rem;
+		height: 12%;
+		width: 90%;
+	}
 	.modal-content {
-		height: 44%;
-		width: 40%;
-		box-sizing: border-box;
 		border-radius: 0.9rem;
+		box-sizing: border-box;
 		background-color: var(--background);
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 		display: flex;
@@ -79,41 +119,31 @@
 		box-sizing: border-box;
 		border-top: 10px solid var(--green);
 	}
-
 	.modal-actions {
 		display: flex;
-		gap: 3em;
 		align-self: end;
+		gap: 3em;
 		margin-right: 2rem;
 	}
 	button {
 		min-width: auto;
+		border-radius: 0.6rem;
+		cursor: pointer;
 		width: 6rem;
 		height: 3rem;
 		font-size: 1.2rem;
-		border-radius: 0.6rem;
-		cursor: pointer;
-	}
-	.input {
-		height: 11%;
-		width: 70%;
-		text-align: center;
-		position: relative;
-		bottom: 0.9rem;
-		margin-left: 2rem;
 	}
 	input {
 		height: 100%;
-		width: 100%;
-		font-size: 100%;
-		border-radius: 0.4rem;
-		font-weight: bold;
+		width: 85%;
+		font-size: large;
+		border-radius: 0.6rem;
 	}
 	input::placeholder {
 		color: hsl(0, 0%, 65%);
+		font-size: medium;
 	}
 	lable {
-		font-size: 1.6rem;
 		text-align: center;
 		position: relative;
 		top: 0.3rem;
@@ -122,32 +152,31 @@
 		display: none;
 	}
 	.error {
-		font-size: 1.1rem;
 		color: red;
+		font-size: 1.05rem;
 	}
 	.errorInput {
 		border-color: red;
 	}
 	.close-btn {
-		display: block;
-		cursor: pointer;
-		position: relative;
-		top: 0.2rem;
-		border-radius: 50%;
-		height: 2.2rem;
-		width: 2.2rem;
 		display: flex;
+		cursor: pointer;
+		border-radius: 50%;
 		align-items: center;
 		justify-content: center;
+		height: 2.2rem;
+		width: 2.2rem;
+		position: relative;
+		top: 0.2rem;
 	}
 	.close-btn:hover {
 		background-color: lightgrey;
 	}
 	.title-closebtn {
-		margin-left: 2rem;
 		display: flex;
 		width: 90%;
 		justify-content: space-between;
+		margin-left: 2rem;
 	}
 	.create {
 		background-color: var(--green);
@@ -167,12 +196,12 @@
 		color: darkgrey;
 	}
 	.create-icon {
-		margin-right: 0.9rem;
 		border-radius: 50%;
-		padding-top: 6px;
-		padding-left: 5px;
-		box-sizing: border-box;
-		padding-right: 4px;
 		background-color: var(--green);
+		box-sizing: border-box;
+		margin-right: 0.9rem;
+		padding-left: 5px;
+		padding-right: 4px;
+		padding-top: 6px;
 	}
 </style>

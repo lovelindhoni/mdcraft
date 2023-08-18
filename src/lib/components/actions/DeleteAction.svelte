@@ -12,7 +12,7 @@
 			<p class="delete-warning" role="alert">
 				<!--a warning message is shown, telling it can't be recovered-->
 				<span class="delete-icon"><DeleteSvg color="white" /></span>
-				<slot />
+				<span class="delete-element"><slot /></span>
 			</p>
 			<span
 				class="close-btn"
@@ -32,6 +32,53 @@
 </div>
 
 <style>
+	@media screen and (min-width: 1740px) {
+		.modal-content {
+			height: 33.5%;
+			width: 37%;
+		}
+		.warning-msg {
+			font-size: 1.6rem;
+			margin-right: 3rem;
+			line-height: 1.3;
+		}
+		.delete-element {
+			font-size: 1.79rem;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		.modal-content {
+			height: 37%;
+			width: 40%;
+		}
+		.warning-msg {
+			font-size: 1.4rem;
+			margin-right: 3rem;
+			line-height: 1.3;
+		}
+	}
+	@media screen and (min-width: 1100px) and (max-width: 1439px) {
+		.modal-content {
+			height: 44%;
+			width: 40%;
+		}
+		.warning-msg {
+			font-size: 1.3rem;
+			margin-right: 3rem;
+			line-height: 1.3;
+		}
+	}
+	@media screen and (max-width: 1099px) {
+		.modal-content {
+			height: 44%;
+			width: 50%;
+		}
+		.warning-msg {
+			font-size: 1.3rem;
+			margin-right: 2rem;
+			line-height: 1.2;
+		}
+	}
 	.modal-container {
 		position: fixed;
 		top: 0;
@@ -46,10 +93,7 @@
 	}
 	.modal-content {
 		text-align: center;
-		height: 44%;
-		width: 40%;
 		box-sizing: border-box;
-		border-radius: 0.9rem;
 		background-color: var(--background);
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 		display: flex;
@@ -57,25 +101,28 @@
 		align-items: start;
 		justify-content: space-around;
 		border-top: 10px solid var(--red);
+		border-radius: 0.9rem;
 	}
 	.modal-actions {
 		display: flex;
-		gap: 3em;
 		align-self: end;
 		margin-right: 2rem;
 		margin-bottom: 1rem;
+		gap: 3em;
 	}
 	button {
 		min-width: auto;
+		border-radius: 0.6rem;
+		cursor: pointer;
 		width: 6rem;
 		height: 3rem;
 		font-size: 1.2rem;
-		border-radius: 0.6rem;
-		cursor: pointer;
+	}
+	.title-and-closebtn {
+		margin-left: 2rem;
 	}
 	.delete-warning {
 		font-size: 1.6rem;
-		line-height: 1.3;
 	}
 	.delete-btn {
 		background-color: var(--red);
@@ -91,42 +138,40 @@
 		border: 2px solid var(--red);
 	}
 	.delete-icon {
-		margin-right: 0.8rem;
+		box-sizing: border-box;
+		background-color: var(--red);
 		border-radius: 50%;
+		margin-right: 0.8rem;
 		padding: 3px;
 		padding-top: 6px;
 		padding-right: 8px;
 		padding-left: 9px;
-		box-sizing: border-box;
-		background-color: var(--red);
 	}
 	.close-btn {
-		display: block;
-		position: relative;
-		top: 1.3rem;
+		display: flex;
 		cursor: pointer;
 		border-radius: 50%;
-		height: 2.2rem;
-		width: 2.2rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		height: 2.2rem;
+		width: 2.2rem;
+		position: relative;
+		top: 1.3rem;
 	}
 	.close-btn:hover {
 		background-color: lightgrey;
 	}
 	.title-and-closebtn {
-		margin-left: 2rem;
-		display: flex;
 		width: 90%;
+		display: flex;
 		justify-content: space-between;
 	}
 	.warning-msg {
-		font-size: 1.3rem;
-		padding-left: 2.5rem;
 		text-align: start;
+		color: hsl(201, 15%, 24%);
+		padding-left: 2.5rem;
 		position: relative;
 		bottom: 1.5rem;
-		color: hsl(201, 15%, 24%);
 	}
 </style>

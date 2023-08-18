@@ -35,21 +35,81 @@
 			<p class="no-folders-text">No folders found</p>
 			<p class="no-folders-subtext">Folders let you organize your notes</p>
 		</div>
-		<div style="margin-right:5.8rem">
+		<div class="create-btn">
 			<CreateFolderBigButton />
 		</div>
 	</div>
 {/if}
 
 <style>
+	@media screen and (min-width: 1740px) {
+		img {
+			height: 27rem;
+			width: 28rem;
+		}
+		.folders {
+			height: 87%;
+		}
+		.no-folders-text {
+			font-size: 2.83rem;
+		}
+		.no-folders-subtext {
+			font-size: 1.8rem;
+			position: relative;
+			bottom: 1.3rem;
+		}
+		.create-btn {
+			margin-right: 13rem;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		img {
+			height: 20rem;
+			width: 22rem;
+		}
+		.folders {
+			height: 84%;
+		}
+		.no-folders-text {
+			font-size: 2.15rem;
+		}
+		.no-folders-subtext {
+			font-size: 1.4rem;
+			position: relative;
+			bottom: 0.8rem;
+		}
+		.create-btn {
+			margin-right: 10rem;
+		}
+	}
+	@media screen and (max-width: 1429px) {
+		img {
+			height: 15rem;
+			width: 18rem;
+		}
+		.folders {
+			height: 83%;
+		}
+		.no-folders-text {
+			font-size: 1.6rem;
+		}
+		.no-folders-subtext {
+			font-size: 1.1rem;
+			position: relative;
+			bottom: 0.8rem;
+		}
+		.create-btn {
+			margin-right: 5.8rem;
+		}
+	}
 	.folders {
-		height: 80%;
 		overflow-y: auto;
+		padding-left: 0.3rem;
+		padding-right: 0.3rem;
 		margin-top: 0.3rem;
+		box-sizing: border-box;
 	}
 	img {
-		height: 15rem;
-		width: 18rem;
 		filter: contrast(75%);
 	}
 	.no-folders {
@@ -58,13 +118,7 @@
 		align-items: center;
 		gap: 1rem;
 	}
-	.no-folders-text {
-		font-size: 1.6rem;
-	}
 	.no-folders-subtext {
 		color: var(--blue-grey);
-		font-size: 1.1rem;
-		position: relative;
-		bottom: 0.8rem;
 	}
 </style>

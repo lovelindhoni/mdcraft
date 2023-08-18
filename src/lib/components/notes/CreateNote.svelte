@@ -61,9 +61,25 @@
 {/if}
 
 <style>
+	@media screen and (min-width: 1740px) {
+		button {
+			width: 3.4rem;
+			height: 3.4rem;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		button {
+			width: 3.15rem;
+			height: 3.15rem;
+		}
+	}
+	@media screen and (max-width: 1429px) {
+		button {
+			width: 2.85rem;
+			height: 2.85rem;
+		}
+	}
 	button {
-		width: 2.85rem;
-		height: 2.85rem;
 		border: 0;
 		background-color: var(--green);
 		border-radius: 50%;

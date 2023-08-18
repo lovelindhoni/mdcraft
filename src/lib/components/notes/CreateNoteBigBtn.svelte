@@ -38,12 +38,17 @@
 			showModal = false;
 		}
 	}
+	let size = matchMedia('(min-width:1740px)').matches
+		? '39'
+		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches
+		? '32'
+		: '26';
 </script>
 
 <button on:click={() => (showModal = true)} on:keydown={() => (showModal = true)}>
 	<!--clicking the button will open the modal-->
 	<span>
-		<svelte:component this={AddSvg} color="white" />
+		<svelte:component this={AddSvg} color="white" {size} />
 		Create Note
 	</span>
 </button>
@@ -65,15 +70,33 @@
 {/if}
 
 <style>
+	@media screen and (min-width: 1740px) {
+		button {
+			width: 17rem;
+			height: 5rem;
+			font-size: 1.8rem;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		button {
+			width: 14rem;
+			height: 4.2rem;
+			font-size: 1.6rem;
+		}
+	}
+	@media screen and (max-width: 1429px) {
+		button {
+			width: 12.5rem;
+			height: 3.5rem;
+			font-size: 1.37rem;
+		}
+	}
 	button {
-		width: 12.5rem;
-		height: 3.5rem;
 		color: white;
-		font-size: 1.37rem;
 		background-color: var(--green);
 		border-color: transparent;
-		border-radius: 0.8rem;
 		cursor: pointer;
+		border-radius: 0.8rem;
 	}
 	button:hover {
 		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);

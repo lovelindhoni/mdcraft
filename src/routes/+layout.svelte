@@ -6,7 +6,7 @@
 
 <style>
 	:root {
-		--purple: #8a4bb4;
+		--purple: hsl(276, 41%, 50%);
 		--light-purple: hsl(277, 40%, 85%);
 		--vibrant-purple: hsl(276, 95%, 40%);
 		--background: hsl(210, 38%, 100%);

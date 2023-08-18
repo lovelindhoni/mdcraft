@@ -59,25 +59,39 @@
 		bind:value={$folders[currentFolderIndex].notes[currentNoteIndex].content}
 	/>
 {:else}
-	<div role="document" class="viewer">
+	<div class="viewer">
 		{@html generatedHtml}
 		<!-- @html is used for displaying the generatedHtml string in DOM -->
 	</div>
 {/if}
 
 <style>
+	@media screen and (min-width: 1740px) {
+		textarea {
+			font-size: 1.6rem;
+		}
+	}
+	@media screen and (min-width: 1440px) and (max-width: 1739px) {
+		textarea {
+			font-size: 1.31rem;
+		}
+	}
+	@media screen and (max-width: 1439px) {
+		textarea {
+			font-size: 1.15rem;
+		}
+	}
 	textarea,
 	.viewer {
 		height: 87%;
 		width: 100%;
 		box-sizing: border-box;
-		padding: 2rem 2.5rem;
 		overflow-y: auto;
+		padding: 1rem 2.5rem;
 	}
 	textarea {
 		resize: none;
 		word-wrap: break-word;
-		font-size: 1.22rem;
 		outline: none;
 		border: none;
 		background-color: var(--background);
@@ -88,63 +102,163 @@
 	}
 	.viewer {
 		overflow-wrap: break-word;
-		padding-top: 0.85rem;
 	}
 	.editor-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 		height: 8%;
 		padding-left: 2.6rem;
 		padding-right: 2.3rem;
 		margin-top: 1.5rem;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
 	}
 	/*Styles for the generated Html*/
-
-	:global(h1) {
-		font-size: 2.5rem;
+	@media screen and (min-width: 1740px) {
+		:global(.viewer h1) {
+			font-size: 3rem;
+		}
+		:global(.viewer h2) {
+			font-size: 2.4rem;
+		}
+		:global(.viewer h3) {
+			font-size: 2rem;
+		}
+		:global(.viewer h4) {
+			font-size: 1.6rem;
+		}
+		:global(.viewer h5) {
+			font-size: 1.2rem;
+		}
+		:global(.viewer h6) {
+			font-size: 1.1rem;
+		}
+		:global(.viewer p),
+		:global(.viewer ol),
+		:global(.viewer ul),
+		:global(.viewer mark),
+		:global(.viewer a),
+		:global(.viewer del),
+		:global(.viewer em),
+		:global(.viewer strong) {
+			font-size: 1.7rem;
+		}
+		:global(.viewer code) {
+			font-size: 1.55rem;
+		}
+		:global(.viewer table) {
+			font-size: 1.53rem;
+		}
+		:global(pre span) {
+			font-size: 1.5rem;
+		}
 	}
-	:global(h2) {
-		font-size: 2rem;
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		:global(.viewer h1) {
+			font-size: 2.4rem;
+		}
+		:global(.viewer h2) {
+			font-size: 2.1rem;
+		}
+		:global(.viewer h3) {
+			font-size: 1.7rem;
+		}
+		:global(.viewer h4) {
+			font-size: 1.4rem;
+		}
+		:global(.viewer h5) {
+			font-size: 1rem;
+		}
+		:global(.viewer h6) {
+			font-size: 0.92rem;
+		}
+		:global(.viewer p),
+		:global(.viewer ol),
+		:global(.viewer ul),
+		:global(.viewer mark),
+		:global(.viewer a),
+		:global(.viewer del),
+		:global(.viewer em),
+		:global(.viewer strong) {
+			font-size: 1.35rem;
+		}
+		:global(.viewer code) {
+			font-size: 1.25rem;
+		}
+		:global(.viewer table) {
+			font-size: 1.25rem;
+		}
+		:global(pre span) {
+			font-size: 1.26rem;
+		}
 	}
-	:global(h3) {
-		font-size: 1.5rem;
+	@media screen and (max-width: 1429px) {
+		:global(.viewer h1) {
+			font-size: 2.2rem;
+		}
+		:global(.viewer h2) {
+			font-size: 1.7rem;
+		}
+		:global(.viewer h3) {
+			font-size: 1.4rem;
+		}
+		:global(.viewer h4) {
+			font-size: 1.15rem;
+		}
+		:global(.viewer h5) {
+			font-size: 0.92rem;
+		}
+		:global(.viewer h6) {
+			font-size: 0.74rem;
+		}
+		:global(.viewer p),
+		:global(.viewer ol),
+		:global(.viewer ul),
+		:global(.viewer mark),
+		:global(.viewer a),
+		:global(.viewer del),
+		:global(.viewer em),
+		:global(.viewer strong) {
+			font-size: 1.2rem;
+		}
+		:global(.viewer code) {
+			font-size: 1rem;
+		}
+		:global(.viewer table) {
+			font-size: 1.15rem;
+		}
+		:global(pre span) {
+			font-size: 1.08rem;
+		}
 	}
-	:global(h4) {
-		font-size: 1.15rem;
-	}
-	:global(h5) {
-		font-size: 0.92rem;
-	}
-	:global(h6) {
-		font-size: 0.74rem;
-	}
-	:global(p, ol, ul, mark, a, del) {
-		font-size: 1.18rem;
+	:global(.viewer p),
+	:global(.viewer ol),
+	:global(.viewer ul),
+	:global(.viewer mark),
+	:global(.viewer a),
+	:global(.viewer del),
+	:global(.viewer em),
+	:global(.viewer strong) {
 		line-height: 1.15;
 	}
-	:global(table) {
-		font-size: 1.09rem;
-	}
-	:global(mark) {
+	:global(.viewer mark) {
 		padding: 0.11rem;
 		border-radius: 0.4rem;
 	}
-	:global(table) {
+	:global(.viewer table) {
 		border-collapse: collapse;
 		width: 100%;
 		overflow-wrap: break-word;
 	}
-	:global(table th),
-	:global(table td) {
+	:global(.viewer table th),
+	:global(.viewer table td) {
 		padding: 0.7rem;
 		text-align: left;
 		border: 0.12rem solid black;
 	}
-	:global(a) {
+	:global(.viewer a) {
 		color: var(--vibrant-purple);
 	}
-	:global(blockquote) {
+	:global(.viewer blockquote) {
 		background-color: hsl(0, 0%, 94%);
 		border-left: 10px solid hsl(0, 0%, 80%);
 		padding: 0.02rem 1rem;
@@ -152,11 +266,11 @@
 		margin-bottom: 1.5rem;
 		color: var(--blue-grey);
 	}
-	:global(img) {
+	:global(.viewer img) {
 		height: auto;
 		width: auto;
 		max-width: 100%;
-		max-height: 25em;
+		max-height: 21em;
 	}
 	:global(code) {
 		padding: 0.14rem;
@@ -165,18 +279,8 @@
 		margin-right: 0.5rem;
 		border-radius: 0.5rem;
 	}
-	:global(pre span) {
-		font-size: 0.95rem;
-	}
 	:global(pre code) {
-		font-size: 0.95rem;
 		margin-right: 0.5rem;
 		border-radius: 0.5rem;
-	}
-	:global(pre span) {
-		font-size: 0.95rem;
-	}
-	:global(pre code) {
-		font-size: 0.95rem;
 	}
 </style>

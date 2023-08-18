@@ -17,7 +17,9 @@
 <div class="modal-container">
 	<div role="dialog" class="modal-content">
 		<div class="title-closebtn">
-			<lable for="newtitle"><span class="edit-icon"><EditSvg color="white" /></span><slot /></lable>
+			<lable for="newtitle"
+				><span class="rename-icon"><EditSvg color="white" /></span><slot /></lable
+			>
 			<span
 				class="close-btn"
 				role="button"
@@ -54,7 +56,44 @@
 	</div>
 </div>
 
+<!--1366-->
 <style>
+	@media screen and (min-width: 1740px) {
+		.modal-content {
+			height: 33%;
+			width: 35%;
+		}
+		lable {
+			font-size: 1.8rem;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		.modal-content {
+			height: 37%;
+			width: 40%;
+		}
+		lable {
+			font-size: 1.6rem;
+		}
+	}
+	@media screen and (min-width: 1099px) and (max-width: 1429px) {
+		.modal-content {
+			height: 42.5%;
+			width: 40%;
+		}
+		lable {
+			font-size: 1.6rem;
+		}
+	}
+	@media (max-width: 1099px) {
+		.modal-content {
+			height: 44%;
+			width: 50%;
+		}
+		lable {
+			font-size: 1.6rem;
+		}
+	}
 	.modal-container {
 		position: fixed;
 		top: 0;
@@ -69,10 +108,8 @@
 	}
 
 	.modal-content {
-		height: 44%;
-		width: 40%;
-		box-sizing: border-box;
 		border-radius: 0.9rem;
+		box-sizing: border-box;
 		background-color: var(--background);
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 		display: flex;
@@ -82,41 +119,38 @@
 		box-sizing: border-box;
 		border-top: 10px solid var(--blue);
 	}
-
 	.modal-actions {
 		display: flex;
-		gap: 3em;
 		align-self: end;
+		gap: 3em;
 		margin-right: 2rem;
 	}
 	button {
 		min-width: auto;
+		border-radius: 0.6rem;
+		cursor: pointer;
 		width: 6rem;
 		height: 3rem;
 		font-size: 1.2rem;
-		border-radius: 0.6rem;
-		cursor: pointer;
 	}
 	.input {
-		height: 11%;
-		width: 70%;
-		text-align: center;
 		position: relative;
-		bottom: 1.2rem;
+		bottom: 0.9rem;
 		margin-left: 2rem;
+		height: 11%;
+		width: 90%;
 	}
 	input {
 		height: 100%;
-		width: 100%;
+		width: 85%;
 		font-size: 100%;
 		border-radius: 0.4rem;
-		font-weight: bold;
+		font-size: large;
 	}
 	input::placeholder {
 		color: hsl(0, 0%, 65%);
 	}
 	lable {
-		font-size: 1.6rem;
 		text-align: center;
 		position: relative;
 		top: 0.3rem;
@@ -125,41 +159,40 @@
 		display: none;
 	}
 	.error {
-		font-size: 1.1rem;
 		color: red;
+		font-size: 1.05rem;
 	}
 	.errorInput {
 		border-color: red;
 	}
 	.close-btn {
-		display: block;
-		position: relative;
-		top: 0.2rem;
+		display: flex;
 		cursor: pointer;
 		border-radius: 50%;
-		height: 2.2rem;
-		width: 2.2rem;
-		display: flex;
 		align-items: center;
 		justify-content: center;
+		height: 2.2rem;
+		width: 2.2rem;
+		position: relative;
+		top: 0.2rem;
 	}
 	.close-btn:hover {
 		background-color: lightgrey;
 	}
 	.title-closebtn {
-		margin-left: 2rem;
 		display: flex;
 		width: 90%;
 		justify-content: space-between;
+		margin-left: 2rem;
 	}
 	.rename-btn {
 		background-color: var(--blue);
 		color: white;
-		border: 0px;
+		border: 0;
 		font-weight: 800;
 	}
 	.rename-btn:hover {
-		background-color: hsl(186, 50%, 60%);
+		background-color: hsl(186, 41%, 60%);
 	}
 	.cancel {
 		background-color: transparent;
@@ -169,12 +202,14 @@
 		background-color: lightgrey;
 		color: darkgrey;
 	}
-	.edit-icon {
+	.rename-icon {
 		margin-right: 0.9rem;
-		border-radius: 50%;
-		padding: 3px;
-		padding-left: 6px;
+		padding-top: 3px;
+		padding-left: 8px;
 		padding-right: 6px;
+		padding-bottom: 2px;
+		border-radius: 50%;
 		background-color: var(--blue);
+		box-sizing: border-box;
 	}
 </style>

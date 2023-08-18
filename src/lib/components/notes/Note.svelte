@@ -40,6 +40,11 @@
 	}
 	let iconColor: string; // the variable used to changes the color of the icons at selection. This is passed to the icons comps
 	let selected = false; // this variable decides to apply the styling when the note is hovered
+	let size = matchMedia('(min-width:1740px)').matches
+		? '28'
+		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches
+		? '23'
+		: '21';
 </script>
 
 <div
@@ -77,7 +82,7 @@
 			on:click|stopPropagation={() => (showRename = true)}
 			on:keydown|stopPropagation={() => (showRename = true)}
 		>
-			<svelte:component this={EditSvg} color={iconColor} />
+			<svelte:component this={EditSvg} color={iconColor} {size} />
 		</div>
 		<!--the rename and delete icon for doing opertation in the note-->
 		<div
@@ -87,7 +92,7 @@
 			on:click|stopPropagation={() => (showDeleteModal = true)}
 			on:keydown|stopPropagation={() => (showDeleteModal = true)}
 		>
-			<svelte:component this={DeleteSvg} color={iconColor} />
+			<svelte:component this={DeleteSvg} color={iconColor} {size} />
 		</div>
 	</div>
 </div>
@@ -113,23 +118,61 @@
 {/if}
 
 <style>
+	@media screen and (min-width: 1740px) {
+		p {
+			font-size: 1.7rem;
+		}
+		.notes-container {
+			height: 5rem;
+			border-radius: 1rem;
+		}
+		.actions {
+			gap: 0.8rem;
+			margin-right: 0.5rem;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		p {
+			font-size: 1.43rem;
+		}
+		.notes-container {
+			height: 3.8rem;
+			border-radius: 0.6rem;
+		}
+	}
+	@media screen and (min-width: 1301px) and (max-width: 1429px) {
+		p {
+			font-size: 1.32rem;
+		}
+		.notes-container {
+			height: 3.42rem;
+			border-radius: 0.8rem;
+		}
+	}
+	@media screen and (max-width: 1300px) {
+		p {
+			font-size: 1.3rem;
+		}
+		.notes-container {
+			height: 3.4rem;
+			border-radius: 0.8rem;
+		}
+	}
 	p {
 		margin: 0;
-		font-size: 1.35rem;
 	}
 
 	.notes-container {
-		margin-right: 1.5rem;
-		margin-left: 1.5rem;
-		height: 11%;
+		width: 75%;
 		margin-bottom: 1.3rem;
 		padding-left: 1rem;
-		border-radius: 0.6rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		cursor: pointer;
 		border-bottom: 2px solid var(--light-purple);
+		margin-right: auto;
+		margin-left: auto;
 	}
 	.selected {
 		background-color: var(--purple);
@@ -138,16 +181,16 @@
 	}
 	.actions {
 		display: flex;
-		height: 100%;
-		width: 14%;
 		justify-content: space-around;
 		align-items: center;
+		height: 100%;
+		width: 6.2rem;
 	}
 	.icon {
-		height: 40%;
-		width: 40%;
 		display: flex;
 		justify-content: center;
 		cursor: pointer;
+		height: 40%;
+		width: 40%;
 	}
 </style>

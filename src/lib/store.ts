@@ -77,12 +77,10 @@ This cheat sheet provides a quick overview of all the Markdown syntax elements. 
 ### Fenced Code Block
 
 \`\`\` ts
-
 function greetUser(name : string): string {
     return 'hello' + name
 }
 console.log(greetUser('Homelander'));
-
 \`\`\`
 
 

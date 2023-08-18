@@ -38,12 +38,17 @@
 			showCreate = false; // closes the create folder modal
 		}
 	}
+	let size = matchMedia('(min-width:1740px)').matches
+		? '39'
+		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches
+		? '32'
+		: '26';
 </script>
 
 <button on:click={() => (showCreate = true)} on:keydown={() => (showCreate = true)}>
 	<!--clicking the button will open the modal-->
 	<span>
-		<AddSvg color="white" />
+		<AddSvg color="white" {size} />
 		Create Folder
 	</span>
 </button>
@@ -65,15 +70,33 @@
 {/if}
 
 <style>
+	@media screen and (min-width: 1740px) {
+		button {
+			width: 16.5rem;
+			height: 4.5rem;
+			font-size: 1.78rem;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		button {
+			width: 13rem;
+			height: 4rem;
+			font-size: 1.45rem;
+		}
+	}
+	@media screen and (max-width: 1429px) {
+		button {
+			width: 12.5rem;
+			height: 3.5rem;
+			font-size: 1.37rem;
+		}
+	}
 	button {
-		width: 12.5rem;
-		height: 3.5rem;
 		color: white;
-		font-size: 1.37rem;
 		background-color: var(--green);
 		border-color: transparent;
-		border-radius: 0.8rem;
 		cursor: pointer;
+		border-radius: 0.8rem;
 	}
 	button:hover {
 		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);

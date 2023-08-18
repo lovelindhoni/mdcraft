@@ -27,6 +27,36 @@
 </main>
 
 <style>
+	@media screen and (min-width: 1740px) {
+		header {
+			grid-column-start: span 7;
+			font-size: 3.6rem;
+			margin-top: 1.6rem;
+		}
+		.sidebar {
+			grid-column-start: span 7;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		header {
+			grid-column-start: span 7;
+			font-size: 3.1rem;
+			margin-top: 1.8rem;
+		}
+		.sidebar {
+			grid-column-start: span 7;
+		}
+	}
+	@media screen and (max-width: 1429px) {
+		header {
+			grid-column-start: span 7;
+			font-size: 2.7rem;
+			margin-top: 1.5rem;
+		}
+		.sidebar {
+			grid-column-start: span 7;
+		}
+	}
 	.layout {
 		height: 100vh;
 		width: 100vw;
@@ -38,34 +68,32 @@
 		font-family: Arial, Helvetica, sans-serif;
 	}
 	header {
-		grid-row-start: span 2;
-		grid-column-start: span 7;
 		background-color: transparent;
 		display: flex;
 		align-items: center;
 		color: var(--purple);
-		font-size: 2.5rem;
-		margin-top: 1.5rem;
-		padding-left: 1rem;
+		grid-row-start: span 2;
+		width: 90%;
+		cursor: default;
+		margin-left: auto;
+		margin-right: auto;
 	}
 	.sidebar {
-		grid-row: 3 / span 19;
-		grid-column-start: span 7;
-		height: 96.5%;
+		box-sizing: border-box;
+		grid-row: 3 / span 17;
+		height: 100%;
 		width: 100%;
 		padding-left: 0.6rem;
 		padding-right: 0.5rem;
 		margin-top: 1.2rem;
-		box-sizing: border-box;
-		overflow-y: auto;
 	}
 
 	.editor {
-		grid-row: 1 / span 20;
-		grid-column-start: span 13;
-		height: 100%;
-		width: 100%;
 		border-left: 2px solid var(--light-purple);
 		box-sizing: border-box;
+		height: 100%;
+		width: 100%;
+		grid-column-start: span 14;
+		grid-row: 1 / span 20;
 	}
 </style>

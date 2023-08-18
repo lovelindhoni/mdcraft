@@ -17,13 +17,15 @@
 {#if $currentFolderId !== null}
 	<!--incase if any Folder are selected-->
 	<div role="menu" class="notes-and-title">
-		<div class="titleandbtn" role="group">
-			<h1>{@html $folders[currentFolderIndex].title.replace(/ /g, '&nbsp;')}</h1>
-			<!--the regex to preserve the whitespaces-->
-			<!--the title of that Folder-->
-			<svelte:component this={CreateNote} {currentFolderIndex} />
-			<!--passing the currentFolderindex to the createnote-->
-		</div>
+		{#if $folders[currentFolderIndex].notes.length > 0}
+			<div class="titleandbtn" role="group">
+				<h1>{@html $folders[currentFolderIndex].title.replace(/ /g, '&nbsp;')}</h1>
+				<!--the regex to preserve the whitespaces-->
+				<!--the title of that Folder-->
+				<svelte:component this={CreateNote} {currentFolderIndex} />
+				<!--passing the currentFolderindex to the createnote-->
+			</div>
+		{/if}
 		<div class="notes">
 			{#if $folders[currentFolderIndex].notes.length > 0}
 				<!--if the notesarray is not empty-->
@@ -63,45 +65,103 @@
 {/if}
 
 <style>
+	@media screen and (min-width: 1740px) {
+		h1 {
+			font-size: 2.62rem;
+		}
+		img {
+			height: 28rem;
+			width: 28rem;
+		}
+		.create-note-text {
+			font-size: 3rem;
+		}
+		.create-note-subtext {
+			font-size: 1.9rem;
+		}
+		.choose-Folder {
+			font-size: 3rem;
+		}
+		.choose-Folder-subtext {
+			font-size: 2.2rem;
+		}
+	}
+	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+		h1 {
+			font-size: 2.45rem;
+		}
+		img {
+			height: 22rem;
+			width: 22rem;
+		}
+		.create-note-text {
+			font-size: 2.22rem;
+		}
+		.create-note-subtext {
+			font-size: 1.435rem;
+		}
+		.choose-Folder {
+			font-size: 2.25rem;
+		}
+		.choose-Folder-subtext {
+			font-size: 1.7rem;
+		}
+	}
+	@media screen and (max-width: 1429px) {
+		h1 {
+			font-size: 2.07rem;
+		}
+		img {
+			height: 18rem;
+			width: 18rem;
+		}
+		.create-note-text {
+			font-size: 1.9rem;
+		}
+		.create-note-subtext {
+			font-size: 1.2rem;
+		}
+		.choose-Folder {
+			font-size: 1.9rem;
+		}
+		.choose-Folder-subtext {
+			font-size: 1.4rem;
+		}
+	}
 	.titleandbtn {
-		display: flex;
 		height: 10%;
+		margin-top: 1.2rem;
+		margin-bottom: 2rem;
+		width: 75%;
+		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin-bottom: 2rem;
-		padding-left: 2.3rem;
-		padding-right: 2.6rem;
 	}
 	.notes-and-title {
-		display: flex;
-		flex-direction: column;
 		height: 100%;
 		width: 100%;
-		padding: 1.3rem;
-		padding-left: 0.5rem;
+		display: flex;
+		flex-direction: column;
 		box-sizing: border-box;
+		align-items: center;
 	}
 	.notes {
 		overflow-y: auto;
+		width: 100%;
 		height: 100%;
-		margin-top: 1rem;
 	}
 	h1 {
-		font-size: 2rem;
 		font-weight: normal;
 	}
 	.no-notes {
-		margin-top: 4rem;
 		display: flex;
 		flex-direction: row-reverse;
 		align-items: center;
 		justify-content: space-around;
-	}
-	.choose-Folder {
-		font-size: 1.7rem;
+		width: 100%;
+		height: 100%;
 	}
 	.choose-Folder-subtext {
-		font-size: 1.3rem;
 		color: var(--blue-grey);
 	}
 	.pick-Folder {
@@ -112,8 +172,6 @@
 		justify-content: space-around;
 	}
 	img {
-		height: 20rem;
-		width: 20rem;
 		filter: contrast(75%);
 	}
 	.create-note {
@@ -121,11 +179,7 @@
 		flex-direction: column;
 		gap: 0.8rem;
 	}
-	.create-note-text {
-		font-size: 1.8rem;
-	}
 	.create-note-subtext {
-		font-size: 1.18rem;
 		color: var(--blue-grey);
 		position: relative;
 		bottom: 0.9rem;
