@@ -1,10 +1,10 @@
 <!--this component connects all the comps in the viewer folder and exported to the dashboard-->
 <script lang="ts">
-	import { folders, currentFolderId, currentNoteId } from '$lib/store';
+	import { folders } from '$lib/store';
 	import { marked } from 'marked'; // For parsing note's content
 	import EmojiConvertor from 'emoji-js'; // Converts colon-text to emojis
 	import hljs from 'highlight.js'; // For Highlighting Code Blocks
-	import 'highlight.js/styles/base16/dracula.css'; // One-Dark theme for now
+	import 'highlight.js/styles/base16/dracula.css'; // dracula theme for now
 	import NoteContent from '$lib/components/viewer/NoteContent.svelte';
 	import { afterUpdate, onMount } from 'svelte'; // Run Highlighting for code blocks after DOM update
 	let Pagination: any; // sorry typescript, this variable hold the dynamic imported pagination
@@ -36,13 +36,10 @@
 
 	export let currentFolderIndex: number; // both of these will be satisfied by the +page.svelte
 	export let currentNoteIndex: number;
-	// The reactive generatedHtml variable that runs the marked parser whenever value changes.Only runs when the id's are not null.
-	$: generatedHtml =
-		$currentFolderId !== null && $currentNoteId !== null
-			? marked($folders[currentFolderIndex].notes[currentNoteIndex].content)
-			: '';
-	// The prop that is used to toggle between the editor and viewer, exported to dashboard page
-	let edit: boolean; // the variable used to toggle between the viewer and editor.
+	// The prop that is used to toggle between the textarea and notecontent, exported to +page
+	let edit: boolean; // the variable used to toggle between the notecontent and editor.
+	// the generatedHtml variable that runs whenever the content is changed.
+	$: generatedHtml = marked($folders[currentFolderIndex].notes[currentNoteIndex].content);
 </script>
 
 <div role="columnheader" class="editor-head">
@@ -51,7 +48,7 @@
 	<svelte:component this={Toggle} bind:edit />
 </div>
 {#if edit}
-	<!--on editing the textarea is shown, otherwise, the viewer is shown-->
+	<!--on editing the textarea is shown, otherwise, the Notecontent is shown-->
 	<!--uses the focuseditor and the note's content is binded to this textarea-->
 	<textarea
 		placeholder="Start Sparkdowning..."
