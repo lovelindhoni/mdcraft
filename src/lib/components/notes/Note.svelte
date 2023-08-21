@@ -124,11 +124,19 @@
 		}
 		.notes-container {
 			height: 5rem;
-			border-radius: 1rem;
+			border-top-left-radius: 1rem;
+			border-top-right-radius: 1rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-bottom: 3px solid var(--light-purple);
 		}
 		.actions {
 			gap: 0.8rem;
 			margin-right: 0.5rem;
+		}
+		.selected {
+			border-bottom-left-radius: 1rem;
+			border-bottom-right-radius: 1rem;
 		}
 	}
 	@media screen and (min-width: 1430px) and (max-width: 1739px) {
@@ -137,7 +145,15 @@
 		}
 		.notes-container {
 			height: 3.8rem;
-			border-radius: 0.6rem;
+			border-top-left-radius: 0.9rem;
+			border-top-right-radius: 0.9rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-bottom: 2px solid var(--light-purple);
+		}
+		.selected {
+			border-bottom-left-radius: 0.9rem;
+			border-bottom-right-radius: 0.9rem;
 		}
 	}
 	@media screen and (min-width: 1301px) and (max-width: 1429px) {
@@ -146,7 +162,15 @@
 		}
 		.notes-container {
 			height: 3.42rem;
-			border-radius: 0.8rem;
+			border-top-left-radius: 0.8rem;
+			border-top-right-radius: 0.8rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-bottom: 2px solid var(--light-purple);
+		}
+		.selected {
+			border-bottom-left-radius: 0.8rem;
+			border-bottom-right-radius: 0.8rem;
 		}
 	}
 	@media screen and (max-width: 1300px) {
@@ -155,13 +179,17 @@
 		}
 		.notes-container {
 			height: 3.4rem;
-			border-radius: 0.8rem;
+			border-top-left-radius: 0.8rem;
+			border-top-right-radius: 0.8rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-bottom: 2px solid var(--light-purple);
+		}
+		.selected {
+			border-bottom-left-radius: 0.8rem;
+			border-bottom-right-radius: 0.8rem;
 		}
 	}
-	p {
-		margin: 0;
-	}
-
 	.notes-container {
 		width: 75%;
 		margin-bottom: 1.3rem;
@@ -170,7 +198,6 @@
 		align-items: center;
 		justify-content: space-between;
 		cursor: pointer;
-		border-bottom: 2px solid var(--light-purple);
 		margin-right: auto;
 		margin-left: auto;
 	}

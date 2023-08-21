@@ -126,12 +126,21 @@
 		}
 		.folder-container {
 			height: 5rem;
-			border-radius: 1rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-top-left-radius: 1rem;
+			border-top-right-radius: 1rem;
 			margin-bottom: 1.5rem;
 			border-bottom: 3px solid var(--light-purple);
 		}
 		.on-hover {
 			border-bottom: 3px solid var(--purple);
+			border-bottom-left-radius: 0.6rem;
+			border-bottom-right-radius: 0.6rem;
+		}
+		.selected {
+			border-bottom-left-radius: 0.6rem;
+			border-bottom-right-radius: 0.6rem;
 		}
 		.actions {
 			gap: 1.5rem;
@@ -144,12 +153,21 @@
 		}
 		.folder-container {
 			height: 3.8rem;
-			border-radius: 0.8rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-top-left-radius: 0.8rem;
+			border-top-right-radius: 0.8rem;
 			margin-bottom: 1rem;
 			border-bottom: 2px solid var(--light-purple);
 		}
 		.on-hover {
 			border-bottom: 2px solid var(--purple);
+			border-bottom-left-radius: 0.8rem;
+			border-bottom-right-radius: 0.8rem;
+		}
+		.selected {
+			border-bottom-left-radius: 0.8rem;
+			border-bottom-right-radius: 0.8rem;
 		}
 	}
 	@media screen and (min-width: 1301px) and (max-width: 1429px) {
@@ -158,12 +176,21 @@
 		}
 		.folder-container {
 			height: 3.42rem;
-			border-radius: 0.6rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-top-left-radius: 0.6rem;
+			border-top-right-radius: 0.6rem;
 			margin-bottom: 1rem;
 			border-bottom: 2px solid var(--light-purple);
 		}
 		.on-hover {
 			border-bottom: 2px solid var(--purple);
+			border-bottom-left-radius: 0.6rem;
+			border-bottom-right-radius: 0.6rem;
+		}
+		.selected {
+			border-bottom-left-radius: 0.6rem;
+			border-bottom-right-radius: 0.6rem;
 		}
 	}
 	@media screen and (max-width: 1300px) {
@@ -173,11 +200,21 @@
 		.folder-container {
 			height: 3.4rem;
 			border-radius: 0.6rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-top-left-radius: 0.6rem;
+			border-top-right-radius: 0.6rem;
 			margin-bottom: 1rem;
 			border-bottom: 2px solid var(--light-purple);
 		}
 		.on-hover {
 			border-bottom: 2px solid var(--purple);
+			border-bottom-left-radius: 0.6rem;
+			border-bottom-right-radius: 0.6rem;
+		}
+		.selected {
+			border-bottom-left-radius: 0.6rem;
+			border-bottom-right-radius: 0.6rem;
 		}
 	}
 	.actions {

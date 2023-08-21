@@ -65,7 +65,7 @@
 		grid-template-rows: repeat(20, 5%);
 		grid-template-columns: repeat(20, 5%);
 		background-color: var(--background);
-		font-family: Arial, Helvetica, sans-serif;
+		font-family:  Helvetica, Arial, sans-serif;
 	}
 	header {
 		background-color: transparent;
