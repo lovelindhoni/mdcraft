@@ -8,20 +8,26 @@
 	export let contentType: string;
 	export let noError = true;
 	$: disabled = title.length === 0 ? true : false; // for disabling the ok button
+	let size = matchMedia('(max-width:549px)').matches
+		? '20'
+		: matchMedia('(max-width:1023px)').matches
+		? '24'
+		: '26';
 </script>
 
 <div class="modal-container">
 	<div role="dialog" class="modal-content">
 		<div class="title-closebtn">
-			<lable for="newtitle"
-				><span class="create-icon"><AddSvg color="white" /></span>Create {contentType}</lable
-			>
+			<div class="title-logo">
+				<span class="create-icon"><AddSvg color="white" {size} /></span>
+				<lable for="newtitle">Create {contentType}</lable>
+			</div>
 			<span
 				class="close-btn"
 				role="button"
 				tabindex="0"
 				on:click={() => dispatch('cancel')}
-				on:keydown={() => dispatch('cancel')}><CloseSvg /></span
+				on:keydown={() => dispatch('cancel')}><CloseSvg {size} /></span
 			>
 			<!--the slot will be fulfilled by the components that creates the note and folders-->
 		</div>
@@ -70,7 +76,7 @@
 			font-size: 1.6rem;
 		}
 	}
-	@media screen and (min-width: 1099px) and (max-width: 1429px) {
+	@media screen and (min-width: 1024px) and (max-width: 1429px) {
 		.modal-content {
 			height: 42.5%;
 			width: 40%;
@@ -79,13 +85,116 @@
 			font-size: 1.6rem;
 		}
 	}
-	@media screen and (max-width: 1099px) {
+	@media screen and (min-width: 1024px) {
+		.title-logo {
+			gap: 1rem;
+		}
+		.create-icon {
+			height: 2rem;
+			width: 2rem;
+		}
+		.close-btn {
+			position: relative;
+			top: 0.2rem;
+		}
+		.input {
+			height: 12%;
+			width: 90%;
+		}
+		input {
+			font-size: large;
+			border-radius: 0.6rem;
+		}
+		button {
+			width: 6rem;
+			height: 3rem;
+			font-size: 1.2rem;
+		}
+		.error {
+			font-size: 1.05rem;
+		}
+		.modal-actions {
+			gap: 3em;
+		}
+	}
+	@media screen and (min-width: 550px) and (max-width: 1023px) {
 		.modal-content {
-			height: 44%;
-			width: 50%;
+			height: 24%;
+			width: 60%;
 		}
 		lable {
-			font-size: 1.6rem;
+			font-size: 1.5rem;
+		}
+		.title-logo {
+			gap: 0.8rem;
+		}
+		.create-icon {
+			height: 2rem;
+			width: 2rem;
+		}
+		.close-btn {
+			position: relative;
+			top: 0.2rem;
+			right: 1rem;
+		}
+		.input {
+			height: 12%;
+			width: 90%;
+		}
+		button {
+			width: 5.5rem;
+			height: 2.7rem;
+			font-size: 1.08rem;
+		}
+		.error {
+			font-size: 1rem;
+		}
+		input {
+			font-size: medium;
+			border-radius: 0.6rem;
+		}
+		.modal-actions {
+			gap: 3em;
+		}
+	}
+	@media screen and (max-width: 549px) {
+		.modal-content {
+			height: 26%;
+			width: 80%;
+		}
+		lable {
+			font-size: 1.2rem;
+		}
+		.title-logo {
+			gap: 0.6rem;
+		}
+		.create-icon {
+			height: 1.5rem;
+			width: 1.5rem;
+		}
+		.close-btn {
+			position: relative;
+			bottom: 0.1rem;
+			right: 1rem;
+		}
+		.input {
+			height: 13%;
+			width: 90%;
+		}
+		button {
+			width: 4.2rem;
+			height: 2.4rem;
+			font-size: 1rem;
+		}
+		.error {
+			font-size: 0.735rem;
+		}
+		input {
+			font-size: medium;
+			border-radius: 0.4rem;
+		}
+		.modal-actions {
+			gap: 1.5em;
 		}
 	}
 	.modal-container {
@@ -104,8 +213,6 @@
 		position: relative;
 		bottom: 0.9rem;
 		margin-left: 2rem;
-		height: 12%;
-		width: 90%;
 	}
 	.modal-content {
 		border-radius: 0.9rem;
@@ -122,22 +229,16 @@
 	.modal-actions {
 		display: flex;
 		align-self: end;
-		gap: 3em;
 		margin-right: 2rem;
 	}
 	button {
 		min-width: auto;
 		border-radius: 0.6rem;
 		cursor: pointer;
-		width: 6rem;
-		height: 3rem;
-		font-size: 1.2rem;
 	}
 	input {
 		height: 100%;
 		width: 85%;
-		font-size: large;
-		border-radius: 0.6rem;
 	}
 	input::placeholder {
 		color: hsl(0, 0%, 65%);
@@ -153,7 +254,6 @@
 	}
 	.error {
 		color: red;
-		font-size: 1.05rem;
 	}
 	.errorInput {
 		border-color: red;
@@ -166,8 +266,6 @@
 		justify-content: center;
 		height: 2.2rem;
 		width: 2.2rem;
-		position: relative;
-		top: 0.2rem;
 	}
 	.close-btn:hover {
 		background-color: lightgrey;
@@ -199,9 +297,13 @@
 		border-radius: 50%;
 		background-color: var(--green);
 		box-sizing: border-box;
-		margin-right: 0.9rem;
-		padding-left: 5px;
-		padding-right: 4px;
-		padding-top: 6px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		top: 0.2rem;
+	}
+	.title-logo {
+		display: flex;
 	}
 </style>

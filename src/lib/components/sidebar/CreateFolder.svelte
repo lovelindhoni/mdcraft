@@ -149,7 +149,7 @@
 			width: 2.75rem;
 		}
 	}
-	@media screen and (min-width: 200px) and (max-width: 549px) {
+	@media screen and (max-width: 549px) {
 		h2 {
 			font-size: 1.9rem;
 		}

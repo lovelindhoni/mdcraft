@@ -3,6 +3,11 @@
 	import DeleteSvg from '$lib/assets/DeleteSvg.svelte';
 	import CloseSvg from '$lib/assets/CloseSvg.svelte';
 	const dispatch = createEventDispatcher();
+	let size = matchMedia('(max-width:549px)').matches
+		? '16'
+		: matchMedia('(max-width:1023px)').matches
+		? '18'
+		: '20';
 </script>
 
 <div class="modal-container">
@@ -11,7 +16,7 @@
 		<div class="title-and-closebtn">
 			<p class="delete-warning" role="alert">
 				<!--a warning message is shown, telling it can't be recovered-->
-				<span class="delete-icon"><DeleteSvg color="white" /></span>
+				<span class="delete-icon"><DeleteSvg color="white" {size} /></span>
 				<span class="delete-element"><slot /></span>
 			</p>
 			<span
@@ -19,7 +24,8 @@
 				role="button"
 				tabindex="0"
 				on:click={() => dispatch('cancel')}
-				on:keydown={() => dispatch('cancel')}><CloseSvg /></span
+				on:keydown={() => dispatch('cancel')}
+				><CloseSvg size={(parseInt(size) + 4).toString()} /></span
 			>
 		</div>
 		<p class="warning-msg">Are you really sure? It cannot be recovered after deletion!</p>
@@ -57,7 +63,7 @@
 			line-height: 1.3;
 		}
 	}
-	@media screen and (min-width: 1100px) and (max-width: 1439px) {
+	@media screen and (min-width: 1024px) and (max-width: 1429px) {
 		.modal-content {
 			height: 44%;
 			width: 40%;
@@ -68,15 +74,88 @@
 			line-height: 1.3;
 		}
 	}
-	@media screen and (max-width: 1099px) {
+	@media screen and (min-width: 1024px) {
+		button {
+			width: 6rem;
+			height: 3rem;
+			font-size: 1.2rem;
+		}
+		.modal-actions {
+			gap: 3em;
+		}
+		.delete-warning {
+			font-size: 1.6rem;
+		}
+		.delete-icon {
+			height: 2rem;
+			width: 2rem;
+		}
+		.close-btn {
+			position: relative;
+			right: 0.8rem;
+			top: 1.6rem;
+		}
+	}
+	@media screen and (min-width: 550px) and (max-width: 1023px) {
 		.modal-content {
-			height: 44%;
-			width: 50%;
+			height: 24%;
+			width: 60%;
+		}
+		.delete-icon {
+			height: 1.9rem;
+			width: 1.9rem;
+		}
+		.close-btn {
+			position: relative;
+			right: 0.8rem;
+			top: 1.3rem;
+		}
+		.delete-warning {
+			font-size: 1.4rem;
 		}
 		.warning-msg {
-			font-size: 1.3rem;
+			font-size: 1.21rem;
 			margin-right: 2rem;
 			line-height: 1.2;
+		}
+		button {
+			width: 5.5rem;
+			height: 2.7rem;
+			font-size: 1.08rem;
+		}
+		.modal-actions {
+			gap: 1.5em;
+		}
+	}
+	@media screen and (max-width: 549px) {
+		.modal-content {
+			height: 26%;
+			width: 80%;
+		}
+		.warning-msg {
+			font-size: 0.94rem;
+			margin-right: 2rem;
+			line-height: 1.2;
+		}
+		button {
+			width: 4.2rem;
+			height: 2.4rem;
+			font-size: 1rem;
+		}
+		.modal-actions {
+			gap: 1.5em;
+		}
+		.delete-warning {
+			font-size: 1.1rem;
+		}
+		.delete-icon {
+			height: 1.6rem;
+			width: 1.6rem;
+		}
+		.close-btn {
+			position: relative;
+			right: 0.8rem;
+			top: 1rem;
 		}
 	}
 	.modal-container {
@@ -108,22 +187,16 @@
 		align-self: end;
 		margin-right: 2rem;
 		margin-bottom: 1rem;
-		gap: 3em;
 	}
 	button {
 		min-width: auto;
 		border-radius: 0.6rem;
 		cursor: pointer;
-		width: 6rem;
-		height: 3rem;
-		font-size: 1.2rem;
 	}
 	.title-and-closebtn {
 		margin-left: 2rem;
 	}
-	.delete-warning {
-		font-size: 1.6rem;
-	}
+
 	.delete-btn {
 		background-color: var(--red);
 		color: white;
@@ -142,10 +215,9 @@
 		background-color: var(--red);
 		border-radius: 50%;
 		margin-right: 0.8rem;
-		padding: 3px;
-		padding-top: 6px;
-		padding-right: 8px;
-		padding-left: 9px;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
 	}
 	.close-btn {
 		display: flex;
@@ -156,8 +228,6 @@
 		justify-content: center;
 		height: 2.2rem;
 		width: 2.2rem;
-		position: relative;
-		top: 1.3rem;
 	}
 	.close-btn:hover {
 		background-color: lightgrey;

@@ -148,7 +148,7 @@
 			width: 24rem;
 		}
 	}
-	@media screen and (min-width: 200px) and (max-width: 549px) {
+	@media screen and (max-width: 549px) {
 		.folders {
 			height: 80%;
 		}

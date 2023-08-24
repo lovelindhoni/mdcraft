@@ -12,20 +12,31 @@
 		disabled = title.length === 0 ? true : false;
 	} // when rename, the renamed oldtitle is assigned to the title, whenever the title lenght is 0, then the ok button is disabled
 	export let noError = true; // initilly there is no errror, so it is true
+	let size = matchMedia('(max-width:549px)').matches
+		? '20'
+		: matchMedia('(max-width:1023px)').matches
+		? '24'
+		: '26';
 </script>
 
 <div class="modal-container">
 	<div role="dialog" class="modal-content">
 		<div class="title-closebtn">
-			<lable for="newtitle"
-				><span class="rename-icon"><EditSvg color="white" /></span><slot /></lable
-			>
+			<div class="title-logo">
+				<span class="rename-icon"
+					><EditSvg
+						color="white"
+						size={matchMedia('(max-width:549px)') ? (parseInt(size) - 6).toString() : size}
+					/></span
+				>
+				<lable for="newtitle"><slot /></lable>
+			</div>
 			<span
 				class="close-btn"
 				role="button"
 				tabindex="0"
 				on:click={() => dispatch('cancel')}
-				on:keydown={() => dispatch('cancel')}><CloseSvg /></span
+				on:keydown={() => dispatch('cancel')}><CloseSvg {size} /></span
 			>
 			<!--the slot will be fulfilled by the components that creates the note and folders-->
 		</div>
@@ -64,7 +75,7 @@
 			width: 35%;
 		}
 		lable {
-			font-size: 1.8rem;
+			font-size: 1.78rem;
 		}
 	}
 	@media screen and (min-width: 1430px) and (max-width: 1739px) {
@@ -76,7 +87,7 @@
 			font-size: 1.6rem;
 		}
 	}
-	@media screen and (min-width: 1099px) and (max-width: 1429px) {
+	@media screen and (min-width: 1024px) and (max-width: 1429px) {
 		.modal-content {
 			height: 42.5%;
 			width: 40%;
@@ -85,13 +96,116 @@
 			font-size: 1.6rem;
 		}
 	}
-	@media (max-width: 1099px) {
+	@media screen and (min-width: 1024px) {
+		.title-logo {
+			gap: 1rem;
+		}
+		.rename-icon {
+			height: 2rem;
+			width: 2rem;
+		}
+		.close-btn {
+			position: relative;
+			top: 0.2rem;
+		}
+		.input {
+			height: 12%;
+			width: 90%;
+		}
+		input {
+			font-size: large;
+			border-radius: 0.6rem;
+		}
+		button {
+			width: 6rem;
+			height: 3rem;
+			font-size: 1.2rem;
+		}
+		.error {
+			font-size: 1.05rem;
+		}
+		.modal-actions {
+			gap: 3em;
+		}
+	}
+	@media screen and (min-width: 550px) and (max-width: 1023px) {
 		.modal-content {
-			height: 44%;
-			width: 50%;
+			height: 24%;
+			width: 60%;
 		}
 		lable {
-			font-size: 1.6rem;
+			font-size: 1.5rem;
+		}
+		.title-logo {
+			gap: 0.8rem;
+		}
+		.rename-icon {
+			height: 2rem;
+			width: 2rem;
+		}
+		.close-btn {
+			position: relative;
+			top: 0.2rem;
+			right: 1rem;
+		}
+		.input {
+			height: 12%;
+			width: 90%;
+		}
+		button {
+			width: 5.5rem;
+			height: 2.7rem;
+			font-size: 1.08rem;
+		}
+		.error {
+			font-size: 1rem;
+		}
+		input {
+			font-size: medium;
+			border-radius: 0.6rem;
+		}
+		.modal-actions {
+			gap: 3em;
+		}
+	}
+	@media screen and (max-width: 549px) {
+		.modal-content {
+			height: 26%;
+			width: 80%;
+		}
+		lable {
+			font-size: 1.2rem;
+		}
+		.title-logo {
+			gap: 0.6rem;
+		}
+		.rename-icon {
+			height: 1.5rem;
+			width: 1.5rem;
+		}
+		.close-btn {
+			position: relative;
+			bottom: 0.1rem;
+			right: 1rem;
+		}
+		.input {
+			height: 13%;
+			width: 90%;
+		}
+		button {
+			width: 4.2rem;
+			height: 2.4rem;
+			font-size: 1rem;
+		}
+		.error {
+			font-size: 0.735rem;
+		}
+		input {
+			font-size: medium;
+			border-radius: 0.4rem;
+		}
+		.modal-actions {
+			gap: 1.5em;
 		}
 	}
 	.modal-container {
@@ -106,7 +220,11 @@
 		background-color: hsla(0, 0%, 0%, 0.8);
 		z-index: 69;
 	}
-
+	.input {
+		position: relative;
+		bottom: 0.9rem;
+		margin-left: 2rem;
+	}
 	.modal-content {
 		border-radius: 0.9rem;
 		box-sizing: border-box;
@@ -122,33 +240,20 @@
 	.modal-actions {
 		display: flex;
 		align-self: end;
-		gap: 3em;
 		margin-right: 2rem;
 	}
 	button {
 		min-width: auto;
 		border-radius: 0.6rem;
 		cursor: pointer;
-		width: 6rem;
-		height: 3rem;
-		font-size: 1.2rem;
-	}
-	.input {
-		position: relative;
-		bottom: 0.9rem;
-		margin-left: 2rem;
-		height: 11%;
-		width: 90%;
 	}
 	input {
 		height: 100%;
 		width: 85%;
-		font-size: 100%;
-		border-radius: 0.4rem;
-		font-size: large;
 	}
 	input::placeholder {
 		color: hsl(0, 0%, 65%);
+		font-size: medium;
 	}
 	lable {
 		text-align: center;
@@ -160,7 +265,6 @@
 	}
 	.error {
 		color: red;
-		font-size: 1.05rem;
 	}
 	.errorInput {
 		border-color: red;
@@ -173,8 +277,6 @@
 		justify-content: center;
 		height: 2.2rem;
 		width: 2.2rem;
-		position: relative;
-		top: 0.2rem;
 	}
 	.close-btn:hover {
 		background-color: lightgrey;
@@ -203,13 +305,16 @@
 		color: darkgrey;
 	}
 	.rename-icon {
-		margin-right: 0.9rem;
-		padding-top: 3px;
-		padding-left: 8px;
-		padding-right: 6px;
-		padding-bottom: 2px;
 		border-radius: 50%;
 		background-color: var(--blue);
 		box-sizing: border-box;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		top: 0.2rem;
+	}
+	.title-logo {
+		display: flex;
 	}
 </style>
