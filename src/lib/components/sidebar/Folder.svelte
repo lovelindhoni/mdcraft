@@ -46,7 +46,8 @@
 	let onHover: boolean; // this variable changes the color of the folder at hover
 	let size = matchMedia('(min-width:1740px)').matches
 		? '28'
-		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches
+		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches ||
+		  matchMedia('(min-width:549px) and (max-width:1023px)').matches
 		? '23'
 		: '21'; // size of the icons, decided by the width of viewport
 </script>
@@ -135,12 +136,12 @@
 		}
 		.on-hover {
 			border-bottom: 3px solid var(--purple);
-			border-bottom-left-radius: 0.6rem;
+			border-bottom-left-radius: 1rem;
 			border-bottom-right-radius: 0.6rem;
 		}
 		.selected {
-			border-bottom-left-radius: 0.6rem;
-			border-bottom-right-radius: 0.6rem;
+			border-bottom-left-radius: 1rem;
+			border-bottom-right-radius: 1rem;
 		}
 		.actions {
 			gap: 1.5rem;
@@ -193,9 +194,81 @@
 			border-bottom-right-radius: 0.6rem;
 		}
 	}
-	@media screen and (max-width: 1300px) {
+	@media screen and (min-width: 1151px) and (max-width: 1300px) {
 		p {
 			font-size: 1.25rem;
+		}
+		.folder-container {
+			height: 3.4rem;
+			border-radius: 0.6rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-top-left-radius: 0.6rem;
+			border-top-right-radius: 0.6rem;
+			margin-bottom: 1rem;
+			border-bottom: 2px solid var(--light-purple);
+		}
+		.on-hover {
+			border-bottom: 2px solid var(--purple);
+			border-bottom-left-radius: 0.6rem;
+			border-bottom-right-radius: 0.6rem;
+		}
+		.selected {
+			border-bottom-left-radius: 0.6rem;
+			border-bottom-right-radius: 0.6rem;
+		}
+	}
+	@media screen and (min-width: 1024px) and (max-width: 1150px) {
+		p {
+			font-size: 1.3rem;
+		}
+		.folder-container {
+			height: 3.5rem;
+			border-radius: 0.6rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-top-left-radius: 0.6rem;
+			border-top-right-radius: 0.6rem;
+			margin-bottom: 1rem;
+			border-bottom: 2px solid var(--light-purple);
+		}
+		.on-hover {
+			border-bottom: 2px solid var(--purple);
+			border-bottom-left-radius: 0.6rem;
+			border-bottom-right-radius: 0.6rem;
+		}
+		.selected {
+			border-bottom-left-radius: 0.6rem;
+			border-bottom-right-radius: 0.6rem;
+		}
+	}
+	@media screen and (min-width: 550px) and (max-width: 1023px) {
+		p {
+			font-size: 1.7rem;
+		}
+		.folder-container {
+			height: 4rem;
+			border-radius: 0.8rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-top-left-radius: 0.8rem;
+			border-top-right-radius: 0.8rem;
+			margin-bottom: 1rem;
+			border-bottom: 2px solid var(--light-purple);
+		}
+		.on-hover {
+			border-bottom: 2px solid var(--purple);
+			border-bottom-left-radius: 0.8rem;
+			border-bottom-right-radius: 0.8rem;
+		}
+		.selected {
+			border-bottom-left-radius: 0.8rem;
+			border-bottom-right-radius: 0.8rem;
+		}
+	}
+	@media screen and (max-width: 549px) {
+		p {
+			font-size: 1.34rem;
 		}
 		.folder-container {
 			height: 3.4rem;

@@ -31,7 +31,7 @@
 	<!--if there are no folders left -->
 	<div class="no-folders">
 		<img src={AddFolder} alt="an illustration representing a folder with some notes in it" />
-		<div style="margin-right:2rem">
+		<div style="">
 			<p class="no-folders-text">No folders found</p>
 			<p class="no-folders-subtext">Folders let you organize your notes</p>
 		</div>
@@ -59,7 +59,7 @@
 			bottom: 1.3rem;
 		}
 		.create-btn {
-			margin-right: 13rem;
+			margin-right: 12rem;
 		}
 	}
 	@media screen and (min-width: 1430px) and (max-width: 1739px) {
@@ -79,16 +79,16 @@
 			bottom: 0.8rem;
 		}
 		.create-btn {
-			margin-right: 10rem;
+			margin-right: 9rem;
 		}
 	}
-	@media screen and (max-width: 1429px) {
+	@media screen and (min-width: 1024px) and (max-width: 1429px) {
 		img {
 			height: 15rem;
 			width: 18rem;
 		}
 		.folders {
-			height: 83%;
+			height: 82.5%;
 		}
 		.no-folders-text {
 			font-size: 1.6rem;
@@ -99,7 +99,73 @@
 			bottom: 0.8rem;
 		}
 		.create-btn {
-			margin-right: 5.8rem;
+			margin-right: 5rem;
+		}
+	}
+	@media screen and (min-width: 650px) and (max-width: 1023px) {
+		.folders {
+			height: 88.5%;
+			width: 70%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.no-folders-text {
+			font-size: 2.7rem;
+		}
+		.no-folders-subtext {
+			font-size: 1.77rem;
+			position: relative;
+			bottom: 0.8rem;
+		}
+		.create-btn {
+			margin-right: 11rem;
+		}
+		img {
+			height: 24rem;
+			width: 30rem;
+		}
+	}
+	@media screen and (min-width: 550px) and (max-width: 649px) {
+		.folders {
+			height: 88.5%;
+			width: 82%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.no-folders-text {
+			font-size: 2.4rem;
+		}
+		.no-folders-subtext {
+			font-size: 1.6rem;
+			position: relative;
+			bottom: 0.8rem;
+		}
+		.create-btn {
+			margin-right: 8.5rem;
+		}
+		img {
+			height: 24rem;
+			width: 24rem;
+		}
+	}
+	@media screen and (min-width: 200px) and (max-width: 549px) {
+		.folders {
+			height: 80%;
+		}
+		.no-folders-text {
+			font-size: 1.83rem;
+		}
+		.no-folders-subtext {
+			font-size: 1.2rem;
+			position: relative;
+			bottom: 0.8rem;
+		}
+		.create-btn {
+			margin-right: 7.1rem;
+		}
+		img {
+			height: 17rem;
+			width: 19rem;
 		}
 	}
 	.folders {

@@ -42,7 +42,11 @@
 
 <div class="container">
 	<h2>Folders</h2>
-	<button on:click={() => (showCreate = true)} on:keydown={() => (showCreate = true)}>
+	<button
+		on:click={() => (showCreate = true)}
+		on:keydown={() => (showCreate = true)}
+		name="create-folder"
+	>
 		<!--clicking the button will open the modal-->
 		<div class="newFolderbtn">
 			<AddIcon color="white" />
@@ -73,6 +77,7 @@
 		}
 		.container {
 			margin-bottom: 1.25rem;
+			width: 90%;
 		}
 		button {
 			height: 3.1rem;
@@ -85,29 +90,82 @@
 		}
 		.container {
 			margin-bottom: 1.2rem;
+			width: 90%;
 		}
 		button {
 			height: 2.7rem;
 			width: 2.7rem;
 		}
 	}
-	@media screen and (max-width: 1429px) {
+	@media screen and (min-width: 1151px) and (max-width: 1429px) {
 		h2 {
 			font-size: 1.9rem;
 		}
 		.container {
 			margin-bottom: 0.5rem;
+			width: 90%;
 		}
 		button {
 			height: 2.6rem;
 			width: 2.6rem;
 		}
 	}
+	@media screen and (min-width: 1024px) and (max-width: 1150px) {
+		h2 {
+			font-size: 1.72rem;
+		}
+		.container {
+			margin-bottom: 0.5rem;
+			width: 90%;
+		}
+		button {
+			height: 2.3rem;
+			width: 2.3rem;
+		}
+	}
+	@media screen and (min-width: 650px) and (max-width: 1023px) {
+		h2 {
+			font-size: 2.65rem;
+		}
+		.container {
+			margin-bottom: 0.5rem;
+			width: 62%;
+		}
+		button {
+			height: 2.75rem;
+			width: 2.75rem;
+		}
+	}
+	@media screen and (min-width: 550px) and (max-width: 649px) {
+		h2 {
+			font-size: 2.65rem;
+		}
+		.container {
+			margin-bottom: 0.5rem;
+			width: 73%;
+		}
+		button {
+			height: 2.75rem;
+			width: 2.75rem;
+		}
+	}
+	@media screen and (min-width: 200px) and (max-width: 549px) {
+		h2 {
+			font-size: 1.9rem;
+		}
+		.container {
+			margin-bottom: 0.5rem;
+			width: 88%;
+		}
+		button {
+			height: 2.5rem;
+			width: 2.5rem;
+		}
+	}
 	.container {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		width: 90%;
 		margin-right: auto;
 		margin-left: auto;
 		margin-top: 1rem;

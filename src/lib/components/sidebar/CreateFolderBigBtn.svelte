@@ -40,7 +40,8 @@
 	}
 	let size = matchMedia('(min-width:1740px)').matches
 		? '39'
-		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches
+		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches ||
+		  matchMedia('(min-width:549px) and (max-width:1023px)').matches
 		? '32'
 		: '26';
 </script>
@@ -73,8 +74,9 @@
 	@media screen and (min-width: 1740px) {
 		button {
 			width: 16.5rem;
-			height: 4.5rem;
-			font-size: 1.78rem;
+			height: 5rem;
+			font-size: 1.86rem;
+			border-radius: 1.2rem;
 		}
 	}
 	@media screen and (min-width: 1430px) and (max-width: 1739px) {
@@ -82,13 +84,31 @@
 			width: 13rem;
 			height: 4rem;
 			font-size: 1.45rem;
+			border-radius: 0.8rem;
 		}
 	}
-	@media screen and (max-width: 1429px) {
+	@media screen and (min-width: 1024px) and (max-width: 1429px) {
 		button {
 			width: 12.5rem;
 			height: 3.5rem;
 			font-size: 1.37rem;
+			border-radius: 0.8rem;
+		}
+	}
+	@media screen and (min-width: 550px) and (max-width: 1023px) {
+		button {
+			width: 17rem;
+			height: 4.5rem;
+			font-size: 1.85rem;
+			border-radius: 0.8rem;
+		}
+	}
+	@media screen and (max-width: 549px) {
+		button {
+			width: 12rem;
+			height: 3.8rem;
+			font-size: 1.4rem;
+			border-radius: 0.8rem;
 		}
 	}
 	button {
@@ -96,7 +116,6 @@
 		background-color: var(--green);
 		border-color: transparent;
 		cursor: pointer;
-		border-radius: 0.8rem;
 	}
 	button:hover {
 		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
