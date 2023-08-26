@@ -42,9 +42,10 @@
 	let selected = false; // this variable decides to apply the styling when the note is hovered
 	let size = matchMedia('(min-width:1740px)').matches
 		? '28'
-		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches
+		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches ||
+		  matchMedia('(min-width:549px) and (max-width:1023px)').matches
 		? '23'
-		: '21';
+		: '21'; // size of the icons, decided by the width of viewport
 </script>
 
 <div
@@ -66,7 +67,7 @@
 	}}
 	role="button"
 	tabindex="0"
-	class="notes-container"
+	class="note-container"
 	class:selected
 	on:click
 	on:keydown
@@ -122,7 +123,7 @@
 		p {
 			font-size: 1.7rem;
 		}
-		.notes-container {
+		.note-container {
 			height: 5rem;
 			border-top-left-radius: 1rem;
 			border-top-right-radius: 1rem;
@@ -143,7 +144,7 @@
 		p {
 			font-size: 1.43rem;
 		}
-		.notes-container {
+		.note-container {
 			height: 3.8rem;
 			border-top-left-radius: 0.9rem;
 			border-top-right-radius: 0.9rem;
@@ -160,7 +161,7 @@
 		p {
 			font-size: 1.32rem;
 		}
-		.notes-container {
+		.note-container {
 			height: 3.42rem;
 			border-top-left-radius: 0.8rem;
 			border-top-right-radius: 0.8rem;
@@ -173,11 +174,11 @@
 			border-bottom-right-radius: 0.8rem;
 		}
 	}
-	@media screen and (max-width: 1300px) {
+	@media screen and (min-width: 1024px) and (max-width: 1300px) {
 		p {
 			font-size: 1.3rem;
 		}
-		.notes-container {
+		.note-container {
 			height: 3.4rem;
 			border-top-left-radius: 0.8rem;
 			border-top-right-radius: 0.8rem;
@@ -190,8 +191,83 @@
 			border-bottom-right-radius: 0.8rem;
 		}
 	}
-	.notes-container {
-		width: 75%;
+	@media screen and (min-width: 1024px) {
+		.note-container {
+			width: 75%;
+		}
+		.actions {
+			padding-left: 0.4rem;
+			padding-right: 0.4rem;
+			padding-top: 0.1rem;
+		}
+	}
+	@media screen and (min-width: 649px) and (max-width: 1023px) {
+		p {
+			font-size: 1.55rem;
+		}
+		.note-container {
+			height: 4rem;
+			border-top-left-radius: 0.8rem;
+			border-top-right-radius: 0.8rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-bottom: 2px solid var(--light-purple);
+			width: 64%;
+		}
+		.selected {
+			border-bottom-left-radius: 0.8rem;
+			border-bottom-right-radius: 0.8rem;
+		}
+		.actions {
+			padding-left: 0.3rem;
+			padding-right: 0.3rem;
+		}
+	}
+	@media screen and (min-width: 550px) and (max-width: 649px) {
+		p {
+			font-size: 1.55rem;
+		}
+		.note-container {
+			height: 4rem;
+			border-top-left-radius: 0.8rem;
+			border-top-right-radius: 0.8rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-bottom: 2px solid var(--light-purple);
+			width: 70%;
+		}
+		.selected {
+			border-bottom-left-radius: 0.8rem;
+			border-bottom-right-radius: 0.8rem;
+		}
+		.actions {
+			padding-left: 0.3rem;
+			padding-right: 0.3rem;
+		}
+	}
+	@media screen and (max-width: 549px) {
+		p {
+			font-size: 1.27rem;
+		}
+		.note-container {
+			height: 3.55rem;
+			border-top-left-radius: 0.8rem;
+			border-top-right-radius: 0.8rem;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-bottom: 2px solid var(--light-purple);
+			width: 85%;
+		}
+		.selected {
+			border-bottom-left-radius: 0.8rem;
+			border-bottom-right-radius: 0.8rem;
+		}
+		.actions {
+			padding-left: 0.3rem;
+			padding-right: 0.3rem;
+		}
+	}
+	.note-container {
 		margin-bottom: 1.3rem;
 		padding-left: 1rem;
 		display: flex;
@@ -211,13 +287,15 @@
 		justify-content: space-around;
 		align-items: center;
 		height: 100%;
+		box-sizing: border-box;
 		width: 6.2rem;
 	}
 	.icon {
-		display: flex;
-		justify-content: center;
 		cursor: pointer;
-		height: 40%;
-		width: 40%;
+	}
+	p {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
 	}
 </style>

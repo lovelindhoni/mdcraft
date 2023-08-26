@@ -40,7 +40,8 @@
 	}
 	let size = matchMedia('(min-width:1740px)').matches
 		? '39'
-		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches
+		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches ||
+		  matchMedia('(min-width:550px) and (max-width:1023px)')
 		? '32'
 		: '26';
 </script>
@@ -84,7 +85,21 @@
 			font-size: 1.6rem;
 		}
 	}
-	@media screen and (max-width: 1429px) {
+	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+		button {
+			width: 12.5rem;
+			height: 3.5rem;
+			font-size: 1.37rem;
+		}
+	}
+	@media screen and (min-width: 550px) and (max-width: 1023px) {
+		button {
+			width: 15rem;
+			height: 4.2rem;
+			font-size: 1.6rem;
+		}
+	}
+	@media screen and (max-width: 549px) {
 		button {
 			width: 12.5rem;
 			height: 3.5rem;

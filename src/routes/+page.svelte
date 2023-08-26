@@ -6,25 +6,37 @@
 	$: currentFolderIndex = $folders.findIndex((folder) => folder.id === $currentFolderId); // finding the currentFolderIndex
 	$: currentNoteIndex =
 		// finding the currentNoteIndex, when the id's are null then it will be -1. Its needed to squash a bug.
-		$currentFolderId !== null && $currentNoteId !== null
+		$currentFolderId && $currentNoteId
 			? $folders[currentFolderIndex].notes.findIndex((note) => note.id === $currentNoteId)
 			: -1;
-	let isSmallScreen = matchMedia('(max-width:830px)').matches;
+	let isSmallScreen = matchMedia('(max-width:1023px)').matches;
 </script>
 
 <main class="layout">
 	<header>Sparkdown</header>
-	<div class="sidebar" role="menubar">
-		<Sidebar />
-	</div>
 	{#if !isSmallScreen}
+		<div class="sidebar" role="menubar">
+			<Sidebar />
+		</div>
 		<div class="editor">
-			{#if $currentNoteId !== null}
+			{#if $currentNoteId}
 				<!--i really wanted to do <svelte:component, but i could'nt do it. i pass the indexes to the components-->
 				<Viewer {currentFolderIndex} {currentNoteIndex} />
 			{:else}
 				<NotesSection {currentFolderIndex} />
 			{/if}
+		</div>
+	{:else if !$currentFolderId}
+		<div class="sidebar" role="menubar">
+			<Sidebar />
+		</div>
+	{:else if $currentFolderId && !$currentNoteId}
+		<div class="editor">
+			<NotesSection {currentFolderIndex} />
+		</div>
+	{:else if $currentNoteId}
+		<div class="editor">
+			<Viewer {currentFolderIndex} {currentNoteIndex} />
 		</div>
 	{/if}
 </main>
@@ -71,6 +83,8 @@
 		.editor {
 			grid-column-start: span 14;
 			grid-row: 1 / span 20;
+			height: 100%;
+			border-left: 2px solid var(--light-purple);
 		}
 	}
 	@media screen and (min-width: 650px) and (max-width: 1023px) {
@@ -87,6 +101,9 @@
 			height: 90%;
 			padding-top: 0.5rem;
 		}
+		.editor {
+			height: 90%;
+		}
 	}
 	@media screen and (min-width: 550px) and (max-width: 649px) {
 		header {
@@ -102,6 +119,9 @@
 			height: 90%;
 			padding-top: 0.5rem;
 		}
+		.editor {
+			height: 90%;
+		}
 	}
 	@media screen and (min-width: 400px) and (max-width: 549px) {
 		header {
@@ -114,17 +134,23 @@
 		.sidebar {
 			height: 87%;
 		}
+		.editor {
+			height: 90%;
+		}
 	}
 	@media screen and (max-width: 399px) {
 		header {
 			width: 100%;
 			height: 9%;
-			font-size: 2.1rem;
+			font-size: 2.2rem;
 			padding-top: 1rem;
 			padding-left: 1.6rem;
 		}
 		.sidebar {
 			height: 87%;
+		}
+		.editor {
+			height: 91%;
 		}
 	}
 	.layout {
@@ -149,9 +175,7 @@
 	}
 
 	.editor {
-		border-left: 2px solid var(--light-purple);
 		box-sizing: border-box;
-		height: 100%;
 		width: 100%;
 	}
 </style>

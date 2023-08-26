@@ -242,9 +242,16 @@
 			border-bottom-right-radius: 0.6rem;
 		}
 	}
+	@media screen and (min-width: 1024px) {
+		.actions {
+			padding-left: 0.4rem;
+			padding-right: 0.4rem;
+			padding-top: 0.1rem;
+		}
+	}
 	@media screen and (min-width: 550px) and (max-width: 1023px) {
 		p {
-			font-size: 1.7rem;
+			font-size: 1.55rem;
 		}
 		.folder-container {
 			height: 4rem;
@@ -265,10 +272,14 @@
 			border-bottom-left-radius: 0.8rem;
 			border-bottom-right-radius: 0.8rem;
 		}
+		.actions {
+			padding-left: 0.3rem;
+			padding-right: 0.3rem;
+		}
 	}
 	@media screen and (max-width: 549px) {
 		p {
-			font-size: 1.34rem;
+			font-size: 1.27rem;
 		}
 		.folder-container {
 			height: 3.4rem;
@@ -289,6 +300,10 @@
 			border-bottom-left-radius: 0.6rem;
 			border-bottom-right-radius: 0.6rem;
 		}
+		.actions {
+			padding-left: 0.3rem;
+			padding-right: 0.3rem;
+		}
 	}
 	.actions {
 		align-items: center;
@@ -296,13 +311,13 @@
 		display: flex;
 		height: 100%;
 		width: 4.8em;
+		box-sizing: border-box;
 	}
 	.folder-container {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		box-sizing: border-box;
-		word-break: break-all;
 		cursor: pointer;
 		margin-right: auto;
 		margin-left: auto;
@@ -323,10 +338,11 @@
 	}
 	.icons {
 		cursor: pointer;
-		height: 40%;
-		width: 40%;
 	}
 	p {
 		font-weight: 500;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
 	}
 </style>

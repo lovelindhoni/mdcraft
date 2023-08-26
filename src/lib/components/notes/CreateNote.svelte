@@ -73,10 +73,22 @@
 			height: 3.15rem;
 		}
 	}
-	@media screen and (max-width: 1429px) {
+	@media screen and (min-width: 1024px) and (max-width: 1429px) {
 		button {
 			width: 2.85rem;
 			height: 2.85rem;
+		}
+	}
+	@media screen and (min-width: 550px) and (max-width: 1023px) {
+		button {
+			width: 2.8rem;
+			height: 2.8rem;
+		}
+	}
+	@media screen and (max-width: 549px) {
+		button {
+			width: 2.3rem;
+			height: 2.3rem;
 		}
 	}
 	button {

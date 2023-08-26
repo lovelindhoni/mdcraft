@@ -127,7 +127,38 @@
 			gap: 1.5em;
 		}
 	}
-	@media screen and (max-width: 549px) {
+	@media screen and (max-width: 549px) and (max-height: 699px) {
+		.modal-content {
+			height: 34%;
+			width: 80%;
+		}
+		.warning-msg {
+			font-size: 0.94rem;
+			margin-right: 2rem;
+			line-height: 1.2;
+		}
+		button {
+			width: 4.2rem;
+			height: 2.4rem;
+			font-size: 1rem;
+		}
+		.modal-actions {
+			gap: 1.5em;
+		}
+		.delete-warning {
+			font-size: 1.1rem;
+		}
+		.delete-icon {
+			height: 1.6rem;
+			width: 1.6rem;
+		}
+		.close-btn {
+			position: relative;
+			right: 0.8rem;
+			top: 1rem;
+		}
+	}
+	@media screen and (max-width: 549px) and (min-height: 700px) {
 		.modal-content {
 			height: 26%;
 			width: 80%;

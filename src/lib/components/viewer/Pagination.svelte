@@ -4,7 +4,7 @@
 	export let currentNoteIndex: number;
 </script>
 
-{#if $currentFolderId !== null && $currentNoteId !== null}
+{#if $currentFolderId && $currentNoteId}
 	<!--when the id's are not null-->
 	<nav>
 		<!-- clicking the folder will set the currentNoteId to null-->
