@@ -247,7 +247,7 @@
 	}
 	@media screen and (max-width: 549px) {
 		p {
-			font-size: 1.27rem;
+			font-size: 1.26rem;
 		}
 		.note-container {
 			height: 3.55rem;

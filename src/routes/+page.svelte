@@ -74,6 +74,7 @@
 			grid-column-start: span 7;
 			padding-top: 1rem;
 			padding-left: 2rem;
+			align-items: center;
 		}
 		.sidebar {
 			grid-row: 3 / span 18;
@@ -96,6 +97,7 @@
 			font-size: 3.2rem;
 			padding-top: 1rem;
 			padding-left: 1.6rem;
+			align-items: center;
 		}
 		.sidebar {
 			height: 90%;
@@ -114,6 +116,7 @@
 			font-size: 3.1rem;
 			padding-top: 1rem;
 			padding-left: 1.6rem;
+			align-items: center;
 		}
 		.sidebar {
 			height: 90%;
@@ -130,6 +133,7 @@
 			font-size: 2.34rem;
 			padding-top: 1rem;
 			padding-left: 1.6rem;
+			align-items: center;
 		}
 		.sidebar {
 			height: 87%;
@@ -162,7 +166,6 @@
 	header {
 		background-color: transparent;
 		display: flex;
-		align-items: center;
 		color: var(--purple);
 		box-sizing: border-box;
 		cursor: default;

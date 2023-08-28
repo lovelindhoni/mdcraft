@@ -5,6 +5,7 @@
 	import Note from '$lib/components/notes/Note.svelte';
 	import NoNotes from '$lib/components/notes/NoNotes.svelte';
 	import PickFolder from '$lib/components/notes/PickFolder.svelte';
+	import GoBack from '$lib/components/notes/GoBack.svelte';
 	export let currentFolderIndex: number; // fulfilled by the +page.svelte
 </script>
 
@@ -13,12 +14,20 @@
 	<div role="menu" class="notes-and-title">
 		<!---->
 		{#if ($folders[currentFolderIndex].notes.length > 0 && matchMedia('(min-width:1024px)').matches) || matchMedia('(max-width:1023px)').matches}
-			<div class="titleandbtn" role="group">
-				<h1>{@html $folders[currentFolderIndex].title.replace(/ /g, '&nbsp;')}</h1>
-				<!--the regex to preserve the whitespaces-->
-				<!--the title of that Folder-->
-				<svelte:component this={CreateNote} {currentFolderIndex} />
-				<!--passing the currentFolderindex to the createnote-->
+			<div class="mast" role="group">
+				{#if matchMedia('(max-width:1023px').matches}
+					<GoBack
+						on:click={() => currentFolderId.set(null)}
+						on:keydown={() => currentFolderId.set(null)}
+					/>
+				{/if}
+				<div class="title-btn">
+					<h1>{@html $folders[currentFolderIndex].title.replace(/ /g, '&nbsp;')}</h1>
+					<!--the regex to preserve the whitespaces-->
+					<!--the title of that Folder-->
+					<svelte:component this={CreateNote} {currentFolderIndex} />
+					<!--passing the currentFolderindex to the createnote-->
+				</div>
 			</div>
 		{/if}
 		<div class="notes">
@@ -61,7 +70,7 @@
 		}
 	}
 	@media screen and (min-width: 1024px) {
-		.titleandbtn {
+		.mast {
 			width: 75%;
 		}
 	}
@@ -69,7 +78,7 @@
 		h1 {
 			font-size: 2.5rem;
 		}
-		.titleandbtn {
+		.mast {
 			width: 62%;
 		}
 	}
@@ -77,7 +86,7 @@
 		h1 {
 			font-size: 2.2rem;
 		}
-		.titleandbtn {
+		.mast {
 			width: 70%;
 		}
 	}
@@ -85,17 +94,17 @@
 		h1 {
 			font-size: 1.7rem;
 		}
-		.titleandbtn {
+		.mast {
 			width: 85%;
 		}
 	}
-	.titleandbtn {
+	.mast {
 		height: 10%;
 		margin-top: 1.2rem;
 		margin-bottom: 2rem;
 		display: flex;
+		flex-direction: column;
 		justify-content: space-between;
-		align-items: center;
 	}
 	.notes-and-title {
 		height: 100%;
@@ -116,5 +125,12 @@
 		overflow: hidden;
 		white-space: nowrap;
 		width: 70%;
+	}
+	.title-btn {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
 	}
 </style>
