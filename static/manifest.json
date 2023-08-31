@@ -1,0 +1,22 @@
+{
+	"name": "MdCraft",
+	"short_name": "MdCraft",
+	"description": "Elevate your note-taking with our Markdown-powered app built on SvelteKit. Effortlessly organize, edit, and store your notes client-side while enjoying real-time Markdown rendering",
+	"icons": [
+		{
+			"src": "/icons/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/icons/android-chrome-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"theme_color": "#ffffff",
+	"background_color": "#ffffff",
+	"display": "standalone",
+	"start_url": "/",
+	"id":"?=1"
+}
