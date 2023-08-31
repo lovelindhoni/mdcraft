@@ -1,13 +1,11 @@
 <script lang="ts">
 	import { folders } from '$lib/store'; // the folders array as ususal
 	import { onMount } from 'svelte';
-	let EditSvg: any; // the icons
-	let DeleteSvg: any;
+	import EditSvg from '$lib/assets/EditSvg.svelte';
+	import DeleteSvg from '$lib/assets/DeleteSvg.svelte';
 	let RenameAction: any; // the modals
 	let DeleteAction: any;
 	onMount(async () => {
-		EditSvg = (await import('$lib/assets/EditSvg.svelte')).default;
-		DeleteSvg = (await import('$lib/assets/DeleteSvg.svelte')).default;
 		RenameAction = (await import('$lib/components/actions/RenameAction.svelte')).default;
 		DeleteAction = (await import('$lib/components/actions/DeleteAction.svelte')).default;
 	});
@@ -83,7 +81,7 @@
 			on:click|stopPropagation={() => (showRename = true)}
 			on:keydown|stopPropagation={() => (showRename = true)}
 		>
-			<svelte:component this={EditSvg} color={iconColor} {size} />
+			<EditSvg color={iconColor} {size} />
 		</div>
 		<!--the rename and delete icon for doing opertation in the note-->
 		<div
@@ -93,7 +91,7 @@
 			on:click|stopPropagation={() => (showDeleteModal = true)}
 			on:keydown|stopPropagation={() => (showDeleteModal = true)}
 		>
-			<svelte:component this={DeleteSvg} color={iconColor} {size} />
+			<DeleteSvg color={iconColor} {size} />
 		</div>
 	</div>
 </div>

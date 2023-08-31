@@ -14,6 +14,7 @@
 			on:keydown={() => currentNoteId.set(null)}
 			>{$folders[currentFolderIndex].title}
 		</span>
+
 		<span>/ {$folders[currentFolderIndex].notes[currentNoteIndex].title} </span>
 	</nav>
 {/if}
@@ -29,9 +30,29 @@
 			font-size: 1.32rem;
 		}
 	}
-	@media screen and (max-width: 1429px) {
+	@media screen and (min-width: 1024px) and (max-width: 1429px) {
 		span {
 			font-size: 1.21rem;
+		}
+	}
+	@media screen and (min-width: 550px) and (max-width: 1023px) {
+		span {
+			font-size: 1.3rem;
+			max-width: 25vw;
+			display: inline-block;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+	}
+	@media screen and (max-width: 549px) {
+		span {
+			font-size: 1.04rem;
+			display: block;
+			width: 40vw;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
 		}
 	}
 	.url {

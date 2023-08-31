@@ -125,7 +125,7 @@
 	}
 	@media screen and (min-width: 650px) and (max-width: 1023px) {
 		h2 {
-			font-size: 2.65rem;
+			font-size: 2.3rem;
 		}
 		.container {
 			margin-bottom: 0.5rem;
@@ -138,7 +138,7 @@
 	}
 	@media screen and (min-width: 550px) and (max-width: 649px) {
 		h2 {
-			font-size: 2.6rem;
+			font-size: 2.25rem;
 		}
 		.container {
 			margin-bottom: 0.5rem;
@@ -151,7 +151,7 @@
 	}
 	@media screen and (max-width: 549px) {
 		h2 {
-			font-size: 1.8rem;
+			font-size: 1.65rem;
 		}
 		.container {
 			margin-bottom: 0.5rem;

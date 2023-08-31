@@ -161,7 +161,7 @@
 		height: 100vh;
 		width: 100vw;
 		box-sizing: border-box;
-		font-family: Helvetica, Arial, sans-serif;
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 	}
 	header {
 		background-color: transparent;

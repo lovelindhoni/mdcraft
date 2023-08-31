@@ -76,7 +76,7 @@
 	}
 	@media screen and (min-width: 649px) and (max-width: 1023px) {
 		h1 {
-			font-size: 2.5rem;
+			font-size: 2.2rem;
 		}
 		.mast {
 			width: 62%;
@@ -84,7 +84,7 @@
 	}
 	@media screen and (min-width: 550px) and (max-width: 649px) {
 		h1 {
-			font-size: 2.2rem;
+			font-size: 2.05rem;
 		}
 		.mast {
 			width: 70%;
@@ -92,7 +92,7 @@
 	}
 	@media screen and (max-width: 549px) {
 		h1 {
-			font-size: 1.7rem;
+			font-size: 1.6rem;
 		}
 		.mast {
 			width: 85%;

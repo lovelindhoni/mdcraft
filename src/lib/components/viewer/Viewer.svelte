@@ -6,14 +6,9 @@
 	import hljs from 'highlight.js'; // For Highlighting Code Blocks
 	import 'highlight.js/styles/base16/dracula.css'; // dracula theme for now
 	import NoteContent from '$lib/components/viewer/NoteContent.svelte';
-	import { afterUpdate, onMount } from 'svelte'; // Run Highlighting for code blocks after DOM update
-	let Pagination: any; // sorry typescript, this variable hold the dynamic imported pagination
-	let Toggle: any; // this variable holds the dynamic imported component
-	onMount(async () => {
-		// imports the toggle comp asyncly so that it could be lazy loaded
-		Toggle = (await import('$lib/components/viewer/Toggle.svelte')).default;
-		Pagination = (await import('$lib/components/viewer/Pagination.svelte')).default;
-	});
+	import { afterUpdate } from 'svelte'; // Run Highlighting for code blocks after DOM update
+	import Toggle from '$lib/components/viewer/Toggle.svelte';
+	import Pagination from '$lib/components/viewer/Pagination.svelte';
 	const emojis = new EmojiConvertor();
 	emojis.replace_mode = 'unified'; // Outputs Unicode code points at the place of colon-text
 	const renderer = new marked.Renderer();
@@ -44,8 +39,8 @@
 
 <div role="columnheader" class="editor-head">
 	<!--i have used the svelte:component to show the dynamically imported toggle and pagination-->
-	<svelte:component this={Pagination} {currentFolderIndex} {currentNoteIndex} />
-	<svelte:component this={Toggle} bind:edit />
+	<Pagination {currentFolderIndex} {currentNoteIndex} />
+	<Toggle bind:edit />
 </div>
 {#if edit}
 	<!--on editing the textarea is shown, otherwise, the Notecontent is shown-->
@@ -75,18 +70,72 @@
 			font-size: 1.15rem;
 		}
 	}
+	@media screen and (min-width: 1024px) {
+		.editor-head {
+			justify-content: space-between;
+			padding-left: 2.6rem;
+			padding-right: 2.3rem;
+			margin-top: 1.5rem;
+			height: 8%;
+		}
+		textarea {
+			padding: 1rem 2.5rem;
+			height: 87%;
+		}
+	}
+	@media screen and (min-width: 650px) and (max-width: 1023px) {
+		.editor-head {
+			justify-content: space-around;
+			width: 68%;
+			height: 8%;
+			margin-right: auto;
+			margin-left: auto;
+		}
+		textarea {
+			padding: 2rem 20vw;
+			height: 88%;
+			font-size: 1.27rem;
+		}
+	}
+	@media screen and (min-width: 550px) and (max-width: 649px) {
+		.editor-head {
+			justify-content: space-around;
+			width: 80%;
+			height: 8%;
+			margin-right: auto;
+			margin-left: auto;
+		}
+		textarea {
+			padding: 2rem 15vw;
+			height: 91%;
+			font-size: 1.27rem;
+		}
+	}
+	@media screen and (max-width: 549px) {
+		.editor-head {
+			justify-content: space-around;
+			height: 11%;
+		}
+		textarea {
+			padding-top: 1rem;
+			padding-bottom: 2rem;
+			padding-left: 8vw;
+			padding-right: 8vw;
+			height: 88%;
+			font-size: 1.05rem;
+		}
+	}
 	textarea {
-		height: 87%;
 		width: 100%;
 		box-sizing: border-box;
 		overflow-y: auto;
-		padding: 1rem 2.5rem;
 		resize: none;
 		word-wrap: break-word;
 		outline: none;
 		border: none;
 		background-color: var(--background);
 		font-family: monospace !important; /**Sorry...*/
+		line-height: 1.5;
 	}
 	textarea::placeholder {
 		color: hsl(0, 0%, 60%);
@@ -94,10 +143,6 @@
 	.editor-head {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
-		height: 8%;
-		padding-left: 2.6rem;
-		padding-right: 2.3rem;
-		margin-top: 1.5rem;
+		box-sizing: border-box;
 	}
 </style>

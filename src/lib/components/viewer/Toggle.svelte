@@ -22,24 +22,92 @@
 		<span class="slider round" />
 	</label>
 	<!--The span attribute is used here to act as a label to  the toggle -->
-	<span class="edit-label" class:edit>Edit (Ctrl + Enter)</span>
+	<span class="edit-label" class:edit>Edit</span><span class:edit class="edit-shortcut">
+		(Ctrl + Enter)</span
+	>
 </div>
 
 <style>
 	/* CSS for toggle*/
 	@media screen and (min-width: 1740px) {
-		.edit-label {
+		.edit-label,
+		.edit-shortcut {
 			font-size: 1.44rem;
 		}
 	}
 	@media screen and (min-width: 1430px) and (max-width: 1739px) {
-		.edit-label {
+		.edit-label,
+		.edit-shortcut {
 			font-size: 1.32rem;
 		}
 	}
-	@media screen and (max-width: 1429px) {
-		.edit-label {
+	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+		.edit-label,
+		.edit-shortcut {
 			font-size: 1.15rem;
+		}
+	}
+	@media screen and (min-width: 1024px) {
+		.toggle {
+			width: 3.6rem;
+			height: 1.7rem;
+		}
+		.slider:before {
+			height: 1.4rem;
+			width: 1.65rem;
+			left: 0.17rem;
+			bottom: 0.16rem;
+		}
+		input:checked + .slider:before {
+			-webkit-transform: translateX(1.6rem);
+			-ms-transform: translateX(1.6rem);
+			transform: translateX(1.6rem);
+		}
+	}
+	@media screen and (min-width: 550px) and (max-width: 1023px) {
+		.toggle {
+			width: 3.6rem;
+			height: 1.7rem;
+		}
+		.slider:before {
+			height: 1.4rem;
+			width: 1.5rem;
+			left: 0.17rem;
+			bottom: 0.16rem;
+		}
+		input:checked + .slider:before {
+			-webkit-transform: translateX(1.7rem);
+			-ms-transform: translateX(1.7rem);
+			transform: translateX(1.75rem);
+		}
+		.edit-label {
+			font-size: 1.3rem;
+		}
+		.edit-shortcut {
+			display: none;
+		}
+	}
+	@media screen and (max-width: 549px) {
+		.toggle {
+			width: 3.15rem;
+			height: 1.5rem;
+		}
+		.slider:before {
+			height: 1.25rem;
+			width: 1.25rem;
+			left: 0.17rem;
+			bottom: 0.13rem;
+		}
+		input:checked + .slider:before {
+			-webkit-transform: translateX(1.6rem);
+			-ms-transform: translateX(1.6rem);
+			transform: translateX(1.6rem);
+		}
+		.edit-label {
+			font-size: 1.2rem;
+		}
+		.edit-shortcut {
+			display: none;
 		}
 	}
 	div {
@@ -50,8 +118,6 @@
 	.toggle {
 		position: relative;
 		display: inline-block;
-		width: 3.6rem;
-		height: 1.7rem;
 	}
 
 	/* Hiding the default checkbox*/
@@ -78,10 +144,6 @@
 	.slider:before {
 		position: absolute;
 		content: '';
-		height: 1.4rem;
-		width: 1.65rem;
-		left: 0.17rem;
-		bottom: 0.16rem;
 		border-radius: 50%;
 		background-color: white;
 		-webkit-transition: 0.3s;
@@ -91,12 +153,8 @@
 	input:checked + .slider {
 		background-color: var(--purple);
 	}
-	input:checked + .slider:before {
-		-webkit-transform: translateX(1.6rem);
-		-ms-transform: translateX(1.6rem);
-		transform: translateX(1.6rem);
-	}
-	.edit-label {
+	.edit-label,
+	.edit-shortcut {
 		color: hsl(0, 0%, 55%);
 	}
 	.edit {
