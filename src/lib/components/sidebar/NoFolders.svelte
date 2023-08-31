@@ -6,8 +6,8 @@
 <div class="no-folders">
 	<img src={AddFolder} alt="an illustration representing a folder with some notes in it" />
 	<div style="">
-		<p class="no-folders-text">No folders found</p>
-		<p class="no-folders-subtext">Folders let you organize your notes</p>
+		<span class="no-folders-text">No folders found</span>
+		<span class="no-folders-subtext">Folders let you organize your notes</span>
 	</div>
 	<div class="create-btn">
 		<CreateFolderBigButton />
@@ -126,6 +126,14 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 1rem;
+	}
+	.no-folders-text,
+	.no-folders-subtext {
+		display: block;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
+		margin-inline-start: 0px;
+		margin-inline-end: 0px;
 	}
 	.no-folders-subtext {
 		color: var(--blue-grey);

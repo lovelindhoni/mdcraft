@@ -71,7 +71,7 @@
 	on:keydown
 >
 	<!--for preserving the whitespaces-->
-	<p>{@html $folders[currentFolderIndex].notes[noteIndex].title.replace(/ /g, '&nbsp;')}</p>
+	<span>{@html $folders[currentFolderIndex].notes[noteIndex].title.replace(/ /g, '&nbsp;')}</span>
 	<!--title of the note-->
 	<div class="actions" role="group">
 		<div
@@ -118,7 +118,7 @@
 
 <style>
 	@media screen and (min-width: 1740px) {
-		p {
+		span {
 			font-size: 1.7rem;
 		}
 		.note-container {
@@ -139,7 +139,7 @@
 		}
 	}
 	@media screen and (min-width: 1430px) and (max-width: 1739px) {
-		p {
+		span {
 			font-size: 1.43rem;
 		}
 		.note-container {
@@ -156,7 +156,7 @@
 		}
 	}
 	@media screen and (min-width: 1301px) and (max-width: 1429px) {
-		p {
+		span {
 			font-size: 1.32rem;
 		}
 		.note-container {
@@ -173,7 +173,7 @@
 		}
 	}
 	@media screen and (min-width: 1024px) and (max-width: 1300px) {
-		p {
+		span {
 			font-size: 1.3rem;
 		}
 		.note-container {
@@ -200,7 +200,7 @@
 		}
 	}
 	@media screen and (min-width: 649px) and (max-width: 1023px) {
-		p {
+		span {
 			font-size: 1.55rem;
 		}
 		.note-container {
@@ -222,7 +222,7 @@
 		}
 	}
 	@media screen and (min-width: 550px) and (max-width: 649px) {
-		p {
+		span {
 			font-size: 1.55rem;
 		}
 		.note-container {
@@ -244,7 +244,7 @@
 		}
 	}
 	@media screen and (max-width: 549px) {
-		p {
+		span {
 			font-size: 1.26rem;
 		}
 		.note-container {
@@ -291,7 +291,7 @@
 	.icon {
 		cursor: pointer;
 	}
-	p {
+	span {
 		text-overflow: ellipsis;
 		overflow: hidden;
 		white-space: nowrap;

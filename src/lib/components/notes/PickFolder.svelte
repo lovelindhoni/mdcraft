@@ -6,8 +6,8 @@
 
 <div class="pick-Folder">
 	<div>
-		<p class="choose-folder">Pick a folder from your left</p>
-		<p class="choose-folder-subtext">To see your notes</p>
+		<span class="choose-folder">Pick a folder from your left</span>
+		<span class="choose-folder-subtext">To see your notes</span>
 	</div>
 	<img src={PickFolder} alt="A girl picking a folder from the Foldershelves" />
 </div>
@@ -15,6 +15,14 @@
 <style>
 	.choose-folder-subtext {
 		color: var(--blue-grey);
+	}
+	.choose-folder,
+	.choose-folder-subtext {
+		display: block;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
+		margin-inline-start: 0px;
+		margin-inline-end: 0px;
 	}
 	.pick-Folder {
 		height: 100%;

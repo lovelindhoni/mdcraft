@@ -53,7 +53,7 @@
 				spellcheck="false"
 				use:focusInput
 			/>
-			<p class:noError class="error">This name is already in use, try a different name</p>
+			<span class:noError class="error">This name is already in use, try a different name</span>
 		</div>
 		<div class="modal-actions" role="button">
 			<!--it has the event buttons, proceed and cancel, when proceed is clicked and the title is not empty then the proceed event is dispatched, on cancel is clicked, then the cancel event is dispatched-->
@@ -301,10 +301,15 @@
 		top: 0.3rem;
 	}
 	.noError {
-		display: none;
+		display: none !important;
 	}
 	.error {
 		color: red;
+		display: block;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
+		margin-inline-start: 0px;
+		margin-inline-end: 0px;
 	}
 	.errorInput {
 		border-color: red;

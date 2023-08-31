@@ -14,11 +14,11 @@
 	<div role="alertdialog" class="modal-content">
 		<!--when the mode is delete-->
 		<div class="title-and-closebtn">
-			<p class="delete-warning" role="alert">
+			<span class="delete-warning" role="alert">
 				<!--a warning message is shown, telling it can't be recovered-->
 				<span class="delete-icon"><DeleteSvg color="white" {size} /></span>
 				<span class="delete-element"><slot /></span>
-			</p>
+			</span>
 			<span
 				class="close-btn"
 				role="button"
@@ -28,7 +28,7 @@
 				><CloseSvg size={(parseInt(size) + 4).toString()} /></span
 			>
 		</div>
-		<p class="warning-msg">Are you really sure? It cannot be recovered after deletion!</p>
+		<span class="warning-msg">Are you really sure? It cannot be recovered after deletion!</span>
 		<div class="modal-actions" role="button">
 			<!--it has the event buttons, proceed and cancel, when proceed is clicked and the title is not empty then the proceed event is dispatched, on cancel is clicked, then the cancel event is dispatched-->
 			<button class="cancel-btn" on:click={() => dispatch('cancel')}>cancel</button>
@@ -274,5 +274,17 @@
 		padding-left: 2.5rem;
 		position: relative;
 		bottom: 1.5rem;
+		display: block;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
+		margin-inline-start: 0px;
+		margin-inline-end: 0px;
+	}
+	.delete-warning {
+		display: block;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
+		margin-inline-start: 0px;
+		margin-inline-end: 0px;
 	}
 </style>

@@ -8,8 +8,8 @@
 	<img src={AddNotes} alt="Notes Taking illustration" />
 	<div class="create-note">
 		<div class="no-note-text">
-			<p class="create-note-text">Create a note here</p>
-			<p class="create-note-subtext">Write notes in markdown syntax with ease</p>
+			<span class="create-note-text">Create a note here</span>
+			<span class="create-note-subtext">Write notes in markdown syntax with ease</span>
 		</div>
 		<CreateNoteBigBtn {currentFolderIndex} />
 	</div>
@@ -119,5 +119,13 @@
 		color: var(--blue-grey);
 		position: relative;
 		bottom: 0.9rem;
+	}
+	.create-note-text,
+	.create-note-subtext {
+		display: block;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
+		margin-inline-start: 0px;
+		margin-inline-end: 0px;
 	}
 </style>

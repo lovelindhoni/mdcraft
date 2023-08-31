@@ -68,7 +68,7 @@
 >
 	<!--even forwarding, clicking this component will aset the currentFolderId-->
 	<div role="menuitem" class="folder-title">
-		<p>{@html $folders[folderIndex].title.replace(/ /g, '&nbsp;')}</p>
+		<span>{@html $folders[folderIndex].title.replace(/ /g, '&nbsp;')}</span>
 		<!--preserving whitespace-->
 		<!--i used this regex to save the whitespace-->
 		<!--This is the folder title of this component, i have been reffering in the above comments-->
@@ -122,7 +122,7 @@
 
 <style>
 	@media screen and (min-width: 1740px) {
-		p {
+		span {
 			font-size: 1.75rem;
 		}
 		.folder-container {
@@ -149,7 +149,7 @@
 		}
 	}
 	@media screen and (min-width: 1430px) and (max-width: 1739px) {
-		p {
+		span {
 			font-size: 1.43rem;
 		}
 		.folder-container {
@@ -172,7 +172,7 @@
 		}
 	}
 	@media screen and (min-width: 1301px) and (max-width: 1429px) {
-		p {
+		span {
 			font-size: 1.3rem;
 		}
 		.folder-container {
@@ -195,7 +195,7 @@
 		}
 	}
 	@media screen and (min-width: 1151px) and (max-width: 1300px) {
-		p {
+		span {
 			font-size: 1.25rem;
 		}
 		.folder-container {
@@ -219,7 +219,7 @@
 		}
 	}
 	@media screen and (min-width: 1024px) and (max-width: 1150px) {
-		p {
+		span {
 			font-size: 1.3rem;
 		}
 		.folder-container {
@@ -250,7 +250,7 @@
 		}
 	}
 	@media screen and (min-width: 550px) and (max-width: 1023px) {
-		p {
+		span {
 			font-size: 1.55rem;
 		}
 		.folder-container {
@@ -278,7 +278,7 @@
 		}
 	}
 	@media screen and (max-width: 549px) {
-		p {
+		span {
 			font-size: 1.27rem;
 		}
 		.folder-container {
@@ -339,7 +339,7 @@
 	.icons {
 		cursor: pointer;
 	}
-	p {
+	span {
 		font-weight: 500;
 		text-overflow: ellipsis;
 		overflow: hidden;

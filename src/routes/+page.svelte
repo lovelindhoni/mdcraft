@@ -13,7 +13,7 @@
 </script>
 
 <main class="layout">
-	<header>Sparkdown</header>
+	<header>MDCraft</header>
 	{#if !isSmallScreen}
 		<div class="sidebar" role="menubar">
 			<Sidebar />
@@ -161,7 +161,8 @@
 		height: 100vh;
 		width: 100vw;
 		box-sizing: border-box;
-		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial,
+			'Lucida Grande', sans-serif;
 	}
 	header {
 		background-color: transparent;
