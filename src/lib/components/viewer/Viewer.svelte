@@ -62,100 +62,107 @@
 {/if}
 
 <style>
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		textarea {
 			font-size: 1.6rem;
 		}
 	}
-	@media screen and (min-width: 1440px) and (max-width: 1739px) {
+
+	@media (min-width: 1440px) and (max-width: 1739px) {
 		textarea {
 			font-size: 1.31rem;
 		}
 	}
-	@media screen and (max-width: 1439px) {
+
+	@media (max-width: 1439px) {
 		textarea {
 			font-size: 1.15rem;
 		}
 	}
-	@media screen and (min-width: 1024px) {
+
+	@media (min-width: 1024px) {
 		.editor-head {
 			justify-content: space-between;
-			padding-left: 2.6rem;
-			padding-right: 2.3rem;
+			padding: 1.5rem 2.3rem;
 		}
+
 		.header-container {
 			margin-top: 1.5rem;
 			height: 8%;
 		}
+
 		textarea {
 			padding: 1rem 2.5rem;
 			height: 87%;
 		}
 	}
-	@media screen and (min-width: 650px) and (max-width: 1023px) {
+
+	@media (min-width: 650px) and (max-width: 1023px) {
 		.editor-head {
 			justify-content: space-between;
-			padding-left: 1.7rem;
-			padding-right: 1.7rem;
+			padding: 1.7rem;
 		}
+
 		.go-back-to-notes {
-			padding-left: 1.7rem;
-			padding-bottom: 1.7rem;
+			padding: 0 1.7rem 1.7rem;
 		}
+
 		.header-container {
 			width: 68%;
 			height: 13.2%;
-			margin-right: auto;
-			margin-left: auto;
+			margin: 0 auto;
 		}
+
 		textarea {
 			padding: 2rem 20vw;
 			height: 82%;
 			font-size: 1.27rem;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 649px) {
+
+	@media (min-width: 550px) and (max-width: 649px) {
 		.editor-head {
 			justify-content: space-between;
-			padding-right: 1.7rem;
-			padding-left: 1.7rem;
+			padding: 1.7rem;
 		}
+
 		.go-back-to-notes {
-			padding-left: 1.7rem;
-			padding-bottom: 1.7rem;
+			padding: 0 1.7rem 1.7rem;
 		}
+
 		.header-container {
 			width: 80%;
 			height: 13.2%;
-			margin-right: auto;
-			margin-left: auto;
+			margin: 0 auto;
 		}
+
 		textarea {
 			padding: 2rem 15vw;
 			height: 83%;
 			font-size: 1.27rem;
 		}
 	}
-	@media screen and (max-width: 549px) {
+
+	@media (max-width: 549px) {
 		.editor-head {
 			justify-content: space-around;
 		}
+
 		.header-container {
 			height: 19%;
 		}
+
 		.go-back-to-notes {
-			padding-left: 1.9rem;
-			padding-bottom: 1.7rem;
+			padding: 0 1.9rem 1.7rem;
 		}
+
 		textarea {
-			padding-top: 1rem;
-			padding-bottom: 2rem;
-			padding-left: 8vw;
-			padding-right: 8vw;
+			padding: 1rem 8vw 2rem;
 			height: 77.5%;
 			font-size: 1.05rem;
 		}
 	}
+
 	textarea {
 		width: 100%;
 		box-sizing: border-box;
@@ -165,13 +172,15 @@
 		outline: none;
 		border: none;
 		background-color: var(--background);
-		font-family: consolas, monospace !important; /**Sorry...*/
+		font-family: consolas, monospace !important;
 		line-height: 1.5;
 		color: var(--text);
 	}
+
 	textarea::placeholder {
 		color: hsl(0, 0%, 60%);
 	}
+
 	.editor-head {
 		display: flex;
 		align-items: center;
@@ -179,6 +188,7 @@
 		height: 100%;
 		width: 100%;
 	}
+
 	.header-container {
 		box-sizing: border-box;
 		display: flex;

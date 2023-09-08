@@ -20,7 +20,7 @@
 		<div class="title-closebtn">
 			<div class="title-logo">
 				<span class="create-icon"><AddSvg color="white" {size} /></span>
-				<lable for="newtitle">Create {contentType}</lable>
+				<label for="newtitle">Create {contentType}</label>
 			</div>
 			<span
 				class="close-btn"
@@ -58,34 +58,37 @@
 </div>
 
 <style>
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		.modal-content {
 			height: 33%;
 			width: 35%;
 		}
-		lable {
+		label {
 			font-size: 1.78rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		.modal-content {
 			height: 37%;
 			width: 40%;
 		}
-		lable {
+		label {
 			font-size: 1.6rem;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		.modal-content {
 			height: 42.5%;
 			width: 40%;
 		}
-		lable {
+		label {
 			font-size: 1.6rem;
 		}
 	}
-	@media screen and (min-width: 1024px) {
+
+	@media (min-width: 1024px) {
 		.title-logo {
 			gap: 1rem;
 		}
@@ -117,12 +120,13 @@
 			gap: 3em;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 1023px) {
+
+	@media (min-width: 550px) and (max-width: 1023px) {
 		.modal-content {
 			height: 24%;
 			width: 60%;
 		}
-		lable {
+		label {
 			font-size: 1.5rem;
 		}
 		.title-logo {
@@ -157,12 +161,13 @@
 			gap: 3em;
 		}
 	}
-	@media screen and (max-width: 549px) and (max-height: 699px) {
+
+	@media (max-width: 549px) and (max-height: 699px), (max-width: 549px) and (min-height: 700px) {
 		.modal-content {
 			height: 34%;
 			width: 80%;
 		}
-		lable {
+		label {
 			font-size: 1.2rem;
 		}
 		.title-logo {
@@ -197,46 +202,7 @@
 			gap: 1.5em;
 		}
 	}
-	@media screen and (max-width: 549px) and (min-height: 700px) {
-		.modal-content {
-			height: 26%;
-			width: 80%;
-		}
-		lable {
-			font-size: 1.2rem;
-		}
-		.title-logo {
-			gap: 0.6rem;
-		}
-		.create-icon {
-			height: 1.5rem;
-			width: 1.5rem;
-		}
-		.close-btn {
-			position: relative;
-			bottom: 0.1rem;
-			right: 1rem;
-		}
-		.input {
-			height: 13%;
-			width: 90%;
-		}
-		button {
-			width: 4.2rem;
-			height: 2.4rem;
-			font-size: 1rem;
-		}
-		.error {
-			font-size: 0.735rem;
-		}
-		input {
-			font-size: medium;
-			border-radius: 0.4rem;
-		}
-		.modal-actions {
-			gap: 1.5em;
-		}
-	}
+
 	.modal-container {
 		position: fixed;
 		top: 0;
@@ -249,14 +215,15 @@
 		background-color: hsla(0, 0%, 0%, 0.8);
 		z-index: 69;
 	}
+
 	.input {
 		position: relative;
 		bottom: 0.9rem;
 		margin-left: 2rem;
 	}
+
 	.modal-content {
 		border-radius: 0.9rem;
-		box-sizing: border-box;
 		background-color: hsl(0, 0%, 17%);
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 		display: flex;
@@ -266,36 +233,43 @@
 		box-sizing: border-box;
 		border-top: 10px solid var(--green);
 	}
+
 	.modal-actions {
 		display: flex;
 		align-self: end;
 		margin-right: 2rem;
 	}
+
 	button {
 		min-width: auto;
 		border-radius: 0.6rem;
 		cursor: pointer;
 		color: white;
 	}
+
 	input {
 		height: 100%;
 		width: 85%;
-		background-color: hsl(0, 0%, 40%);
+		background-color: var(--grey-2);
 		color: white;
 		outline: none;
 		border: none;
 	}
+
 	input::placeholder {
-		color: hsl(0, 0%, 75%);
+		color: var(--grey-1);
 	}
-	lable {
+
+	label {
 		text-align: center;
 		position: relative;
 		top: 0.3rem;
 	}
+
 	.noError {
 		display: none !important;
 	}
+
 	.error {
 		color: hsl(10, 100%, 70%);
 		display: block;
@@ -304,10 +278,12 @@
 		margin-inline-start: 0px;
 		margin-inline-end: 0px;
 	}
+
 	.errorInput {
 		border: solid;
 		border-color: hsl(10, 100%, 70%);
 	}
+
 	.close-btn {
 		display: flex;
 		cursor: pointer;
@@ -317,32 +293,39 @@
 		height: 2.2rem;
 		width: 2.2rem;
 	}
+
 	.close-btn:hover {
-		background-color: hsl(0, 0%, 40%);
+		background-color: var(--grey-2);
 	}
+
 	.title-closebtn {
 		display: flex;
 		width: 90%;
 		justify-content: space-between;
 		margin-left: 2rem;
 	}
+
 	.create {
 		background-color: var(--green);
 		border: 0;
 		font-weight: 800;
 	}
+
 	.create:hover {
 		background-color: hsl(102, 52%, 58%);
 	}
+
 	.cancel {
 		background-color: transparent;
 		border: 2px solid var(--green);
 	}
+
 	.create:disabled {
 		background-color: hsl(0, 0%, 30%);
-		color: hsl(0, 0%, 75%);
+		color: var(--grey-1);
 		cursor: not-allowed;
 	}
+
 	.create-icon {
 		border-radius: 50%;
 		background-color: var(--green);
@@ -353,6 +336,7 @@
 		position: relative;
 		top: 0.2rem;
 	}
+
 	.title-logo {
 		display: flex;
 	}

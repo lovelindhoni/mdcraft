@@ -38,7 +38,7 @@
 </div>
 
 <style>
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		.modal-content {
 			height: 33.5%;
 			width: 37%;
@@ -52,7 +52,7 @@
 			font-size: 1.79rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		.modal-content {
 			height: 37%;
 			width: 40%;
@@ -63,7 +63,7 @@
 			line-height: 1.3;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		.modal-content {
 			height: 44%;
 			width: 40%;
@@ -74,7 +74,7 @@
 			line-height: 1.3;
 		}
 	}
-	@media screen and (min-width: 1024px) {
+	@media (min-width: 1024px) {
 		button {
 			width: 6rem;
 			height: 3rem;
@@ -96,7 +96,7 @@
 			top: 1.6rem;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 1023px) {
+	@media (min-width: 550px) and (max-width: 1023px) {
 		.modal-content {
 			height: 24%;
 			width: 60%;
@@ -127,7 +127,7 @@
 			gap: 1.5em;
 		}
 	}
-	@media screen and (max-width: 549px) and (max-height: 699px) {
+	@media (max-width: 549px) and (max-height: 699px) {
 		.modal-content {
 			height: 34%;
 			width: 80%;
@@ -158,7 +158,7 @@
 			top: 1rem;
 		}
 	}
-	@media screen and (max-width: 549px) and (min-height: 700px) {
+	@media (max-width: 549px) and (min-height: 700px) {
 		.modal-content {
 			height: 26%;
 			width: 80%;
@@ -228,10 +228,9 @@
 	.title-and-closebtn {
 		margin-left: 2rem;
 	}
-
 	.delete-btn {
 		background-color: var(--red);
-		border: 0px;
+		border: 0;
 		font-weight: 800;
 	}
 	.delete-btn:hover {
@@ -254,14 +253,13 @@
 		display: flex;
 		cursor: pointer;
 		border-radius: 50%;
-		display: flex;
 		align-items: center;
 		justify-content: center;
 		height: 2.2rem;
 		width: 2.2rem;
 	}
 	.close-btn:hover {
-		background-color: hsl(0, 0%, 40%);
+		background-color: var(--grey-2);
 	}
 	.title-and-closebtn {
 		width: 90%;
@@ -277,14 +275,14 @@
 		display: block;
 		margin-block-start: 1em;
 		margin-block-end: 1em;
-		margin-inline-start: 0px;
-		margin-inline-end: 0px;
+		margin-inline-start: 0;
+		margin-inline-end: 0;
 	}
 	.delete-warning {
 		display: block;
 		margin-block-start: 1em;
 		margin-block-end: 1em;
-		margin-inline-start: 0px;
-		margin-inline-end: 0px;
+		margin-inline-start: 0;
+		margin-inline-end: 0;
 	}
 </style>

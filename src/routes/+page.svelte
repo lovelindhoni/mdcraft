@@ -85,7 +85,7 @@
 			grid-column-start: span 14;
 			grid-row: 1 / span 20;
 			height: 100%;
-			border-left: 2px solid var(--blue-grey);
+			border-left: 2px solid var(--grey-1);
 		}
 	}
 	@media screen and (min-width: 650px) and (max-width: 1023px) {
@@ -158,7 +158,7 @@
 		}
 	}
 	.layout {
-		height: 99.9vh;
+		height: 99.8vh;
 		width: 100vw;
 		box-sizing: border-box;
 		font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial,

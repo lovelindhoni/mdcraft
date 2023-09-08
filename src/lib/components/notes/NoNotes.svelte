@@ -16,7 +16,7 @@
 </div>
 
 <style>
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		.create-note-text {
 			font-size: 3rem;
 		}
@@ -28,7 +28,8 @@
 			width: 28rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		.create-note-text {
 			font-size: 2.22rem;
 		}
@@ -40,7 +41,8 @@
 			width: 22rem;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		.create-note-text {
 			font-size: 1.9rem;
 		}
@@ -52,7 +54,8 @@
 			width: 18rem;
 		}
 	}
-	@media screen and (min-width: 1024px) {
+
+	@media (min-width: 1024px) {
 		.no-notes {
 			display: flex;
 			flex-direction: row-reverse;
@@ -62,7 +65,8 @@
 			width: 100%;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 1023px) {
+
+	@media (min-width: 550px) and (max-width: 1023px) {
 		.no-notes {
 			display: flex;
 			flex-direction: column;
@@ -83,7 +87,8 @@
 			width: 23rem;
 		}
 	}
-	@media screen and (max-width: 549px) {
+
+	@media (max-width: 549px) {
 		.no-notes {
 			display: flex;
 			flex-direction: column;
@@ -93,8 +98,7 @@
 			width: 100%;
 			margin-top: auto;
 			margin-bottom: auto;
-			padding-left: 2rem;
-			padding-right: 2rem;
+			padding: 0 2rem;
 		}
 		.create-note-text {
 			font-size: 1.7rem;
@@ -107,28 +111,30 @@
 			width: 15rem;
 		}
 	}
+
 	img {
 		filter: contrast(75%);
 	}
+
 	.no-notes {
 		box-sizing: border-box;
 	}
+
 	.create-note {
 		display: flex;
 		flex-direction: column;
 		gap: 0.8rem;
 	}
+
 	.create-note-subtext {
-		color: var(--blue-grey);
+		color: var(--grey-1);
 		position: relative;
 		bottom: 0.9rem;
 	}
+
 	.create-note-text,
 	.create-note-subtext {
 		display: block;
-		margin-block-start: 1em;
-		margin-block-end: 1em;
-		margin-inline-start: 0px;
-		margin-inline-end: 0px;
+		margin: 1em 0;
 	}
 </style>

@@ -158,6 +158,6 @@
 		color: hsl(0, 0%, 80%);
 	}
 	.edit {
-		color: var(--vibrant-orange);
+		color: var(--orange);
 	}
 </style>

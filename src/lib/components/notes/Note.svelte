@@ -163,8 +163,10 @@
 		}
 		.note-container {
 			height: 4rem;
-			border-bottom: 1px solid var(--blue-grey);
+			border-bottom: 1px solid var(--grey-1);
 			width: 64%;
+					padding-left: 1rem;
+
 		}
 		.actions {
 			padding-left: 0.3rem;
@@ -177,8 +179,10 @@
 		}
 		.note-container {
 			height: 4rem;
-			border-bottom: 1px solid var(--blue-grey);
+			border-bottom: 1px solid var(--grey-1);
 			width: 70%;
+					padding-left: 1rem;
+
 		}
 	}
 	@media screen and (max-width: 549px) {
@@ -186,9 +190,11 @@
 			font-size: 1.26rem;
 		}
 		.note-container {
-			height: 3.55rem;
-			border-bottom: 1px solid var(--blue-grey);
+			height: 3.4rem;
+			border-bottom: 1px solid var(--grey-1);
 			width: 85%;
+					padding-left: 1rem;
+
 		}
 		.actions {
 			padding-left: 0.3rem;
@@ -197,7 +203,6 @@
 	}
 	.note-container {
 		margin-bottom: 1.3rem;
-		padding-left: 1rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;

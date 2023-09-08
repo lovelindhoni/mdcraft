@@ -14,16 +14,15 @@
 
 <style>
 	.choose-folder-subtext {
-		color: var(--blue-grey);
+		color: var(--grey-1);
 	}
+
 	.choose-folder,
 	.choose-folder-subtext {
 		display: block;
-		margin-block-start: 1em;
-		margin-block-end: 1em;
-		margin-inline-start: 0px;
-		margin-inline-end: 0px;
+		margin: 1em 0;
 	}
+
 	.pick-Folder {
 		height: 100%;
 		width: 100%;
@@ -31,10 +30,12 @@
 		align-items: center;
 		justify-content: space-around;
 	}
+
 	img {
 		filter: contrast(75%);
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		.choose-folder {
 			font-size: 1.9rem;
 		}
@@ -46,7 +47,8 @@
 			width: 18rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		.choose-folder {
 			font-size: 2.25rem;
 		}
@@ -58,7 +60,8 @@
 			width: 22rem;
 		}
 	}
-	@media screen and (min-width: 1740px) {
+
+	@media (min-width: 1740px) {
 		.choose-folder {
 			font-size: 3rem;
 		}

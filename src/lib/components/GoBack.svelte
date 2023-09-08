@@ -13,43 +13,47 @@
 </div>
 
 <style>
-	@media screen and (min-width: 550px) and (max-width: 1023px) {
-		.go-back-to-folder {
+	@media (min-width: 550px) and (max-width: 1023px) {
+		.go-back-to-folder,
+		.go-back-to-notes {
 			font-size: 1.5rem;
 		}
-		.arrow-logo-to-folder {
+
+		.arrow-logo-to-folder,
+		.arrow-logo-to-notes {
 			height: 1.5rem;
 			width: 1.5rem;
 		}
+
+		.go-back-to-notes,
 		.arrow-logo-to-notes {
-			height: 1.3rem;
-			width: 1.04rem;
-		}
-		.go-back-to-notes {
 			font-size: 1.3rem;
 		}
 	}
-	@media screen and (max-width: 549px) {
-		.go-back-to-folder {
+
+	@media (max-width: 549px) {
+		.go-back-to-folder,
+		.go-back-to-notes {
 			font-size: 1.1rem;
 		}
-		.arrow-logo-to-folder {
+
+		.arrow-logo-to-folder,
+		.arrow-logo-to-notes {
 			height: 1.1rem;
 			width: 1.1rem;
 		}
+
+		.go-back-to-notes,
 		.arrow-logo-to-notes {
-			height: 1.04rem;
-			width: 1.04rem;
-		}
-		.go-back-to-notes {
 			font-size: 1.04rem;
 		}
 	}
+
 	.go-back {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		border-bottom: 2px solid var(--vibrant-orange);
+		border-bottom: 2px solid var(--orange);
 		width: max-content;
 		color: var(--orange);
 	}

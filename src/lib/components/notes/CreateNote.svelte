@@ -61,36 +61,41 @@
 {/if}
 
 <style>
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		button {
 			width: 3.4rem;
 			height: 3.4rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		button {
 			width: 3.15rem;
 			height: 3.15rem;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		button {
 			width: 2.85rem;
 			height: 2.85rem;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 1023px) {
+
+	@media (min-width: 550px) and (max-width: 1023px) {
 		button {
 			width: 2.8rem;
 			height: 2.8rem;
 		}
 	}
-	@media screen and (max-width: 549px) {
+
+	@media (max-width: 549px) {
 		button {
 			width: 2.3rem;
 			height: 2.3rem;
 		}
 	}
+
 	button {
 		border: 0;
 		background-color: var(--green);
@@ -101,6 +106,7 @@
 		justify-content: center;
 		align-items: center;
 	}
+
 	button:hover {
 		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 	}

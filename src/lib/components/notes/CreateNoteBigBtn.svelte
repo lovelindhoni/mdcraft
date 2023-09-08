@@ -71,51 +71,58 @@
 {/if}
 
 <style>
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		button {
 			width: 17rem;
 			height: 5rem;
 			font-size: 1.8rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		button {
 			width: 14rem;
 			height: 4.2rem;
 			font-size: 1.6rem;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		button {
 			width: 12.5rem;
 			height: 3.5rem;
 			font-size: 1.37rem;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 1023px) {
+
+	@media (min-width: 550px) and (max-width: 1023px) {
 		button {
 			width: 15rem;
 			height: 4.2rem;
 			font-size: 1.6rem;
 		}
 	}
-	@media screen and (max-width: 549px) {
+
+	@media (max-width: 549px) {
 		button {
 			width: 12.5rem;
 			height: 3.5rem;
 			font-size: 1.37rem;
 		}
 	}
+
 	button {
 		color: white;
 		background-color: var(--green);
-		border-color: transparent;
+		border: transparent;
 		cursor: pointer;
 		border-radius: 0.8rem;
 	}
+
 	button:hover {
 		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 	}
+
 	span {
 		display: flex;
 		align-items: center;

@@ -32,46 +32,49 @@
 {/if}
 
 <style>
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		.folders {
 			height: 87%;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		.folders {
 			height: 84%;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		.folders {
 			height: 82.5%;
 		}
 	}
-	@media screen and (min-width: 650px) and (max-width: 1023px) {
+
+	@media (min-width: 650px) and (max-width: 1023px) {
 		.folders {
 			height: 88.5%;
 			width: 70%;
-			margin-left: auto;
-			margin-right: auto;
+			margin: 0 auto;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 649px) {
+
+	@media (min-width: 550px) and (max-width: 649px) {
 		.folders {
 			height: 88.5%;
 			width: 82%;
-			margin-left: auto;
-			margin-right: auto;
+			margin: 0 auto;
 		}
 	}
-	@media screen and (max-width: 549px) {
+
+	@media (max-width: 549px) {
 		.folders {
 			height: 80%;
 		}
 	}
+
 	.folders {
 		overflow-y: auto;
-		padding-left: 0.3rem;
-		padding-right: 0.3rem;
+		padding: 0.3rem;
 		margin-top: 0.3rem;
 		box-sizing: border-box;
 	}

@@ -185,7 +185,7 @@
 		.folder-container {
 			height: 4rem;
 			margin-bottom: 1rem;
-			border-bottom: 1px solid hsl(0, 0%, 40%);
+			border-bottom: 1px solid var(--grey-2);
 		}
 		.actions {
 			padding-left: 0.3rem;
@@ -199,7 +199,7 @@
 		.folder-container {
 			height: 3.4rem;
 			margin-bottom: 1rem;
-			border-bottom: 1px solid hsl(0, 0%, 40%);
+			border-bottom: 1px solid var(--grey-2);
 		}
 		.actions {
 			padding-left: 0.3rem;
@@ -236,9 +236,6 @@
 		background-color: transparent;
 		color: var(--orange);
 		border-left: 3px solid var(--orange);
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
-		border-bottom: none;
 	}
 	.icons {
 		cursor: pointer;

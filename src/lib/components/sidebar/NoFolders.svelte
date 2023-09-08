@@ -15,7 +15,7 @@
 </div>
 
 <style>
-	@media screen and (max-width: 549px) {
+	@media (max-width: 549px) {
 		.no-folders-text {
 			font-size: 1.83rem;
 		}
@@ -32,7 +32,8 @@
 			width: 19rem;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 649px) {
+
+	@media (min-width: 550px) and (max-width: 649px) {
 		.no-folders-text {
 			font-size: 2.4rem;
 		}
@@ -49,7 +50,8 @@
 			width: 24rem;
 		}
 	}
-	@media screen and (min-width: 650px) and (max-width: 1023px) {
+
+	@media (min-width: 650px) and (max-width: 1023px) {
 		.no-folders-text {
 			font-size: 2.7rem;
 		}
@@ -66,7 +68,8 @@
 			width: 30rem;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		.no-folders-text {
 			font-size: 1.6rem;
 		}
@@ -83,7 +86,8 @@
 			width: 18rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		img {
 			height: 20rem;
 			width: 22rem;
@@ -101,7 +105,8 @@
 			margin-right: 9rem;
 		}
 	}
-	@media screen and (min-width: 1740px) {
+
+	@media (min-width: 1740px) {
 		.no-folders-text {
 			font-size: 2.83rem;
 		}
@@ -118,24 +123,25 @@
 			width: 28rem;
 		}
 	}
+
 	img {
 		filter: contrast(75%);
 	}
+
 	.no-folders {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 1rem;
 	}
+
 	.no-folders-text,
 	.no-folders-subtext {
 		display: block;
-		margin-block-start: 1em;
-		margin-block-end: 1em;
-		margin-inline-start: 0px;
-		margin-inline-end: 0px;
+		margin: 1em 0;
 	}
+
 	.no-folders-subtext {
-		color: var(--blue-grey);
+		color: var(--grey-1);
 	}
 </style>

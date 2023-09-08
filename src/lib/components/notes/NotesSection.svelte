@@ -54,58 +54,74 @@
 {/if}
 
 <style>
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		h1 {
 			font-size: 2.62rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		h1 {
 			font-size: 2.45rem;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		h1 {
 			font-size: 2.07rem;
 		}
 	}
-	@media screen and (min-width: 1024px) {
+
+	@media (min-width: 1024px) {
 		.mast {
 			width: 75%;
 		}
 	}
-	@media screen and (min-width: 649px) and (max-width: 1023px) {
+
+	@media (min-width: 649px) and (max-width: 1023px) {
 		h1 {
 			font-size: 2.2rem;
 		}
 		.mast {
 			width: 62%;
 		}
+		.notes {
+			margin-top: 0.5rem;
+		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 649px) {
+
+	@media (min-width: 550px) and (max-width: 649px) {
 		h1 {
 			font-size: 2.05rem;
 		}
 		.mast {
 			width: 70%;
 		}
+		.notes {
+			margin-top: 0.5rem;
+		}
 	}
-	@media screen and (max-width: 549px) {
+
+	@media (max-width: 549px) {
 		h1 {
 			font-size: 1.6rem;
 		}
 		.mast {
 			width: 85%;
 		}
+		.notes {
+			margin-top: 0.4rem;
+		}
 	}
+
 	.mast {
 		height: 10%;
-		margin-top: 1.2rem;
-		margin-bottom: 2rem;
+		margin: 1.2rem 0 2rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 	}
+
 	.notes-and-title {
 		height: 100%;
 		width: 100%;
@@ -114,11 +130,13 @@
 		box-sizing: border-box;
 		align-items: center;
 	}
+
 	.notes {
 		overflow-y: auto;
 		width: 100%;
 		height: 100%;
 	}
+
 	h1 {
 		font-weight: normal;
 		text-overflow: ellipsis;
@@ -126,6 +144,7 @@
 		white-space: nowrap;
 		width: 70%;
 	}
+
 	.title-btn {
 		display: flex;
 		width: 100%;

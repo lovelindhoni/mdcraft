@@ -299,11 +299,14 @@
 	:global(.viewer table td) {
 		padding: 0.7rem;
 		text-align: left;
-		border: 0.12rem solid var(--blue-grey);
+		border: 0.12rem solid var(--grey-1);
 		line-height: 1.5;
 	}
+	:global(.viewer hr){
+         color:var(--grey-2)
+	}
 	:global(.viewer a) {
-		color: var(--vibrant-orange);
+		color: var(--orange);
 	}
 	:global(.viewer blockquote) {
 		border-left: 6px solid hsl(0, 0%, 80%);

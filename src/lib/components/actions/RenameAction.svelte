@@ -29,7 +29,7 @@
 						size={matchMedia('(max-width:549px)') ? (parseInt(size) - 6).toString() : size}
 					/></span
 				>
-				<lable for="newtitle"><slot /></lable>
+				<label for="newtitle"><slot /></label>
 			</div>
 			<span
 				class="close-btn"
@@ -67,36 +67,35 @@
 	</div>
 </div>
 
-<!--1366-->
 <style>
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		.modal-content {
 			height: 33%;
 			width: 35%;
 		}
-		lable {
+		label {
 			font-size: 1.78rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		.modal-content {
 			height: 37%;
 			width: 40%;
 		}
-		lable {
+		label {
 			font-size: 1.6rem;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		.modal-content {
 			height: 42.5%;
 			width: 40%;
 		}
-		lable {
+		label {
 			font-size: 1.6rem;
 		}
 	}
-	@media screen and (min-width: 1024px) {
+	@media (min-width: 1024px) {
 		.title-logo {
 			gap: 1rem;
 		}
@@ -128,12 +127,12 @@
 			gap: 3em;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 1023px) {
+	@media (min-width: 550px) and (max-width: 1023px) {
 		.modal-content {
 			height: 24%;
 			width: 60%;
 		}
-		lable {
+		label {
 			font-size: 1.5rem;
 		}
 		.title-logo {
@@ -168,12 +167,12 @@
 			gap: 3em;
 		}
 	}
-	@media screen and (max-width: 549px) and (max-height: 699px) {
+	@media (max-width: 549px) and (max-height: 699px) {
 		.modal-content {
 			height: 34%;
 			width: 80%;
 		}
-		lable {
+		label {
 			font-size: 1.2rem;
 		}
 		.title-logo {
@@ -208,12 +207,12 @@
 			gap: 1.5em;
 		}
 	}
-	@media screen and (max-width: 549px) and (min-height: 700px) {
+	@media (max-width: 549px) and (min-height: 700px) {
 		.modal-content {
 			height: 26%;
 			width: 80%;
 		}
-		lable {
+		label {
 			font-size: 1.2rem;
 		}
 		.title-logo {
@@ -267,7 +266,6 @@
 	}
 	.modal-content {
 		border-radius: 0.9rem;
-		box-sizing: border-box;
 		background-color: hsl(0, 0%, 17%);
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 		display: flex;
@@ -291,7 +289,7 @@
 	input {
 		height: 100%;
 		width: 85%;
-		background-color: hsl(0, 0%, 40%);
+		background-color: var(--grey-2);
 		color: white;
 		outline: none;
 		border: none;
@@ -299,7 +297,7 @@
 	input::placeholder {
 		color: hsl(0, 0%, 65%);
 	}
-	lable {
+	label {
 		text-align: center;
 		position: relative;
 		top: 0.3rem;
@@ -312,8 +310,8 @@
 		display: block;
 		margin-block-start: 1em;
 		margin-block-end: 1em;
-		margin-inline-start: 0px;
-		margin-inline-end: 0px;
+		margin-inline-start: 0;
+		margin-inline-end: 0;
 	}
 	.errorInput {
 		border: solid;
@@ -329,7 +327,7 @@
 		width: 2.2rem;
 	}
 	.close-btn:hover {
-		background-color: hsl(0, 0%, 40%);
+		background-color: var(--grey-2);
 	}
 	.title-closebtn {
 		display: flex;
