@@ -85,7 +85,7 @@
 			grid-column-start: span 14;
 			grid-row: 1 / span 20;
 			height: 100%;
-			border-left: 2px solid var(--light-purple);
+			border-left: 2px solid var(--blue-grey);
 		}
 	}
 	@media screen and (min-width: 650px) and (max-width: 1023px) {
@@ -158,16 +158,17 @@
 		}
 	}
 	.layout {
-		height: 100vh;
+		height: 99.9vh;
 		width: 100vw;
 		box-sizing: border-box;
 		font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial,
 			'Lucida Grande', sans-serif;
+		background-color: var(--background);
+		color: var(--text);
 	}
 	header {
-		background-color: transparent;
 		display: flex;
-		color: var(--purple);
+		color: var(--orange);
 		box-sizing: border-box;
 		cursor: default;
 	}

@@ -107,6 +107,9 @@
 			width: 15rem;
 		}
 	}
+	img {
+		filter: contrast(75%);
+	}
 	.no-notes {
 		box-sizing: border-box;
 	}

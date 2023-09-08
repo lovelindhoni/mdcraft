@@ -204,7 +204,7 @@
 	.modal-content {
 		text-align: center;
 		box-sizing: border-box;
-		background-color: var(--background);
+		background-color: hsl(0, 0%, 17%);
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 		display: flex;
 		flex-direction: column;
@@ -223,6 +223,7 @@
 		min-width: auto;
 		border-radius: 0.6rem;
 		cursor: pointer;
+		color: white;
 	}
 	.title-and-closebtn {
 		margin-left: 2rem;
@@ -230,7 +231,6 @@
 
 	.delete-btn {
 		background-color: var(--red);
-		color: white;
 		border: 0px;
 		font-weight: 800;
 	}
@@ -261,7 +261,7 @@
 		width: 2.2rem;
 	}
 	.close-btn:hover {
-		background-color: lightgrey;
+		background-color: hsl(0, 0%, 40%);
 	}
 	.title-and-closebtn {
 		width: 90%;
@@ -270,7 +270,7 @@
 	}
 	.warning-msg {
 		text-align: start;
-		color: hsl(201, 15%, 24%);
+		color: hsl(0, 0%, 77%);
 		padding-left: 2.5rem;
 		position: relative;
 		bottom: 1.5rem;

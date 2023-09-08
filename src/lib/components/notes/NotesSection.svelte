@@ -5,7 +5,7 @@
 	import Note from '$lib/components/notes/Note.svelte';
 	import NoNotes from '$lib/components/notes/NoNotes.svelte';
 	import PickFolder from '$lib/components/notes/PickFolder.svelte';
-	import GoBack from '$lib/components/notes/GoBack.svelte';
+	import GoBack from '$lib/components/GoBack.svelte';
 	export let currentFolderIndex: number; // fulfilled by the +page.svelte
 </script>
 

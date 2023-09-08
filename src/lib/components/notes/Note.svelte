@@ -36,8 +36,7 @@
 			showRename = false;
 		}
 	}
-	let iconColor: string; // the variable used to changes the color of the icons at selection. This is passed to the icons comps
-	let selected = false; // this variable decides to apply the styling when the note is hovered
+	let onHover = false; // this variable decides to apply the styling when the note is hovered
 	let size = matchMedia('(min-width:1740px)').matches
 		? '28'
 		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches ||
@@ -48,25 +47,20 @@
 
 <div
 	on:mouseover={() => {
-		selected = true;
-		iconColor = 'white';
+		onHover = true;
 	}}
 	on:mouseout={() => {
-		selected = false;
-		iconColor = '';
+		onHover = false;
 	}}
 	on:focus={() => {
-		selected = true;
-		iconColor = 'white';
+		onHover = true;
 	}}
 	on:blur={() => {
-		selected = false;
-		iconColor = '';
+		onHover = false;
 	}}
 	role="button"
 	tabindex="0"
 	class="note-container"
-	class:selected
 	on:click
 	on:keydown
 >
@@ -81,7 +75,7 @@
 			on:click|stopPropagation={() => (showRename = true)}
 			on:keydown|stopPropagation={() => (showRename = true)}
 		>
-			<EditSvg color={iconColor} {size} />
+			<EditSvg color={onHover ? '#f96743' : '#e6e6e6'} {size} />
 		</div>
 		<!--the rename and delete icon for doing opertation in the note-->
 		<div
@@ -91,7 +85,7 @@
 			on:click|stopPropagation={() => (showDeleteModal = true)}
 			on:keydown|stopPropagation={() => (showDeleteModal = true)}
 		>
-			<DeleteSvg color={iconColor} {size} />
+			<DeleteSvg color={onHover ? '#f96743' : '#e6e6e6'} {size} />
 		</div>
 	</div>
 </div>
@@ -123,19 +117,10 @@
 		}
 		.note-container {
 			height: 5rem;
-			border-top-left-radius: 1rem;
-			border-top-right-radius: 1rem;
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
-			border-bottom: 3px solid var(--light-purple);
 		}
 		.actions {
 			gap: 0.8rem;
 			margin-right: 0.5rem;
-		}
-		.selected {
-			border-bottom-left-radius: 1rem;
-			border-bottom-right-radius: 1rem;
 		}
 	}
 	@media screen and (min-width: 1430px) and (max-width: 1739px) {
@@ -144,15 +129,6 @@
 		}
 		.note-container {
 			height: 3.8rem;
-			border-top-left-radius: 0.9rem;
-			border-top-right-radius: 0.9rem;
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
-			border-bottom: 2px solid var(--light-purple);
-		}
-		.selected {
-			border-bottom-left-radius: 0.9rem;
-			border-bottom-right-radius: 0.9rem;
 		}
 	}
 	@media screen and (min-width: 1301px) and (max-width: 1429px) {
@@ -161,15 +137,6 @@
 		}
 		.note-container {
 			height: 3.42rem;
-			border-top-left-radius: 0.8rem;
-			border-top-right-radius: 0.8rem;
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
-			border-bottom: 2px solid var(--light-purple);
-		}
-		.selected {
-			border-bottom-left-radius: 0.8rem;
-			border-bottom-right-radius: 0.8rem;
 		}
 	}
 	@media screen and (min-width: 1024px) and (max-width: 1300px) {
@@ -178,15 +145,6 @@
 		}
 		.note-container {
 			height: 3.4rem;
-			border-top-left-radius: 0.8rem;
-			border-top-right-radius: 0.8rem;
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
-			border-bottom: 2px solid var(--light-purple);
-		}
-		.selected {
-			border-bottom-left-radius: 0.8rem;
-			border-bottom-right-radius: 0.8rem;
 		}
 	}
 	@media screen and (min-width: 1024px) {
@@ -205,16 +163,8 @@
 		}
 		.note-container {
 			height: 4rem;
-			border-top-left-radius: 0.8rem;
-			border-top-right-radius: 0.8rem;
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
-			border-bottom: 2px solid var(--light-purple);
+			border-bottom: 1px solid var(--blue-grey);
 			width: 64%;
-		}
-		.selected {
-			border-bottom-left-radius: 0.8rem;
-			border-bottom-right-radius: 0.8rem;
 		}
 		.actions {
 			padding-left: 0.3rem;
@@ -227,20 +177,8 @@
 		}
 		.note-container {
 			height: 4rem;
-			border-top-left-radius: 0.8rem;
-			border-top-right-radius: 0.8rem;
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
-			border-bottom: 2px solid var(--light-purple);
+			border-bottom: 1px solid var(--blue-grey);
 			width: 70%;
-		}
-		.selected {
-			border-bottom-left-radius: 0.8rem;
-			border-bottom-right-radius: 0.8rem;
-		}
-		.actions {
-			padding-left: 0.3rem;
-			padding-right: 0.3rem;
 		}
 	}
 	@media screen and (max-width: 549px) {
@@ -249,16 +187,8 @@
 		}
 		.note-container {
 			height: 3.55rem;
-			border-top-left-radius: 0.8rem;
-			border-top-right-radius: 0.8rem;
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
-			border-bottom: 2px solid var(--light-purple);
+			border-bottom: 1px solid var(--blue-grey);
 			width: 85%;
-		}
-		.selected {
-			border-bottom-left-radius: 0.8rem;
-			border-bottom-right-radius: 0.8rem;
 		}
 		.actions {
 			padding-left: 0.3rem;
@@ -275,10 +205,9 @@
 		margin-right: auto;
 		margin-left: auto;
 	}
-	.selected {
-		background-color: var(--purple);
-		color: white;
-		border-bottom: 2px solid var(--purple);
+	.note-container:hover {
+		background-color: transparent;
+		color: var(--orange);
 	}
 	.actions {
 		display: flex;

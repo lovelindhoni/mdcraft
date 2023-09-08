@@ -268,7 +268,7 @@
 	.modal-content {
 		border-radius: 0.9rem;
 		box-sizing: border-box;
-		background-color: var(--background);
+		background-color: hsl(0, 0%, 17%);
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 		display: flex;
 		flex-direction: column;
@@ -286,14 +286,18 @@
 		min-width: auto;
 		border-radius: 0.6rem;
 		cursor: pointer;
+		color: white;
 	}
 	input {
 		height: 100%;
 		width: 85%;
+		background-color: hsl(0, 0%, 40%);
+		color: white;
+		outline: none;
+		border: none;
 	}
 	input::placeholder {
 		color: hsl(0, 0%, 65%);
-		font-size: medium;
 	}
 	lable {
 		text-align: center;
@@ -304,7 +308,7 @@
 		display: none !important;
 	}
 	.error {
-		color: red;
+		color: hsl(10, 100%, 70%);
 		display: block;
 		margin-block-start: 1em;
 		margin-block-end: 1em;
@@ -312,7 +316,8 @@
 		margin-inline-end: 0px;
 	}
 	.errorInput {
-		border-color: red;
+		border: solid;
+		border-color: hsl(10, 100%, 70%);
 	}
 	.close-btn {
 		display: flex;
@@ -324,7 +329,7 @@
 		width: 2.2rem;
 	}
 	.close-btn:hover {
-		background-color: lightgrey;
+		background-color: hsl(0, 0%, 40%);
 	}
 	.title-closebtn {
 		display: flex;
@@ -334,20 +339,20 @@
 	}
 	.rename-btn {
 		background-color: var(--blue);
-		color: white;
 		border: 0;
 		font-weight: 800;
 	}
 	.rename-btn:hover {
-		background-color: hsl(186, 41%, 60%);
+		background-color: hsl(192, 55%, 62%);
 	}
 	.cancel {
 		background-color: transparent;
 		border: 2px solid var(--blue);
 	}
 	.rename-btn:disabled {
-		background-color: lightgrey;
-		color: darkgrey;
+		background-color: hsl(0, 0%, 30%);
+		color: hsl(0, 0%, 75%);
+		cursor: not-allowed;
 	}
 	.rename-icon {
 		border-radius: 50%;

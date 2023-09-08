@@ -1,3 +1,7 @@
+<script>
+	import 'highlight.js/styles/base16/dracula.css'; // dracula theme for now
+</script>
+
 <div class="viewer">
 	<slot />
 </div>
@@ -140,7 +144,7 @@
 			padding-bottom: 2rem;
 			padding-left: 20vw;
 			padding-right: 20vw;
-			height: 88%;
+			height: 86%;
 		}
 		:global(.viewer h1) {
 			font-size: 2.2rem;
@@ -186,7 +190,7 @@
 			padding-bottom: 2rem;
 			padding-left: 15vw;
 			padding-right: 15vw;
-			height: 91%;
+			height: 86%;
 		}
 		:global(.viewer h1) {
 			font-size: 2.2rem;
@@ -232,7 +236,7 @@
 			padding-bottom: 2rem;
 			padding-left: 8vw;
 			padding-right: 8vw;
-			height: 88%;
+			height: 81%;
 		}
 		:global(.viewer h1) {
 			font-size: 2rem;
@@ -295,11 +299,11 @@
 	:global(.viewer table td) {
 		padding: 0.7rem;
 		text-align: left;
-		border: 0.12rem solid black;
+		border: 0.12rem solid var(--blue-grey);
 		line-height: 1.5;
 	}
 	:global(.viewer a) {
-		color: var(--vibrant-purple);
+		color: var(--vibrant-orange);
 	}
 	:global(.viewer blockquote) {
 		border-left: 6px solid hsl(0, 0%, 80%);
@@ -308,17 +312,19 @@
 		margin-bottom: 1.5rem;
 		font-family: Georgia, 'Times New Roman', Times, serif;
 		font-style: italic;
-		color: var(--blue-grey);
+		color: hsl(0, 0%, 80%);
 	}
 	:global(.viewer img) {
 		height: auto;
 		width: auto;
 		max-width: 100%;
 		max-height: 21em;
+		filter: brightness(0.8) contrast(1.2);
 	}
 	:global(code) {
 		padding: 0.14rem;
-		background-color: lightgray;
+		background-color: hsl(0, 0%, 32%);
+		color: white;
 		margin-left: 0.5rem;
 		margin-right: 0.5rem;
 		border-radius: 0.5rem;

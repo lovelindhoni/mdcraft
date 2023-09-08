@@ -1,14 +1,14 @@
-<!--this component connects all the comps in the viewer folder and exported to the dashboard-->
+<!--this component connects all the comps in the viewer folder and exported to the +page.svelte-->
 <script lang="ts">
-	import { folders } from '$lib/store';
+	import { currentNoteId, folders } from '$lib/store';
 	import { marked } from 'marked'; // For parsing note's content
 	import EmojiConvertor from 'emoji-js'; // Converts colon-text to emojis
 	import hljs from 'highlight.js'; // For Highlighting Code Blocks
-	import 'highlight.js/styles/base16/dracula.css'; // dracula theme for now
 	import NoteContent from '$lib/components/viewer/NoteContent.svelte';
 	import { afterUpdate } from 'svelte'; // Run Highlighting for code blocks after DOM update
 	import Toggle from '$lib/components/viewer/Toggle.svelte';
 	import Pagination from '$lib/components/viewer/Pagination.svelte';
+	import GoBack from '$lib/components/GoBack.svelte';
 	const emojis = new EmojiConvertor();
 	emojis.replace_mode = 'unified'; // Outputs Unicode code points at the place of colon-text
 	const renderer = new marked.Renderer();
@@ -37,10 +37,17 @@
 	$: generatedHtml = marked($folders[currentFolderIndex].notes[currentNoteIndex].content);
 </script>
 
-<div role="columnheader" class="editor-head">
-	<!--i have used the svelte:component to show the dynamically imported toggle and pagination-->
-	<Pagination {currentFolderIndex} {currentNoteIndex} />
-	<Toggle bind:edit />
+<div class="header-container">
+	<div role="columnheader" class="editor-head">
+		<!--i have used the svelte:component to show the dynamically imported toggle and pagination-->
+		<Pagination {currentFolderIndex} {currentNoteIndex} />
+		<Toggle bind:edit />
+	</div>
+	{#if matchMedia('(max-width:1023px)').matches}
+		<div class="go-back-to-notes">
+			<GoBack on:click={() => currentNoteId.set(null)} on:keydown={() => currentNoteId.set(null)} />
+		</div>
+	{/if}
 </div>
 {#if edit}
 	<!--on editing the textarea is shown, otherwise, the Notecontent is shown-->
@@ -75,6 +82,8 @@
 			justify-content: space-between;
 			padding-left: 2.6rem;
 			padding-right: 2.3rem;
+		}
+		.header-container {
 			margin-top: 1.5rem;
 			height: 8%;
 		}
@@ -85,43 +94,65 @@
 	}
 	@media screen and (min-width: 650px) and (max-width: 1023px) {
 		.editor-head {
-			justify-content: space-around;
+			justify-content: space-between;
+			padding-left: 1.7rem;
+			padding-right: 1.7rem;
+		}
+		.go-back-to-notes {
+			padding-left: 1.7rem;
+			padding-bottom: 1.7rem;
+		}
+		.header-container {
 			width: 68%;
-			height: 8%;
+			height: 13.2%;
 			margin-right: auto;
 			margin-left: auto;
 		}
 		textarea {
 			padding: 2rem 20vw;
-			height: 88%;
+			height: 82%;
 			font-size: 1.27rem;
 		}
 	}
 	@media screen and (min-width: 550px) and (max-width: 649px) {
 		.editor-head {
-			justify-content: space-around;
+			justify-content: space-between;
+			padding-right: 1.7rem;
+			padding-left: 1.7rem;
+		}
+		.go-back-to-notes {
+			padding-left: 1.7rem;
+			padding-bottom: 1.7rem;
+		}
+		.header-container {
 			width: 80%;
-			height: 8%;
+			height: 13.2%;
 			margin-right: auto;
 			margin-left: auto;
 		}
 		textarea {
 			padding: 2rem 15vw;
-			height: 91%;
+			height: 83%;
 			font-size: 1.27rem;
 		}
 	}
 	@media screen and (max-width: 549px) {
 		.editor-head {
 			justify-content: space-around;
-			height: 11%;
+		}
+		.header-container {
+			height: 19%;
+		}
+		.go-back-to-notes {
+			padding-left: 1.9rem;
+			padding-bottom: 1.7rem;
 		}
 		textarea {
 			padding-top: 1rem;
 			padding-bottom: 2rem;
 			padding-left: 8vw;
 			padding-right: 8vw;
-			height: 88%;
+			height: 77.5%;
 			font-size: 1.05rem;
 		}
 	}
@@ -134,8 +165,9 @@
 		outline: none;
 		border: none;
 		background-color: var(--background);
-		font-family: monospace !important; /**Sorry...*/
+		font-family: consolas, monospace !important; /**Sorry...*/
 		line-height: 1.5;
+		color: var(--text);
 	}
 	textarea::placeholder {
 		color: hsl(0, 0%, 60%);
@@ -144,5 +176,12 @@
 		display: flex;
 		align-items: center;
 		box-sizing: border-box;
+		height: 100%;
+		width: 100%;
+	}
+	.header-container {
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
 	}
 </style>

@@ -79,4 +79,3 @@ worker.addEventListener('fetch', (event) => {
 		);
 	}
 });
-// credits to 

@@ -6,13 +6,14 @@
 
 <style>
 	:root {
-		--purple: hsl(276, 41%, 50%);
-		--light-purple: hsl(277, 40%, 85%);
-		--vibrant-purple: hsl(276, 95%, 40%);
-		--background: hsl(210, 38%, 100%);
-		--green: hsl(96, 41%, 50%);
-		--blue: hsl(186, 41%, 50%);
-		--red: hsl(6, 78%, 50%);
-		--blue-grey: hsl(201, 23%, 34%);
+		--orange: #f96743;
+		--light-orange: hsl(13, 100%, 79%);
+		--vibrant-orange: #f96743;
+		--background: hsl(0, 0%, 10%);
+		--text: hsl(0, 0%, 90%);
+		--green: hsl(102, 52%, 48%);
+		--blue: hsl(192, 55%, 52%);
+		--red: hsl(12, 80%, 52%);
+		--blue-grey: hsl(0, 0%, 75%);
 	}
 </style>

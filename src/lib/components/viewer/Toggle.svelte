@@ -136,7 +136,7 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-color: hsl(0, 0%, 80%);
+		background-color: hsl(0, 0%, 50%);
 		-webkit-transition: 0.3s;
 		transition: 0.3s;
 	}
@@ -151,13 +151,13 @@
 	}
 
 	input:checked + .slider {
-		background-color: var(--purple);
+		background-color: var(--orange);
 	}
 	.edit-label,
 	.edit-shortcut {
-		color: hsl(0, 0%, 55%);
+		color: hsl(0, 0%, 80%);
 	}
 	.edit {
-		color: var(--vibrant-purple);
+		color: var(--vibrant-orange);
 	}
 </style>

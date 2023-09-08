@@ -57,9 +57,9 @@
 	}
 	.url {
 		cursor: pointer;
-		color: var(--vibrant-purple);
+		color: var(--vibrant-orange);
 	}
 	.url:hover {
-		border-bottom: 2px solid var(--vibrant-purple);
+		border-bottom: 2px solid var(--vibrant-orange);
 	}
 </style>
