@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@fontsource/inconsolata':
+    specifier: ^5.0.8
+    version: 5.0.8
   '@types/emoji-js':
     specifier: ^3.5.0
     version: 3.5.0
@@ -248,6 +251,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@fontsource/inconsolata@5.0.8:
+    resolution: {integrity: sha512-KpBU6q1yCovfycaFprVEauh8U5RsWty3konFfUukyRRxZBK4Sf73XmGQc8iJ4CPrOP4dplGfdX2kjbRgdymajA==}
+    dev: false
 
   /@jridgewell/resolve-uri@3.1.1:
     resolution: {integrity: sha512-dSYZh7HhCDtCKm4QakX0xFpsRDqjjtZf/kjI/v3T3Nwt5r8/qz/M19F9ySyOqU94SXBmeG9ttTul+YnR4LOxFA==}

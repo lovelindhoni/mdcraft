@@ -24,6 +24,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@fontsource/inconsolata": "^5.0.8",
 		"@types/emoji-js": "^3.5.0",
 		"@types/marked": "^5.0.0",
 		"emoji-js": "^3.7.0",

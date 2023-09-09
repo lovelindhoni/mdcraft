@@ -4,6 +4,7 @@
 	import { marked } from 'marked'; // For parsing note's content
 	import EmojiConvertor from 'emoji-js'; // Converts colon-text to emojis
 	import hljs from 'highlight.js'; // For Highlighting Code Blocks
+	import '@fontsource/inconsolata/500.css';
 	import NoteContent from '$lib/components/viewer/NoteContent.svelte';
 	import { afterUpdate } from 'svelte'; // Run Highlighting for code blocks after DOM update
 	import Toggle from '$lib/components/viewer/Toggle.svelte';
@@ -26,6 +27,10 @@
 			? `<a href="${href}"${title ? ` title="${title}" ` : ''} target="_blank">${text}</a>`
 			: `<a>${text}</a>`;
 	};
+	marked.use({
+		mangle: false,
+		headerIds: false
+	});
 	marked.setOptions({ renderer }); // Stuffing the new renderer to the parser
 	afterUpdate(() => hljs.highlightAll()); // HighlightAll does automatic lang-detection on code blocks
 
@@ -52,6 +57,7 @@
 {#if edit}
 	<!--on editing the textarea is shown, otherwise, the Notecontent is shown-->
 	<!--uses the focuseditor and the note's content is binded to this textarea-->
+	<!--@ts-ignore-->
 	<textarea
 		placeholder="Start Sparkdowning..."
 		spellcheck="false"
@@ -64,19 +70,19 @@
 <style>
 	@media (min-width: 1740px) {
 		textarea {
-			font-size: 1.6rem;
+			font-size: 1.65rem;
 		}
 	}
 
 	@media (min-width: 1440px) and (max-width: 1739px) {
 		textarea {
-			font-size: 1.31rem;
+			font-size: 1.36rem;
 		}
 	}
 
 	@media (max-width: 1439px) {
 		textarea {
-			font-size: 1.15rem;
+			font-size: 1.19rem;
 		}
 	}
 
@@ -116,7 +122,7 @@
 		textarea {
 			padding: 2rem 20vw;
 			height: 82%;
-			font-size: 1.27rem;
+			font-size: 1.32rem;
 		}
 	}
 
@@ -139,7 +145,7 @@
 		textarea {
 			padding: 2rem 15vw;
 			height: 83%;
-			font-size: 1.27rem;
+			font-size: 1.32rem;
 		}
 	}
 
@@ -159,7 +165,7 @@
 		textarea {
 			padding: 1rem 8vw 2rem;
 			height: 77.5%;
-			font-size: 1.05rem;
+			font-size: 1.1rem;
 		}
 	}
 
@@ -168,15 +174,14 @@
 		box-sizing: border-box;
 		overflow-y: auto;
 		resize: none;
-		word-wrap: break-word;
+		overflow-wrap: anywhere;
 		outline: none;
 		border: none;
 		background-color: var(--background);
-		font-family: consolas, monospace !important;
 		line-height: 1.5;
 		color: var(--text);
+		font-family: 'Inconsolata', monospace !important;
 	}
-
 	textarea::placeholder {
 		color: hsl(0, 0%, 60%);
 	}

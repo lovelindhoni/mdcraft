@@ -9,12 +9,11 @@
 		$currentFolderId && $currentNoteId
 			? $folders[currentFolderIndex].notes.findIndex((note) => note.id === $currentNoteId)
 			: -1;
-	let isSmallScreen = matchMedia('(max-width:1023px)').matches;
 </script>
 
 <main class="layout">
-	<header>MDCraft</header>
-	{#if !isSmallScreen}
+	<header>MdCraft...</header>
+	{#if !matchMedia('(max-width:1023px)').matches}
 		<div class="sidebar" role="menubar">
 			<Sidebar />
 		</div>
@@ -146,7 +145,7 @@
 		header {
 			width: 100%;
 			height: 9%;
-			font-size: 2.2rem;
+			font-size: 2.15rem;
 			padding-top: 1rem;
 			padding-left: 1.6rem;
 		}

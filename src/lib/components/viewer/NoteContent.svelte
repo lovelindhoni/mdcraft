@@ -11,8 +11,7 @@
 		width: 100%;
 		box-sizing: border-box;
 		overflow-y: auto;
-
-		overflow-wrap: break-word;
+		overflow-wrap: anywhere;
 	}
 	/*Styles for the generated Html*/
 	@media screen and (min-width: 1740px) {
@@ -50,7 +49,7 @@
 		:global(.viewer table) {
 			font-size: 1.53rem;
 		}
-		:global(pre span) {
+		:global(.viewer pre span) {
 			font-size: 1.5rem;
 		}
 	}
@@ -89,7 +88,7 @@
 		:global(.viewer table) {
 			font-size: 1.25rem;
 		}
-		:global(pre span) {
+		:global(.viewer pre span) {
 			font-size: 1.26rem;
 		}
 	}
@@ -128,7 +127,7 @@
 		:global(.viewer table) {
 			font-size: 1.15rem;
 		}
-		:global(pre span) {
+		:global(.viewer pre span) {
 			font-size: 1.05rem;
 		}
 	}
@@ -180,7 +179,7 @@
 		:global(.viewer table) {
 			font-size: 1.25rem;
 		}
-		:global(pre span) {
+		:global(.viewer pre span) {
 			font-size: 1.2rem;
 		}
 	}
@@ -226,7 +225,7 @@
 		:global(.viewer table) {
 			font-size: 1.2rem;
 		}
-		:global(pre span) {
+		:global(.viewer pre span) {
 			font-size: 1.13rem;
 		}
 	}
@@ -272,7 +271,7 @@
 		:global(.viewer table) {
 			font-size: 1.05rem;
 		}
-		:global(pre span) {
+		:global(.viewer pre span) {
 			font-size: 1rem;
 		}
 	}
@@ -293,7 +292,7 @@
 	:global(.viewer table) {
 		border-collapse: collapse;
 		width: 100%;
-		overflow-wrap: break-word;
+		overflow-wrap: anywhere;
 	}
 	:global(.viewer table th),
 	:global(.viewer table td) {
