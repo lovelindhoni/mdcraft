@@ -12,7 +12,7 @@
 </script>
 
 <main class="layout">
-	<header>MdCraft...</header>
+	<header>MdCraft</header>
 	{#if !matchMedia('(max-width:1023px)').matches}
 		<div class="sidebar" role="menubar">
 			<Sidebar />
@@ -43,22 +43,22 @@
 <style>
 	@media screen and (min-width: 1740px) {
 		header {
-			font-size: 3.6rem;
+			font-size: 3.2rem;
 		}
 	}
 	@media screen and (min-width: 1430px) and (max-width: 1739px) {
 		header {
-			font-size: 3.1rem;
+			font-size: 2.6rem;
 		}
 	}
 	@media screen and (min-width: 1151px) and (max-width: 1429px) {
 		header {
-			font-size: 2.5rem;
+			font-size: 2.2rem;
 		}
 	}
 	@media screen and (min-width: 1024px) and (max-width: 1150px) {
 		header {
-			font-size: 2.3rem;
+			font-size: 1.8rem;
 		}
 	}
 	@media screen and (min-width: 1024px) {
@@ -170,6 +170,7 @@
 		color: var(--orange);
 		box-sizing: border-box;
 		cursor: default;
+		gap: 0.5rem;
 	}
 	.sidebar {
 		box-sizing: border-box;

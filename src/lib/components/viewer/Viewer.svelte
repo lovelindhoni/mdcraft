@@ -27,10 +27,6 @@
 			? `<a href="${href}"${title ? ` title="${title}" ` : ''} target="_blank">${text}</a>`
 			: `<a>${text}</a>`;
 	};
-	marked.use({
-		mangle: false,
-		headerIds: false
-	});
 	marked.setOptions({ renderer }); // Stuffing the new renderer to the parser
 	afterUpdate(() => hljs.highlightAll()); // HighlightAll does automatic lang-detection on code blocks
 
@@ -43,7 +39,7 @@
 </script>
 
 <div class="header-container">
-	<div role="columnheader" class="editor-head">
+	<div class="editor-head">
 		<!--i have used the svelte:component to show the dynamically imported toggle and pagination-->
 		<Pagination {currentFolderIndex} {currentNoteIndex} />
 		<Toggle bind:edit />
@@ -110,12 +106,12 @@
 		}
 
 		.go-back-to-notes {
-			padding: 0 1.7rem 1.7rem;
+			padding: 0  1.7rem 1.7rem;
 		}
 
 		.header-container {
 			width: 68%;
-			height: 13.2%;
+			height: 15%;
 			margin: 0 auto;
 		}
 
@@ -138,7 +134,7 @@
 
 		.header-container {
 			width: 80%;
-			height: 13.2%;
+			height: 15%;
 			margin: 0 auto;
 		}
 

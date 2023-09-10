@@ -86,6 +86,9 @@
 		.delete-warning {
 			font-size: 1.6rem;
 		}
+		.warning-msg {
+			bottom: 1.5rem;
+		}
 		.delete-icon {
 			height: 2rem;
 			width: 2rem;
@@ -164,9 +167,10 @@
 			width: 80%;
 		}
 		.warning-msg {
-			font-size: 0.94rem;
+			font-size: 1rem;
 			margin-right: 2rem;
 			line-height: 1.2;
+			bottom: 0.9rem;
 		}
 		button {
 			width: 4.2rem;
@@ -271,7 +275,6 @@
 		color: hsl(0, 0%, 77%);
 		padding-left: 2.5rem;
 		position: relative;
-		bottom: 1.5rem;
 		display: block;
 		margin-block-start: 1em;
 		margin-block-end: 1em;

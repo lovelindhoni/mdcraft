@@ -38,6 +38,13 @@
 			showCreate = false; // closes the create folder modal
 		}
 	}
+	let size = matchMedia('(max-width:549px)').matches
+		? '20'
+		: matchMedia('(max-width:1023px)').matches
+		? '24'
+		: matchMedia('(max-width:1450px)').matches
+		? '27'
+		: '32';
 </script>
 
 <div class="container">
@@ -45,11 +52,11 @@
 	<button
 		on:click={() => (showCreate = true)}
 		on:keydown={() => (showCreate = true)}
-		name="create-folder"
+		title="create-folder"
 	>
 		<!--clicking the button will open the modal-->
 		<div class="newFolderbtn">
-			<AddIcon color="white" />
+			<AddIcon color="white" {size} />
 		</div>
 	</button>
 </div>
@@ -73,7 +80,7 @@
 <style>
 	@media screen and (min-width: 1740px) {
 		h2 {
-			font-size: 2.7rem;
+			font-size: 2.45rem;
 		}
 		.container {
 			margin-bottom: 1.25rem;
@@ -86,7 +93,7 @@
 	}
 	@media screen and (min-width: 1430px) and (max-width: 1739px) {
 		h2 {
-			font-size: 2.1rem;
+			font-size: 1.9rem;
 		}
 		.container {
 			margin-bottom: 1.2rem;
@@ -99,7 +106,7 @@
 	}
 	@media screen and (min-width: 1151px) and (max-width: 1429px) {
 		h2 {
-			font-size: 1.9rem;
+			font-size: 1.72rem;
 		}
 		.container {
 			margin-bottom: 0.5rem;
@@ -112,7 +119,7 @@
 	}
 	@media screen and (min-width: 1024px) and (max-width: 1150px) {
 		h2 {
-			font-size: 1.72rem;
+			font-size: 1.52rem;
 		}
 		.container {
 			margin-bottom: 0.5rem;

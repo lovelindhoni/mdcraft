@@ -143,7 +143,7 @@
 			padding-bottom: 2rem;
 			padding-left: 20vw;
 			padding-right: 20vw;
-			height: 86%;
+			height: 85%;
 		}
 		:global(.viewer h1) {
 			font-size: 2.2rem;
@@ -189,7 +189,7 @@
 			padding-bottom: 2rem;
 			padding-left: 15vw;
 			padding-right: 15vw;
-			height: 86%;
+			height: 85%;
 		}
 		:global(.viewer h1) {
 			font-size: 2.2rem;

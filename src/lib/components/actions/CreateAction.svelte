@@ -162,9 +162,49 @@
 		}
 	}
 
-	@media (max-width: 549px) and (max-height: 699px), (max-width: 549px) and (min-height: 700px) {
+	@media (max-width: 549px) and (max-height: 699px) {
 		.modal-content {
 			height: 34%;
+			width: 80%;
+		}
+		label {
+			font-size: 1.2rem;
+		}
+		.title-logo {
+			gap: 0.6rem;
+		}
+		.create-icon {
+			height: 1.5rem;
+			width: 1.5rem;
+		}
+		.close-btn {
+			position: relative;
+			bottom: 0.1rem;
+			right: 1rem;
+		}
+		.input {
+			height: 13%;
+			width: 90%;
+		}
+		button {
+			width: 4.2rem;
+			height: 2.4rem;
+			font-size: 1rem;
+		}
+		.error {
+			font-size: 0.735rem;
+		}
+		input {
+			font-size: medium;
+			border-radius: 0.4rem;
+		}
+		.modal-actions {
+			gap: 1.5em;
+		}
+	}
+	@media (max-width: 549px) and (min-height: 700px) {
+		.modal-content {
+			height: 26%;
 			width: 80%;
 		}
 		label {

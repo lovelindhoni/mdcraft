@@ -3,7 +3,13 @@
 	import { currentNoteId } from '$lib/store';
 </script>
 
-<div class="go-back {currentNoteId ? 'go-back-to-notes' : 'go-back-to-folder'}" on:click on:keydown>
+<div
+	class="go-back {currentNoteId ? 'go-back-to-notes' : 'go-back-to-folder'}"
+	role="link"
+	tabindex="0"
+	on:click
+	on:keydown
+>
 	<img
 		class={currentNoteId ? 'arrow-logo-to-notes' : 'arrow-logo-to-folder'}
 		src={Back}

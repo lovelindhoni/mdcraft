@@ -38,10 +38,17 @@
 			showModal = false;
 		}
 	}
+	let size = matchMedia('(max-width:549px)').matches
+		? '20'
+		: matchMedia('(max-width:1023px)').matches
+		? '24'
+		: matchMedia('(max-width:1450px)').matches
+		? '27'
+		: '32';
 </script>
 
 <button on:click={() => (showModal = true)} on:keydown={() => (showModal = true)}>
-	<svelte:component this={AddSvg} color="white" />
+	<svelte:component this={AddSvg} color="white" {size} />
 </button>
 {#if showModal}
 	<!--opens the modal here-->

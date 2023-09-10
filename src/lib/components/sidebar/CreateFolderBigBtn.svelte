@@ -109,9 +109,9 @@
 
 	@media (max-width: 549px) {
 		button {
-			width: 12rem;
-			height: 3.8rem;
-			font-size: 1.4rem;
+			width: 11rem;
+			height: 3.5rem;
+			font-size: 1.3rem;
 			border-radius: 0.8rem;
 		}
 	}

@@ -244,6 +244,7 @@
 		font-weight: 500;
 		text-overflow: ellipsis;
 		overflow: hidden;
+		display: block;
 		white-space: nowrap;
 	}
 </style>

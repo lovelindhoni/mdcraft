@@ -12,6 +12,8 @@
 			class="url"
 			on:click={() => currentNoteId.set(null)}
 			on:keydown={() => currentNoteId.set(null)}
+			role="link"
+			tabindex="0"
 			>{$folders[currentFolderIndex].title}
 		</span>
 
