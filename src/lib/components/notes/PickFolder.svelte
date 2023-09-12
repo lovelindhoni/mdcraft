@@ -43,8 +43,8 @@
 			font-size: 1.4rem;
 		}
 		img {
-			height: 18rem;
-			width: 18rem;
+			height: 18.5rem;
+			width: 18.5rem;
 		}
 	}
 

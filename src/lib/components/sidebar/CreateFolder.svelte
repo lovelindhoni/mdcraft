@@ -87,8 +87,8 @@
 			width: 90%;
 		}
 		button {
-			height: 3.1rem;
-			width: 3.1rem;
+			height: 3rem;
+			width: 3rem;
 		}
 	}
 	@media screen and (min-width: 1430px) and (max-width: 1739px) {
@@ -100,8 +100,8 @@
 			width: 90%;
 		}
 		button {
-			height: 2.7rem;
-			width: 2.7rem;
+			height: 2.6rem;
+			width: 2.6rem;
 		}
 	}
 	@media screen and (min-width: 1151px) and (max-width: 1429px) {
@@ -113,8 +113,8 @@
 			width: 90%;
 		}
 		button {
-			height: 2.6rem;
-			width: 2.6rem;
+			height: 2.5rem;
+			width: 2.5rem;
 		}
 	}
 	@media screen and (min-width: 1024px) and (max-width: 1150px) {
@@ -126,8 +126,8 @@
 			width: 90%;
 		}
 		button {
-			height: 2.3rem;
-			width: 2.3rem;
+			height: 2.2rem;
+			width: 2.2rem;
 		}
 	}
 	@media screen and (min-width: 650px) and (max-width: 1023px) {

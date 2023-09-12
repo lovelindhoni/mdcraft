@@ -3,6 +3,7 @@
 	import Sidebar from '$lib/components/sidebar/Sidebar.svelte'; // the sidebar
 	import NotesSection from '$lib/components/notes/NotesSection.svelte';
 	import Viewer from '$lib/components/viewer/Viewer.svelte';
+	import Header from '$lib/components/Header.svelte';
 	$: currentFolderIndex = $folders.findIndex((folder) => folder.id === $currentFolderId); // finding the currentFolderIndex
 	$: currentNoteIndex =
 		// finding the currentNoteIndex, when the id's are null then it will be -1. Its needed to squash a bug.
@@ -12,7 +13,7 @@
 </script>
 
 <main class="layout">
-	<header>MdCraft</header>
+	<Header />
 	{#if !matchMedia('(max-width:1023px)').matches}
 		<div class="sidebar" role="menubar">
 			<Sidebar />
@@ -41,40 +42,13 @@
 </main>
 
 <style>
-	@media screen and (min-width: 1740px) {
-		header {
-			font-size: 3.2rem;
-		}
-	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
-		header {
-			font-size: 2.6rem;
-		}
-	}
-	@media screen and (min-width: 1151px) and (max-width: 1429px) {
-		header {
-			font-size: 2.2rem;
-		}
-	}
-	@media screen and (min-width: 1024px) and (max-width: 1150px) {
-		header {
-			font-size: 1.8rem;
-		}
-	}
 	@media screen and (min-width: 1024px) {
 		.layout {
 			display: grid;
 			grid-template-rows: repeat(20, 5%);
 			grid-template-columns: repeat(20, 5%);
 		}
-		header {
-			height: 100%;
-			grid-row-start: span 2;
-			grid-column-start: span 7;
-			padding-top: 1rem;
-			padding-left: 2rem;
-			align-items: center;
-		}
+
 		.sidebar {
 			grid-row: 3 / span 18;
 			grid-column-start: span 7;
@@ -88,16 +62,6 @@
 		}
 	}
 	@media screen and (min-width: 650px) and (max-width: 1023px) {
-		header {
-			width: 68%;
-			margin-left: auto;
-			margin-right: auto;
-			height: 10%;
-			font-size: 3.2rem;
-			padding-top: 1rem;
-			padding-left: 1.6rem;
-			align-items: center;
-		}
 		.sidebar {
 			height: 90%;
 			padding-top: 0.5rem;
@@ -107,16 +71,6 @@
 		}
 	}
 	@media screen and (min-width: 550px) and (max-width: 649px) {
-		header {
-			width: 80%;
-			margin-left: auto;
-			margin-right: auto;
-			height: 10%;
-			font-size: 3.1rem;
-			padding-top: 1rem;
-			padding-left: 1.6rem;
-			align-items: center;
-		}
 		.sidebar {
 			height: 90%;
 			padding-top: 0.5rem;
@@ -126,14 +80,6 @@
 		}
 	}
 	@media screen and (min-width: 400px) and (max-width: 549px) {
-		header {
-			width: 100%;
-			height: 10%;
-			font-size: 2.34rem;
-			padding-top: 1rem;
-			padding-left: 1.6rem;
-			align-items: center;
-		}
 		.sidebar {
 			height: 87%;
 		}
@@ -142,13 +88,6 @@
 		}
 	}
 	@media screen and (max-width: 399px) {
-		header {
-			width: 100%;
-			height: 9%;
-			font-size: 2.15rem;
-			padding-top: 1rem;
-			padding-left: 1.6rem;
-		}
 		.sidebar {
 			height: 87%;
 		}
@@ -165,13 +104,7 @@
 		background-color: var(--background);
 		color: var(--text);
 	}
-	header {
-		display: flex;
-		color: var(--orange);
-		box-sizing: border-box;
-		cursor: default;
-		gap: 0.5rem;
-	}
+
 	.sidebar {
 		box-sizing: border-box;
 		padding-left: 0.6rem;

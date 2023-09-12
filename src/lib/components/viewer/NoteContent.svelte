@@ -301,8 +301,8 @@
 		border: 0.12rem solid var(--grey-1);
 		line-height: 1.5;
 	}
-	:global(.viewer hr){
-         color:var(--grey-2)
+	:global(.viewer hr) {
+		color: var(--grey-2);
 	}
 	:global(.viewer a) {
 		color: var(--orange);

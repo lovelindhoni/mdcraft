@@ -165,8 +165,7 @@
 			height: 4rem;
 			border-bottom: 1px solid var(--grey-1);
 			width: 64%;
-					padding-left: 1rem;
-
+			padding-left: 1rem;
 		}
 		.actions {
 			padding-left: 0.3rem;
@@ -181,8 +180,7 @@
 			height: 4rem;
 			border-bottom: 1px solid var(--grey-1);
 			width: 70%;
-					padding-left: 1rem;
-
+			padding-left: 1rem;
 		}
 	}
 	@media screen and (max-width: 549px) {
@@ -193,8 +191,7 @@
 			height: 3.4rem;
 			border-bottom: 1px solid var(--grey-1);
 			width: 85%;
-					padding-left: 1rem;
-
+			padding-left: 1rem;
 		}
 		.actions {
 			padding-left: 0.3rem;

@@ -89,7 +89,7 @@
 		}
 
 		.header-container {
-			margin-top: 1.5rem;
+			margin-top: 1.15rem;
 			height: 8%;
 		}
 
@@ -106,7 +106,7 @@
 		}
 
 		.go-back-to-notes {
-			padding: 0  1.7rem 1.7rem;
+			padding: 0 1.7rem 1.7rem;
 		}
 
 		.header-container {
