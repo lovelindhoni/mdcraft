@@ -9,7 +9,7 @@
 	import { afterUpdate } from 'svelte'; // Run Highlighting for code blocks after DOM update
 	import Toggle from '$lib/components/viewer/Toggle.svelte';
 	import Pagination from '$lib/components/viewer/Pagination.svelte';
-	import GoBack from '$lib/components/GoBack.svelte';
+	import GoBack from '$lib/components/header/GoBack.svelte';
 	const emojis = new EmojiConvertor();
 	emojis.replace_mode = 'unified'; // Outputs Unicode code points at the place of colon-text
 	const renderer = new marked.Renderer();
@@ -36,17 +36,31 @@
 	let edit: boolean; // the variable used to toggle between the notecontent and editor.
 	// the generatedHtml variable that runs whenever the content is changed.
 	$: generatedHtml = marked($folders[currentFolderIndex].notes[currentNoteIndex].content);
+	import Download from '$lib/components/header/Download.svelte';
 </script>
 
 <div class="header-container">
 	<div class="editor-head">
 		<!--i have used the svelte:component to show the dynamically imported toggle and pagination-->
-		<Pagination {currentFolderIndex} {currentNoteIndex} />
+		<div class="download-container">
+			<Pagination {currentFolderIndex} {currentNoteIndex} />
+			{#if matchMedia('(min-width:1024px)').matches}
+				<Download
+					title={$folders[currentFolderIndex].notes[currentNoteIndex].title}
+					content={$folders[currentFolderIndex].notes[currentNoteIndex].content}
+				/>
+			{/if}
+		</div>
 		<Toggle bind:edit />
 	</div>
 	{#if matchMedia('(max-width:1023px)').matches}
 		<div class="go-back-to-notes">
-			<GoBack on:click={() => currentNoteId.set(null)} on:keydown={() => currentNoteId.set(null)} />
+			<GoBack
+				title={$folders[currentFolderIndex].notes[currentNoteIndex].title}
+				content={$folders[currentFolderIndex].notes[currentNoteIndex].content}
+				on:click={() => currentNoteId.set(null)}
+				on:keydown={() => currentNoteId.set(null)}
+			/>
 		</div>
 	{/if}
 </div>
@@ -64,19 +78,24 @@
 {/if}
 
 <style>
+	.download-container {
+		display: flex;
+		align-items: center;
+		gap: 1.3rem;
+	}
 	@media (min-width: 1740px) {
 		textarea {
 			font-size: 1.65rem;
 		}
 	}
 
-	@media (min-width: 1440px) and (max-width: 1739px) {
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		textarea {
 			font-size: 1.36rem;
 		}
 	}
 
-	@media (max-width: 1439px) {
+	@media (max-width: 1429px) {
 		textarea {
 			font-size: 1.19rem;
 		}
@@ -84,7 +103,6 @@
 
 	@media (min-width: 1024px) {
 		.editor-head {
-			justify-content: space-between;
 			padding: 1.5rem 2.3rem;
 		}
 
@@ -101,7 +119,6 @@
 
 	@media (min-width: 650px) and (max-width: 1023px) {
 		.editor-head {
-			justify-content: space-between;
 			padding: 1.7rem;
 		}
 
@@ -118,13 +135,12 @@
 		textarea {
 			padding: 2rem 20vw;
 			height: 82%;
-			font-size: 1.32rem;
+			font-size: 1.34rem;
 		}
 	}
 
 	@media (min-width: 550px) and (max-width: 649px) {
 		.editor-head {
-			justify-content: space-between;
 			padding: 1.7rem;
 		}
 
@@ -147,7 +163,7 @@
 
 	@media (max-width: 549px) {
 		.editor-head {
-			justify-content: space-around;
+			padding: 0 1.6rem;
 		}
 
 		.header-container {
@@ -188,6 +204,7 @@
 		box-sizing: border-box;
 		height: 100%;
 		width: 100%;
+		justify-content: space-between;
 	}
 
 	.header-container {

@@ -1,24 +1,36 @@
 <script lang="ts">
 	import Back from '$lib/assets/back.svg';
 	import { currentNoteId } from '$lib/store';
+	import Download from '$lib/components/header/Download.svelte';
+	export let title: string;
+	export let content: string;
 </script>
 
-<div
-	class="go-back {currentNoteId ? 'go-back-to-notes' : 'go-back-to-folder'}"
-	role="link"
-	tabindex="0"
-	on:click
-	on:keydown
->
-	<img
-		class={currentNoteId ? 'arrow-logo-to-notes' : 'arrow-logo-to-folder'}
-		src={Back}
-		alt="a svg describing a backwards"
-	/>
-	<span>Back</span>
+<div class="container">
+	<div
+		class="go-back {currentNoteId ? 'go-back-to-notes' : 'go-back-to-folder'}"
+		role="link"
+		tabindex="0"
+		on:click
+		on:keydown
+	>
+		<img
+			class={currentNoteId ? 'arrow-logo-to-notes' : 'arrow-logo-to-folder'}
+			src={Back}
+			alt="a svg describing a backwards"
+		/>
+		<span>Back</span>
+	</div>
+	{#if $currentNoteId}
+		<Download {title} {content} />
+	{/if}
 </div>
 
 <style>
+	.container {
+		display: flex;
+		justify-content: space-between;
+	}
 	@media (min-width: 550px) and (max-width: 1023px) {
 		.go-back-to-folder,
 		.go-back-to-notes {

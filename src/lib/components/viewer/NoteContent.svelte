@@ -128,13 +128,21 @@
 			font-size: 1.15rem;
 		}
 		:global(.viewer pre span) {
-			font-size: 1.05rem;
+			font-size: 1.03rem;
 		}
 	}
 	@media screen and (min-width: 1024px) {
 		.viewer {
 			height: 87%;
-			padding: 1rem 2.5rem;
+			padding-top: 1rem;
+			padding-bottom: 1rem;
+			padding-left: 2.5rem;
+			padding-right: 2.5rem;
+		}
+		:global(.viewer pre) {
+			max-width: 58vw;
+			margin-left: auto;
+			margin-right: auto;
 		}
 	}
 	@media screen and (min-width: 650px) and (max-width: 1023px) {

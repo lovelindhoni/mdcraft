@@ -3,7 +3,7 @@
 	import Sidebar from '$lib/components/sidebar/Sidebar.svelte'; // the sidebar
 	import NotesSection from '$lib/components/notes/NotesSection.svelte';
 	import Viewer from '$lib/components/viewer/Viewer.svelte';
-	import Header from '$lib/components/Header.svelte';
+	import Header from '$lib/components/header/Header.svelte';
 	$: currentFolderIndex = $folders.findIndex((folder) => folder.id === $currentFolderId); // finding the currentFolderIndex
 	$: currentNoteIndex =
 		// finding the currentNoteIndex, when the id's are null then it will be -1. Its needed to squash a bug.

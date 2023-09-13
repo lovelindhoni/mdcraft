@@ -1,10 +1,10 @@
 <script lang="ts">
-	import AddFolder from '$lib/assets/AddFolder.svg';
+	import Addfolder from '$lib/assets/Addfolder.svg';
 	import CreateFolderBigButton from '$lib/components/sidebar/CreateFolderBigBtn.svelte';
 </script>
 
 <div class="no-folders">
-	<img src={AddFolder} alt="an illustration representing a folder with some notes in it" />
+	<img src={Addfolder} alt="an illustration representing a folder with some notes in it" />
 	<div style="">
 		<span class="no-folders-text">No folders found</span>
 		<span class="no-folders-subtext">Folders let you organize your notes</span>

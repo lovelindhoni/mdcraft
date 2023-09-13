@@ -6,7 +6,7 @@
 
 <style>
 	:root {
-		--orange: #f96743;
+		--orange: hsl(12, 94%, 62%);
 		--background: hsl(0, 0%, 10%);
 		--text: hsl(0, 0%, 90%);
 		--green: hsl(102, 52%, 48%);

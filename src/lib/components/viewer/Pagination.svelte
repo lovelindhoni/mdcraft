@@ -25,16 +25,19 @@
 	@media screen and (min-width: 1740px) {
 		span {
 			font-size: 1.57rem;
+			max-width: 15vw;
 		}
 	}
 	@media screen and (min-width: 1430px) and (max-width: 1739px) {
 		span {
 			font-size: 1.32rem;
+			max-width: 10vw;
 		}
 	}
 	@media screen and (min-width: 1024px) and (max-width: 1429px) {
 		span {
 			font-size: 1.21rem;
+			max-width: 13vw;
 		}
 	}
 	@media screen and (min-width: 550px) and (max-width: 1023px) {
@@ -42,20 +45,19 @@
 			font-size: 1.3rem;
 			max-width: 25vw;
 			display: inline-block;
-			text-overflow: ellipsis;
-			overflow: hidden;
-			white-space: nowrap;
 		}
 	}
 	@media screen and (max-width: 549px) {
 		span {
-			font-size: 1.04rem;
-			display: block;
+			font-size: 1rem;
 			width: 40vw;
-			text-overflow: ellipsis;
-			overflow: hidden;
-			white-space: nowrap;
+			display: block;
 		}
+	}
+	span {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
 	}
 	.url {
 		cursor: pointer;

@@ -5,7 +5,7 @@
 	import Note from '$lib/components/notes/Note.svelte';
 	import NoNotes from '$lib/components/notes/NoNotes.svelte';
 	import PickFolder from '$lib/components/notes/PickFolder.svelte';
-	import GoBack from '$lib/components/GoBack.svelte';
+	import GoBack from '$lib/components/header/GoBack.svelte';
 	export let currentFolderIndex: number; // fulfilled by the +page.svelte
 </script>
 
@@ -22,7 +22,7 @@
 					/>
 				{/if}
 				<div class="title-btn">
-					<h1>{@html $folders[currentFolderIndex].title.replace(/ /g, '&nbsp;')}</h1>
+					<h2>{@html $folders[currentFolderIndex].title.replace(/ /g, '&nbsp;')}</h2>
 					<!--the regex to preserve the whitespaces-->
 					<!--the title of that Folder-->
 					<svelte:component this={CreateNote} {currentFolderIndex} />
@@ -55,20 +55,20 @@
 
 <style>
 	@media (min-width: 1740px) {
-		h1 {
-			font-size: 2.62rem;
+		h2 {
+			font-size: 2.5rem;
 		}
 	}
 
 	@media (min-width: 1430px) and (max-width: 1739px) {
-		h1 {
-			font-size: 2.45rem;
+		h2 {
+			font-size: 2.1rem;
 		}
 	}
 
 	@media (min-width: 1024px) and (max-width: 1429px) {
-		h1 {
-			font-size: 2.07rem;
+		h2 {
+			font-size: 2rem;
 		}
 	}
 
@@ -79,7 +79,7 @@
 	}
 
 	@media (min-width: 649px) and (max-width: 1023px) {
-		h1 {
+		h2 {
 			font-size: 2.2rem;
 		}
 		.mast {
@@ -91,7 +91,7 @@
 	}
 
 	@media (min-width: 550px) and (max-width: 649px) {
-		h1 {
+		h2 {
 			font-size: 2.05rem;
 		}
 		.mast {
@@ -103,7 +103,7 @@
 	}
 
 	@media (max-width: 549px) {
-		h1 {
+		h2 {
 			font-size: 1.6rem;
 		}
 		.mast {
@@ -137,7 +137,7 @@
 		height: 100%;
 	}
 
-	h1 {
+	h2 {
 		font-weight: normal;
 		text-overflow: ellipsis;
 		overflow: hidden;

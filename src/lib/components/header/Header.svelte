@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Social from '$lib/components/Social.svelte';
+	import Social from '$lib/components/header/Social.svelte';
 </script>
 
 <header>MdCraft <Social /></header>
@@ -42,11 +42,10 @@
 			margin-left: auto;
 			margin-right: auto;
 			height: 10%;
-			font-size: 3.2rem;
-			padding-top: 1rem;
+			font-size: 2.8rem;
+			padding-top: 2.1rem;
 			padding-left: 1.6rem;
 			padding-right: 1.6rem;
-
 			align-items: baseline;
 		}
 	}
@@ -56,11 +55,10 @@
 			margin-left: auto;
 			margin-right: auto;
 			height: 10%;
-			font-size: 3.1rem;
+			font-size: 2.8rem;
 			padding-top: 1rem;
 			padding-left: 1.6rem;
 			padding-right: 1.6rem;
-
 			align-items: baseline;
 		}
 	}
@@ -68,11 +66,10 @@
 		header {
 			width: 100%;
 			height: 10%;
-			font-size: 2.34rem;
-			padding-top: 1rem;
+			font-size: 2.05rem;
+			padding-top: 2.2rem;
 			padding-left: 1.6rem;
 			padding-right: 1.6rem;
-
 			align-items: baseline;
 		}
 	}
@@ -80,7 +77,7 @@
 		header {
 			width: 100%;
 			height: 9%;
-			font-size: 2.15rem;
+			font-size: 2.05rem;
 			padding-top: 1rem;
 			padding-left: 1.6rem;
 			padding-right: 1.6rem;
