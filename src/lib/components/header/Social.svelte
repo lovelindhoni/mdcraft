@@ -1,3 +1,4 @@
+<!--This is the component that has the social icons.-->
 <script lang="ts">
 	import Github from '$lib/assets/github.svg';
 	import Twitter from '$lib/assets/twitter.svg';

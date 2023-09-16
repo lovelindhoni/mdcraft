@@ -1,7 +1,7 @@
 {
-	"name": "notestaker",
+	"name": "mdcraft",
 	"version": "0.1",
-	"private": true,
+	"private": false,
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",

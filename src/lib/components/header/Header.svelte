@@ -1,3 +1,4 @@
+<!--This component has the title and the imported social icons.-->
 <script lang="ts">
 	import Social from '$lib/components/header/Social.svelte';
 </script>
@@ -30,35 +31,27 @@
 			height: 100%;
 			grid-row-start: span 2;
 			grid-column-start: span 7;
-			padding-top: 1rem;
-			padding-left: 2rem;
-			padding-right: 2rem;
+			padding: 1rem 2rem 0;
 			align-items: center;
 		}
 	}
 	@media screen and (min-width: 650px) and (max-width: 1023px) {
 		header {
 			width: 68%;
-			margin-left: auto;
-			margin-right: auto;
 			height: 10%;
+			margin: 0 auto 0;
+			padding: 2.1rem 1.6rem 0;
 			font-size: 2.8rem;
-			padding-top: 2.1rem;
-			padding-left: 1.6rem;
-			padding-right: 1.6rem;
 			align-items: baseline;
 		}
 	}
 	@media screen and (min-width: 550px) and (max-width: 649px) {
 		header {
 			width: 80%;
-			margin-left: auto;
-			margin-right: auto;
+			margin: 0 auto 0;
 			height: 10%;
 			font-size: 2.8rem;
-			padding-top: 1rem;
-			padding-left: 1.6rem;
-			padding-right: 1.6rem;
+			padding: 1rem 1.6rem 0;
 			align-items: baseline;
 		}
 	}
@@ -67,9 +60,7 @@
 			width: 100%;
 			height: 10%;
 			font-size: 2.05rem;
-			padding-top: 2.2rem;
-			padding-left: 1.6rem;
-			padding-right: 1.6rem;
+			padding: 2.2rem 1.6rem 0;
 			align-items: baseline;
 		}
 	}
@@ -78,9 +69,7 @@
 			width: 100%;
 			height: 9%;
 			font-size: 2.05rem;
-			padding-top: 1rem;
-			padding-left: 1.6rem;
-			padding-right: 1.6rem;
+			padding: 1rem 1.6rem 0;
 			align-items: baseline;
 		}
 	}

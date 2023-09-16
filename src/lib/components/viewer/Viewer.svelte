@@ -1,15 +1,23 @@
 <!--this component connects all the comps in the viewer folder and exported to the +page.svelte-->
 <script lang="ts">
 	import { currentNoteId, folders } from '$lib/store';
+	import { onMount } from 'svelte';
 	import { marked } from 'marked'; // For parsing note's content
 	import EmojiConvertor from 'emoji-js'; // Converts colon-text to emojis
 	import hljs from 'highlight.js'; // For Highlighting Code Blocks
-	import '@fontsource/inconsolata/500.css';
-	import NoteContent from '$lib/components/viewer/NoteContent.svelte';
+	import '@fontsource/inconsolata/500.css'; // font for textarea
 	import { afterUpdate } from 'svelte'; // Run Highlighting for code blocks after DOM update
+	import NoteContent from '$lib/components/viewer/NoteContent.svelte';
 	import Toggle from '$lib/components/viewer/Toggle.svelte';
 	import Pagination from '$lib/components/viewer/Pagination.svelte';
-	import GoBack from '$lib/components/header/GoBack.svelte';
+	import Download from '$lib/components/header/Download.svelte';
+	let GoBack: any = null;
+	// I am dynamically importing the goback component because this is needed only for smaller screens, just to reduce some size.
+	onMount(async () => {
+		if (matchMedia('(max-width:1023px)').matches) {
+			GoBack = (await import('$lib/components/header/GoBack.svelte')).default;
+		}
+	});
 	const emojis = new EmojiConvertor();
 	emojis.replace_mode = 'unified'; // Outputs Unicode code points at the place of colon-text
 	const renderer = new marked.Renderer();
@@ -36,12 +44,11 @@
 	let edit: boolean; // the variable used to toggle between the notecontent and editor.
 	// the generatedHtml variable that runs whenever the content is changed.
 	$: generatedHtml = marked($folders[currentFolderIndex].notes[currentNoteIndex].content);
-	import Download from '$lib/components/header/Download.svelte';
 </script>
 
 <div class="header-container">
+	<!--forgive my poor choice of css classes, the header container contains the download button, the toggle and the pagination component  -->
 	<div class="editor-head">
-		<!--i have used the svelte:component to show the dynamically imported toggle and pagination-->
 		<div class="download-container">
 			<Pagination {currentFolderIndex} {currentNoteIndex} />
 			{#if matchMedia('(min-width:1024px)').matches}
@@ -55,11 +62,14 @@
 	</div>
 	{#if matchMedia('(max-width:1023px)').matches}
 		<div class="go-back-to-notes">
-			<GoBack
-				title={$folders[currentFolderIndex].notes[currentNoteIndex].title}
-				content={$folders[currentFolderIndex].notes[currentNoteIndex].content}
+			<svelte:component
+				this={GoBack}
 				on:click={() => currentNoteId.set(null)}
 				on:keydown={() => currentNoteId.set(null)}
+			/>
+			<Download
+				title={$folders[currentFolderIndex].notes[currentNoteIndex].title}
+				content={$folders[currentFolderIndex].notes[currentNoteIndex].content}
 			/>
 		</div>
 	{/if}
@@ -211,5 +221,9 @@
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: column;
+	}
+	.go-back-to-notes {
+		display: flex;
+		justify-content: space-between;
 	}
 </style>

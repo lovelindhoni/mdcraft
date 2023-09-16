@@ -1,7 +1,8 @@
+<!--This component exists to show the illustration when there is no notes in a folder-->
 <script lang="ts">
 	import CreateNoteBigBtn from './CreateNoteBigBtn.svelte';
 	import AddNotes from '$lib/assets/AddNotes.svg';
-	export let currentFolderIndex: number;
+	export let currentFolderIndex: number; // passed the create note button
 </script>
 
 <div class="no-notes">
@@ -96,8 +97,7 @@
 			justify-content: center;
 			height: 80%;
 			width: 100%;
-			margin-top: auto;
-			margin-bottom: auto;
+			margin: auto 0;
 			padding: 0 2rem;
 		}
 		.create-note-text {

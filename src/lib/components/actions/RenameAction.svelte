@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import { focusInput } from '$lib/store'; // for focussing the input tag
 	import EditSvg from '$lib/assets/EditSvg.svelte';
 	import CloseSvg from '$lib/assets/CloseSvg.svelte';
@@ -17,18 +17,28 @@
 		: matchMedia('(max-width:1023px)').matches
 		? '24'
 		: '26';
+	// the below variable is indeed an an special case :(
+	let editIconSize = matchMedia('(max-width:549px)').matches
+		? '15'
+		: matchMedia('(max-width:1023px)').matches
+		? '19'
+		: '21';
+	const proceedShorcut = (event: KeyboardEvent) =>
+		event.key === 'Enter' && title.trim() !== '' ? dispatch('proceed') : null;
+	onMount(() => {
+		window.addEventListener('keydown', proceedShorcut);
+		return () => {
+			window.removeEventListener('keydown', proceedShorcut);
+		};
+	});
 </script>
 
 <div class="modal-container">
 	<div role="dialog" class="modal-content">
 		<div class="title-closebtn">
 			<div class="title-logo">
-				<span class="rename-icon"
-					><EditSvg
-						color="white"
-						size={matchMedia('(max-width:549px)') ? (parseInt(size) - 6).toString() : size}
-					/></span
-				>
+				<span class="rename-icon"><EditSvg color="white" size={editIconSize} /></span>
+				<!--the below slot will have the content type-->
 				<label for="newtitle"><slot /></label>
 			</div>
 			<span

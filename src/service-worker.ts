@@ -79,3 +79,4 @@ worker.addEventListener('fetch', (event) => {
 		);
 	}
 });
+// big thanks to https://github.com/100lvlmaster for this script

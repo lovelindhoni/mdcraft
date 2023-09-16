@@ -1,31 +1,41 @@
-<!--this connects all the comps in the notes folder. it will be impported to the dashboard-->
+<!--this connects all the comps in the notes folder. it will be imported to the main page-->
 <script lang="ts">
 	import { folders, currentFolderId, currentNoteId } from '$lib/store'; // importing the folders and the id's
+	import { onMount } from 'svelte';
+	let GoBack: any = null;
+	let PickFolder: any = null;
+	// i am dynamically importing it becauses these are needed only for smaller screens.
+	onMount(async () => {
+		if (matchMedia('(min-width:1023px)').matches) {
+			PickFolder = (await import('$lib/components/notes/PickFolder.svelte')).default;
+		} else {
+			GoBack = (await import('$lib/components/header/GoBack.svelte')).default;
+		}
+	});
 	import CreateNote from '$lib/components/notes/CreateNote.svelte';
 	import Note from '$lib/components/notes/Note.svelte';
 	import NoNotes from '$lib/components/notes/NoNotes.svelte';
-	import PickFolder from '$lib/components/notes/PickFolder.svelte';
-	import GoBack from '$lib/components/header/GoBack.svelte';
 	export let currentFolderIndex: number; // fulfilled by the +page.svelte
 </script>
 
 {#if $currentFolderId}
 	<!--incase if any Folder are selected-->
 	<div role="menu" class="notes-and-title">
-		<!---->
+		<!--I seriously dont know why i made this logic, but it is needed-->
 		{#if ($folders[currentFolderIndex].notes.length > 0 && matchMedia('(min-width:1024px)').matches) || matchMedia('(max-width:1023px)').matches}
 			<div class="mast" role="group">
 				{#if matchMedia('(max-width:1023px').matches}
-					<GoBack
+					<svelte:component
+						this={GoBack}
 						on:click={() => currentFolderId.set(null)}
 						on:keydown={() => currentFolderId.set(null)}
 					/>
 				{/if}
 				<div class="title-btn">
-					<h2>{@html $folders[currentFolderIndex].title.replace(/ /g, '&nbsp;')}</h2>
+					<h2>/{@html $folders[currentFolderIndex].title}</h2>
 					<!--the regex to preserve the whitespaces-->
 					<!--the title of that Folder-->
-					<svelte:component this={CreateNote} {currentFolderIndex} />
+					<CreateNote {currentFolderIndex} />
 					<!--passing the currentFolderindex to the createnote-->
 				</div>
 			</div>
@@ -34,8 +44,7 @@
 			{#if $folders[currentFolderIndex].notes.length > 0}
 				<!--if the notesarray is not empty-->
 				{#each $folders[currentFolderIndex].notes as note (note.id)}
-					<svelte:component
-						this={Note}
+					<Note
 						{currentFolderIndex}
 						noteId={note.id}
 						on:click={() => currentNoteId.set(note.id)}
@@ -50,7 +59,7 @@
 	</div>
 {:else}
 	<!--if no Folder are selected then-->
-	<PickFolder />
+	<svelte:component this={PickFolder} />
 {/if}
 
 <style>
@@ -141,7 +150,7 @@
 		font-weight: normal;
 		text-overflow: ellipsis;
 		overflow: hidden;
-		white-space: nowrap;
+		white-space: pre;
 		width: 70%;
 	}
 

@@ -54,7 +54,8 @@
 		.folders {
 			height: 88.5%;
 			width: 70%;
-			margin: 0 auto;
+			margin-right: auto;
+			margin-left: auto;
 		}
 	}
 
@@ -62,7 +63,8 @@
 		.folders {
 			height: 88.5%;
 			width: 82%;
-			margin: 0 auto;
+			margin-right: auto;
+			margin-left: auto;
 		}
 	}
 

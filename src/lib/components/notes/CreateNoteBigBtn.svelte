@@ -1,8 +1,10 @@
+<!--this is a big button that is shown to create notes when there is no notes in a folder-->
 <script lang="ts">
 	import { folders } from '$lib/store'; // the folders array as ususal
 	import { onMount } from 'svelte'; // for dynamic importing
 	let AddSvg: any; // the variables to hold the dynaimically imported comps
 	let CreateAction: any;
+	// lazily importing the components here
 	onMount(async () => {
 		AddSvg = (await import('$lib/assets/AddSvg.svelte')).default;
 		CreateAction = (await import('$lib/components/actions/CreateAction.svelte')).default;
@@ -41,7 +43,7 @@
 	let size = matchMedia('(min-width:1740px)').matches
 		? '39'
 		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches ||
-		  matchMedia('(min-width:550px) and (max-width:1023px)')
+		  matchMedia('(min-width:550px) and (max-width:1023px)').matches
 		? '32'
 		: '26';
 </script>

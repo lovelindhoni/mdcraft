@@ -1,8 +1,9 @@
+<!--this is a small button that would create new folders, in the sidebar section-->
 <script lang="ts">
 	import { folders } from '$lib/store'; // importing the folders array from the store
 	import AddIcon from '$lib/assets/AddSvg.svelte'; // the addicon svg
 	import { onMount } from 'svelte';
-	let CreateAction: any; // for dynamically importing the actions modal
+	let CreateAction: any; // for dynamically importing the create action modal
 	onMount(async () => {
 		CreateAction = (await import('$lib/components/actions/CreateAction.svelte')).default;
 	});
@@ -39,7 +40,8 @@
 		}
 	}
 	let size = matchMedia('(max-width:549px)').matches
-		? '20'
+		? // for changing the size of the icons
+		  '20'
 		: matchMedia('(max-width:1023px)').matches
 		? '24'
 		: matchMedia('(max-width:1450px)').matches

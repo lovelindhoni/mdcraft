@@ -1,3 +1,4 @@
+<!--This component is what contains and styles the generated html from markdown-->
 <script>
 	import 'highlight.js/styles/base16/dracula.css'; // dracula theme for now
 </script>
@@ -134,23 +135,17 @@
 	@media screen and (min-width: 1024px) {
 		.viewer {
 			height: 87%;
-			padding-top: 1rem;
-			padding-bottom: 1rem;
-			padding-left: 2.5rem;
-			padding-right: 2.5rem;
+			padding: 1rem 2.5rem;
 		}
 		:global(.viewer pre) {
-			max-width: 58vw;
+			max-width: 55vw;
 			margin-left: auto;
 			margin-right: auto;
 		}
 	}
 	@media screen and (min-width: 650px) and (max-width: 1023px) {
 		.viewer {
-			padding-top: 1rem;
-			padding-bottom: 2rem;
-			padding-left: 20vw;
-			padding-right: 20vw;
+			padding: 1rem 20vw 2rem;
 			height: 85%;
 		}
 		:global(.viewer h1) {
@@ -193,11 +188,8 @@
 	}
 	@media screen and (min-width: 550px) and (max-width: 649px) {
 		.viewer {
-			padding-top: 1rem;
-			padding-bottom: 2rem;
-			padding-left: 15vw;
-			padding-right: 15vw;
 			height: 85%;
+			padding: 1rem 15vw 2rem;
 		}
 		:global(.viewer h1) {
 			font-size: 2.2rem;
@@ -239,10 +231,7 @@
 	}
 	@media screen and (max-width: 549px) {
 		.viewer {
-			padding-top: 1rem;
-			padding-bottom: 2rem;
-			padding-left: 8vw;
-			padding-right: 8vw;
+			padding: 1rem 8vw 2rem;
 			height: 81%;
 		}
 		:global(.viewer h1) {

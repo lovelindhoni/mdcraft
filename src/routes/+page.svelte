@@ -14,7 +14,9 @@
 
 <main class="layout">
 	<Header />
+	<!--two different layouts, one for mobile and tablets and another for pc and desktops-->
 	{#if !matchMedia('(max-width:1023px)').matches}
+		<!--this layout for pc and desktops-->
 		<div class="sidebar" role="menubar">
 			<Sidebar />
 		</div>
@@ -26,6 +28,7 @@
 				<NotesSection {currentFolderIndex} />
 			{/if}
 		</div>
+		<!-- and these below three are for mobile and tablets-->
 	{:else if !$currentFolderId}
 		<div class="sidebar" role="menubar">
 			<Sidebar />
@@ -107,8 +110,7 @@
 
 	.sidebar {
 		box-sizing: border-box;
-		padding-left: 0.6rem;
-		padding-right: 0.5rem;
+		padding: 0 0.5rem 0 0.6rem;
 		width: 100%;
 	}
 

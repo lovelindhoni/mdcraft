@@ -1,18 +1,28 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import AddSvg from '$lib/assets/AddSvg.svelte';
 	import CloseSvg from '$lib/assets/CloseSvg.svelte';
 	import { focusInput } from '$lib/store';
 	const dispatch = createEventDispatcher();
 	export let title = ''; // the title which is created and send to the comps
-	export let contentType: string;
-	export let noError = true;
+	export let contentType: string; // the contenttype means wheather the modified content is a folder or a note, i have used this only in this component, because i need to show the contentype on placeholder for input tag, whereas in other modals, it is not needed so i directly used a slot.
+	export let noError = true; // if there are any error while creating content
 	$: disabled = title.length === 0 ? true : false; // for disabling the ok button
 	let size = matchMedia('(max-width:549px)').matches
-		? '20'
+		? // for changing the size of the icon
+		  '20'
 		: matchMedia('(max-width:1023px)').matches
 		? '24'
 		: '26';
+	// dispatches the proceed event at clicking enter
+	const proceedShorcut = (event: KeyboardEvent) =>
+		event.key === 'Enter' && title.trim() !== '' ? dispatch('proceed') : null;
+	onMount(() => {
+		window.addEventListener('keydown', proceedShorcut);
+		return () => {
+			window.removeEventListener('keydown', proceedShorcut);
+		};
+	});
 </script>
 
 <div class="modal-container">
@@ -32,14 +42,14 @@
 			<!--the slot will be fulfilled by the components that creates the note and folders-->
 		</div>
 		<div class="input" role="textbox">
-			<!--focused onmount and the value is binded to the foldertitle, maxlength is 30-->
+			<!--focused onmount and the value is binded to the foldertitle, maxlength is 60-->
 			<input
 				class:errorInput={!noError}
 				type="text"
 				placeholder="Enter the title of your {contentType.toLowerCase()}"
 				bind:value={title}
 				class="newtitle"
-				maxlength="30"
+				maxlength="60"
 				spellcheck="false"
 				use:focusInput
 			/>

@@ -1,5 +1,6 @@
+<!--This component is a small button that would create notes in a folder-->
 <script lang="ts">
-	import { folders } from '$lib/store'; // the folders array as ususal
+	import { folders } from '$lib/store'; // the folders array as usual
 	import { onMount } from 'svelte'; // for dynamic importing
 	let AddSvg: any; // the variables to hold the dynaimically imported comps
 	let CreateAction: any;
@@ -39,7 +40,8 @@
 		}
 	}
 	let size = matchMedia('(max-width:549px)').matches
-		? '20'
+		? // for changing the size of an icon as usual
+		  '20'
 		: matchMedia('(max-width:1023px)').matches
 		? '24'
 		: matchMedia('(max-width:1450px)').matches

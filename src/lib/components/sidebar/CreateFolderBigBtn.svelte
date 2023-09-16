@@ -1,3 +1,4 @@
+<!--this is a large button that is shown to create a new folders if there are no folders exist-->
 <script lang="ts">
 	import { folders } from '$lib/store'; // importing the folders array from the store
 	import { onMount } from 'svelte';

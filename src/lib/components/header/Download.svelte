@@ -1,3 +1,4 @@
+<!--this is a download button that would create a blob url that facillitates the user to download the markdown as a .md file.-->
 <script lang="ts">
 	import DownloadButton from '$lib/assets/download.svg';
 	export let title: string;
@@ -26,8 +27,8 @@
 <style>
 	@media (max-width: 549px) {
 		.download-button {
-			height: 1.65rem;
-			width: 1.65rem;
+			height: 1.55rem;
+			width: 1.55rem;
 		}
 		.download-button img {
 			height: 100%;

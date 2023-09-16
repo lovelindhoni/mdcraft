@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { folders } from '$lib/store'; // the folders array as ususal
-	import { onMount } from 'svelte';
+	import { onMount } from 'svelte'; // for lazy importing
 	import EditSvg from '$lib/assets/EditSvg.svelte';
 	import DeleteSvg from '$lib/assets/DeleteSvg.svelte';
 	let RenameAction: any; // the modals
@@ -65,7 +65,7 @@
 	on:keydown
 >
 	<!--for preserving the whitespaces-->
-	<span>{@html $folders[currentFolderIndex].notes[noteIndex].title.replace(/ /g, '&nbsp;')}</span>
+	<span>{$folders[currentFolderIndex].notes[noteIndex].title}</span>
 	<!--title of the note-->
 	<div class="actions" role="group">
 		<div
@@ -75,7 +75,7 @@
 			on:click|stopPropagation={() => (showRename = true)}
 			on:keydown|stopPropagation={() => (showRename = true)}
 		>
-			<EditSvg color={onHover ? '#f96743' : '#e6e6e6'} {size} />
+			<EditSvg color={onHover ? '#f96743' : '#d9d9d9'} {size} />
 		</div>
 		<!--the rename and delete icon for doing opertation in the note-->
 		<div
@@ -85,7 +85,7 @@
 			on:click|stopPropagation={() => (showDeleteModal = true)}
 			on:keydown|stopPropagation={() => (showDeleteModal = true)}
 		>
-			<DeleteSvg color={onHover ? '#f96743' : '#e6e6e6'} {size} />
+			<DeleteSvg color={onHover ? '#f96743' : '#d9d9d9'} {size} />
 		</div>
 	</div>
 </div>
@@ -159,7 +159,7 @@
 	}
 	@media screen and (min-width: 649px) and (max-width: 1023px) {
 		span {
-			font-size: 1.55rem;
+			font-size: 1.45rem;
 		}
 		.note-container {
 			height: 4rem;
@@ -174,7 +174,7 @@
 	}
 	@media screen and (min-width: 550px) and (max-width: 649px) {
 		span {
-			font-size: 1.55rem;
+			font-size: 1.45rem;
 		}
 		.note-container {
 			height: 4rem;
@@ -185,7 +185,7 @@
 	}
 	@media screen and (max-width: 549px) {
 		span {
-			font-size: 1.26rem;
+			font-size: 1.2rem;
 		}
 		.note-container {
 			height: 3.4rem;
@@ -225,7 +225,8 @@
 	span {
 		text-overflow: ellipsis;
 		overflow: hidden;
-		white-space: nowrap;
+		white-space: pre;
 		display: block;
+		width: 75%;
 	}
 </style>

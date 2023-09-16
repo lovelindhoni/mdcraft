@@ -4,7 +4,8 @@
 	import CloseSvg from '$lib/assets/CloseSvg.svelte';
 	const dispatch = createEventDispatcher();
 	let size = matchMedia('(max-width:549px)').matches
-		? '16'
+		? // for changing the size of the icon
+		  '16'
 		: matchMedia('(max-width:1023px)').matches
 		? '18'
 		: '20';
@@ -17,6 +18,7 @@
 			<span class="delete-warning" role="alert">
 				<!--a warning message is shown, telling it can't be recovered-->
 				<span class="delete-icon"><DeleteSvg color="white" {size} /></span>
+				<!-- the below slot will have the contentype-->
 				<span class="delete-element"><slot /></span>
 			</span>
 			<span

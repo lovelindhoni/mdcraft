@@ -1,5 +1,6 @@
+<!--I am so sorry for my poor choice of name of this component, this component shows the name of the note selected and its parent folder, on the viewer section-->
 <script lang="ts">
-	import { folders, currentFolderId, currentNoteId } from '$lib/store'; // for showing the titles of folder and
+	import { folders, currentFolderId, currentNoteId } from '$lib/store'; // for showing the titles of folder
 	export let currentFolderIndex: number; // these will be satisfied by the viewer
 	export let currentNoteIndex: number;
 </script>
@@ -22,42 +23,52 @@
 {/if}
 
 <style>
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		span {
 			font-size: 1.57rem;
-			max-width: 15vw;
+			max-width: 17vw;
+			display: inline-block;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		span {
 			font-size: 1.32rem;
-			max-width: 10vw;
+			max-width: 16vw;
+			display: inline-block;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		span {
 			font-size: 1.21rem;
 			max-width: 13vw;
+			display: inline-block;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 1023px) {
+	@media (min-width: 650px) and (max-width: 1023px) {
 		span {
 			font-size: 1.3rem;
 			max-width: 25vw;
 			display: inline-block;
 		}
 	}
-	@media screen and (max-width: 549px) {
+	@media (min-width: 550px) and (max-width: 649px) {
+		span {
+			font-size: 1.3rem;
+			max-width: 22vw;
+			display: inline-block;
+		}
+	}
+	@media (max-width: 549px) {
 		span {
 			font-size: 1rem;
-			width: 40vw;
+			max-width: 40vw;
 			display: block;
 		}
 	}
 	span {
 		text-overflow: ellipsis;
 		overflow: hidden;
-		white-space: nowrap;
+		white-space: pre;
 	}
 	.url {
 		cursor: pointer;

@@ -2,7 +2,7 @@
 	import { folders, currentFolderId, currentNoteId } from '$lib/store'; // importing folders and the id's
 	import DeleteIcon from '$lib/assets/DeleteSvg.svelte'; // importing the svg's
 	import EditIcon from '$lib/assets/EditSvg.svelte';
-	let RenameAction: any; // these holds the dynamically imported modal
+	let RenameAction: any; // these holds the dynamically imported modals
 	let DeleteAction: any;
 	import { onMount } from 'svelte';
 	onMount(async () => {
@@ -16,7 +16,7 @@
 	let showDeleteModal = false; // shows the delete modal when delete icon is clicked
 	let title = ''; // the title which i am gonna fuck through the whole sidebar. It gets the foldertitle of the folder from the modals
 	let noError = true; //  whenever there is a duplicate folder title, a boolean value is passed to the modals
-	$: iconColor = !selected ? '#e6e6e6' : '#f96743';
+	$: iconColor = !selected ? '#d9d9d9' : '#f96743'; // if selected then orange or white
 	function onDeleteProceed() {
 		// this function causes the deletion of a folder
 		$folders.splice(folderIndex, 1); // removes the folder from the array
@@ -68,7 +68,7 @@
 >
 	<!--even forwarding, clicking this component will aset the currentFolderId-->
 	<div role="menuitem" class="folder-title">
-		<span>{@html $folders[folderIndex].title.replace(/ /g, '&nbsp;')}</span>
+		<span>{$folders[folderIndex].title}</span>
 		<!--preserving whitespace-->
 		<!--i used this regex to save the whitespace-->
 		<!--This is the folder title of this component, i have been reffering in the above comments-->
@@ -180,7 +180,7 @@
 	}
 	@media screen and (min-width: 550px) and (max-width: 1023px) {
 		span {
-			font-size: 1.55rem;
+			font-size: 1.5rem;
 		}
 		.folder-container {
 			height: 4rem;
@@ -194,7 +194,7 @@
 	}
 	@media screen and (max-width: 549px) {
 		span {
-			font-size: 1.27rem;
+			font-size: 1.22rem;
 		}
 		.folder-container {
 			height: 3.4rem;
@@ -227,7 +227,7 @@
 		padding-right: 0.3rem;
 	}
 	.folder-title {
-		width: 80%;
+		width: 75%;
 	}
 	.on-hover {
 		color: var(--orange);
@@ -245,6 +245,6 @@
 		text-overflow: ellipsis;
 		overflow: hidden;
 		display: block;
-		white-space: nowrap;
+		white-space: pre;
 	}
 </style>

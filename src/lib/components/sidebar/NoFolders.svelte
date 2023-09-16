@@ -1,3 +1,4 @@
+<!--this component exists to show a illustration that represents that there is no folder exists and prompts to create one-->
 <script lang="ts">
 	import Addfolder from '$lib/assets/Addfolder.svg';
 	import CreateFolderBigButton from '$lib/components/sidebar/CreateFolderBigBtn.svelte';
