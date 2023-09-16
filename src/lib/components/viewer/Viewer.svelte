@@ -3,10 +3,8 @@
 	import { currentNoteId, folders } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { marked } from 'marked'; // For parsing note's content
-	import EmojiConvertor from 'emoji-js'; // Converts colon-text to emojis
-	import hljs from 'highlight.js'; // For Highlighting Code Blocks
+	import renderer from './customRenderer'; // importing the customised renderer
 	import '@fontsource/inconsolata/500.css'; // font for textarea
-	import { afterUpdate } from 'svelte'; // Run Highlighting for code blocks after DOM update
 	import NoteContent from '$lib/components/viewer/NoteContent.svelte';
 	import Toggle from '$lib/components/viewer/Toggle.svelte';
 	import Pagination from '$lib/components/viewer/Pagination.svelte';
@@ -18,25 +16,7 @@
 			GoBack = (await import('$lib/components/header/GoBack.svelte')).default;
 		}
 	});
-	const emojis = new EmojiConvertor();
-	emojis.replace_mode = 'unified'; // Outputs Unicode code points at the place of colon-text
-	const renderer = new marked.Renderer();
-	// Below line modifies the renderer to add support for emojis and highlighting paragraphs
-	renderer.text = (text) => emojis.replace_colons(text).replace(/==([^=]+)==/g, '<mark>$1</mark>');
-	// Below block modifies the renderer to add the https:// protocol to the ahrefs if omitted
-	renderer.link = (href, title, text) => {
-		href =
-			// if href is not equal to null or doesn't starts with https: or http: then https is added, else href as it is
-			href !== null && !href.startsWith('https://') && !href.startsWith('http://')
-				? `https://${href}`
-				: href;
-		// if href is not equal to null then the new href is added to the <a> tag, else nothing is changed
-		return href !== null
-			? `<a href="${href}"${title ? ` title="${title}" ` : ''} target="_blank">${text}</a>`
-			: `<a>${text}</a>`;
-	};
-	marked.setOptions({ renderer }); // Stuffing the new renderer to the parser
-	afterUpdate(() => hljs.highlightAll()); // HighlightAll does automatic lang-detection on code blocks
+	marked.use({ renderer }); // using the new customised renderer
 
 	export let currentFolderIndex: number; // both of these will be satisfied by the +page.svelte
 	export let currentNoteIndex: number;

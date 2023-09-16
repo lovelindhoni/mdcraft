@@ -7,7 +7,7 @@
 	// i am dynamically importing it becauses these are needed only for smaller screens.
 	onMount(async () => {
 		if (matchMedia('(min-width:1023px)').matches) {
-			PickFolder = (await import('$lib/components/notes/PickFolder.svelte')).default;
+			PickFolder = (await import('$lib/components/sidebar/PickFolder.svelte')).default;
 		} else {
 			GoBack = (await import('$lib/components/header/GoBack.svelte')).default;
 		}

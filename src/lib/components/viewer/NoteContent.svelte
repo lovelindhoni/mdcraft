@@ -1,6 +1,10 @@
 <!--This component is what contains and styles the generated html from markdown-->
 <script>
+	import hljs from 'highlight.js'; // For Highlighting Code Blocks
 	import 'highlight.js/styles/base16/dracula.css'; // dracula theme for now
+	import { afterUpdate } from 'svelte'; // Run Highlighting for code blocks after DOM update
+	
+	afterUpdate(() => hljs.highlightAll()); // HighlightAll does automatic lang-detection on code blocks
 </script>
 
 <div class="viewer">
