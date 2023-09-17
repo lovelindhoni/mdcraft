@@ -3,7 +3,7 @@
 	import hljs from 'highlight.js'; // For Highlighting Code Blocks
 	import 'highlight.js/styles/base16/dracula.css'; // dracula theme for now
 	import { afterUpdate } from 'svelte'; // Run Highlighting for code blocks after DOM update
-	
+
 	afterUpdate(() => hljs.highlightAll()); // HighlightAll does automatic lang-detection on code blocks
 </script>
 
@@ -19,7 +19,7 @@
 		overflow-wrap: anywhere;
 	}
 	/*Styles for the generated Html*/
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		:global(.viewer h1) {
 			font-size: 3rem;
 		}
@@ -58,7 +58,7 @@
 			font-size: 1.5rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		:global(.viewer h1) {
 			font-size: 2.4rem;
 		}
@@ -97,7 +97,7 @@
 			font-size: 1.26rem;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		:global(.viewer h1) {
 			font-size: 2.2rem;
 		}
@@ -136,7 +136,7 @@
 			font-size: 1.03rem;
 		}
 	}
-	@media screen and (min-width: 1024px) {
+	@media (min-width: 1024px) {
 		.viewer {
 			height: 87%;
 			padding: 1rem 2.5rem;
@@ -147,7 +147,7 @@
 			margin-right: auto;
 		}
 	}
-	@media screen and (min-width: 650px) and (max-width: 1023px) {
+	@media (min-width: 650px) and (max-width: 1023px) {
 		.viewer {
 			padding: 1rem 20vw 2rem;
 			height: 85%;
@@ -190,7 +190,7 @@
 			font-size: 1.2rem;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 649px) {
+	@media (min-width: 550px) and (max-width: 649px) {
 		.viewer {
 			height: 85%;
 			padding: 1rem 15vw 2rem;
@@ -233,7 +233,7 @@
 			font-size: 1.13rem;
 		}
 	}
-	@media screen and (max-width: 549px) {
+	@media (max-width: 549px) {
 		.viewer {
 			padding: 1rem 8vw 2rem;
 			height: 81%;

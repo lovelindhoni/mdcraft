@@ -45,7 +45,7 @@
 </main>
 
 <style>
-	@media screen and (min-width: 1024px) {
+	@media (min-width: 1024px) {
 		.layout {
 			display: grid;
 			grid-template-rows: repeat(20, 5%);
@@ -64,7 +64,7 @@
 			border-left: 2px solid var(--grey-1);
 		}
 	}
-	@media screen and (min-width: 650px) and (max-width: 1023px) {
+	@media (min-width: 650px) and (max-width: 1023px) {
 		.sidebar {
 			height: 90%;
 			padding-top: 0.5rem;
@@ -73,7 +73,7 @@
 			height: 90%;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 649px) {
+	@media (min-width: 550px) and (max-width: 649px) {
 		.sidebar {
 			height: 90%;
 			padding-top: 0.5rem;
@@ -82,7 +82,7 @@
 			height: 90%;
 		}
 	}
-	@media screen and (min-width: 400px) and (max-width: 549px) {
+	@media (min-width: 400px) and (max-width: 549px) {
 		.sidebar {
 			height: 87%;
 		}
@@ -90,7 +90,7 @@
 			height: 90%;
 		}
 	}
-	@media screen and (max-width: 399px) {
+	@media (max-width: 399px) {
 		.sidebar {
 			height: 87%;
 		}

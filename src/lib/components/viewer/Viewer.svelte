@@ -3,7 +3,7 @@
 	import { currentNoteId, folders } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { marked } from 'marked'; // For parsing note's content
-	import renderer from './customRenderer'; // importing the customised renderer
+	import renderer from '$lib/components/viewer/customRenderer'; // importing the customised renderer
 	import '@fontsource/inconsolata/500.css'; // font for textarea
 	import NoteContent from '$lib/components/viewer/NoteContent.svelte';
 	import Toggle from '$lib/components/viewer/Toggle.svelte';

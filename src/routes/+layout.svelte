@@ -9,7 +9,7 @@
 	/**Just declared some global colors*/
 	:root {
 		--orange: hsl(12, 94%, 62%);
-		--background: hsl(0, 0%, 12%);
+		--background: hsl(0, 0%, 13%);
 		--text: hsl(0, 0%, 85%);
 		--green: hsl(102, 52%, 48%);
 		--blue: hsl(192, 55%, 52%);

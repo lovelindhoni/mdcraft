@@ -80,7 +80,7 @@
 {/if}
 
 <style>
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		h2 {
 			font-size: 2.45rem;
 		}
@@ -93,7 +93,7 @@
 			width: 3rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		h2 {
 			font-size: 1.9rem;
 		}
@@ -106,7 +106,7 @@
 			width: 2.6rem;
 		}
 	}
-	@media screen and (min-width: 1151px) and (max-width: 1429px) {
+	@media (min-width: 1151px) and (max-width: 1429px) {
 		h2 {
 			font-size: 1.72rem;
 		}
@@ -119,7 +119,7 @@
 			width: 2.5rem;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1150px) {
+	@media (min-width: 1024px) and (max-width: 1150px) {
 		h2 {
 			font-size: 1.52rem;
 		}
@@ -132,7 +132,7 @@
 			width: 2.2rem;
 		}
 	}
-	@media screen and (min-width: 650px) and (max-width: 1023px) {
+	@media (min-width: 650px) and (max-width: 1023px) {
 		h2 {
 			font-size: 2.3rem;
 		}
@@ -145,7 +145,7 @@
 			width: 2.75rem;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 649px) {
+	@media (min-width: 550px) and (max-width: 649px) {
 		h2 {
 			font-size: 2.25rem;
 		}
@@ -158,7 +158,7 @@
 			width: 2.75rem;
 		}
 	}
-	@media screen and (max-width: 549px) {
+	@media (max-width: 549px) {
 		h2 {
 			font-size: 1.65rem;
 		}

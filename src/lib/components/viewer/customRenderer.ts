@@ -19,16 +19,6 @@ const renderer = {
 		return href !== null
 			? `<a href="${href}"${title ? ` title="${title}" ` : ''} target="_blank">${text}</a>`
 			: `<a>${text}</a>`;
-	},
-	heading(text: string, level: number, raw: string) {
-		// this is exactly the code from https://github.com/markedjs/marked-custom-heading-id but unfortunately it doesnt have any types at the time of my checking, so i used that code like this here.
-		const headingIdRegex = /(?: +|^)\{#([a-z][\w-]*)\}(?: +|$)/i;
-		const hasId = text.match(headingIdRegex);
-		if (!hasId) {
-			// fallback to original heading
-			return raw;
-		}
-		return `<h${level} id="${hasId[1]}">${text.replace(headingIdRegex, '')}</h${level}>\n`;
 	}
 };
 export default renderer;

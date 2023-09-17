@@ -121,7 +121,7 @@
 {/if}
 
 <style>
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		span {
 			font-size: 1.75rem;
 		}
@@ -135,7 +135,7 @@
 			margin-right: 0.5rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		span {
 			font-size: 1.43rem;
 		}
@@ -144,7 +144,7 @@
 			margin-bottom: 1rem;
 		}
 	}
-	@media screen and (min-width: 1301px) and (max-width: 1429px) {
+	@media (min-width: 1301px) and (max-width: 1429px) {
 		span {
 			font-size: 1.3rem;
 		}
@@ -153,7 +153,7 @@
 			margin-bottom: 1rem;
 		}
 	}
-	@media screen and (min-width: 1151px) and (max-width: 1300px) {
+	@media (min-width: 1151px) and (max-width: 1300px) {
 		span {
 			font-size: 1.25rem;
 		}
@@ -162,7 +162,7 @@
 			margin-bottom: 1rem;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1150px) {
+	@media (min-width: 1024px) and (max-width: 1150px) {
 		span {
 			font-size: 1.3rem;
 		}
@@ -171,14 +171,14 @@
 			margin-bottom: 1rem;
 		}
 	}
-	@media screen and (min-width: 1024px) {
+	@media (min-width: 1024px) {
 		.actions {
 			padding-left: 0.4rem;
 			padding-right: 0.4rem;
 			padding-top: 0.1rem;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 1023px) {
+	@media (min-width: 550px) and (max-width: 1023px) {
 		span {
 			font-size: 1.5rem;
 		}
@@ -192,7 +192,7 @@
 			padding-right: 0.3rem;
 		}
 	}
-	@media screen and (max-width: 549px) {
+	@media (max-width: 549px) {
 		span {
 			font-size: 1.22rem;
 		}

@@ -111,7 +111,7 @@
 {/if}
 
 <style>
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		span {
 			font-size: 1.7rem;
 		}
@@ -123,7 +123,7 @@
 			margin-right: 0.5rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		span {
 			font-size: 1.43rem;
 		}
@@ -131,7 +131,7 @@
 			height: 3.8rem;
 		}
 	}
-	@media screen and (min-width: 1301px) and (max-width: 1429px) {
+	@media (min-width: 1301px) and (max-width: 1429px) {
 		span {
 			font-size: 1.32rem;
 		}
@@ -139,7 +139,7 @@
 			height: 3.42rem;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1300px) {
+	@media (min-width: 1024px) and (max-width: 1300px) {
 		span {
 			font-size: 1.3rem;
 		}
@@ -147,7 +147,7 @@
 			height: 3.4rem;
 		}
 	}
-	@media screen and (min-width: 1024px) {
+	@media (min-width: 1024px) {
 		.note-container {
 			width: 75%;
 		}
@@ -157,7 +157,7 @@
 			padding-top: 0.1rem;
 		}
 	}
-	@media screen and (min-width: 649px) and (max-width: 1023px) {
+	@media (min-width: 649px) and (max-width: 1023px) {
 		span {
 			font-size: 1.45rem;
 		}
@@ -172,7 +172,7 @@
 			padding-right: 0.3rem;
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 649px) {
+	@media (min-width: 550px) and (max-width: 649px) {
 		span {
 			font-size: 1.45rem;
 		}
@@ -183,7 +183,7 @@
 			padding-left: 0.3rem;
 		}
 	}
-	@media screen and (max-width: 549px) {
+	@media (max-width: 549px) {
 		span {
 			font-size: 1.2rem;
 		}

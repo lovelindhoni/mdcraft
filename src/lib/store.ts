@@ -16,27 +16,31 @@ const defaultValues: Record<string, Folder[] | ID> = {
 					title: `Markdown Cheatsheet`,
 					content: `# Markdown Cheat Sheet
 
-Thanks for visiting Sparkdown!!
+Thanks for visiting [MdCraft](https://www.markdownguide.org)!
 
-This cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax) and [extended syntax](https://www.markdownguide.org/extended-syntax).
- 
+This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax) and [extended syntax](https://www.markdownguide.org/extended-syntax). Click the toggle above to tinker with the source of this note.
+
+## Basic Syntax
+
+These are the elements outlined in John Gruber’s original design document. All Markdown applications support these elements, so does MdCraft! :fire:
+
 ### Heading
 
-# H1
-## H2
-### H3
+\# H1
+\## H2
+\### H3
 
 ### Bold
 
-**bold text**
+\*\*bold text\*\*
 
 ### Italic
 
-*italicized text*
+\*italicized text\*
 
 ### Blockquote
 
-> Remembering that you are going to die is the best way I know to avoid the trap of thinking you have something to lose. You are already naked. There is no reason not to follow your heart
+\> blockquote
 
 ### Ordered List
 
@@ -56,37 +60,41 @@ This cheat sheet provides a quick overview of all the Markdown syntax elements. 
 
 ### Horizontal Rule
 
----
+
 
 ### Link
 
-[Markdown Guide](https://www.markdownguide.org)
+\[Markdown Guide](https://www.markdownguide.org)
 
 ### Image
 
-![alt text](https://www.markdownguide.org/assets/images/tux.png)
+\![alt text](https://www.markdownguide.org/assets/images/tux.png)
 
+## Extended Syntax
+
+These elements extend the basic syntax by adding additional features. Not all Markdown applications support these elements. But MdCraft support these out-of-the-box :sunglasses:
 
 ### Table
 
-| Syntax      | Description |
-| ----------- | ----------- |
-| Header      | Title |
-| Paragraph   | Text |
+\| Syntax      | Description |
+\| ----------- | ----------- |
+\| Header      | Title |
+\| Paragraph   | Text |
 
 ### Fenced Code Block
 
-\`\`\` ts
-function greetUser(name : string): string {
-    return 'hello' + name
+\`\`\`
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
 }
-console.log(greetUser('Homelander'));
 \`\`\`
 
 
 ### Strikethrough
 
-~~The world is flat.~~
+\~~The world is flat.\~~
 
 ### Task List
 
@@ -98,10 +106,12 @@ console.log(greetUser('Homelander'));
 
 That is so funny! :joy:
 
+(See also [Copying and Pasting Emoji](https://www.markdownguide.org/extended-syntax/#copying-and-pasting-emoji) and [List of Emoji Shortcodes](https://streamlit-emoji-shortcodes-streamlit-app-gwckff.streamlit.app/))
+
+
 ### Highlight
 
 I need to highlight these ==very important words==.
-
 `
 				}
 			]

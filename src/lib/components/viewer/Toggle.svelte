@@ -29,25 +29,25 @@
 
 <style>
 	/* CSS for toggle*/
-	@media screen and (min-width: 1740px) {
+	@media (min-width: 1740px) {
 		.edit-label,
 		.edit-shortcut {
 			font-size: 1.44rem;
 		}
 	}
-	@media screen and (min-width: 1430px) and (max-width: 1739px) {
+	@media (min-width: 1430px) and (max-width: 1739px) {
 		.edit-label,
 		.edit-shortcut {
 			font-size: 1.32rem;
 		}
 	}
-	@media screen and (min-width: 1024px) and (max-width: 1429px) {
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		.edit-label,
 		.edit-shortcut {
 			font-size: 1.15rem;
 		}
 	}
-	@media screen and (min-width: 1024px) {
+	@media (min-width: 1024px) {
 		.toggle {
 			width: 3.6rem;
 			height: 1.7rem;
@@ -64,7 +64,7 @@
 			transform: translateX(1.6rem);
 		}
 	}
-	@media screen and (min-width: 550px) and (max-width: 1023px) {
+	@media (min-width: 550px) and (max-width: 1023px) {
 		.toggle {
 			width: 3.6rem;
 			height: 1.7rem;
@@ -87,7 +87,7 @@
 			display: none;
 		}
 	}
-	@media screen and (max-width: 549px) {
+	@media (max-width: 549px) {
 		.toggle {
 			width: 3.15rem;
 			height: 1.5rem;
