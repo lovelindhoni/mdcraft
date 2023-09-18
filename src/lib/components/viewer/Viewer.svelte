@@ -85,7 +85,7 @@
 		}
 	}
 
-	@media (max-width: 1429px) {
+	@media (min-width: 1024px) and (max-width: 1429px) {
 		textarea {
 			font-size: 1.19rem;
 		}

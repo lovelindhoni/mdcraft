@@ -1,5 +1,6 @@
 import { writable } from 'svelte/store';
-
+let defaultData: any;
+defaultData = (await import('$lib/defaultData.json')).default;
 type ID = string | null;
 
 const defaultValues: Record<string, Folder[] | ID> = {
@@ -14,112 +15,72 @@ const defaultValues: Record<string, Folder[] | ID> = {
 					// This note is a reference to markdown syntax elements.
 					id: crypto.randomUUID(),
 					title: `Markdown Cheatsheet`,
-					content: `# Markdown Cheat Sheet
-
-Thanks for visiting [MdCraft](https://www.markdownguide.org)!
-
-This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax) and [extended syntax](https://www.markdownguide.org/extended-syntax). Click the toggle above to tinker with the source of this note.
-
-## Basic Syntax
-
-These are the elements outlined in John Gruber’s original design document. All Markdown applications support these elements, so does MdCraft! :fire:
-
-### Heading
-
-\# H1
-\## H2
-\### H3
-
-### Bold
-
-\*\*bold text\*\*
-
-### Italic
-
-\*italicized text\*
-
-### Blockquote
-
-\> blockquote
-
-### Ordered List
-
-1. First item
-2. Second item
-3. Third item
-
-### Unordered List
-
-- First item
-- Second item
-- Third item
-
-### Code
-
-\`code\`
-
-### Horizontal Rule
-
-
-
-### Link
-
-\[Markdown Guide](https://www.markdownguide.org)
-
-### Image
-
-\![alt text](https://www.markdownguide.org/assets/images/tux.png)
-
-## Extended Syntax
-
-These elements extend the basic syntax by adding additional features. Not all Markdown applications support these elements. But MdCraft support these out-of-the-box :sunglasses:
-
-### Table
-
-\| Syntax      | Description |
-\| ----------- | ----------- |
-\| Header      | Title |
-\| Paragraph   | Text |
-
-### Fenced Code Block
-
-\`\`\`
-{
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
-}
-\`\`\`
-
-
-### Strikethrough
-
-\~~The world is flat.\~~
-
-### Task List
-
-- [x] Write the press release
-- [x] Update the website
-- [ ] Contact the media
-
-### Emoji
-
-That is so funny! :joy:
-
-(See also [Copying and Pasting Emoji](https://www.markdownguide.org/extended-syntax/#copying-and-pasting-emoji) and [List of Emoji Shortcodes](https://streamlit-emoji-shortcodes-streamlit-app-gwckff.streamlit.app/))
-
-
-### Highlight
-
-I need to highlight these ==very important words==.
-`
+					content: await defaultData.markdown.mdcheatsheet
 				}
 			]
 		},
 		{
 			id: crypto.randomUUID(),
 			title: `Python`,
-			notes: [{ id: crypto.randomUUID(), title: `Example note`, content: `# Hello world` }]
+			notes: [
+				{
+					id: crypto.randomUUID(),
+					title: `Python Basics`,
+					content: await defaultData.python.pythonbasics
+				},
+				{
+					id: crypto.randomUUID(),
+					title: `Python OOPS`,
+					content: await defaultData.python.pythonoops
+				},
+				{
+					id: crypto.randomUUID(),
+					title: `Error Handling and File I/O`,
+					content: await defaultData.python.pythonfilehandilin
+				}
+			]
+		},
+		{
+			id: crypto.randomUUID(),
+			title: `Typescript`,
+			notes: [
+				{
+					id: crypto.randomUUID(),
+					title: `Typescript Basics`,
+					content: await defaultData.typescript.typescriptbasics
+				},
+				{
+					id: crypto.randomUUID(),
+					title: `Advanced Typescript Concepts`,
+					content: await defaultData.typescript.advancedtypescript
+				},
+				{
+					id: crypto.randomUUID(),
+					title: `Typescript in Practice`,
+					content: await defaultData.typescript.typescriptinpractice
+				}
+			]
+		},
+		{
+			id: crypto.randomUUID(),
+			title: `SQL`,
+			notes: [
+				{
+					id: crypto.randomUUID(),
+					title: `Data Query and Retrieval`,
+					content: await defaultData.sql.dataquery
+				},
+				{
+					id: crypto.randomUUID(),
+					title: `Data Modification and Management`,
+					content: await defaultData.sql.datamodifications
+				},
+				{
+					id: crypto.randomUUID(),
+					title: `Database Schema and Indexing`,
+					content: await defaultData.sql.dataindexing
+				}
+			]
 		}
 	],
 	// both the id's are default to null at first. it also has the type string becuase of crypt.randomuuid

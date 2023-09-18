@@ -59,7 +59,7 @@
 				type="text"
 				bind:value={oldTitle}
 				class="newtitle"
-				maxlength="30"
+				maxlength="60"
 				spellcheck="false"
 				use:focusInput
 			/>

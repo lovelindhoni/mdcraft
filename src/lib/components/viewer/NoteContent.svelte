@@ -1,7 +1,7 @@
 <!--This component is what contains and styles the generated html from markdown-->
 <script>
 	import hljs from 'highlight.js'; // For Highlighting Code Blocks
-	import 'highlight.js/styles/base16/dracula.css'; // dracula theme for now
+	import 'highlight.js/styles/a11y-dark.css'; // a11y-dark theme for now, suggestions welcomed
 	import { afterUpdate } from 'svelte'; // Run Highlighting for code blocks after DOM update
 
 	afterUpdate(() => hljs.highlightAll()); // HighlightAll does automatic lang-detection on code blocks
@@ -256,6 +256,9 @@
 		:global(.viewer h6) {
 			font-size: 0.75rem;
 		}
+		:global(ol, ul) {
+			padding-inline-start: 30px !important;
+		}
 		:global(.viewer p),
 		:global(.viewer ol),
 		:global(.viewer ul),
@@ -331,6 +334,7 @@
 		margin-left: 0.5rem;
 		margin-right: 0.5rem;
 		border-radius: 0.5rem;
+		display: inline-block;
 	}
 	:global(pre code) {
 		margin-right: 0.5rem;
