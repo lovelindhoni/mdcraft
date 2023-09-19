@@ -57,9 +57,7 @@
 		title="create-folder"
 	>
 		<!--clicking the button will open the modal-->
-		<div class="newFolderbtn">
-			<AddIcon color="white" {size} />
-		</div>
+		<AddIcon color="white" {size} />
 	</button>
 </div>
 {#if showCreate}
@@ -188,8 +186,6 @@
 		border-radius: 50%;
 		background-color: var(--green);
 		border: 1px solid transparent;
-		padding-left: 0.5rem;
-		padding-top: 0.2rem;
 	}
 	button:hover {
 		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);

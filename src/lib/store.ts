@@ -1,6 +1,5 @@
 import { writable } from 'svelte/store';
-let defaultData: any;
-defaultData = (await import('$lib/defaultData.json')).default;
+import defaultData from '$lib/defaultData.json';
 type ID = string | null;
 
 const defaultValues: Record<string, Folder[] | ID> = {
@@ -15,7 +14,7 @@ const defaultValues: Record<string, Folder[] | ID> = {
 					// This note is a reference to markdown syntax elements.
 					id: crypto.randomUUID(),
 					title: `Markdown Cheatsheet`,
-					content: await defaultData.markdown.mdcheatsheet
+					content: defaultData.markdown.mdcheatsheet
 				}
 			]
 		},
@@ -26,17 +25,17 @@ const defaultValues: Record<string, Folder[] | ID> = {
 				{
 					id: crypto.randomUUID(),
 					title: `Python Basics`,
-					content: await defaultData.python.pythonbasics
+					content: defaultData.python.pythonbasics
 				},
 				{
 					id: crypto.randomUUID(),
 					title: `Python OOPS`,
-					content: await defaultData.python.pythonoops
+					content: defaultData.python.pythonoops
 				},
 				{
 					id: crypto.randomUUID(),
 					title: `Error Handling and File I/O`,
-					content: await defaultData.python.pythonfilehandilin
+					content: defaultData.python.pythonfilehandilin
 				}
 			]
 		},
@@ -47,17 +46,17 @@ const defaultValues: Record<string, Folder[] | ID> = {
 				{
 					id: crypto.randomUUID(),
 					title: `Typescript Basics`,
-					content: await defaultData.typescript.typescriptbasics
+					content: defaultData.typescript.typescriptbasics
 				},
 				{
 					id: crypto.randomUUID(),
 					title: `Advanced Typescript Concepts`,
-					content: await defaultData.typescript.advancedtypescript
+					content: defaultData.typescript.advancedtypescript
 				},
 				{
 					id: crypto.randomUUID(),
 					title: `Typescript in Practice`,
-					content: await defaultData.typescript.typescriptinpractice
+					content: defaultData.typescript.typescriptinpractice
 				}
 			]
 		},
@@ -68,17 +67,17 @@ const defaultValues: Record<string, Folder[] | ID> = {
 				{
 					id: crypto.randomUUID(),
 					title: `Data Query and Retrieval`,
-					content: await defaultData.sql.dataquery
+					content: defaultData.sql.dataquery
 				},
 				{
 					id: crypto.randomUUID(),
 					title: `Data Modification and Management`,
-					content: await defaultData.sql.datamodifications
+					content: defaultData.sql.datamodifications
 				},
 				{
 					id: crypto.randomUUID(),
 					title: `Database Schema and Indexing`,
-					content: await defaultData.sql.dataindexing
+					content: defaultData.sql.dataindexing
 				}
 			]
 		}

@@ -19,6 +19,10 @@ const renderer = {
 		return href !== null
 			? `<a href="${href}"${title ? ` title="${title}" ` : ''} target="_blank">${text}</a>`
 			: `<a>${text}</a>`;
+	},
+	// Below block modifies the renderer to add lazy loading attribute
+	image(href: string | null, title: string | null, text: string) {
+		return `<img src="${href}" loading="lazy" alt="${text}" ${title ? `title="${title}"` : null}/>`;
 	}
 };
 export default renderer;

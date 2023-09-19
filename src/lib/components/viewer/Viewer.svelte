@@ -3,6 +3,7 @@
 	import { currentNoteId, folders } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { marked } from 'marked'; // For parsing note's content
+	import sanitizeHtml from 'sanitize-html';
 	import renderer from '$lib/components/viewer/customRenderer'; // importing the customised renderer
 	import '@fontsource/inconsolata/500.css'; // font for textarea
 	import NoteContent from '$lib/components/viewer/NoteContent.svelte';
@@ -22,8 +23,18 @@
 	export let currentNoteIndex: number;
 	// The prop that is used to toggle between the textarea and notecontent, exported to +page
 	let edit: boolean; // the variable used to toggle between the notecontent and editor.
-	// the generatedHtml variable that runs whenever the content is changed.
-	$: generatedHtml = marked($folders[currentFolderIndex].notes[currentNoteIndex].content);
+	// the generatedHtml variable that runs whenever the edit toggle is toggled.
+	let generatedHtml: string;
+	$: if (!edit) {
+		generatedHtml = sanitizeHtml(marked($folders[currentFolderIndex].notes[currentNoteIndex].content), {
+			allowedTags: ['img','h1','h2','h3','h4','h5','h6','p','a','hr','code','pre','ul','li','ol','mark','del','caption','col','colgroup','table','tbody','td','tfoot','th','thead','tr','blockquote','strong','em','input'
+			],
+			allowedAttributes: {
+				a: ['href','target','title'],
+				img : ['src' ,'alt','loading','title'],
+				input : [{name:'type',values:['checkbox']},'checked','disabled']
+			}});
+	}
 </script>
 
 <div class="header-container">
@@ -59,7 +70,7 @@
 	<!--uses the focuseditor and the note's content is binded to this textarea-->
 	<!--@ts-ignore-->
 	<textarea
-		placeholder="Start Sparkdowning..."
+		placeholder="Start MdCrafting..."
 		spellcheck="false"
 		bind:value={$folders[currentFolderIndex].notes[currentNoteIndex].content}
 	/>
