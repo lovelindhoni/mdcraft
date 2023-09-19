@@ -17,8 +17,8 @@
 </script>
 
 <div role="checkbox" aria-checked="false">
-	<label class="toggle">
-		<input title="editor-slider" placeholder=", " type="checkbox" bind:checked={edit} />
+	<label class="toggle" for="toggle">
+		<input title="editor-slider" placeholder=", " type="checkbox" bind:checked={edit} id="toggle"/>
 		<span class="slider round" />
 	</label>
 	<!--The span attribute is used here to act as a label to  the toggle -->

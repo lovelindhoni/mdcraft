@@ -39,7 +39,7 @@
 			<div class="title-logo">
 				<span class="rename-icon"><EditSvg color="white" size={editIconSize} /></span>
 				<!--the below slot will have the content type-->
-				<label for="newtitle"><slot /></label>
+				<label for="rename"><slot /></label>
 			</div>
 			<span
 				class="close-btn"
@@ -57,6 +57,7 @@
 				placeholder="Your title should be 1-30 chars"
 				class:errorInput={!noError}
 				type="text"
+				id="rename"
 				bind:value={oldTitle}
 				class="newtitle"
 				maxlength="60"

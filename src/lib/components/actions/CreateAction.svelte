@@ -30,7 +30,7 @@
 		<div class="title-closebtn">
 			<div class="title-logo">
 				<span class="create-icon"><AddSvg color="white" {size} /></span>
-				<label for="newtitle">Create {contentType}</label>
+				<label for="create-new">Create {contentType}</label>
 			</div>
 			<span
 				class="close-btn"
@@ -48,6 +48,7 @@
 				type="text"
 				placeholder="Enter the title of your {contentType.toLowerCase()}"
 				bind:value={title}
+				id="create-new"
 				class="newtitle"
 				maxlength="60"
 				spellcheck="false"
