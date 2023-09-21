@@ -1,6 +1,6 @@
 <!--this component connects all the comps in the viewer folder and exported to the +page.svelte-->
 <script lang="ts">
-	import { currentNoteId, folders } from '$lib/store';
+	import { currentNoteId, focusInput, folders } from '$lib/store';
 	import { onMount } from 'svelte';
 	import { marked } from 'marked'; // For parsing note's content
 	import sanitizeHtml from 'sanitize-html';
@@ -26,14 +26,53 @@
 	// the generatedHtml variable that runs whenever the edit toggle is toggled.
 	let generatedHtml: string;
 	$: if (!edit) {
-		generatedHtml = sanitizeHtml(marked($folders[currentFolderIndex].notes[currentNoteIndex].content), {
-			allowedTags: ['img','h1','h2','h3','h4','h5','h6','p','a','hr','code','pre','ul','li','ol','mark','del','caption','col','colgroup','table','tbody','td','tfoot','th','thead','tr','blockquote','strong','em','input'
-			],
-			allowedAttributes: {
-				a: ['href','target','title'],
-				img : ['src' ,'alt','loading','title'],
-				input : [{name:'type',values:['checkbox']},'checked','disabled']
-			}});
+		generatedHtml = sanitizeHtml(
+			marked($folders[currentFolderIndex].notes[currentNoteIndex].content),
+			{
+				// whitelisting specific tags and attributes for sanitizing html
+				allowedTags: [
+					'img',
+					'h1',
+					'h2',
+					'h3',
+					'h4',
+					'h5',
+					'h6',
+					'p',
+					'a',
+					'hr',
+					'code',
+					'pre',
+					'ul',
+					'li',
+					'ol',
+					'mark',
+					'del',
+					'caption',
+					'col',
+					'colgroup',
+					'table',
+					'tbody',
+					'td',
+					'tfoot',
+					'th',
+					'thead',
+					'tr',
+					'blockquote',
+					'strong',
+					'em',
+					'input',
+					'span'
+				],
+				allowedAttributes: {
+					a: ['href', 'target', 'title'],
+					img: ['src', 'alt', 'loading', 'title'],
+					input: [{ name: 'type', values: ['checkbox'] }, 'checked', 'disabled'],
+					span: ['style', 'class', 'id'],
+					code: ['style', 'class', 'id']
+				}
+			}
+		);
 	}
 </script>
 
@@ -68,8 +107,8 @@
 {#if edit}
 	<!--on editing the textarea is shown, otherwise, the Notecontent is shown-->
 	<!--uses the focuseditor and the note's content is binded to this textarea-->
-	<!--@ts-ignore-->
 	<textarea
+		use:focusInput
 		placeholder="Start MdCrafting..."
 		spellcheck="false"
 		bind:value={$folders[currentFolderIndex].notes[currentNoteIndex].content}

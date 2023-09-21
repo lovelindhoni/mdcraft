@@ -1,10 +1,6 @@
 <!--This component is what contains and styles the generated html from markdown-->
-<script>
-	import hljs from 'highlight.js'; // For Highlighting Code Blocks
-	import 'highlight.js/styles/a11y-dark.css'; // a11y-dark theme for now, suggestions welcomed
-	import { afterUpdate } from 'svelte'; // Run Highlighting for code blocks after DOM update
-
-	afterUpdate(() => hljs.highlightAll()); // HighlightAll does automatic lang-detection on code blocks
+<script lang="ts">
+	import 'highlight.js/styles/atom-one-dark-reasonable.css'; // one-dark for now, suggestions welcomed
 </script>
 
 <div class="viewer">
@@ -280,13 +276,12 @@
 		}
 	}
 	:global(.viewer p),
-	:global(.viewer ol),
-	:global(.viewer ul),
 	:global(.viewer mark),
 	:global(.viewer a),
 	:global(.viewer del),
 	:global(.viewer em),
-	:global(.viewer strong) {
+	:global(.viewer strong),
+	:global(.viewer li) {
 		line-height: 1.5;
 	}
 	:global(.viewer mark) {
@@ -314,8 +309,7 @@
 	:global(.viewer blockquote) {
 		border-left: 6px solid hsl(0, 0%, 80%);
 		padding: 0.02rem 1rem;
-		margin-top: 1.5rem;
-		margin-bottom: 1.5rem;
+		margin: 1.5rem 0;
 		font-family: Georgia, 'Times New Roman', Times, serif;
 		font-style: italic;
 		color: hsl(0, 0%, 80%);
@@ -328,16 +322,18 @@
 		filter: brightness(0.8) contrast(1.2);
 	}
 	:global(code) {
-		padding: 0.14rem;
+		padding: 0 0.15rem;
 		background-color: hsl(0, 0%, 32%);
 		color: white;
-		margin-left: 0.5rem;
-		margin-right: 0.5rem;
 		border-radius: 0.5rem;
+		margin: 0.2rem 0.5rem;
 		display: inline-block;
 	}
 	:global(pre code) {
 		margin-right: 0.5rem;
 		border-radius: 0.5rem;
+	}
+	:global(li) {
+		margin-bottom: 0.3rem;
 	}
 </style>

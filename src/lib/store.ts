@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 import defaultData from '$lib/defaultData.json';
 type ID = string | null;
 
-const defaultValues: Record<string, Folder[] | ID> = {
+const defaultValues: { folders: Folder[]; currentNoteId: ID; currentFolderId: ID } = {
 	folders: [
 		// the folders array , which is array of folder objects
 		// the Folder interface is in the global.d.ts file
@@ -15,6 +15,12 @@ const defaultValues: Record<string, Folder[] | ID> = {
 					id: crypto.randomUUID(),
 					title: `Markdown Cheatsheet`,
 					content: defaultData.markdown.mdcheatsheet
+				},
+				{
+					// Project's readme
+					id: crypto.randomUUID(),
+					title: `README.md`,
+					content: defaultData.markdown.readmemd
 				}
 			]
 		},
@@ -35,7 +41,7 @@ const defaultValues: Record<string, Folder[] | ID> = {
 				{
 					id: crypto.randomUUID(),
 					title: `Error Handling and File I/O`,
-					content: defaultData.python.pythonfilehandilin
+					content: defaultData.python.pythonfilehandiling
 				}
 			]
 		},
@@ -86,6 +92,10 @@ const defaultValues: Record<string, Folder[] | ID> = {
 	currentFolderId: null,
 	currentNoteId: null
 };
+if (matchMedia('(min-width:1024px)').matches) {
+	defaultValues.currentFolderId = defaultValues.folders[0].id;
+	defaultValues.currentNoteId = defaultValues.folders[0].notes[1].id;
+}
 let db: IDBDatabase | null = null; // Initialize a variable to hold the database reference
 
 function openDB() {
@@ -119,6 +129,7 @@ async function getValue<T>(key: string): Promise<T> {
 		const request = objectStore.get(key); // Get a value by key
 
 		request.onsuccess = (event) => {
+			/*@ts-ignore */ // I am so sorry, i had to :(
 			resolve(request.result ? request.result.value : defaultValues[key]); // Resolve with the value or a default value if not found
 		};
 
@@ -166,6 +177,9 @@ currentNoteId.subscribe((value) => {
 
 // sorry, i can't resist putting this function here.
 export function focusInput(node: HTMLInputElement | HTMLTextAreaElement) {
+	if (node instanceof HTMLTextAreaElement) {
+		node.setSelectionRange(0, 0);
+	}
 	node.focus(); // Focuses the textarea if it is present on DOM using the svetle action
 	return {
 		destroy() {

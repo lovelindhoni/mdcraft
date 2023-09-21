@@ -1,4 +1,5 @@
 import EmojiConvertor from 'emoji-js'; // Converts colon-text to emojis
+import hljs from 'highlight.js'; // For Highlighting Code Blocks
 
 const renderer = {
 	text(text: string) {
@@ -23,6 +24,16 @@ const renderer = {
 	// Below block modifies the renderer to add lazy loading attribute
 	image(href: string | null, title: string | null, text: string) {
 		return `<img src="${href}" loading="lazy" alt="${text}" ${title ? `title="${title}"` : null}/>`;
+	},
+	// Belwo block modifies the renderer to add highlighting to code blocks
+	code(code: string, language: string | undefined) {
+		// when the language is unknown or not specified
+		if (!hljs.getLanguage(language as string)) {
+			language = 'plaintext';
+		}
+		return `<pre><code class="hljs language-${language}">${
+			hljs.highlight(code, { language: language as string }).value
+		}</code></pre>`;
 	}
 };
 export default renderer;
