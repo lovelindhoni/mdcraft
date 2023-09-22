@@ -10,7 +10,7 @@
 <CreateFolder />
 {#if $folders.length !== 0}
 	<!--if there are no folders then the message is displayed, else the folders are looped -->
-	<div class="folders" role="menu">
+	<div class="folders">
 		{#each $folders as folder (folder.id)}
 			<!--when a folder is clicked then the currentFolderId is set to its folder Id and the curretnnoteid is set to null-->
 			<Folder
@@ -34,13 +34,13 @@
 <style>
 	@media (min-width: 1740px) {
 		.folders {
-			height: 87%;
+			height: 86%;
 		}
 	}
 
 	@media (min-width: 1430px) and (max-width: 1739px) {
 		.folders {
-			height: 84%;
+			height: 82%;
 		}
 	}
 

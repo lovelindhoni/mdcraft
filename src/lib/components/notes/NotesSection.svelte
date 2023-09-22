@@ -20,7 +20,7 @@
 
 {#if $currentFolderId}
 	<!--incase if any Folder are selected-->
-	<div role="menu" class="notes-and-title">
+	<div class="notes-and-title">
 		<!--I seriously dont know why i made this logic, but it is needed-->
 		{#if ($folders[currentFolderIndex].notes.length > 0 && matchMedia('(min-width:1024px)').matches) || matchMedia('(max-width:1023px)').matches}
 			<div class="mast" role="group">

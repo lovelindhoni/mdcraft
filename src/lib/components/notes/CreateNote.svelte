@@ -49,7 +49,11 @@
 		: '32';
 </script>
 
-<button on:click={() => (showModal = true)} on:keydown={() => (showModal = true)}>
+<button
+	on:click={() => (showModal = true)}
+	on:keydown={() => (showModal = true)}
+	title="create-note"
+>
 	<svelte:component this={AddSvg} color="white" {size} />
 </button>
 {#if showModal}
@@ -114,6 +118,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin-right: 0.8rem;
 	}
 
 	button:hover {

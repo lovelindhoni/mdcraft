@@ -68,7 +68,7 @@ If you find MdCraft useful and would like to contribute, feel free to contribute
 
 ## Project Setup
 
-1. Clone the repository: `git clone [repository-name]`
+1. Clone the repository: `git clone https://github.com/lovelindhoni/mdcraft.git`
 2. Install dependencies: `pnpm install`
 3. Run the development server: `pnpm run dev`
 4. Open a web browser and navigate to `http://localhost:5173`
@@ -80,4 +80,4 @@ MdCraft is hosted on Vercel.
 
 ## License
 
-MdCraft is licensed under the [MIT License](LICENSE).
+MdCraft is licensed under the [MIT License](https://mit-license.org).

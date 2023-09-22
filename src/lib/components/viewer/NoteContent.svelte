@@ -12,7 +12,7 @@
 		width: 100%;
 		box-sizing: border-box;
 		overflow-y: auto;
-		overflow-wrap: anywhere;
+		overflow-wrap: break-word;
 	}
 	/*Styles for the generated Html*/
 	@media (min-width: 1740px) {
@@ -42,27 +42,24 @@
 		:global(.viewer del),
 		:global(.viewer em),
 		:global(.viewer strong) {
-			font-size: 1.7rem;
+			font-size: 1.5rem;
 		}
 		:global(.viewer code) {
-			font-size: 1.55rem;
+			font-size: 1.5rem;
 		}
 		:global(.viewer table) {
 			font-size: 1.53rem;
 		}
-		:global(.viewer pre span) {
-			font-size: 1.5rem;
-		}
 	}
 	@media (min-width: 1430px) and (max-width: 1739px) {
 		:global(.viewer h1) {
-			font-size: 2.4rem;
+			font-size: 2.2rem;
 		}
 		:global(.viewer h2) {
-			font-size: 2.1rem;
+			font-size: 1.9rem;
 		}
 		:global(.viewer h3) {
-			font-size: 1.7rem;
+			font-size: 1.6rem;
 		}
 		:global(.viewer h4) {
 			font-size: 1.4rem;
@@ -81,16 +78,13 @@
 		:global(.viewer del),
 		:global(.viewer em),
 		:global(.viewer strong) {
-			font-size: 1.35rem;
+			font-size: 1.26rem;
 		}
 		:global(.viewer code) {
-			font-size: 1.25rem;
+			font-size: 1.1rem;
 		}
 		:global(.viewer table) {
 			font-size: 1.25rem;
-		}
-		:global(.viewer pre span) {
-			font-size: 1.26rem;
 		}
 	}
 	@media (min-width: 1024px) and (max-width: 1429px) {
@@ -127,9 +121,6 @@
 		}
 		:global(.viewer table) {
 			font-size: 1.15rem;
-		}
-		:global(.viewer pre span) {
-			font-size: 1.03rem;
 		}
 	}
 	@media (min-width: 1024px) {
@@ -291,7 +282,7 @@
 	:global(.viewer table) {
 		border-collapse: collapse;
 		width: 100%;
-		overflow-wrap: anywhere;
+		overflow-wrap: break-word;
 	}
 	:global(.viewer table th),
 	:global(.viewer table td) {

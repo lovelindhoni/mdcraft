@@ -3,26 +3,26 @@
 	import Social from '$lib/components/header/Social.svelte';
 </script>
 
-<header>MdCraft <Social /></header>
+<header><a href="https://mdcraft.vercel.app" target="_blank">MdCraft</a> <Social /></header>
 
 <style>
 	@media (min-width: 1740px) {
-		header {
+		header a {
 			font-size: 3.2rem;
 		}
 	}
 	@media (min-width: 1430px) and (max-width: 1739px) {
-		header {
+		header a {
 			font-size: 2.6rem;
 		}
 	}
 	@media (min-width: 1151px) and (max-width: 1429px) {
-		header {
+		header a {
 			font-size: 2.2rem;
 		}
 	}
 	@media (min-width: 1024px) and (max-width: 1150px) {
-		header {
+		header a {
 			font-size: 1.8rem;
 		}
 	}
@@ -41,8 +41,10 @@
 			height: 10%;
 			margin: 0 auto 0;
 			padding: 2.1rem 1.6rem 0;
-			font-size: 2.8rem;
 			align-items: baseline;
+		}
+		header a {
+			font-size: 2.8rem;
 		}
 	}
 	@media (min-width: 550px) and (max-width: 649px) {
@@ -50,34 +52,43 @@
 			width: 80%;
 			margin: 0 auto 0;
 			height: 10%;
-			font-size: 2.8rem;
 			padding: 1rem 1.6rem 0;
 			align-items: baseline;
+		}
+		header a {
+			font-size: 2.8rem;
 		}
 	}
 	@media (min-width: 400px) and (max-width: 549px) {
 		header {
 			width: 100%;
 			height: 10%;
-			font-size: 2.05rem;
 			padding: 2.2rem 1.6rem 0;
 			align-items: baseline;
+		}
+		header a {
+			font-size: 2.05rem;
 		}
 	}
 	@media (max-width: 399px) {
 		header {
 			width: 100%;
 			height: 9%;
-			font-size: 2.05rem;
 			padding: 1rem 1.6rem 0;
 			align-items: baseline;
+		}
+		header a {
+			font-size: 2.05rem;
 		}
 	}
 	header {
 		display: flex;
-		color: var(--orange);
 		box-sizing: border-box;
 		cursor: default;
 		justify-content: space-between;
+	}
+	header a {
+		color: var(--orange);
+		text-decoration: none;
 	}
 </style>

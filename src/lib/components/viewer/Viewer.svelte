@@ -226,7 +226,7 @@
 		box-sizing: border-box;
 		overflow-y: auto;
 		resize: none;
-		overflow-wrap: anywhere;
+		overflow-wrap: break-word;
 		outline: none;
 		border: none;
 		background-color: var(--background);

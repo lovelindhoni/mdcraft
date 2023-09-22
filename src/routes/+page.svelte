@@ -17,7 +17,7 @@
 	<!--two different layouts, one for mobile and tablets and another for pc and desktops-->
 	{#if !matchMedia('(max-width:1023px)').matches}
 		<!--this layout for pc and desktops-->
-		<div class="sidebar" role="menubar">
+		<div class="sidebar">
 			<Sidebar />
 		</div>
 		<div class="editor">
@@ -30,7 +30,7 @@
 		</div>
 		<!-- and these below three are for mobile and tablets-->
 	{:else if !$currentFolderId}
-		<div class="sidebar" role="menubar">
+		<div class="sidebar">
 			<Sidebar />
 		</div>
 	{:else if $currentFolderId && !$currentNoteId}
@@ -61,7 +61,7 @@
 			grid-column-start: span 14;
 			grid-row: 1 / span 20;
 			height: 100%;
-			border-left: 2px solid var(--grey-1);
+			border-left: 1px solid var(--grey-1);
 		}
 	}
 	@media (min-width: 650px) and (max-width: 1023px) {

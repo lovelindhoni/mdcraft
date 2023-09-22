@@ -12,7 +12,8 @@
 		const url = window.URL.createObjectURL(blob);
 		const downloadLink = document.createElement('a');
 		downloadLink.href = url;
-		downloadLink.download = title + '.md';
+		// below condition is to prevent double extensions while donwloading i.e README.md.md
+		downloadLink.download = title.slice(-3) == '.md' ? title : title + '.md';
 		// Trigger a click event on the link to start the download
 		downloadLink.click();
 		// Clean up by revoking the Blob URL

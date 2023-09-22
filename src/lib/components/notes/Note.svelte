@@ -72,6 +72,7 @@
 			role="button"
 			tabindex="0"
 			class="icon"
+			title="delete"
 			on:click|stopPropagation={() => (showRename = true)}
 			on:keydown|stopPropagation={() => (showRename = true)}
 		>
@@ -80,6 +81,7 @@
 		<!--the rename and delete icon for doing opertation in the note-->
 		<div
 			class="icon"
+			title="delete"
 			role="button"
 			tabindex="0"
 			on:click|stopPropagation={() => (showDeleteModal = true)}
@@ -153,7 +155,6 @@
 		}
 		.actions {
 			padding-left: 0.4rem;
-			padding-right: 0.4rem;
 			padding-top: 0.1rem;
 		}
 	}

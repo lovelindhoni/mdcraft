@@ -67,7 +67,7 @@
 	on:keydown
 >
 	<!--even forwarding, clicking this component will aset the currentFolderId-->
-	<div role="menuitem" class="folder-title">
+	<div class="folder-title">
 		<span>{$folders[folderIndex].title}</span>
 		<!--preserving whitespace-->
 		<!--i used this regex to save the whitespace-->
@@ -80,6 +80,7 @@
 			role="button"
 			tabindex="0"
 			class="icons"
+			title="edit"
 			on:click|stopPropagation={() => (showRename = true)}
 			on:keydown|stopPropagation={() => (showRename = true)}
 		>
@@ -89,6 +90,7 @@
 			role="button"
 			tabindex="0"
 			class="icons"
+			title="delete"
 			on:click|stopPropagation={() => (showDeleteModal = true)}
 			on:keydown|stopPropagation={() => (showDeleteModal = true)}
 		>
