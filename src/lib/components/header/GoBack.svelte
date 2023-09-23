@@ -66,5 +66,6 @@
 		border-bottom: 2px solid var(--orange);
 		width: max-content;
 		color: var(--orange);
+		cursor: pointer;
 	}
 </style>

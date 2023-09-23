@@ -1,18 +1,9 @@
 <script lang="ts">
-	import { onMount } from 'svelte'; // onMount for registering events
 	const handleKeyDown = (event: KeyboardEvent) => {
 		if (event.ctrlKey && event.key === 'Enter') {
 			edit = !edit; // Toggles the editor, the shortcut is Ctrl + Enter
 		}
 	};
-	onMount(() => {
-		// Adds the shorcut to the window onmount
-		window.addEventListener('keydown', handleKeyDown);
-		return () => {
-			// Removes the shortcut from the window ondestroy
-			window.removeEventListener('keydown', handleKeyDown);
-		};
-	});
 	export let edit = false;
 </script>
 
@@ -26,6 +17,7 @@
 		(Ctrl + Enter)</span
 	>
 </div>
+<svelte:window on:keydown={handleKeyDown} />
 
 <style>
 	/* CSS for toggle*/

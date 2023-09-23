@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 	import { focusInput } from '$lib/store'; // for focussing the input tag
 	import EditSvg from '$lib/assets/EditSvg.svelte';
 	import CloseSvg from '$lib/assets/CloseSvg.svelte';
@@ -25,12 +25,6 @@
 		: '21';
 	const proceedShorcut = (event: KeyboardEvent) =>
 		event.key === 'Enter' && title.trim() !== '' ? dispatch('proceed') : null;
-	onMount(() => {
-		window.addEventListener('keydown', proceedShorcut);
-		return () => {
-			window.removeEventListener('keydown', proceedShorcut);
-		};
-	});
 </script>
 
 <div class="modal-container">
@@ -77,6 +71,7 @@
 		</div>
 	</div>
 </div>
+<svelte:window on:keydown={proceedShorcut} />
 
 <style>
 	@media (min-width: 1740px) {

@@ -68,13 +68,38 @@ If you find MdCraft useful and would like to contribute, feel free to contribute
 
 ## Project Setup
 
-1. Clone the repository: `git clone https://github.com/lovelindhoni/mdcraft.git`
-2. Install dependencies: `pnpm install`
-3. Run the development server: `pnpm run dev`
-4. Open a web browser and navigate to `http://localhost:5173`
-5. For production build: `pnpm run build`
-6. For running in production mode: `pnpm run preview`
-7. Open a web browser and navigate to `http://localhost:4173`
+Clone the repository:
+
+```sh
+git clone https://github.com/lovelindhoni/mdcraft.git
+```
+
+Install dependencies:
+
+```sh
+pnpm install
+```
+
+Run the development server:
+
+```sh
+pnpm run dev
+```
+
+Open a web browser and navigate to `http://localhost:5173`
+For production build:
+
+```sh
+pnpm run build
+```
+
+For running in production mode:
+
+```sh
+pnpm run preview
+```
+
+Open a web browser and navigate to `http://localhost:4173`
 
 MdCraft is hosted on Vercel.
 

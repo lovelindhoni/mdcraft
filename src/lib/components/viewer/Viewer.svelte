@@ -125,13 +125,13 @@
 	}
 	@media (min-width: 1740px) {
 		textarea {
-			font-size: 1.65rem;
+			font-size: 1.6rem;
 		}
 	}
 
 	@media (min-width: 1430px) and (max-width: 1739px) {
 		textarea {
-			font-size: 1.36rem;
+			font-size: 1.3rem;
 		}
 	}
 

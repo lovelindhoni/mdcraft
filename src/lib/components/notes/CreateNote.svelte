@@ -76,22 +76,22 @@
 <style>
 	@media (min-width: 1740px) {
 		button {
-			width: 3.3rem;
-			height: 3.3rem;
+			width: 3rem;
+			height: 3rem;
 		}
 	}
 
 	@media (min-width: 1430px) and (max-width: 1739px) {
 		button {
-			width: 3.05rem;
-			height: 3.05rem;
+			width: 2.6rem;
+			height: 2.6rem;
 		}
 	}
 
 	@media (min-width: 1024px) and (max-width: 1429px) {
 		button {
-			width: 2.65rem;
-			height: 2.65rem;
+			width: 2.5rem;
+			height: 2.5rem;
 		}
 	}
 
