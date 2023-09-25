@@ -28,11 +28,11 @@ const renderer = {
 	// Belwo block modifies the renderer to add highlighting to code blocks
 	code(code: string, language: string | undefined) {
 		// when the language is unknown or not specified
-		if (!hljs.getLanguage(language as string)) {
+		if (language === undefined || !hljs.getLanguage(language)) {
 			language = 'plaintext';
 		}
 		return `<pre><code class="hljs language-${language}">${
-			hljs.highlight(code, { language: language as string }).value
+			hljs.highlight(code, { language }).value
 		}</code></pre>`;
 	}
 };

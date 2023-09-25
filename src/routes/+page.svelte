@@ -10,13 +10,13 @@
 		$currentFolderId && $currentNoteId
 			? $folders[currentFolderIndex].notes.findIndex((note) => note.id === $currentNoteId)
 			: -1;
-	let dimensions = !matchMedia('(max-width:1023px)').matches;
+	let pcDimensions = !matchMedia('(max-width:1023px)').matches;
 </script>
 
 <main class="layout">
 	<Header />
 	<!--two different layouts, one for mobile and tablets and another for pc and desktops-->
-	{#if dimensions}
+	{#if pcDimensions}
 		<!--this layout for pc and desktops-->
 		<div class="sidebar">
 			<Sidebar />
@@ -44,7 +44,8 @@
 		</div>
 	{/if}
 </main>
-<svelte:window on:resize={() => (dimensions = !matchMedia('(max-width: 1023px)').matches)} />
+<!--Calculates and toggles the layout of the app at viewport resize-->
+<svelte:window on:resize={() => (pcDimensions = !matchMedia('(max-width: 1023px)').matches)} />
 
 <style>
 	@media (min-width: 1024px) {

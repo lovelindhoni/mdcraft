@@ -1,6 +1,6 @@
 {
 	"name": "mdcraft",
-	"version": "0.11",
+	"version": "0.12",
 	"private": false,
 	"scripts": {
 		"dev": "vite dev",
@@ -26,8 +26,10 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/inconsolata": "^5.0.8",
+		"@novacbn/svelte-codejar": "^0.1.2",
 		"@types/emoji-js": "^3.5.0",
 		"@types/marked": "^5.0.1",
+		"codejar": "^4.2.0",
 		"emoji-js": "^3.7.0",
 		"highlight.js": "^11.8.0",
 		"marked": "^8.0.1",

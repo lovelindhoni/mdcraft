@@ -1,15 +1,25 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@fontsource/inconsolata':
     specifier: ^5.0.8
     version: 5.0.8
+  '@novacbn/svelte-codejar':
+    specifier: ^0.1.2
+    version: 0.1.2
   '@types/emoji-js':
     specifier: ^3.5.0
     version: 3.5.0
   '@types/marked':
     specifier: ^5.0.1
     version: 5.0.1
+  codejar:
+    specifier: ^4.2.0
+    version: 4.2.0
   emoji-js:
     specifier: ^3.7.0
     version: 3.7.0
@@ -321,6 +331,13 @@ packages:
       fastq: 1.15.0
     dev: true
 
+  /@novacbn/svelte-codejar@0.1.2:
+    resolution: {integrity: sha512-lZd6r+dbdU+zN8d4QW005QEmTT6WDKjpTXvbPIcqIWGSnbWBVoEMFPOwJ0C3PYM4hHAjb2GHF4DBywlWQogNLw==}
+    dependencies:
+      codejar: 3.7.0
+      svelte: 3.59.2
+    dev: false
+
   /@polka/url@1.0.0-next.23:
     resolution: {integrity: sha512-C16M+IYz0rgRhWZdCmK+h58JMv8vijAA61gmz2rspCSwKwzBebpdcsiUmwrtJRdphuY30i6BSLEOP8ppbNLyLg==}
     dev: true
@@ -513,6 +530,14 @@ packages:
       estree-walker: 3.0.3
       periscopic: 3.1.0
     dev: true
+
+  /codejar@3.7.0:
+    resolution: {integrity: sha512-rqyDu2zNwfu1EhXI++LEMQDzhykS+V0BV52RemtCj5lczgTgWSufyEa+tS7RP7qCXH/WXOkU0eIthmFUzvG78Q==}
+    dev: false
+
+  /codejar@4.2.0:
+    resolution: {integrity: sha512-U8OZe+2B400W5nSSbXxaoboBN5i1hxWdBZJ9kcTy0DBuc4muwkPE/ph/MGX4yooIE8hztfNLPNU1CbcNYch69A==}
+    dev: false
 
   /concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
@@ -1138,6 +1163,11 @@ packages:
       svelte: 4.2.0
       typescript: 5.2.2
     dev: true
+
+  /svelte@3.59.2:
+    resolution: {integrity: sha512-vzSyuGr3eEoAtT/A6bmajosJZIUWySzY2CzB3w2pgPvnkUjGqlDnsNnA0PMO+mMAhuyMul6C2uuZzY6ELSkzyA==}
+    engines: {node: '>= 8'}
+    dev: false
 
   /svelte@4.2.0:
     resolution: {integrity: sha512-kVsdPjDbLrv74SmLSUzAsBGquMs4MPgWGkGLpH+PjOYnFOziAvENVzgJmyOCV2gntxE32aNm8/sqNKD6LbIpeQ==}

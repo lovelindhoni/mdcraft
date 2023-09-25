@@ -176,10 +176,7 @@ currentNoteId.subscribe((value) => {
 });
 
 // sorry, i can't resist putting this function here.
-export function focusInput(node: HTMLInputElement | HTMLTextAreaElement) {
-	if (node instanceof HTMLTextAreaElement) {
-		node.setSelectionRange(0, 0);
-	}
+export function focusInput(node: HTMLInputElement) {
 	node.focus(); // Focuses the textarea if it is present on DOM using the svetle action
 	return {
 		destroy() {

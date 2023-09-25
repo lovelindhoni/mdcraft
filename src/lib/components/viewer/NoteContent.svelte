@@ -1,8 +1,4 @@
 <!--This component is what contains and styles the generated html from markdown-->
-<script lang="ts">
-	import 'highlight.js/styles/atom-one-dark-reasonable.css'; // one-dark for now, suggestions welcomed
-</script>
-
 <div class="viewer">
 	<slot />
 </div>

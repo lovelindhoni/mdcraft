@@ -4,14 +4,15 @@ MdCraft is an open-source web app that serves as an in-browser Markdown editor a
 
 ## Tech Stack
 
-Mdcraft leverage these open source project
+Mdcraft is not possible without these awesome open source projects.
 
 - [SvelteKit](https://kit.svelte.dev) - Modern framework for building fast and
   efficient web apps with simplicity
-- [Typescript](https://www.typescriptlang.org/) - Who doesn't know about Typescript 😅
+- [Typescript](https://www.typescriptlang.org/) - 😅
 - [Marked](https://marked.js.org/) - A markdown parser and compiler. Built for speed.
 - [HighlightJS](https://highlightjs.org/) - Syntax highlighter with language auto-detection and zero dependencies.
 - [Sanitize-Html](https://github.com/apostrophecms/sanitize-html) - Provides a simple HTML sanitizer with a clear API.
+- [Svelte-Codejar](https://github.com/novacbn/svelte-codejar) - Svelte Binding for the embeddable code editor [Codjar](https://medv.io/codejar/)
 
 ## Features
 
@@ -19,7 +20,7 @@ Mdcraft leverage these open source project
 
 - **Markdown Notes**: Create individual notes inside folders, with the ability to rename and delete them.
 
-- **Live HTML Preview**: Edit the Markdown content of a note and instantly see a live HTML preview with highlighted code blocks.
+- **Live HTML Preview**: Edit the Markdown content of a note in a syntax-highlighted environment and instantly see a live HTML preview with highlighted code blocks.
 
 - **Markdown Download**: Notes can be downloaded in `.md` format, making it easy to save and share your work.
 
@@ -56,11 +57,11 @@ Special thanks to [Navin Kodag](https://github.com/100lvlmaster) for sharing the
 
 Here are some features and improvements planned for MdCraft in the so-far future:
 
-- **Text Highlighting**: Enhance the Markdown editing experience by adding the ability to highlight markdown text within the textarea
-
-- **GitHub Gist Integration**: Streamline the process of sharing your notes by enabling users to publish their notes as GitHub Gists directly from MdCraft.
+- ~**Text Highlighting**: Enhance the Markdown editing experience by adding the ability to highlight markdown text within the textarea~
 
 - **Improved Theming**: Work on improving the app's CSS to provide better theming options, enhancing the overall user interface and customization.
+
+- **GitHub Gist Integration**: Streamline the process of sharing your notes by enabling users to publish their notes as GitHub Gists directly from MdCraft.
 
 ## Contributing
 

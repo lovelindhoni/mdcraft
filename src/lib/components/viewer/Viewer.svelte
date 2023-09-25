@@ -1,14 +1,18 @@
 <!--this component connects all the comps in the viewer folder and exported to the +page.svelte-->
 <script lang="ts">
-	import { currentNoteId, focusInput, folders } from '$lib/store';
+	import { currentNoteId, folders } from '$lib/store';
 	import { onMount } from 'svelte';
+	import hljs from 'highlight.js/lib/core';
+	import markdown from 'highlight.js/lib/languages/markdown';
+	import 'highlight.js/styles/atom-one-dark-reasonable.css'; // one-dark for now, suggestions welcomed
+	import { CodeJar } from '@novacbn/svelte-codejar'; // for code-editor highlighting component based on codejar
 	import { marked } from 'marked'; // For parsing note's content
-	import sanitizeHtml from 'sanitize-html';
+	import sanitizeHtml from 'sanitize-html'; // for sanitizing user input markdown
 	import renderer from '$lib/components/viewer/customRenderer'; // importing the customised renderer
-	import '@fontsource/inconsolata/500.css'; // font for textarea
+	import '@fontsource/inconsolata/500.css'; //font for code-editor
 	import NoteContent from '$lib/components/viewer/NoteContent.svelte';
 	import Toggle from '$lib/components/viewer/Toggle.svelte';
-	import Pagination from '$lib/components/viewer/Pagination.svelte';
+	import BreadCrumbs from '$lib/components/viewer/BreadCrumbs.svelte';
 	import Download from '$lib/components/header/Download.svelte';
 	let GoBack: any = null;
 	// I am dynamically importing the goback component because this is needed only for smaller screens, just to reduce some size.
@@ -17,11 +21,18 @@
 			GoBack = (await import('$lib/components/header/GoBack.svelte')).default;
 		}
 	});
+	// Call the function when the component is mounted or when the element is available.
 	marked.use({ renderer }); // using the new customised renderer
+	hljs.registerLanguage('markdown', markdown); // registering markdown
+	const highlight = (code: string) =>
+		// highlighting the code-string using highlightjs api
+		hljs.highlight(code, {
+			language: 'markdown'
+		}).value;
 
 	export let currentFolderIndex: number; // both of these will be satisfied by the +page.svelte
 	export let currentNoteIndex: number;
-	// The prop that is used to toggle between the textarea and notecontent, exported to +page
+	// The prop that is used to toggle between the code-editor and notecontent, exported to +page
 	let edit: boolean; // the variable used to toggle between the notecontent and editor.
 	// the generatedHtml variable that runs whenever the edit toggle is toggled.
 	let generatedHtml: string;
@@ -69,7 +80,8 @@
 					img: ['src', 'alt', 'loading', 'title'],
 					input: [{ name: 'type', values: ['checkbox'] }, 'checked', 'disabled'],
 					span: ['style', 'class', 'id'],
-					code: ['style', 'class', 'id']
+					code: ['style', 'class', 'id'],
+					pre: ['class', 'style']
 				}
 			}
 		);
@@ -77,10 +89,10 @@
 </script>
 
 <div class="header-container">
-	<!--forgive my poor choice of css classes, the header container contains the download button, the toggle and the pagination component  -->
+	<!--forgive my poor choice of css classes, the header container contains the download button, the toggle and the breadcrumbs component  -->
 	<div class="editor-head">
 		<div class="download-container">
-			<Pagination {currentFolderIndex} {currentNoteIndex} />
+			<BreadCrumbs {currentFolderIndex} {currentNoteIndex} />
 			{#if matchMedia('(min-width:1024px)').matches}
 				<Download
 					title={$folders[currentFolderIndex].notes[currentNoteIndex].title}
@@ -105,13 +117,17 @@
 	{/if}
 </div>
 {#if edit}
-	<!--on editing the textarea is shown, otherwise, the Notecontent is shown-->
-	<!--uses the focuseditor and the note's content is binded to this textarea-->
-	<textarea
-		use:focusInput
-		placeholder="Start MdCrafting..."
-		spellcheck="false"
+	<!--on editing the code-editor is shown, otherwise, the Notecontent is shown-->
+
+	<CodeJar
+		addClosing={true}
+		indentOn={/{$/}
+		spellcheck={false}
+		tab={'\t'}
 		bind:value={$folders[currentFolderIndex].notes[currentNoteIndex].content}
+		class="hljs code-editor"
+		syntax="markdown"
+		{highlight}
 	/>
 {:else}
 	<NoteContent>{@html generatedHtml}</NoteContent>
@@ -124,19 +140,19 @@
 		gap: 1.3rem;
 	}
 	@media (min-width: 1740px) {
-		textarea {
-			font-size: 1.6rem;
+		:global(.code-editor) {
+			font-size: 1.5rem;
 		}
 	}
 
 	@media (min-width: 1430px) and (max-width: 1739px) {
-		textarea {
+		:global(.code-editor) {
 			font-size: 1.3rem;
 		}
 	}
 
 	@media (min-width: 1024px) and (max-width: 1429px) {
-		textarea {
+		:global(.code-editor) {
 			font-size: 1.19rem;
 		}
 	}
@@ -151,9 +167,9 @@
 			height: 8%;
 		}
 
-		textarea {
+		:global(.code-editor) {
 			padding: 1rem 2.5rem;
-			height: 87%;
+			height: 86%;
 		}
 	}
 
@@ -172,7 +188,7 @@
 			margin: 0 auto;
 		}
 
-		textarea {
+		:global(.code-editor) {
 			padding: 2rem 20vw;
 			height: 82%;
 			font-size: 1.34rem;
@@ -194,7 +210,7 @@
 			margin: 0 auto;
 		}
 
-		textarea {
+		:global(.code-editor) {
 			padding: 2rem 15vw;
 			height: 83%;
 			font-size: 1.32rem;
@@ -214,14 +230,14 @@
 			padding: 0 1.9rem 1.7rem;
 		}
 
-		textarea {
+		:global(.code-editor) {
 			padding: 1rem 8vw 2rem;
 			height: 77.5%;
 			font-size: 1.1rem;
 		}
 	}
 
-	textarea {
+	:global(.code-editor) {
 		width: 100%;
 		box-sizing: border-box;
 		overflow-y: auto;
@@ -234,10 +250,6 @@
 		color: var(--text);
 		font-family: 'Inconsolata', monospace !important;
 	}
-	textarea::placeholder {
-		color: hsl(0, 0%, 60%);
-	}
-
 	.editor-head {
 		display: flex;
 		align-items: center;
