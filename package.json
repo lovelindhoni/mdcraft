@@ -1,6 +1,6 @@
 {
 	"name": "mdcraft",
-	"version": "0.14",
+	"version": "0.15",
 	"private": false,
 	"scripts": {
 		"dev": "vite dev",
@@ -29,6 +29,7 @@
 		"@novacbn/svelte-codejar": "^0.1.2",
 		"@types/emoji-js": "^3.5.0",
 		"@types/marked": "^5.0.1",
+		"@vercel/analytics": "^1.0.2",
 		"codejar": "^4.2.0",
 		"emoji-js": "^3.7.0",
 		"highlight.js": "^11.8.0",
