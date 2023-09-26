@@ -6,7 +6,7 @@
 
 <div class="social-container">
 	<div class="icon-parent">
-		<a href="https://github.com/lovelindhoni" target="_blank">
+		<a href="https://github.com/lovelindhoni/mdcraft" target="_blank">
 			<img src={Github} alt="Github Icon" />
 		</a>
 	</div>
