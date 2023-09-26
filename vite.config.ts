@@ -1,8 +1,9 @@
 import { sveltekit } from '@sveltejs/kit/vite';
+import { isoImport } from 'vite-plugin-iso-import';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [sveltekit(), isoImport()],
 	build: {
 		target: 'esnext',
 		rollupOptions: {
