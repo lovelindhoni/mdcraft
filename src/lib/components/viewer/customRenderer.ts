@@ -27,9 +27,10 @@ const renderer = {
 	},
 	// Belwo block modifies the renderer to add highlighting to code blocks
 	code(code: string, language: string | undefined) {
-		// when the language is unknown or not specified
+		// when the language is unknown or not specified, then the code is detected auto-detected, pls note that this feature is so not foolproof, so always specify the language whenever you are creating fenced code block
 		if (language === undefined || !hljs.getLanguage(language)) {
-			language = 'plaintext';
+			const langDetect =  hljs.highlightAuto(code).language
+			language = langDetect ? langDetect : 'plaintext'
 		}
 		return `<pre><code class="hljs language-${language}">${
 			hljs.highlight(code, { language }).value

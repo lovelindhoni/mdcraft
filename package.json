@@ -1,6 +1,6 @@
 {
 	"name": "mdcraft",
-	"version": "0.12",
+	"version": "0.13",
 	"private": false,
 	"scripts": {
 		"dev": "vite dev",

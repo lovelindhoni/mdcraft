@@ -86,6 +86,19 @@
 			}
 		);
 	}
+	function addPlaceholder() {
+		// This function adds the placeholder text in the code-editor and focuses it
+		if (edit) {
+			// when it is edit mode, the pre element with code-editor class is captured
+			const preElement = document.querySelector('pre.code-editor') as HTMLPreElement;
+			if (preElement) {
+				// data-placeholder attribute with a value is being set
+				preElement.setAttribute('data-placeholder', 'Start MdCrafting...');
+				// preElement is focussed
+				preElement.focus();
+			}
+		}
+	}
 </script>
 
 <div class="header-container">
@@ -100,7 +113,7 @@
 				/>
 			{/if}
 		</div>
-		<Toggle bind:edit />
+		<Toggle bind:edit on:change={addPlaceholder} />
 	</div>
 	{#if matchMedia('(max-width:1023px)').matches}
 		<div class="go-back-to-notes">
@@ -249,6 +262,11 @@
 		line-height: 1.5;
 		color: var(--text);
 		font-family: 'Inconsolata', monospace !important;
+	}
+	:global(.code-editor:empty:before) {
+		/* when the code editor is empty, then the data-placeholder is used as the content*/
+		content: attr(data-placeholder);
+		color: var(--grey-1);
 	}
 	.editor-head {
 		display: flex;

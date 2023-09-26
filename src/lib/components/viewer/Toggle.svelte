@@ -9,7 +9,15 @@
 
 <div role="checkbox" aria-checked="false">
 	<label class="toggle" for="toggle">
-		<input title="editor-slider" placeholder=", " type="checkbox" bind:checked={edit} id="toggle" />
+		<!--binded the edit exported edit variable with the checked state of this input element. Also forwarded an change event to add the placeholder text and focus state on the code-editor when this input element is changed-->
+		<input
+			title="editor-slider"
+			placeholder=", "
+			type="checkbox"
+			bind:checked={edit}
+			id="toggle"
+			on:change
+		/>
 		<span class="slider round" />
 	</label>
 	<!--The span attribute is used here to act as a label to  the toggle -->
