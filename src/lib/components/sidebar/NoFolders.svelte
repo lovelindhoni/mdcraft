@@ -72,10 +72,10 @@
 
 	@media (min-width: 1024px) and (max-width: 1429px) {
 		.no-folders-text {
-			font-size: 1.6rem;
+			font-size: 1.55rem;
 		}
 		.no-folders-subtext {
-			font-size: 1.1rem;
+			font-size: 1.05rem;
 			position: relative;
 			bottom: 0.8rem;
 		}
@@ -83,22 +83,22 @@
 			margin-right: 5rem;
 		}
 		img {
-			height: 15rem;
-			width: 18rem;
+			height: 14rem;
+			width: 17rem;
 		}
 	}
 
 	@media (min-width: 1430px) and (max-width: 1739px) {
 		img {
-			height: 20rem;
-			width: 22rem;
+			height: 17rem;
+			width: 19rem;
 		}
 
 		.no-folders-text {
-			font-size: 2.15rem;
+			font-size: 2.1rem;
 		}
 		.no-folders-subtext {
-			font-size: 1.4rem;
+			font-size: 1.3rem;
 			position: relative;
 			bottom: 0.8rem;
 		}

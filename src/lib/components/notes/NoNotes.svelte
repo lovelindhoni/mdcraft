@@ -32,14 +32,14 @@
 
 	@media (min-width: 1430px) and (max-width: 1739px) {
 		.create-note-text {
-			font-size: 2.22rem;
+			font-size: 2.1rem;
 		}
 		.create-note-subtext {
-			font-size: 1.435rem;
+			font-size: 1.3rem;
 		}
 		img {
-			height: 22rem;
-			width: 22rem;
+			height: 20rem;
+			width: 20rem;
 		}
 	}
 

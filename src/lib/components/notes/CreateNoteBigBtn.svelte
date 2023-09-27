@@ -83,9 +83,9 @@
 
 	@media (min-width: 1430px) and (max-width: 1739px) {
 		button {
-			width: 14rem;
-			height: 4.2rem;
-			font-size: 1.6rem;
+			width: 13rem;
+			height: 4rem;
+			font-size: 1.5rem;
 		}
 	}
 

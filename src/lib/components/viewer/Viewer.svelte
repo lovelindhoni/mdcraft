@@ -4,7 +4,7 @@
 	import { onMount } from 'svelte';
 	import hljs from 'highlight.js/lib/core';
 	import markdown from 'highlight.js/lib/languages/markdown';
-	import '$lib/components/viewer/atom-one-dark-reasonable.css' // one-dark for now, suggestions welcomed
+	import '$lib/components/viewer/atom-one-dark-reasonable.css'; // one-dark for now, suggestions welcomed
 	// for code-editor highlighting component based on codejar, appended ?client to isomorphically import as a client side library (hugs to vite-iso-import plugin) to shut the window is not defined error introduced at commit 75d7483.
 	//@ts-ignore
 	import { CodeJar } from '@novacbn/svelte-codejar?client';
@@ -54,6 +54,7 @@
 					'p',
 					'a',
 					'hr',
+					'br',
 					'code',
 					'pre',
 					'ul',
@@ -115,7 +116,7 @@
 				/>
 			{/if}
 		</div>
-		<Toggle bind:edit on:change={addPlaceholder} />
+		<Toggle bind:edit on:focusEditor={addPlaceholder} />
 	</div>
 	{#if matchMedia('(max-width:1023px)').matches}
 		<div class="go-back-to-notes">

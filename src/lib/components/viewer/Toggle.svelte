@@ -1,7 +1,13 @@
 <script lang="ts">
-	const handleKeyDown = (event: KeyboardEvent) => {
+	import { tick, createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
+	const handleKeyDown = async (event: KeyboardEvent) => {
 		if (event.ctrlKey && event.key === 'Enter') {
 			edit = !edit; // Toggles the editor, the shortcut is Ctrl + Enter
+		}
+		if (edit) {
+			await tick(); // waiting for dom changes to finish
+			dispatch('focusEditor'); // dispatching event for adding focus and placeholder on code-editor
 		}
 	};
 	export let edit = false;
@@ -16,7 +22,7 @@
 			type="checkbox"
 			bind:checked={edit}
 			id="toggle"
-			on:change
+			on:change={() => dispatch('focusEditor')}
 		/>
 		<span class="slider round" />
 	</label>
