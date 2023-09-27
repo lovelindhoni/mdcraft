@@ -109,6 +109,7 @@
 			'Lucida Grande', sans-serif;
 		background-color: var(--background);
 		color: var(--text);
+		color-scheme: dark;
 	}
 
 	.sidebar {

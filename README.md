@@ -87,7 +87,8 @@ Run the development server:
 pnpm run dev
 ```
 
-Open a web browser and navigate to `http://localhost:5173`
+Open a web browser and navigate to `http://localhost:5173`\
+\
 For production build:
 
 ```sh
@@ -102,7 +103,6 @@ pnpm run preview
 
 Open a web browser and navigate to `http://localhost:4173`
 
-MdCraft is hosted on Vercel.
 
 ## License
 
