@@ -46,6 +46,9 @@
 		:global(.viewer table) {
 			font-size: 1.53rem;
 		}
+		:global(.viewer input[type='checkbox']:checked::before) {
+			bottom: 0.5rem !important;
+		}
 	}
 	@media (min-width: 1430px) and (max-width: 1739px) {
 		:global(.viewer h1) {
@@ -322,5 +325,26 @@
 	}
 	:global(li) {
 		margin-bottom: 0.3rem;
+	}
+	:global(input[type='checkbox']) {
+		appearance: none;
+		height: 0.75rem;
+		width: 0.75rem;
+		background-color: var(--grey-1);
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		margin-right: 0.5rem;
+	}
+	:global(input[type='checkbox']:checked::before) {
+		content: '\2714';
+		color: var(--background);
+		font-size: 1rem;
+		position: relative;
+		bottom: 0.3em;
+	}
+	:global(input[type='checkbox']:checked) {
+		position: relative;
+		top: 0.4em;
+		z-index: 2;
 	}
 </style>

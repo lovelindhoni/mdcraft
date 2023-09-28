@@ -72,7 +72,7 @@
 			role="button"
 			tabindex="0"
 			class="icon"
-			title="delete"
+			title="edit"
 			on:click|stopPropagation={() => (showRename = true)}
 			on:keydown|stopPropagation={() => (showRename = true)}
 		>
