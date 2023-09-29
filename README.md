@@ -103,6 +103,8 @@ pnpm run preview
 
 Open a web browser and navigate to `http://localhost:4173`
 
+This project is tested with [BrowserStack](https://browserstack.com).
+
 ## License
 
 MdCraft is licensed under the [MIT License](https://mit-license.org).
