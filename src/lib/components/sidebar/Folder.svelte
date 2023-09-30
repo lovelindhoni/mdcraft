@@ -57,8 +57,6 @@
 	<!--even forwarding, clicking this component will aset the currentFolderId-->
 	<div class="folder-title">
 		<span>{$folders[folderIndex].title}</span>
-		<!--preserving whitespace-->
-		<!--i used this regex to save the whitespace-->
 		<!--This is the folder title of this component, i have been reffering in the above comments-->
 	</div>
 	<div role="group" class="actions">

@@ -5,13 +5,14 @@
 	import hljs from 'highlight.js/lib/core';
 	import markdown from 'highlight.js/lib/languages/markdown';
 	import '$lib/components/viewer/atom-one-dark-reasonable.css'; // one-dark for now, suggestions welcomed
-	// for code-editor highlighting component based on codejar, appended ?client to isomorphically import as a client side library (hugs to vite-iso-import plugin) to shut the window is not defined error introduced at commit 75d7483.
+	// for code-editor highlighting component based on codejar, appended ?client to isomorphically import as a client side library (hugs to vite-iso-import plugin) to shut the window is not defined error popping at buildtime
 	//@ts-ignore
 	import { CodeJar } from '@novacbn/svelte-codejar?client';
-	import { marked } from 'marked'; // For parsing note's content
-	import sanitizeHtml from 'sanitize-html'; // for sanitizing user input markdown
-	import renderer from '$lib/components/viewer/customRenderer'; // importing the customised renderer
 	import '@fontsource/inconsolata/500.css'; //font for code-editor
+	import { marked } from 'marked'; // For parsing note's content
+	import { markedSmartypants } from 'marked-smartypants';
+	import renderer from '$lib/components/viewer/customRenderer'; // importing the customised renderer
+	import sanitizeHtml from 'sanitize-html'; // for sanitizing user input markdown
 	import NoteContent from '$lib/components/viewer/NoteContent.svelte';
 	import Toggle from '$lib/components/viewer/Toggle.svelte';
 	import BreadCrumbs from '$lib/components/viewer/BreadCrumbs.svelte';
@@ -23,6 +24,7 @@
 			GoBack = (await import('$lib/components/header/GoBack.svelte')).default;
 		}
 	});
+	marked.use(markedSmartypants());
 	// Call the function when the component is mounted or when the element is available.
 	marked.use({ renderer }); // using the new customised renderer
 	hljs.registerLanguage('markdown', markdown); // registering markdown
@@ -76,7 +78,8 @@
 					'strong',
 					'em',
 					'input',
-					'span'
+					'span',
+					'div'
 				],
 				allowedAttributes: {
 					a: ['href', 'target', 'title'],

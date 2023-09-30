@@ -1,8 +1,8 @@
 import { writable } from 'svelte/store';
 import defaultData from '$lib/defaultData.json';
 type ID = string | null;
-export function generateUUID() { 
-// using this function that generates uuid for each folder and its note as a identifier. Exported to other components as well
+export function generateUUID() {
+	// using this function that generates uuid for each folder and its note as a identifier. Exported to other components as well
 	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
 		const r = (Math.random() * 16) | 0;
 		const v = c === 'x' ? r : (r & 0x3) | 0x8;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { currentNoteId, folders, currentFolderId } from '$lib/store'; // importing the stuff
+	import { currentNoteId, folders, currentFolderId } from '$lib/store'; // importing the needed stuff
 	import Sidebar from '$lib/components/sidebar/Sidebar.svelte'; // the sidebar
 	import NotesSection from '$lib/components/notes/NotesSection.svelte';
 	import Viewer from '$lib/components/viewer/Viewer.svelte';
@@ -10,12 +10,12 @@
 		$currentFolderId && $currentNoteId
 			? $folders[currentFolderIndex].notes.findIndex((note) => note.id === $currentNoteId)
 			: -1;
-	let pcDimensions = !matchMedia('(max-width:1023px)').matches;
+	let isItPc = matchMedia('(min-width:1024px)').matches; // checkes whether the user agent is Pc or laptop
 	function onResize() {
 		// this function runs at resize of the window
-		pcDimensions = !matchMedia('(max-width: 1023px)').matches; // decides whethere to change the layout, if the window's width becomes small for laptops and PC
+		isItPc = matchMedia('(min-width: 1024px)').matches; // decides whethere to change the layout, if the window's width becomes small for laptops and PC
 		if (window.innerHeight / window.screen.availHeight > 0.6) {
-			//thanks to https://stackoverflow.com/a/72853206 for the excellent condition below to check whether virtual keyboard is opened or not. Because the keyboard opening creates a resizing event, the dimensions are calculated again after the keypad takes some place at viewport, leading to inconsistencies. The above condition is true when keyboard is not opened
+			// thanks to https://stackoverflow.com/a/72853206 for the excellent condition above to check whether virtual keyboard is opened or not. Because the keyboard opening creates a resizing event, the dimensions are calculated again after the keypad takes some place at viewport, leading to inconsistencies. The above condition is true when keyboard is not opened
 			const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 			const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 			const layoutDiv = document.querySelector('.layout') as HTMLDivElement;
@@ -23,8 +23,7 @@
 				layoutDiv.style.width = w + 'px';
 				layoutDiv.style.height = h + 'px';
 			}
-
-			// the above lines literally calculates teh viewport size in pixels to ensure consistent size even when keyboard is opened
+			// the above lines literally calculates the viewport size in pixels to ensure consistent size even when keyboard is opened
 		}
 	}
 </script>
@@ -32,7 +31,7 @@
 <main class="layout">
 	<Header />
 	<!--two different layouts, one for mobile and tablets and another for pc and desktops-->
-	{#if pcDimensions}
+	{#if isItPc}
 		<!--this layout for pc and desktops-->
 		<div class="sidebar">
 			<Sidebar />

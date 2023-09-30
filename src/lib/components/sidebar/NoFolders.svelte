@@ -6,7 +6,7 @@
 
 <div class="no-folders">
 	<img src={Addfolder} alt="an illustration representing a folder with some notes in it" />
-	<div style="">
+	<div>
 		<span class="no-folders-text">No folders found</span>
 		<span class="no-folders-subtext">Folders let you organize your notes</span>
 	</div>

@@ -41,7 +41,7 @@
 		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches ||
 		  matchMedia('(min-width:549px) and (max-width:1023px)').matches
 		? '23'
-		: '21'; 
+		: '21';
 	// below variables holds the color of the icon, when they are hovered orange else grey
 	let editIconColor = '#b3b3b3';
 	let deleteIconColor = '#b3b3b3';

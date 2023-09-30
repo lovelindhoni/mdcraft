@@ -49,13 +49,16 @@
 		: '32';
 </script>
 
-<button
-	on:click={() => (showModal = true)}
-	on:keydown={() => (showModal = true)}
-	title="create-note"
->
-	<svelte:component this={AddSvg} color="white" {size} />
-</button>
+<div class="title-btn">
+	<h2>/{$folders[currentFolderIndex].title}</h2>
+	<button
+		on:click={() => (showModal = true)}
+		on:keydown={() => (showModal = true)}
+		title="create-note"
+	>
+		<svelte:component this={AddSvg} color="white" {size} />
+	</button>
+</div>
 {#if showModal}
 	<!--opens the modal here-->
 	<!-- on cancel , the title is wiped and then noerror is set to true, then closes the modal, on proceed, the pushnote function is runned. the title is binded which will have the value from the input tag in the delete modal, plus the noerror is set to true and the slot content is passed to the modal-->
@@ -79,12 +82,18 @@
 			width: 3rem;
 			height: 3rem;
 		}
+		h2 {
+			font-size: 2.5rem;
+		}
 	}
 
 	@media (min-width: 1430px) and (max-width: 1739px) {
 		button {
 			width: 2.6rem;
 			height: 2.6rem;
+		}
+		h2 {
+			font-size: 2.1rem;
 		}
 	}
 
@@ -93,19 +102,36 @@
 			width: 2.5rem;
 			height: 2.5rem;
 		}
+		h2 {
+			font-size: 2rem;
+		}
 	}
 
-	@media (min-width: 550px) and (max-width: 1023px) {
+	@media (min-width: 650px) and (max-width: 1023px) {
+		button {
+			width: 2.8rem;
+			height: 2.8rem;
+		}
+		h2 {
+			font-size: 2.2rem;
+		}
+	}
+	@media (min-width: 550px) and (max-width: 649px) {
+		h2 {
+			font-size: 2.05rem;
+		}
 		button {
 			width: 2.8rem;
 			height: 2.8rem;
 		}
 	}
-
 	@media (max-width: 549px) {
 		button {
 			width: 2.3rem;
 			height: 2.3rem;
+		}
+		h2 {
+			font-size: 1.6rem;
 		}
 	}
 
@@ -123,5 +149,21 @@
 
 	button:hover {
 		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+	}
+
+	h2 {
+		font-weight: normal;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: pre;
+		width: 70%;
+	}
+
+	.title-btn {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
 	}
 </style>
