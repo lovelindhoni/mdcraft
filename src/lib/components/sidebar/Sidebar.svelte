@@ -40,13 +40,13 @@
 
 	@media (min-width: 1430px) and (max-width: 1739px) {
 		.folders {
-			height: 82%;
+			height: 79%;
 		}
 	}
 
 	@media (min-width: 1024px) and (max-width: 1429px) {
 		.folders {
-			height: 80.5%;
+			height: 75%;
 		}
 	}
 

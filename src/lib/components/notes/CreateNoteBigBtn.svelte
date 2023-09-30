@@ -1,6 +1,6 @@
 <!--this is a big button that is shown to create notes when there is no notes in a folder-->
 <script lang="ts">
-	import { folders } from '$lib/store'; // the folders array as ususal
+	import { folders, generateUUID } from '$lib/store'; // the folders array as ususal
 	import { onMount } from 'svelte'; // for dynamic importing
 	let AddSvg: any; // the variables to hold the dynaimically imported comps
 	let CreateAction: any;
@@ -19,7 +19,7 @@
 		title: Note['title'];
 		content: Note['content'];
 		constructor(title: Note['title']) {
-			this.id = crypto.randomUUID();
+			this.id = generateUUID();
 			this.title = title;
 			this.content = `# Hello world`;
 		}

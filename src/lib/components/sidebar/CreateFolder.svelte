@@ -1,6 +1,6 @@
 <!--this is a small button that would create new folders, in the sidebar section-->
 <script lang="ts">
-	import { folders } from '$lib/store'; // importing the folders array from the store
+	import { folders, generateUUID } from '$lib/store'; // importing the folders array from the store
 	import AddIcon from '$lib/assets/AddSvg.svelte'; // the addicon svg
 	import { onMount } from 'svelte';
 	let CreateAction: any; // for dynamically importing the create action modal
@@ -14,9 +14,9 @@
 		notes: Folder['notes']; // and the notes array
 		// the constructor needs the id and the title, the chapters will be implemented later
 		constructor(title: Folder['title']) {
-			this.id = crypto.randomUUID(); // generates a unique id
+			this.id = generateUUID(); // generates a unique id
 			this.title = title;
-			this.notes = [{ id: crypto.randomUUID(), title: `Example Note`, content: `# Hello World` }]; // some defaults
+			this.notes = [{ id: generateUUID(), title: `Example Note`, content: `# Hello World` }]; // some defaults
 		}
 	}
 	let showCreate = false; // decides to show the create modal

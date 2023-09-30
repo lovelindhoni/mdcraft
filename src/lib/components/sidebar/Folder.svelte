@@ -16,7 +16,8 @@
 	let showDeleteModal = false; // shows the delete modal when delete icon is clicked
 	let title = ''; // the title which i am gonna fuck through the whole sidebar. It gets the foldertitle of the folder from the modals
 	let noError = true; //  whenever there is a duplicate folder title, a boolean value is passed to the modals
-	$: iconColor = !selected ? '#d9d9d9' : '#f96743'; // if selected then orange or white
+	let editIconColor = '#b3b3b3'; // below variables holds the color of the icon, when they are hovered orange else grey
+	let deleteIconColor = '#b3b3b3';
 	function onDeleteProceed() {
 		// this function causes the deletion of a folder
 		$folders.splice(folderIndex, 1); // removes the folder from the array
@@ -43,7 +44,6 @@
 			showRename = false;
 		}
 	}
-	let onHover: boolean; // this variable changes the color of the folder at hover
 	let size = matchMedia('(min-width:1740px)').matches
 		? '28'
 		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches ||
@@ -53,19 +53,7 @@
 </script>
 
 <!--When the mouse is hovered above the folder, onhover is set to true, else false-->
-<div
-	on:mouseover={() => (onHover = true)}
-	on:mouseout={() => (onHover = false)}
-	on:focus={() => (onHover = true)}
-	on:blur={() => (onHover = false)}
-	class:on-hover={!selected && onHover}
-	role="button"
-	tabindex="0"
-	class:selected
-	class="folder-container"
-	on:click
-	on:keydown
->
+<div role="button" tabindex="0" class:selected class="folder-container" on:click on:keydown>
 	<!--even forwarding, clicking this component will aset the currentFolderId-->
 	<div class="folder-title">
 		<span>{$folders[folderIndex].title}</span>
@@ -77,6 +65,10 @@
 		<!--the edit and delete icons are imported and then the clicking of it will open its respective modals-->
 		<!--used stop propagation to avoid propagating the event to the parent that is the singlefolder component-->
 		<div
+			on:mouseover={() => (editIconColor = '#f96743')}
+			on:mouseout={() => (editIconColor = '#b3b3b3')}
+			on:focus={() => (editIconColor = '#f96743')}
+			on:blur={() => (editIconColor = '#b3b3b3')}
 			role="button"
 			tabindex="0"
 			class="icons"
@@ -84,9 +76,13 @@
 			on:click|stopPropagation={() => (showRename = true)}
 			on:keydown|stopPropagation={() => (showRename = true)}
 		>
-			<EditIcon color={iconColor} {size} />
+			<EditIcon color={editIconColor} {size} />
 		</div>
 		<div
+			on:mouseover={() => (deleteIconColor = '#f96743')}
+			on:mouseout={() => (deleteIconColor = '#b3b3b3')}
+			on:focus={() => (deleteIconColor = '#f96743')}
+			on:blur={() => (deleteIconColor = '#b3b3b3')}
 			role="button"
 			tabindex="0"
 			class="icons"
@@ -94,7 +90,7 @@
 			on:click|stopPropagation={() => (showDeleteModal = true)}
 			on:keydown|stopPropagation={() => (showDeleteModal = true)}
 		>
-			<DeleteIcon color={iconColor} {size} />
+			<DeleteIcon color={deleteIconColor} {size} />
 		</div>
 	</div>
 </div>
@@ -228,11 +224,11 @@
 		padding-left: 0.8rem;
 		padding-right: 0.3rem;
 	}
+	.folder-container:hover {
+		color: var(--orange);
+	}
 	.folder-title {
 		width: 75%;
-	}
-	.on-hover {
-		color: var(--orange);
 	}
 	.selected {
 		background-color: transparent;

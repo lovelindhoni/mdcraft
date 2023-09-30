@@ -36,39 +36,27 @@
 			showRename = false;
 		}
 	}
-	let onHover = false; // this variable decides to apply the styling when the note is hovered
 	let size = matchMedia('(min-width:1740px)').matches
-		? '28'
+		? '28' // size of the icons, decided by the width of viewport
 		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches ||
 		  matchMedia('(min-width:549px) and (max-width:1023px)').matches
 		? '23'
-		: '21'; // size of the icons, decided by the width of viewport
+		: '21'; 
+	// below variables holds the color of the icon, when they are hovered orange else grey
+	let editIconColor = '#b3b3b3';
+	let deleteIconColor = '#b3b3b3';
 </script>
 
-<div
-	on:mouseover={() => {
-		onHover = true;
-	}}
-	on:mouseout={() => {
-		onHover = false;
-	}}
-	on:focus={() => {
-		onHover = true;
-	}}
-	on:blur={() => {
-		onHover = false;
-	}}
-	role="button"
-	tabindex="0"
-	class="note-container"
-	on:click
-	on:keydown
->
+<div role="button" tabindex="0" class="note-container" on:click on:keydown>
 	<!--for preserving the whitespaces-->
 	<span>{$folders[currentFolderIndex].notes[noteIndex].title}</span>
 	<!--title of the note-->
 	<div class="actions" role="group">
 		<div
+			on:mouseover={() => (editIconColor = '#f96743')}
+			on:mouseout={() => (editIconColor = '#b3b3b3')}
+			on:focus={() => (editIconColor = '#f96743')}
+			on:blur={() => (editIconColor = '#b3b3b3')}
 			role="button"
 			tabindex="0"
 			class="icon"
@@ -76,10 +64,14 @@
 			on:click|stopPropagation={() => (showRename = true)}
 			on:keydown|stopPropagation={() => (showRename = true)}
 		>
-			<EditSvg color={onHover ? '#f96743' : '#d9d9d9'} {size} />
+			<EditSvg color={editIconColor} {size} />
 		</div>
 		<!--the rename and delete icon for doing opertation in the note-->
 		<div
+			on:mouseover={() => (deleteIconColor = '#f96743')}
+			on:mouseout={() => (deleteIconColor = '#b3b3b3')}
+			on:focus={() => (deleteIconColor = '#f96743')}
+			on:blur={() => (deleteIconColor = '#b3b3b3')}
 			class="icon"
 			title="delete"
 			role="button"
@@ -87,7 +79,7 @@
 			on:click|stopPropagation={() => (showDeleteModal = true)}
 			on:keydown|stopPropagation={() => (showDeleteModal = true)}
 		>
-			<DeleteSvg color={onHover ? '#f96743' : '#d9d9d9'} {size} />
+			<DeleteSvg color={deleteIconColor} {size} />
 		</div>
 	</div>
 </div>

@@ -57,7 +57,7 @@
 	@media (min-width: 1430px) and (max-width: 1739px) {
 		.modal-content {
 			height: 37%;
-			width: 40%;
+			width: 37%;
 		}
 		.warning-msg {
 			font-size: 1.4rem;
@@ -205,7 +205,7 @@
 		justify-content: center;
 		align-items: center;
 		background-color: rgba(0, 0, 0, 0.8);
-		z-index: 69;
+		z-index: 2;
 	}
 	.modal-content {
 		text-align: center;

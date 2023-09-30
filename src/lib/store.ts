@@ -1,87 +1,94 @@
 import { writable } from 'svelte/store';
 import defaultData from '$lib/defaultData.json';
 type ID = string | null;
-
+export function generateUUID() { 
+// using this function that generates uuid for each folder and its note as a identifier. Exported to other components as well
+	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+		const r = (Math.random() * 16) | 0;
+		const v = c === 'x' ? r : (r & 0x3) | 0x8;
+		return v.toString(16);
+	});
+}
 const defaultValues: { folders: Folder[]; currentNoteId: ID; currentFolderId: ID } = {
 	folders: [
 		// the folders array , which is array of folder objects
 		// the Folder interface is in the global.d.ts file
 		{
-			id: crypto.randomUUID(),
+			id: generateUUID(),
 			title: `Markdown`,
 			notes: [
 				{
 					// This note is a reference to markdown syntax elements.
-					id: crypto.randomUUID(),
+					id: generateUUID(),
 					title: `Markdown Cheatsheet`,
 					content: defaultData.markdown.mdcheatsheet
 				},
 				{
 					// Project's readme
-					id: crypto.randomUUID(),
+					id: generateUUID(),
 					title: `README.md`,
 					content: defaultData.markdown.readmemd
 				}
 			]
 		},
 		{
-			id: crypto.randomUUID(),
+			id: generateUUID(),
 			title: `Python`,
 			notes: [
 				{
-					id: crypto.randomUUID(),
+					id: generateUUID(),
 					title: `Python Basics`,
 					content: defaultData.python.pythonbasics
 				},
 				{
-					id: crypto.randomUUID(),
+					id: generateUUID(),
 					title: `Python OOPS`,
 					content: defaultData.python.pythonoops
 				},
 				{
-					id: crypto.randomUUID(),
+					id: generateUUID(),
 					title: `Error Handling and File I/O`,
 					content: defaultData.python.pythonfilehandiling
 				}
 			]
 		},
 		{
-			id: crypto.randomUUID(),
+			id: generateUUID(),
 			title: `Typescript`,
 			notes: [
 				{
-					id: crypto.randomUUID(),
+					id: generateUUID(),
 					title: `Typescript Basics`,
 					content: defaultData.typescript.typescriptbasics
 				},
 				{
-					id: crypto.randomUUID(),
+					id: generateUUID(),
 					title: `Advanced Typescript Concepts`,
 					content: defaultData.typescript.advancedtypescript
 				},
 				{
-					id: crypto.randomUUID(),
+					id: generateUUID(),
 					title: `Typescript in Practice`,
 					content: defaultData.typescript.typescriptinpractice
 				}
 			]
 		},
 		{
-			id: crypto.randomUUID(),
+			id: generateUUID(),
 			title: `SQL`,
 			notes: [
 				{
-					id: crypto.randomUUID(),
+					id: generateUUID(),
 					title: `Data Query and Retrieval`,
 					content: defaultData.sql.dataquery
 				},
 				{
-					id: crypto.randomUUID(),
+					id: generateUUID(),
 					title: `Data Modification and Management`,
 					content: defaultData.sql.datamodifications
 				},
 				{
-					id: crypto.randomUUID(),
+					id: generateUUID(),
 					title: `Database Schema and Indexing`,
 					content: defaultData.sql.dataindexing
 				}

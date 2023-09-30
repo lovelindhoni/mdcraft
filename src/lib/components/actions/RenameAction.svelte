@@ -263,7 +263,7 @@
 		justify-content: center;
 		align-items: center;
 		background-color: hsla(0, 0%, 0%, 0.8);
-		z-index: 69;
+		z-index: 2;
 	}
 	.input {
 		position: relative;
