@@ -1,4 +1,4 @@
-<!--this is a download button that would create a blob url that facillitates the user to download the markdown as a .md file.-->
+<!--this is a download button that would create a blob url that facilitates s the user to download the markdown as a .md file.-->
 <script lang="ts">
 	import DownloadButton from '$lib/assets/download.svg';
 	export let title: string;
@@ -12,7 +12,7 @@
 		const url = window.URL.createObjectURL(blob);
 		const downloadLink = document.createElement('a');
 		downloadLink.href = url;
-		// below condition is to prevent double extensions while donwloading i.e README.md.md
+		// below condition is to prevent double extensions while downloading i.e README.md.md
 		downloadLink.download = title.slice(-3) == '.md' ? title : title + '.md';
 		// Trigger a click event on the link to start the download
 		downloadLink.click();

@@ -95,7 +95,7 @@ const defaultValues: { folders: Folder[]; currentNoteId: ID; currentFolderId: ID
 			]
 		}
 	],
-	// both the id's are default to null at first. it also has the type string becuase of crypt.randomuuid
+	// both the id's are default to null at first. it also has the type string because of crypt.randomuuid
 	currentFolderId: null,
 	currentNoteId: null
 };
@@ -184,7 +184,7 @@ currentNoteId.subscribe((value) => {
 
 // sorry, i can't resist putting this function here.
 export function focusInput(node: HTMLInputElement) {
-	node.focus(); // Focuses the textarea if it is present on DOM using the svetle action
+	node.focus(); // Focuses the textarea if it is present on DOM using the svelte action
 	return {
 		destroy() {
 			// when it is removed out of dom then focus is blurred
