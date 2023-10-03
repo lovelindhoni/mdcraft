@@ -13,6 +13,7 @@ Mdcraft is not possible without these awesome open source projects.
 - [HighlightJS](https://highlightjs.org/) - Syntax highlighter with language auto-detection and zero dependencies.
 - [Sanitize-Html](https://github.com/apostrophecms/sanitize-html) - Provides a simple HTML sanitizer with a clear API.
 - [Svelte-Codejar](https://github.com/novacbn/svelte-codejar) - Svelte Binding for the embeddable code editor [Codjar](https://medv.io/codejar/)
+- [Emoji-Js](https://github.com/iamcal/js-emoji) - A JS Emoji conversion library
 
 ## Features
 
