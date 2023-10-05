@@ -58,8 +58,6 @@ Special thanks to [Navin Kodag](https://github.com/100lvlmaster) for sharing the
 
 Here are some features and improvements planned for MdCraft in the so-far future:
 
-- ~**Text Highlighting**: Enhance the Markdown editing experience by adding the ability to highlight markdown text within the textarea~
-
 - **Improved Theming**: Work on improving the app's CSS to provide better theming options, enhancing the overall user interface and customization.
 
 - **GitHub Gist Integration**: Streamline the process of sharing your notes by enabling users to publish their notes as GitHub Gists directly from MdCraft.
@@ -103,7 +101,3 @@ pnpm run preview
 ```
 
 Open a web browser and navigate to `http://localhost:4173`
-
-## License
-
-MdCraft is licensed under the [MIT License](https://mit-license.org).
