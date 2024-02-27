@@ -101,3 +101,6 @@ pnpm run preview
 ```
 
 Open a web browser and navigate to `http://localhost:4173`
+
+
+## MIT License
