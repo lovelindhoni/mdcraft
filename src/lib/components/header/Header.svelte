@@ -11,17 +11,17 @@
 			font-size: 3.2rem;
 		}
 	}
-	@media (min-width: 1430px) and (max-width: 1739px) {
+	@media (max-width: 1739px) {
 		header a {
 			font-size: 2.6rem;
 		}
 	}
-	@media (min-width: 1151px) and (max-width: 1429px) {
+	@media (max-width: 1429px) {
 		header a {
 			font-size: 2.2rem;
 		}
 	}
-	@media (min-width: 1024px) and (max-width: 1150px) {
+	@media (max-width: 1150px) {
 		header a {
 			font-size: 1.8rem;
 		}
@@ -30,12 +30,12 @@
 		header {
 			height: 100%;
 			grid-row-start: span 2;
-			grid-column-start: span 7;
+			grid-column-start: span 6;
 			padding: 1rem 2rem 0;
 			align-items: center;
 		}
 	}
-	@media (min-width: 650px) and (max-width: 1023px) {
+	@media (max-width: 1023px) {
 		header {
 			width: 68%;
 			height: 10%;
@@ -47,7 +47,7 @@
 			font-size: 2.8rem;
 		}
 	}
-	@media (min-width: 550px) and (max-width: 649px) {
+	@media (max-width: 649px) {
 		header {
 			width: 80%;
 			margin: 0 auto 0;
@@ -59,7 +59,7 @@
 			font-size: 2.8rem;
 		}
 	}
-	@media (min-width: 400px) and (max-width: 549px) {
+	@media (max-width: 549px) {
 		header {
 			width: 100%;
 			height: 10%;

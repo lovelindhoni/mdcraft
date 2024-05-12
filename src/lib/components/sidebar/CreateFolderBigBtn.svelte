@@ -1,32 +1,21 @@
 <!--this is a large button that is shown to create a new folders if there are no folders exist-->
 <script lang="ts">
-	import { folders, generateUUID } from '$lib/store'; // importing the folders array from the store
+	import { folders } from '$lib/stores/db'; // importing the folders array from the store
+	import { CreateFolder } from '$lib/utils/classes';
 	import { onMount } from 'svelte';
-	import AddSvg from '$lib/assets/AddSvg.svelte';
+	import AddSvg from '$lib/assets/svg/AddSvg.svelte';
 	let CreateAction: any; // for dynamically importing the actions modal
 	onMount(async () => {
-		CreateAction = (await import('$lib/components/actions/CreateAction.svelte')).default;
+		CreateAction = (await import('$lib/components/modals/CreateModal.svelte')).default;
 	});
-	class CreateFolder implements Folder {
-		// class to create new folder objects
-		id: Folder['id']; // the id
-		title: Folder['title']; // the title
-		notes: Folder['notes']; // and the notes array
-		// the constructor needs the id and the title, the chapters will be implemented later
-		constructor(title: Folder['title']) {
-			this.id = generateUUID(); // generates a unique id
-			this.title = title;
-			this.notes = [{ id: generateUUID(), title: `Example Note`, content: `# Hello World` }]; // some defaults
-		}
-	}
 	let showCreate = false; // decides to show the create modal
 	let title: string; // the value from the input box is stored here
-	let noError = true; // noErrror when there is no duplicate in folders
-	function newFolder() {
+	let error = false; // noErrror when there is no duplicate in folders
+	const newFolder = () => {
 		// this function create the folder
 		// if the user enetered title is not unique, then the noErrror is set to false and also wipes the title to start from fresh
 		if ($folders.some((folder) => folder.title === title.trim())) {
-			noError = false;
+			error = true;
 		} else {
 			// if the title is unique, then the title is trimmed and pushed to the folders arrray through the createFolder class
 			$folders.push(
@@ -35,10 +24,10 @@
 			);
 			$folders = $folders; // courtesy of svelte
 			title = ''; // wipes the title for a clean start
-			noError = true; // noerror then
+			error = false; // noerror then
 			showCreate = false; // closes the create folder modal
 		}
-	}
+	};
 	let size = matchMedia('(min-width:1740px)').matches
 		? '39'
 		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches ||
@@ -56,27 +45,27 @@
 </button>
 {#if showCreate}
 	<!--opens the modal here-->
-	<!-- on cancel , both the title is wiped and noerror is set to true, then closes the modal, on proceed, the newFolder function is runned. the title is binded which will have the value from the input tag in the delete modal, plus the noerror is set to false-->
+	<!-- on cancel , both the title is wiped and error is set to false, then closes the modal, on proceed, the newFolder function is runned. the title is binded which will have the value from the input tag in the delete modal, plus the error is set to true-->
 	<svelte:component
 		this={CreateAction}
 		contentType="Folder"
 		on:cancel={() => {
 			title = '';
-			noError = true;
+			error = false;
 			showCreate = false;
 		}}
 		bind:title
 		on:proceed={newFolder}
-		{noError}
+		{error}
 	/>
 {/if}
 
 <style>
 	@media (min-width: 1740px) {
 		button {
-			width: 16.5rem;
+			width: 15rem;
 			height: 5rem;
-			font-size: 1.86rem;
+			font-size: 1.7rem;
 			border-radius: 1.2rem;
 		}
 	}

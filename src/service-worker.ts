@@ -39,7 +39,7 @@ worker.addEventListener('activate', (event) => {
  * Fetch the asset from the network and store it in the cache.
  * Fall back to the cache if the user is offline.
  */
-async function fetchAndCache(request: Request) {
+const fetchAndCache = async (request: Request) => {
 	const cache = await caches.open(`offline${version}`);
 
 	try {
@@ -52,7 +52,7 @@ async function fetchAndCache(request: Request) {
 
 		throw err;
 	}
-}
+};
 
 worker.addEventListener('fetch', (event) => {
 	if (event.request.method !== 'GET' || event.request.headers.has('range')) return;
@@ -79,4 +79,3 @@ worker.addEventListener('fetch', (event) => {
 		);
 	}
 });
-// big thanks to https://github.com/100lvlmaster for this script

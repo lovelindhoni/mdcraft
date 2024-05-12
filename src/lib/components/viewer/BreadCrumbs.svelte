@@ -1,6 +1,6 @@
 <!--I am so sorry for my poor choice of name of this component, this component shows the name of the note selected and its parent folder, on the viewer section-->
 <script lang="ts">
-	import { folders, currentFolderId, currentNoteId } from '$lib/store'; // for showing the titles of folder
+	import { folders, currentFolderId, currentNoteId } from '$lib/stores/db'; // for showing the titles of folder
 	export let currentFolderIndex: number; // these will be satisfied by the viewer
 	export let currentNoteIndex: number;
 </script>
@@ -30,28 +30,28 @@
 			display: inline-block;
 		}
 	}
-	@media (min-width: 1430px) and (max-width: 1739px) {
+	@media (max-width: 1739px) {
 		span {
 			font-size: 1.32rem;
 			max-width: 16vw;
 			display: inline-block;
 		}
 	}
-	@media (min-width: 1024px) and (max-width: 1429px) {
+	@media (max-width: 1429px) {
 		span {
 			font-size: 1.21rem;
 			max-width: 13vw;
 			display: inline-block;
 		}
 	}
-	@media (min-width: 650px) and (max-width: 1023px) {
+	@media (max-width: 1023px) {
 		span {
 			font-size: 1.3rem;
 			max-width: 25vw;
 			display: inline-block;
 		}
 	}
-	@media (min-width: 550px) and (max-width: 649px) {
+	@media (max-width: 649px) {
 		span {
 			font-size: 1.3rem;
 			max-width: 22vw;

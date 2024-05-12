@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import DeleteSvg from '$lib/assets/DeleteSvg.svelte';
-	import CloseSvg from '$lib/assets/CloseSvg.svelte';
+	import DeleteSvg from '$lib/assets/svg/DeleteSvg.svelte';
+	import CloseSvg from '$lib/assets/svg/CloseSvg.svelte';
 	const dispatch = createEventDispatcher();
 	let size = matchMedia('(max-width:549px)').matches
 		? // for changing the size of the icon
@@ -9,6 +9,12 @@
 		: matchMedia('(max-width:1023px)').matches
 		? '18'
 		: '20';
+	const closeModal = (event: MouseEvent) => {
+		const modal = document.querySelector('.modal-container');
+		if (event.target === modal) {
+			dispatch('cancel');
+		}
+	};
 </script>
 
 <div class="modal-container">
@@ -39,6 +45,8 @@
 	</div>
 </div>
 
+<svelte:window on:click={closeModal} />
+
 <style>
 	@media (min-width: 1740px) {
 		.modal-content {
@@ -47,32 +55,29 @@
 		}
 		.warning-msg {
 			font-size: 1.6rem;
-			margin-right: 3rem;
 			line-height: 1.3;
 		}
 		.delete-element {
 			font-size: 1.79rem;
 		}
 	}
-	@media (min-width: 1430px) and (max-width: 1739px) {
+	@media (max-width: 1739px) {
 		.modal-content {
-			height: 37%;
+			height: 32%;
 			width: 37%;
 		}
 		.warning-msg {
 			font-size: 1.4rem;
-			margin-right: 3rem;
 			line-height: 1.3;
 		}
 	}
-	@media (min-width: 1024px) and (max-width: 1429px) {
+	@media (max-width: 1429px) {
 		.modal-content {
 			height: 44%;
 			width: 40%;
 		}
 		.warning-msg {
 			font-size: 1.3rem;
-			margin-right: 3rem;
 			line-height: 1.3;
 		}
 	}
@@ -83,13 +88,14 @@
 			font-size: 1.2rem;
 		}
 		.modal-actions {
-			gap: 3em;
+			gap: 1em;
 		}
 		.delete-warning {
 			font-size: 1.6rem;
 		}
 		.warning-msg {
 			bottom: 1.5rem;
+			margin-right: 3rem !important;
 		}
 		.delete-icon {
 			height: 2rem;
@@ -101,7 +107,7 @@
 			top: 1.6rem;
 		}
 	}
-	@media (min-width: 550px) and (max-width: 1023px) {
+	@media (max-width: 1023px) {
 		.modal-content {
 			height: 24%;
 			width: 60%;
@@ -129,10 +135,10 @@
 			font-size: 1.08rem;
 		}
 		.modal-actions {
-			gap: 1.5em;
+			gap: 1em;
 		}
 	}
-	@media (max-width: 549px) and (max-height: 699px) {
+	@media (max-height: 699px) {
 		.modal-content {
 			height: 34%;
 			width: 80%;
@@ -148,7 +154,7 @@
 			font-size: 1rem;
 		}
 		.modal-actions {
-			gap: 1.5em;
+			gap: 1em;
 		}
 		.delete-warning {
 			font-size: 1.1rem;
@@ -163,7 +169,7 @@
 			top: 1rem;
 		}
 	}
-	@media (max-width: 549px) and (min-height: 700px) {
+	@media (max-width: 549px) {
 		.modal-content {
 			height: 26%;
 			width: 80%;
@@ -180,7 +186,7 @@
 			font-size: 1rem;
 		}
 		.modal-actions {
-			gap: 1.5em;
+			gap: 1em;
 		}
 		.delete-warning {
 			font-size: 1.1rem;

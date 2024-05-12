@@ -1,5 +1,7 @@
 import EmojiConvertor from 'emoji-js'; // Converts colon-text to emojis
 import hljs from 'highlight.js'; // For Highlighting Code Blocks
+import { Marked } from 'marked'; // For parsing note's content
+import { markedSmartypants } from 'marked-smartypants';
 
 const renderer = {
 	text(text: string) {
@@ -37,4 +39,8 @@ const renderer = {
 		}</code></pre>`;
 	}
 };
-export default renderer;
+const marked = new Marked();
+marked.use({ renderer });
+marked.use(markedSmartypants());
+
+export { marked };

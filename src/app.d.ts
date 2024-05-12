@@ -14,6 +14,8 @@ declare global {
 		title: string; // title of the Folder
 		notes: Note[]; // each Folder contains the notes array which is a array of notes
 	}
+
+	type ID = string | null;
 }
 
 export {};

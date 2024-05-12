@@ -1,38 +1,25 @@
 <!--this component connects all the comps in the viewer folder and exported to the +page.svelte-->
 <script lang="ts">
-	import { currentNoteId, folders } from '$lib/store';
+	import { currentNoteId, folders } from '$lib/stores/db';
 	import { onMount } from 'svelte';
-	import hljs from 'highlight.js/lib/core';
-	import markdown from 'highlight.js/lib/languages/markdown';
-	import '$lib/components/viewer/atom-one-dark-reasonable.css'; // one-dark for now, suggestions welcomed
+	import '$lib/assets/css/atom-one-dark-reasonable.css'; // one-dark for now, suggestions welcomed
 	// for code-editor highlighting component based on codejar, appended ?client to isomorphically import as a client side library (hugs to vite-iso-import plugin) to shut the window is not defined error popping at buildtime
 	//@ts-ignore
 	import { CodeJar } from '@novacbn/svelte-codejar?client';
 	import '@fontsource/inconsolata/500.css'; //font for code-editor
-	import { marked } from 'marked'; // For parsing note's content
-	import { markedSmartypants } from 'marked-smartypants';
-	import renderer from '$lib/components/viewer/customRenderer'; // importing the customised renderer
-	import sanitizeHtml from 'sanitize-html'; // for sanitizing user input markdown
+	import { sanitize, addPlaceholder, highlight } from '$lib/utils/viewer'; // importing the customised renderer
 	import NoteContent from '$lib/components/viewer/NoteContent.svelte';
 	import Toggle from '$lib/components/viewer/Toggle.svelte';
 	import BreadCrumbs from '$lib/components/viewer/BreadCrumbs.svelte';
 	import Download from '$lib/components/header/Download.svelte';
 	let GoBack: any = null;
+
 	// I am dynamically importing the goback component because this is needed only for smaller screens, just to reduce some size.
 	onMount(async () => {
 		if (matchMedia('(max-width:1023px)').matches) {
 			GoBack = (await import('$lib/components/header/GoBack.svelte')).default;
 		}
 	});
-	marked.use(markedSmartypants());
-	// Call the function when the component is mounted or when the element is available.
-	marked.use({ renderer }); // using the new customised renderer
-	hljs.registerLanguage('markdown', markdown); // registering markdown
-	const highlight = (code: string) =>
-		// highlighting the code-string using highlightjs api
-		hljs.highlight(code, {
-			language: 'markdown'
-		}).value;
 
 	export let currentFolderIndex: number; // both of these will be satisfied by the +page.svelte
 	export let currentNoteIndex: number;
@@ -41,69 +28,7 @@
 	// the generatedHtml variable that runs whenever the edit toggle is toggled.
 	let generatedHtml: string;
 	$: if (!edit) {
-		generatedHtml = sanitizeHtml(
-			marked($folders[currentFolderIndex].notes[currentNoteIndex].content),
-			{
-				// whitelisting specific tags and attributes for sanitizing html
-				allowedTags: [
-					'img',
-					'h1',
-					'h2',
-					'h3',
-					'h4',
-					'h5',
-					'h6',
-					'p',
-					'a',
-					'hr',
-					'br',
-					'code',
-					'pre',
-					'ul',
-					'li',
-					'ol',
-					'mark',
-					'del',
-					'caption',
-					'col',
-					'colgroup',
-					'table',
-					'tbody',
-					'td',
-					'tfoot',
-					'th',
-					'thead',
-					'tr',
-					'blockquote',
-					'strong',
-					'em',
-					'input',
-					'span',
-					'div'
-				],
-				allowedAttributes: {
-					a: ['href', 'target', 'title'],
-					img: ['src', 'alt', 'loading', 'title'],
-					input: [{ name: 'type', values: ['checkbox'] }, 'checked', 'disabled'],
-					span: ['style', 'class', 'id'],
-					code: ['style', 'class', 'id'],
-					pre: ['class', 'style']
-				}
-			}
-		);
-	}
-	function addPlaceholder() {
-		// This function adds the placeholder text in the code-editor and focuses it
-		if (edit) {
-			// when it is edit mode, the pre element with code-editor class is captured
-			const preElement = document.querySelector('pre.code-editor') as HTMLPreElement;
-			if (preElement) {
-				// data-placeholder attribute with a value is being set
-				preElement.setAttribute('data-placeholder', 'Start MdCrafting...');
-				// preElement is focussed
-				preElement.focus();
-			}
-		}
+		generatedHtml = sanitize($folders[currentFolderIndex].notes[currentNoteIndex].content);
 	}
 </script>
 
@@ -119,7 +44,7 @@
 				/>
 			{/if}
 		</div>
-		<Toggle bind:edit on:focusEditor={addPlaceholder} />
+		<Toggle bind:edit on:focusEditor={() => addPlaceholder(edit)} />
 	</div>
 	{#if matchMedia('(max-width:1023px)').matches}
 		<div class="go-back-to-notes">
@@ -178,7 +103,7 @@
 
 	@media (min-width: 1024px) {
 		.editor-head {
-			padding: 1.5rem 2.3rem;
+			padding: 1.5rem 6rem;
 		}
 
 		.header-container {
@@ -187,7 +112,7 @@
 		}
 
 		:global(.code-editor) {
-			padding: 1rem 2.5rem;
+			padding: 1rem 6rem;
 			height: 86%;
 		}
 	}

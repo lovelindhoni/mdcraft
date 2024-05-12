@@ -17,6 +17,8 @@ Mdcraft is not possible without these awesome open source projects.
 
 ## Features
 
+- **Completely Client Side!**: Your notes - Your browser - Offline - Dot.
+
 - **Folder-Based Organization**: Users can create, rename, and delete folders to organize their notes efficiently.
 
 - **Markdown Notes**: Create individual notes inside folders, with the ability to rename and delete them.
@@ -31,24 +33,18 @@ Mdcraft is not possible without these awesome open source projects.
 
 ## Usage
 
-MdCraft was primarily created for my personal use, but you can use it for anything:
+MdCraft was primarily created for:
 
 - Taking quick notes while watching programming tutorials online.
 - Creating and organizing Markdown-based documentation.
 - Collaborative Markdown editing and previewing.
 
-In addition to these use cases, MdCraft comes pre-loaded with some useful reference notes on, mostly to make the app to look busy:
+In addition to these use cases, MdCraft comes pre-loaded with some useful reference notes on:
 
-- Python programming basics.
 - TypeScript language fundamentals.
 - SQL database concepts.
 
 Feel free to explore and delete these pre-created notes or create your own!
-
-## Get in Touch
-
-- Twitter: [@lovelindhoni](https://twitter.com/lovelindhoni)
-- GitHub: [@lovelindhoni](https://github.com/lovelindhoni)
 
 ## Acknowledgments
 
@@ -58,13 +54,7 @@ Special thanks to [Navin Kodag](https://github.com/100lvlmaster) for sharing the
 
 Here are some features and improvements planned for MdCraft in the so-far future:
 
-- **Improved Theming**: Work on improving the app's CSS to provide better theming options, enhancing the overall user interface and customization.
-
 - **GitHub Gist Integration**: Streamline the process of sharing your notes by enabling users to publish their notes as GitHub Gists directly from MdCraft.
-
-## Contributing
-
-If you find MdCraft useful and would like to contribute, feel free to contribute to a beginner-programmer's project. I welcome contributions and would appreciate help with improving the CSS to enhance the user experience.
 
 ## Project Setup
 
@@ -101,6 +91,5 @@ pnpm run preview
 ```
 
 Open a web browser and navigate to `http://localhost:4173`
-
 
 ## MIT License

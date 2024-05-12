@@ -1,6 +1,6 @@
 <!--this connects all the comps in the notes folder. It will be imported to the main page-->
 <script lang="ts">
-	import { folders, currentFolderId, currentNoteId } from '$lib/store'; // importing the folders and the id's
+	import { folders, currentFolderId, currentNoteId } from '$lib/stores/db'; // importing the folders and the id's
 	import { onMount } from 'svelte';
 	let GoBack: any = null;
 	let PickFolder: any = null;
@@ -62,7 +62,7 @@
 		}
 	}
 
-	@media (min-width: 650px) and (max-width: 1023px) {
+	@media (max-width: 1023px) {
 		.mast-head {
 			width: 62%;
 		}
@@ -71,7 +71,7 @@
 		}
 	}
 
-	@media (min-width: 550px) and (max-width: 649px) {
+	@media (max-width: 649px) {
 		.mast-head {
 			width: 70%;
 		}

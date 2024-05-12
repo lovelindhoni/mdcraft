@@ -1,41 +1,41 @@
 <script lang="ts">
-	import { folders } from '$lib/store'; // the folders array as ususal
+	import { folders } from '$lib/stores/db'; // the folders array as ususal
 	import { onMount } from 'svelte'; // for lazy importing
-	import EditSvg from '$lib/assets/EditSvg.svelte';
-	import DeleteSvg from '$lib/assets/DeleteSvg.svelte';
+	import EditSvg from '$lib/assets/svg/EditSvg.svelte';
+	import DeleteSvg from '$lib/assets/svg/DeleteSvg.svelte';
 	let RenameAction: any; // the modals
 	let DeleteAction: any;
 	onMount(async () => {
-		RenameAction = (await import('$lib/components/actions/RenameAction.svelte')).default;
-		DeleteAction = (await import('$lib/components/actions/DeleteAction.svelte')).default;
+		RenameAction = (await import('$lib/components/modals/RenameModal.svelte')).default;
+		DeleteAction = (await import('$lib/components/modals/DeleteModal.svelte')).default;
 	});
 	export let noteId: string; // the noteId which will be fulfilled by the notesSection.svelte
 	export let currentFolderIndex: number; // also  fulfilled by the notesection
 	$: noteIndex = $folders[currentFolderIndex].notes.findIndex((note) => note.id === noteId); // this goes over the notes array and finds the index of the note using the id
 	let showDeleteModal = false; // for the delete modal
-	let showRename = false; // for the rename modal
-	let noError = true;
+	let showRenameModal = false; // for the rename modal
+	let error = false;
 	let title = '';
-	function deleteNote() {
+	const deleteNote = () => {
 		// it removes the note from the notes array using its index
 		$folders[currentFolderIndex].notes.splice(noteIndex, 1);
 		$folders = $folders;
 		showDeleteModal = false; // closes the modal
-	}
-	function onRename() {
+	};
+	const renameNote = () => {
 		// this function causes the renaming of a folder
 		if (
-			// if the title is duplicate with any other title in notes, then noError is false
+			// if the title is duplicate with any other title in notes, then error is false
 			$folders[currentFolderIndex].notes[noteIndex].title !== title.trim() &&
 			$folders[currentFolderIndex].notes.some((note) => note.title === title.trim())
 		) {
-			noError = false;
+			error = true;
 		} else {
 			// else, the the trimmed title is stored as the new title for the folder in this component, and closes the rename modal
 			$folders[currentFolderIndex].notes[noteIndex].title = title.trim();
-			showRename = false;
+			showRenameModal = false;
 		}
-	}
+	};
 	let size = matchMedia('(min-width:1740px)').matches
 		? '28' // size of the icons, decided by the width of viewport
 		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches ||
@@ -61,8 +61,8 @@
 			tabindex="0"
 			class="icon"
 			title="edit"
-			on:click|stopPropagation={() => (showRename = true)}
-			on:keydown|stopPropagation={() => (showRename = true)}
+			on:click|stopPropagation={() => (showRenameModal = true)}
+			on:keydown|stopPropagation={() => (showRenameModal = true)}
 		>
 			<EditSvg color={editIconColor} {size} />
 		</div>
@@ -89,18 +89,18 @@
 		on:cancel={() => (showDeleteModal = false)}
 		on:proceed={deleteNote}>Delete Note?</svelte:component
 	>
-{:else if showRename}
+{:else if showRenameModal}
 	<svelte:component
 		this={RenameAction}
 		on:cancel={() => {
-			showRename = false;
-			noError = true;
+			showRenameModal = false;
+			error = false;
 			title = '';
 		}}
 		bind:title
 		oldTitle={$folders[currentFolderIndex].notes[noteIndex].title}
-		on:proceed={onRename}
-		{noError}>Rename Note</svelte:component
+		on:proceed={renameNote}
+		{error}>Rename Note</svelte:component
 	>
 {/if}
 
@@ -117,7 +117,7 @@
 			margin-right: 0.5rem;
 		}
 	}
-	@media (min-width: 1430px) and (max-width: 1739px) {
+	@media (max-width: 1739px) {
 		span {
 			font-size: 1.43rem;
 		}
@@ -125,7 +125,7 @@
 			height: 3.8rem;
 		}
 	}
-	@media (min-width: 1301px) and (max-width: 1429px) {
+	@media (max-width: 1429px) {
 		span {
 			font-size: 1.32rem;
 		}
@@ -133,7 +133,7 @@
 			height: 3.42rem;
 		}
 	}
-	@media (min-width: 1024px) and (max-width: 1300px) {
+	@media (max-width: 1300px) {
 		span {
 			font-size: 1.3rem;
 		}
@@ -150,7 +150,7 @@
 			padding-top: 0.1rem;
 		}
 	}
-	@media (min-width: 649px) and (max-width: 1023px) {
+	@media (max-width: 1023px) {
 		span {
 			font-size: 1.45rem;
 		}
@@ -165,7 +165,7 @@
 			padding-right: 0.3rem;
 		}
 	}
-	@media (min-width: 550px) and (max-width: 649px) {
+	@media (max-width: 649px) {
 		span {
 			font-size: 1.45rem;
 		}

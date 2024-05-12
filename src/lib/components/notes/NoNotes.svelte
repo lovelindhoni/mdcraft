@@ -1,7 +1,7 @@
 <!--This component exists to show the illustration when there is no notes in a folder-->
 <script lang="ts">
 	import CreateNoteBigBtn from './CreateNoteBigBtn.svelte';
-	import AddNotes from '$lib/assets/AddNotes.svg';
+	import AddNotes from '$lib/assets/svg/AddNotes.svg';
 	export let currentFolderIndex: number; // passed the create note button
 </script>
 
@@ -30,7 +30,7 @@
 		}
 	}
 
-	@media (min-width: 1430px) and (max-width: 1739px) {
+	@media (max-width: 1739px) {
 		.create-note-text {
 			font-size: 2.1rem;
 		}
@@ -43,7 +43,7 @@
 		}
 	}
 
-	@media (min-width: 1024px) and (max-width: 1429px) {
+	@media (max-width: 1429px) {
 		.create-note-text {
 			font-size: 1.9rem;
 		}
@@ -67,7 +67,7 @@
 		}
 	}
 
-	@media (min-width: 550px) and (max-width: 1023px) {
+	@media (max-width: 1023px) {
 		.no-notes {
 			display: flex;
 			flex-direction: column;

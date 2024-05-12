@@ -50,7 +50,7 @@
 			bottom: 0.5rem !important;
 		}
 	}
-	@media (min-width: 1430px) and (max-width: 1739px) {
+	@media (max-width: 1739px) {
 		:global(.viewer h1) {
 			font-size: 2.2rem;
 		}
@@ -86,7 +86,7 @@
 			font-size: 1.25rem;
 		}
 	}
-	@media (min-width: 1024px) and (max-width: 1429px) {
+	@media (max-width: 1429px) {
 		:global(.viewer h1) {
 			font-size: 2.2rem;
 		}
@@ -125,7 +125,7 @@
 	@media (min-width: 1024px) {
 		.viewer {
 			height: 87%;
-			padding: 1rem 2.5rem;
+			padding: 1rem 6rem;
 		}
 		:global(.viewer pre) {
 			max-width: 55vw;
@@ -133,7 +133,7 @@
 			margin-right: auto;
 		}
 	}
-	@media (min-width: 650px) and (max-width: 1023px) {
+	@media (max-width: 1023px) {
 		.viewer {
 			padding: 1rem 20vw 2rem;
 			height: 85%;
@@ -176,7 +176,7 @@
 			font-size: 1.2rem;
 		}
 	}
-	@media (min-width: 550px) and (max-width: 649px) {
+	@media (max-width: 649px) {
 		.viewer {
 			height: 85%;
 			padding: 1rem 15vw 2rem;

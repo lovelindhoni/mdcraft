@@ -1,6 +1,6 @@
 <!--This component exists to show that if there is no folder is selected then, a illustration is shown to pick a folder from the sidebar-->
 <script lang="ts">
-	import PickFolder from '$lib/assets/PickFolder.svg';
+	import PickFolder from '$lib/assets/svg/PickFolder.svg';
 </script>
 
 <div class="pick-Folder">

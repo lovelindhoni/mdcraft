@@ -1,33 +1,23 @@
 <!--this is a big button that is shown to create notes when there is no notes in a folder-->
 <script lang="ts">
-	import { folders, generateUUID } from '$lib/store'; // the folders array as ususal
+	import { folders } from '$lib/stores/db'; // the folders array as ususal
+	import { CreateNote } from '$lib/utils/classes';
 	import { onMount } from 'svelte'; // for dynamic importing
 	let AddSvg: any; // the variables to hold the dynaimically imported comps
 	let CreateAction: any;
 	// lazily importing the components here
 	onMount(async () => {
-		AddSvg = (await import('$lib/assets/AddSvg.svelte')).default;
-		CreateAction = (await import('$lib/components/actions/CreateAction.svelte')).default;
+		AddSvg = (await import('$lib/assets/svg/AddSvg.svelte')).default;
+		CreateAction = (await import('$lib/components/modals/CreateModal.svelte')).default;
 	});
 	export let currentFolderIndex: number; // passed by the notessection.svetle
 	let title: string; // the title variable which will be used throughout here
-	let showModal = false; // the varable that closes the modal
-	let noError = true;
-	class CreateNote implements Note {
-		// this class generates the note objects which will be pushed to the folder.notes array
-		id: Note['id'];
-		title: Note['title'];
-		content: Note['content'];
-		constructor(title: Note['title']) {
-			this.id = generateUUID();
-			this.title = title;
-			this.content = `# Hello world`;
-		}
-	}
-	function newNote() {
-		// if there is already a note with the sametitle then noError is set to false
+	let showCreateModal = false; // the varable that closes the modal
+	let error = false;
+	const createNote = () => {
+		// if there is already a note with the sametitle then error is set to true
 		if ($folders[currentFolderIndex].notes.some((note) => note.title === title.trim())) {
-			noError = false;
+			error = true;
 		} else {
 			// else the note will be pushed
 			$folders[currentFolderIndex].notes.push(
@@ -36,10 +26,10 @@
 			);
 			$folders = $folders;
 			title = '';
-			noError = true;
-			showModal = false;
+			error = false;
+			showCreateModal = false;
 		}
-	}
+	};
 	let size = matchMedia('(min-width:1740px)').matches
 		? '39'
 		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches ||
@@ -48,27 +38,28 @@
 		: '26';
 </script>
 
-<button on:click={() => (showModal = true)} on:keydown={() => (showModal = true)}>
+<button on:click={() => (showCreateModal = true)} on:keydown={() => (showCreateModal = true)}>
 	<!--clicking the button will open the modal-->
 	<span>
 		<svelte:component this={AddSvg} color="white" {size} />
 		Create Note
 	</span>
 </button>
-{#if showModal}
+
+{#if showCreateModal}
 	<!--opens the modal here-->
-	<!-- on cancel , the title is wiped and then noerror is set to true, then closes the modal, on proceed, the pushnote function is runned. the title is binded which will have the value from the input tag in the delete modal, plus the noerror is set to true and the slot content is passed to the modal-->
+	<!-- on cancel , the title is wiped and then error is set to false, then closes the modal, on proceed, the pushnote function is runned. the title is binded which will have the value from the input tag in the delete modal, plus the error is set to false and the slot content is passed to the modal-->
 	<svelte:component
 		this={CreateAction}
 		contentType="note"
 		on:cancel={() => {
 			title = '';
-			noError = true;
-			showModal = false;
+			error = false;
+			showCreateModal = false;
 		}}
 		bind:title
-		on:proceed={newNote}
-		{noError}
+		on:proceed={createNote}
+		{error}
 	/>
 {/if}
 
@@ -81,7 +72,7 @@
 		}
 	}
 
-	@media (min-width: 1430px) and (max-width: 1739px) {
+	@media (max-width: 1739px) {
 		button {
 			width: 13rem;
 			height: 4rem;
@@ -89,7 +80,7 @@
 		}
 	}
 
-	@media (min-width: 1024px) and (max-width: 1429px) {
+	@media (max-width: 1429px) {
 		button {
 			width: 12.5rem;
 			height: 3.5rem;
@@ -97,7 +88,7 @@
 		}
 	}
 
-	@media (min-width: 550px) and (max-width: 1023px) {
+	@media (max-width: 1023px) {
 		button {
 			width: 15rem;
 			height: 4.2rem;

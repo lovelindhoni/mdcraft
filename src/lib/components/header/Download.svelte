@@ -1,9 +1,9 @@
 <!--this is a download button that would create a blob url that facilitates s the user to download the markdown as a .md file.-->
 <script lang="ts">
-	import DownloadButton from '$lib/assets/download.svg';
+	import DownloadButton from '$lib/assets/svg/download.svg';
 	export let title: string;
 	export let content: string;
-	function downloadMarkdown() {
+	const downloadMarkdown = () => {
 		// Create a Blob containing the Markdown content
 		const blob = new Blob([content], {
 			type: 'text/markdown'
@@ -18,7 +18,7 @@
 		downloadLink.click();
 		// Clean up by revoking the Blob URL
 		window.URL.revokeObjectURL(url);
-	}
+	};
 </script>
 
 <button class="download-button" on:click={downloadMarkdown}
@@ -36,7 +36,7 @@
 			width: 100%;
 		}
 	}
-	@media (min-width: 550px) and (max-width: 1023px) {
+	@media (max-width: 1023px) {
 		.download-button {
 			height: 2rem;
 			width: 2rem;
@@ -46,7 +46,7 @@
 			width: 100%;
 		}
 	}
-	@media (min-width: 1024px) and (max-width: 1429px) {
+	@media (max-width: 1429px) {
 		.download-button {
 			height: 2.2rem;
 		}
@@ -55,7 +55,7 @@
 			width: 1.57rem;
 		}
 	}
-	@media (min-width: 1430px) and (max-width: 1739px) {
+	@media (max-width: 1739px) {
 		.download-button {
 			height: 2.3rem;
 		}

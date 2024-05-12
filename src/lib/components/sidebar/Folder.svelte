@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { folders, currentFolderId, currentNoteId } from '$lib/store'; // importing folders and the id's
-	import DeleteIcon from '$lib/assets/DeleteSvg.svelte'; // importing the svg's
-	import EditIcon from '$lib/assets/EditSvg.svelte';
+	import { folders, currentFolderId, currentNoteId } from '$lib/stores/db'; // importing folders and the id's
+	import DeleteIcon from '$lib/assets/svg/DeleteSvg.svelte'; // importing the svg's
+	import EditIcon from '$lib/assets/svg/EditSvg.svelte';
 	let RenameAction: any; // these holds the dynamically imported modals
 	let DeleteAction: any;
 	import { onMount } from 'svelte';
 	onMount(async () => {
-		RenameAction = (await import('$lib/components/actions/RenameAction.svelte')).default;
-		DeleteAction = (await import('$lib/components/actions/DeleteAction.svelte')).default;
+		RenameAction = (await import('$lib/components/modals/RenameModal.svelte')).default;
+		DeleteAction = (await import('$lib/components/modals/DeleteModal.svelte')).default;
 	});
 	export let folderId: string; // exporting the folderId to programmatically get the folder-id while looping in each block with the folders array in the dashboard page
 	$: folderIndex = $folders.findIndex((folder) => folder.id === folderId); // finding the right folder in the array with the acquired folderIndex
@@ -15,10 +15,10 @@
 	let showRename = false; // shows the rename modal when edit icon is clicked
 	let showDeleteModal = false; // shows the delete modal when delete icon is clicked
 	let title = ''; // the title which i am gonna fuck through the whole sidebar. It gets the foldertitle of the folder from the modals
-	let noError = true; //  whenever there is a duplicate folder title, a boolean value is passed to the modals
+	let error = false; //  whenever there is a duplicate folder title, a boolean value is passed to the modals
 	let editIconColor = '#b3b3b3'; // below variables holds the color of the icon, when they are hovered orange else grey
 	let deleteIconColor = '#b3b3b3';
-	function onDeleteProceed() {
+	const deleteFolder = () => {
 		// this function causes the deletion of a folder
 		$folders.splice(folderIndex, 1); // removes the folder from the array
 		$folders = $folders; // very own courtesty of svelte
@@ -28,22 +28,22 @@
 			currentFolderId.set(null);
 		}
 		showDeleteModal = false; // closes the delete modal
-	}
-	function onRename() {
+	};
+	const renameFolder = () => {
 		// this function causes the editing of a folder
 		if (
-			// if the folder's title of this component is not equal to the title from the modal and  if there is already a folder with the same title as the new folder title from the modal(because i dont want to show error when the user gives the existing title to its folder itself) then, the there the noerror is set to false.
+			// if the folder's title of this component is not equal to the title from the modal and  if there is already a folder with the same title as the new folder title from the modal(because i dont want to show error when the user gives the existing title to its folder itself) then, the there the error is set to true.
 			$folders[folderIndex].title !== title.trim() &&
 			$folders.some((folder) => folder.title === title.trim())
 		) {
-			noError = false;
+			error = true;
 		} else {
 			// else, the the trimmed title is stored as the new title for the folder in this component, and closes the edit modal
 			$folders[folderIndex].title = title.trim();
-			noError = true;
+			error = false;
 			showRename = false;
 		}
-	}
+	};
 	let size = matchMedia('(min-width:1740px)').matches
 		? '28'
 		: matchMedia('(min-width:1430px) and (max-width:1739px)').matches ||
@@ -98,7 +98,7 @@
 	<svelte:component
 		this={DeleteAction}
 		on:cancel={() => (showDeleteModal = false)}
-		on:proceed={onDeleteProceed}>Delete Folder?</svelte:component
+		on:proceed={deleteFolder}>Delete Folder?</svelte:component
 	>
 {:else if showRename}
 	<!--shows the rename modal, this child component exposes the title taken as input and here it is bounded to the title, when closing the modal, the title is cleared, so that when renaming other folders, wont show this folder title , the folder title is passed to the oldtitle prop and it gets renamed and return to the title-->
@@ -108,11 +108,11 @@
 		on:cancel={() => {
 			showRename = false;
 			title = '';
-			noError = true;
+			error = false;
 		}}
 		bind:title
-		on:proceed={onRename}
-		{noError}>Rename Folder</svelte:component
+		on:proceed={renameFolder}
+		{error}>Rename Folder</svelte:component
 	>
 {/if}
 

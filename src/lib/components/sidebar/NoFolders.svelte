@@ -1,6 +1,6 @@
 <!--this component exists to show a illustration that represents that there is no folder exists and prompts to create one-->
 <script lang="ts">
-	import Addfolder from '$lib/assets/Addfolder.svg';
+	import Addfolder from '$lib/assets/svg/Addfolder.svg';
 	import CreateFolderBigButton from '$lib/components/sidebar/CreateFolderBigBtn.svelte';
 </script>
 
@@ -34,7 +34,7 @@
 		}
 	}
 
-	@media (min-width: 550px) and (max-width: 649px) {
+	@media (max-width: 649px) {
 		.no-folders-text {
 			font-size: 2.4rem;
 		}
@@ -52,7 +52,7 @@
 		}
 	}
 
-	@media (min-width: 650px) and (max-width: 1023px) {
+	@media (max-width: 1023px) {
 		.no-folders-text {
 			font-size: 2.7rem;
 		}
@@ -70,7 +70,7 @@
 		}
 	}
 
-	@media (min-width: 1024px) and (max-width: 1429px) {
+	@media (max-width: 1429px) {
 		.no-folders-text {
 			font-size: 1.55rem;
 		}
@@ -88,7 +88,7 @@
 		}
 	}
 
-	@media (min-width: 1430px) and (max-width: 1739px) {
+	@media (max-width: 1739px) {
 		img {
 			height: 17rem;
 			width: 19rem;
@@ -109,10 +109,10 @@
 
 	@media (min-width: 1740px) {
 		.no-folders-text {
-			font-size: 2.83rem;
+			font-size: 2.5rem;
 		}
 		.no-folders-subtext {
-			font-size: 1.8rem;
+			font-size: 1.7rem;
 			position: relative;
 			bottom: 1.3rem;
 		}
@@ -120,8 +120,8 @@
 			margin-right: 12rem;
 		}
 		img {
-			height: 27rem;
-			width: 28rem;
+			height: 23rem;
+			width: 24rem;
 		}
 	}
 

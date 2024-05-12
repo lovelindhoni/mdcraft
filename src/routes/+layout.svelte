@@ -1,12 +1,10 @@
 <script lang="ts">
-	// for consistent css
 	import 'normalize.css';
 </script>
 
 <slot />
 
 <style>
-	/**Just declared some global colors*/
 	:root {
 		--orange: hsl(12, 94%, 62%);
 		--background: #212121;

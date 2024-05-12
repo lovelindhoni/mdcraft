@@ -1,7 +1,7 @@
 <!--This is goback component that allows the user to navigate backwards in mobile and tab screens.-->
 <script lang="ts">
-	import Back from '$lib/assets/back.svg';
-	import { currentNoteId } from '$lib/store';
+	import Back from '$lib/assets/svg/back.svg';
+	import { currentNoteId } from '$lib/stores/db';
 </script>
 
 <div
@@ -21,7 +21,7 @@
 </div>
 
 <style>
-	@media (min-width: 550px) and (max-width: 1023px) {
+	@media (max-width: 1023px) {
 		.go-back-to-folder {
 			font-size: 1.5rem;
 		}

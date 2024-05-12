@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import AddSvg from '$lib/assets/AddSvg.svelte';
-	import CloseSvg from '$lib/assets/CloseSvg.svelte';
-	import { focusInput } from '$lib/store';
+	import AddSvg from '$lib/assets/svg/AddSvg.svelte';
+	import CloseSvg from '$lib/assets/svg/CloseSvg.svelte';
+	import { focusInput } from '$lib/utils/globals';
 	const dispatch = createEventDispatcher();
 	export let title = ''; // the title which is created and send to the comps
 	export let contentType: string; // the contenttype means wheather the modified content is a folder or a note, i have used this only in this component, because i need to show the contentype on placeholder for input tag, whereas in other modals, it is not needed so i directly used a slot.
-	export let noError = true; // if there are any error while creating content
+	export let error = false; // if there are any error while creating content
 	$: disabled = title.length === 0 ? true : false; // for disabling the ok button
 	let size = matchMedia('(max-width:549px)').matches
 		? // for changing the size of the icon
@@ -15,8 +15,16 @@
 		? '24'
 		: '26';
 	// dispatches the proceed event at clicking enter
-	const proceedShorcut = (event: KeyboardEvent) =>
+	const proceedShorcut = (event: KeyboardEvent) => {
 		event.key === 'Enter' && title.trim() !== '' ? dispatch('proceed') : null;
+	};
+
+	const closeModal = (event: MouseEvent) => {
+		const modal = document.querySelector('.modal-container');
+		if (event.target === modal) {
+			dispatch('cancel');
+		}
+	};
 </script>
 
 <div class="modal-container">
@@ -38,7 +46,7 @@
 		<div class="input" role="textbox">
 			<!--focused onmount and the value is binded to the foldertitle, maxlength is 60-->
 			<input
-				class:errorInput={!noError}
+				class:errorInput={error}
 				type="text"
 				placeholder="Enter the title of your {contentType.toLowerCase()}"
 				bind:value={title}
@@ -48,7 +56,9 @@
 				spellcheck="false"
 				use:focusInput
 			/>
-			<span class:noError class="error">This name is already in use, try a different name</span>
+			<span class:noError={!error} class="error"
+				>This name is already in use, try a different name</span
+			>
 		</div>
 		<div class="modal-actions" role="button">
 			<!--it has the event buttons, proceed and cancel, when proceed is clicked and the title is not empty then the proceed event is dispatched, on cancel is clicked, then the cancel event is dispatched-->
@@ -61,7 +71,7 @@
 		</div>
 	</div>
 </div>
-<svelte:window on:keydown={proceedShorcut} />
+<svelte:window on:keydown={proceedShorcut} on:click={closeModal} />
 
 <style>
 	@media (min-width: 1740px) {
@@ -74,9 +84,9 @@
 		}
 	}
 
-	@media (min-width: 1430px) and (max-width: 1739px) {
+	@media (max-width: 1739px) {
 		.modal-content {
-			height: 37%;
+			height: 31%;
 			width: 40%;
 		}
 		label {
@@ -84,7 +94,7 @@
 		}
 	}
 
-	@media (min-width: 1024px) and (max-width: 1429px) {
+	@media (max-width: 1429px) {
 		.modal-content {
 			height: 42.5%;
 			width: 40%;
@@ -123,7 +133,7 @@
 			font-size: 1.05rem;
 		}
 		.modal-actions {
-			gap: 3em;
+			gap: 1em;
 		}
 	}
 
@@ -164,7 +174,7 @@
 			border-radius: 0.6rem;
 		}
 		.modal-actions {
-			gap: 3em;
+			gap: 1em;
 		}
 	}
 
@@ -205,7 +215,7 @@
 			border-radius: 0.4rem;
 		}
 		.modal-actions {
-			gap: 1.5em;
+			gap: 1em;
 		}
 	}
 	@media (max-width: 549px) and (min-height: 700px) {
@@ -245,7 +255,7 @@
 			border-radius: 0.4rem;
 		}
 		.modal-actions {
-			gap: 1.5em;
+			gap: 1em;
 		}
 	}
 
@@ -259,7 +269,7 @@
 		justify-content: center;
 		align-items: center;
 		background-color: hsla(0, 0%, 0%, 0.8);
-		z-index: 0;
+		z-index: 2;
 	}
 
 	.input {

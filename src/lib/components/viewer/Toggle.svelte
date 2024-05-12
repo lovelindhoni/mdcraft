@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { tick, createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
-	const handleKeyDown = async (event: KeyboardEvent) => {
-		if (event.ctrlKey && event.key === 'Enter') {
-			edit = !edit; // Toggles the editor, the shortcut is Ctrl + Enter
+	const onToggle = async (event: KeyboardEvent) => {
+		if (event.ctrlKey && event.key === 'q') {
+			edit = !edit; // Toggles the editor, the shortcut is Ctrl + Q
 		}
 		if (edit) {
 			await tick(); // waiting for dom changes to finish
@@ -28,26 +28,25 @@
 	</label>
 	<!--The span attribute is used here to act as a label to  the toggle -->
 	<span class="edit-label" class:edit>Edit</span><span class:edit class="edit-shortcut">
-		(Ctrl + Enter)</span
+		(Ctrl + Q)</span
 	>
 </div>
-<svelte:window on:keydown={handleKeyDown} />
+<svelte:window on:keydown={onToggle} />
 
 <style>
-	/* CSS for toggle*/
 	@media (min-width: 1740px) {
 		.edit-label,
 		.edit-shortcut {
 			font-size: 1.44rem;
 		}
 	}
-	@media (min-width: 1430px) and (max-width: 1739px) {
+	@media (max-width: 1739px) {
 		.edit-label,
 		.edit-shortcut {
 			font-size: 1.32rem;
 		}
 	}
-	@media (min-width: 1024px) and (max-width: 1429px) {
+	@media (max-width: 1429px) {
 		.edit-label,
 		.edit-shortcut {
 			font-size: 1.15rem;
@@ -70,7 +69,7 @@
 			transform: translateX(1.6rem);
 		}
 	}
-	@media (min-width: 550px) and (max-width: 1023px) {
+	@media (max-width: 1023px) {
 		.toggle {
 			width: 3.6rem;
 			height: 1.7rem;

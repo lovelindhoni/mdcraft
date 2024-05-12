@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { focusInput } from '$lib/store'; // for focussing the input tag
-	import EditSvg from '$lib/assets/EditSvg.svelte';
-	import CloseSvg from '$lib/assets/CloseSvg.svelte';
+	import { focusInput } from '$lib/utils/globals'; // for focussing the input tag
+	import EditSvg from '$lib/assets/svg/EditSvg.svelte';
+	import CloseSvg from '$lib/assets/svg/CloseSvg.svelte';
 	const dispatch = createEventDispatcher();
 	export let title = ''; // the title string which is modified and send to the other comps
 	export let oldTitle = ''; // this prop get its value from the comps, where there is a need for renaming, where the old title is gotten and binded to the input tag
@@ -11,7 +11,7 @@
 		title = oldTitle;
 		disabled = title.length === 0 ? true : false;
 	} // when rename, the renamed oldtitle is assigned to the title, whenever the title lenght is 0, then the ok button is disabled
-	export let noError = true; // initilly there is no errror, so it is true
+	export let error = false; // initilly there is no error, so it is false
 	let size = matchMedia('(max-width:549px)').matches
 		? '20'
 		: matchMedia('(max-width:1023px)').matches
@@ -23,8 +23,17 @@
 		: matchMedia('(max-width:1023px)').matches
 		? '19'
 		: '21';
-	const proceedShorcut = (event: KeyboardEvent) =>
+
+	const proceedShorcut = (event: KeyboardEvent) => {
 		event.key === 'Enter' && title.trim() !== '' ? dispatch('proceed') : null;
+	};
+
+	const closeModal = (event: MouseEvent) => {
+		const modal = document.querySelector('.modal-container');
+		if (event.target === modal) {
+			dispatch('cancel');
+		}
+	};
 </script>
 
 <div class="modal-container">
@@ -49,7 +58,7 @@
 			<!--the class:directive is when there a error then, the border is set to color red-->
 			<input
 				placeholder="Your title should be 1-30 chars"
-				class:errorInput={!noError}
+				class:errorInput={error}
 				type="text"
 				id="rename"
 				bind:value={oldTitle}
@@ -58,7 +67,9 @@
 				spellcheck="false"
 				use:focusInput
 			/>
-			<span class:noError class="error">This name is already in use, try a different name</span>
+			<span class:noError={!error} class="error"
+				>This name is already in use, try a different name</span
+			>
 		</div>
 		<div class="modal-actions" role="button">
 			<!--it has the event buttons, proceed and cancel, when proceed is clicked and the title is not empty then the proceed event is dispatched, on cancel is clicked, then the cancel event is dispatched-->
@@ -71,7 +82,7 @@
 		</div>
 	</div>
 </div>
-<svelte:window on:keydown={proceedShorcut} />
+<svelte:window on:keydown={proceedShorcut} on:click={closeModal} />
 
 <style>
 	@media (min-width: 1740px) {
@@ -83,16 +94,16 @@
 			font-size: 1.78rem;
 		}
 	}
-	@media (min-width: 1430px) and (max-width: 1739px) {
+	@media (max-width: 1739px) {
 		.modal-content {
-			height: 37%;
+			height: 31%;
 			width: 40%;
 		}
 		label {
 			font-size: 1.6rem;
 		}
 	}
-	@media (min-width: 1024px) and (max-width: 1429px) {
+	@media (max-width: 1429px) {
 		.modal-content {
 			height: 42.5%;
 			width: 40%;
@@ -130,10 +141,10 @@
 			font-size: 1.05rem;
 		}
 		.modal-actions {
-			gap: 3em;
+			gap: 1em;
 		}
 	}
-	@media (min-width: 550px) and (max-width: 1023px) {
+	@media (max-width: 1023px) {
 		.modal-content {
 			height: 24%;
 			width: 60%;
@@ -170,10 +181,10 @@
 			border-radius: 0.6rem;
 		}
 		.modal-actions {
-			gap: 3em;
+			gap: 1em;
 		}
 	}
-	@media (max-width: 549px) and (max-height: 699px) {
+	@media (max-height: 699px) {
 		.modal-content {
 			height: 34%;
 			width: 80%;
@@ -210,10 +221,10 @@
 			border-radius: 0.4rem;
 		}
 		.modal-actions {
-			gap: 1.5em;
+			gap: 1em;
 		}
 	}
-	@media (max-width: 549px) and (min-height: 700px) {
+	@media (max-width: 549px) {
 		.modal-content {
 			height: 26%;
 			width: 80%;
@@ -250,7 +261,7 @@
 			border-radius: 0.4rem;
 		}
 		.modal-actions {
-			gap: 1.5em;
+			gap: 1em;
 		}
 	}
 	.modal-container {

@@ -1,6 +1,6 @@
 <!--This component connects all the components in the sidebar folder, this will be exported to the dashboard page-->
 <script lang="ts">
-	import { folders, currentFolderId, currentNoteId } from '$lib/store'; // of course, the folders array, and the Id's
+	import { folders, currentFolderId, currentNoteId } from '$lib/stores/db'; // of course, the folders array, and the Id's
 	import CreateFolder from '$lib/components/sidebar/CreateFolder.svelte'; // the create new button
 	import Folder from '$lib/components/sidebar/Folder.svelte'; // the component that will display the folder
 	import NoFolders from '$lib/components/sidebar/NoFolders.svelte';
