@@ -24,27 +24,6 @@ const defaultValues: { folders: Folder[]; currentNoteId: ID; currentFolderId: ID
 		},
 		{
 			id: generateUUID(),
-			title: `ISTE - BITS`,
-			notes: [
-				{
-					id: generateUUID(),
-					title: `About Us`,
-					content: data.istebits.aboutus
-				},
-				{
-					id: generateUUID(),
-					title: `Opportunities`,
-					content: data.istebits.opportunities
-				},
-				{
-					id: generateUUID(),
-					title: `Contact Us`,
-					content: data.istebits.contactus
-				}
-			]
-		},
-		{
-			id: generateUUID(),
 			title: `Typescript`,
 			notes: [
 				{
